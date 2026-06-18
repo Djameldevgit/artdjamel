@@ -1,216 +1,656 @@
-import React, { useState } from "react";
-import { postDataAPI } from "../utils/api"; // 👈 import del helper
-
-const DonatePage = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleDonate = async () => {
-    try {
-      setLoading(true);
-      setError("");
-
-      // 🔥 reemplazo completo de fetch
-      const { data } = await postDataAPI("/api/checkout", {
-        amount: 1000,
-        currency: "dzd",
-      });
+Alguna pregunta?
+Por teléfono:  +34 911 23 97 81
+Por correo electrónico: 
+Consulte nuestras FAQ
 
-      if (data?.checkout_url) {
-        window.location.href = data.checkout_url;
-      } else {
-        throw new Error("No checkout URL received");
-      }
-    } catch (err) {
-      setError(
-        err?.response?.data?.error ||
-          err.message ||
-          "Something went wrong"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+Envío & Devoluciones
 
-  return (
-    <div
-      className="min-h-screen bg-gradient-to-b from-emerald-50 to-white"
-      dir="rtl"
-    >
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+Garantía
+Singulart garantiza fiabilidad y trazabilidad.
 
-          {/* Header */}
-          <div className="bg-[#1B4B36] text-white p-8 text-center">
-            <h1 className="text-3xl font-bold mb-4">
-              حملة التبرعات الخيرية
-            </h1>
-            <p className="text-lg text-yellow-300">
-              معاً لمستقبل أفضل
-            </p>
-          </div>
+Todos los artistas de la plataforma han sido cuidadosamente 
 
-          {/* Body */}
-          <div className="p-8">
+seleccionados y certifican que solo venden obras de las que 
 
-            {/* Amount */}
-            <div className="bg-emerald-50 p-6 rounded-lg text-center mb-8">
-              <h3 className="text-xl font-bold text-[#1B4B36] mb-2">
-                قيمة التبرع
-              </h3>
-              <p className="text-4xl font-bold text-[#1B4B36]">
-                1000 دج
-              </p>
-            </div>
+son autores. Con independencia del formato, la obra se 
 
-            {/* Button */}
-            <button
-              onClick={handleDonate}
-              disabled={loading}
-              className={`w-full font-bold py-4 px-8 rounded-lg transition-colors duration-200 text-lg ${
-                loading
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#1B4B36] hover:bg-[#153828] text-yellow-300"
-              }`}
-            >
-              {loading ? "جاري التوجيه..." : "تبرع الآن"}
-            </button>
+envía al comprador con un certificado de autenticidad. Las 
 
-            {/* Error */}
-            {error && (
-              <p className="text-red-500 text-center mt-4">
-                {error}
-              </p>
-            )}
+fotografías están numeradas y van firmadas.
 
-            {/* Trust message */}
-            <div className="text-center text-sm text-gray-600 mt-6">
-              <p>جميع التبرعات آمنة ومضمونة</p>
-            </div>
+Todos los clientes pueden solicitar una copia de su 
 
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+certificado de autenticidad escribiendo a 
 
-export default DonatePage;
+support@singulart.com. 
 
 
 
+Entrega internacional profesional, supervisada por nuestros 
 
+expertos en logística
+Los gastos de envío, impuestos y tributos están incluidos 
 
+en el precio
+Devoluciones gratuitas durante 30 días (excepto en el caso 
 
+de los artículos hechos por encargo)
 
+Garantía
+Garantía
+Singulart garantiza fiabilidad y trazabilidad.
 
+Todos los artistas de la plataforma han sido cuidadosamente 
 
+seleccionados y certifican que solo venden obras de las que 
 
+son autores. Con independencia del formato, la obra se 
 
+envía al comprador con un certificado de autenticidad. Las 
 
+fotografías están numeradas y van firmadas.
 
-import express from "express";
-import { createCheckout } from "../controllers/paymentController.js";
+Todos los clientes pueden solicitar una copia de su 
 
+certificado de autenticidad escribiendo a 
 
+support@singulart.com.
 
 
 
+Pago
+Con Singulart puede pagar de forma segura con tarjeta de 
 
+crédito o transferencia bancaria.
 
+Para todas las transacciones que excedan su límite de 
 
-const router = express.Router();
+crédito, contáctenos. Estamos obligados a verificar cada 
 
-// crear checkout
-router.post("/checkout", createCheckout);
+transferencia, como parte de la lucha contra el fraude y el 
 
-export default router;
+lavado de dinero.
 
-import axios from "axios";
 
-export const createCheckout = async (req, res) => {
-  try {
-    const { amount, currency } = req.body;
+Los precios de Singulart incluyen lo siguiente:
 
-    const { data } = await axios.post(
-      "https://pay.chargily.net/test/api/v2/checkouts",
-      {
-        amount,
-        currency,
-        success_url: "http://localhost:3000/success",
-        webhook_url: "http://localhost:5000/webhook",
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CHARGILY_SECRET_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+El precio de la obra, según lo haya determinado el artista.
+El seguro. Su pedido estará asegurado al 100 % en caso de 
 
-    return res.json(data);
-  } catch (err) {
-    console.log(err?.response?.data || err.message);
-    return res.status(500).json({ error: "checkout error" });
-  }
-};
+daño o robo.
+La gestión total de las tasas de aduanas, los impuestos y 
 
+la documentación.
+Los gastos de envío del proveedor logístico, que es una 
 
+empresa de terceros.
+La asignación de un experto en atención al cliente de 
 
+Singulart, que le ayudará en caso de que tenga alguna duda 
 
+o problema durante el envío.
 
 
 
 
-import express from "express";
-import { handleWebhook } from "../controllers/webhookController.js";
 
-const router = express.Router();
 
-// webhook de Chargily
-router.post("/webhook", handleWebhook);
 
-export default router;
 
 
 
-import crypto from "crypto";
 
-export const handleWebhook = (req, res) => {
-  try {
-    const signature = req.headers["signature"];
 
-    const payload = JSON.stringify(req.body);
+Acerca de los artistas y sus obras
+¿Cómo eliges las obras de arte disponibles para la venta?
+Seleccionamos los artistas y ellos eligen las obras que 
 
-    const computedSignature = crypto
-      .createHmac("sha256", process.env.CHARGILY_SECRET_KEY)
-      .update(payload)
-      .digest("hex");
+quieren poner a la venta. Por supuesto, moderamos el 
 
-    if (computedSignature !== signature) {
-      return res.status(403).json({ error: "Invalid signature" });
-    }
+contenido y tenemos la oportunidad de eliminar obras de la 
 
-    const event = req.body;
+venta si se cuestiona su autenticidad.
 
-    switch (event.type) {
-      case "checkout.paid":
-        console.log("Pago exitoso:", event.data);
+¿Quién puede vender en Sinngulart?
+Todos nuestros artistas son reconocidos en su país de 
 
-        // 👉 aquí: guardar en MongoDB
-        break;
+residencia. Identificamos a estos artistas en todo el mundo 
 
-      case "checkout.failed":
-        console.log("Pago fallido:", event.data);
-        break;
+para que podamos ofrecerle una selección internacional 
 
-      default:
-        console.log("Evento no manejado:", event.type);
-    }
+diversa y de alta calidad.Para obtener más información 
 
-    return res.json({ received: true });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: "webhook error" });
-  }
-};
+sobre nuestros criterios de selección, haz clic aquí.
+¿Es usted un artista? Por favor, siéntase libre de 
+
+postularse a través de esta página . Respondemos a todas 
+
+las aplicaciones, muchas gracias.
+
+¿Las obras están disponibles impresas en reedición?
+Todos los trabajos presentados en SINGULART son trabajos 
+
+originales, no se publican en diferentes soportes o más 
+
+allá de la cantidad de ediciones definidas por el artista 
+
+(para fotografía en particular).
+
+¿Es está una edición?
+Estamos hablando de publicar cuando hay varias copias de un 
+
+trabajo, especialmente en fotografía. Una edición implica 
+
+que el artista ha definido un número definido de copias 
+
+antes de la primera venta y este número no cambia con el 
+
+tiempo. Para las fotografías, un artista establecido 
+
+generalmente tiene ediciones de unas diez copias, mientras 
+
+que un fotógrafo joven puede tener ediciones más altas. 
+
+Cuantas menos copias, mayor será el precio del trabajo.
+
+¿Se emite un certificado de autenticidad con el trabajo?
+Todas las obras a la venta en SINGULART van acompañadas de 
+
+un certificado de autenticidad firmado por el artista. 
+
+Además, todas las ediciones (fotografías, impresiones, 
+
+etc.) están numeradas y firmadas por el artista. Si la obra 
+
+es de un artista famoso (Picasso, Warhol…), también vendrá 
+
+acompañada de un certificado de autenticidad de SINGULART.
+
+El trabajo ya no está disponible, ¿puedo pedir uno similar?
+Muchos de nuestros artistas aceptan pedidos, así que no 
+
+dude en contactarnos si desafortunadamente el trabajo que 
+
+le gusta ya no está disponible para la venta.
+
+¿Están todos los trabajos presentados en SINGULART 
+
+disponibles para la venta?
+No siempre, ya que a veces ya se han vendido. Si el trabajo 
+
+ha sido vendido, se indica en la página del trabajo. Si no 
+
+encuentras otra obra que te guste, no dudes en ponerte en 
+
+contacto con nosotros, ya que podemos sugerirte otras obras 
+
+de nuestros artistas que todavía no están en línea. Algunos 
+
+de nuestros artistas también aceptan encargos.
+
+2
+Servicios que ofrece SINGULART
+¿Puedo encuadrar cualquier obra?
+Absolutamente. El artista a veces ya ha elegido un marco, 
+
+del que podemos enviarte una foto. Si la obra no está 
+
+enmarcada, puedes seleccionar el enmarcado directamente en 
+
+la página de la obra o en tu carrito.
+
+¿Quién paga el costo de encuadrar la obra?
+Cuando el trabajo se indica como enmarcado, entonces el 
+
+marco es una parte integral del trabajo y su precio ya está 
+
+integrado en el precio del trabajo.
+Cuando el trabajo no está enmarcado , SINGULART ofrece 
+
+encuadre adicional y se le cobrará además del precio del 
+
+trabajo. Siempre nos aseguramos de ofrecerle un marco en el 
+
+presupuesto que nos ha comunicado.
+
+¿Ofrecen recomendaciones y consejos?
+Nuestro papel es presentar a los coleccionistas las obras 
+
+de un artista. Pero necesita revisar muchas obras de arte 
+
+para que esto suceda, y podemos ayudarlo a ahorrar tiempo.
+Podemos ofrecerle una selección personalizada de 
+
+aproximadamente veinte trabajos elegidos especialmente para 
+
+usted. Para recibir esta selección, puede contactarnos a 
+
+advisors@singulart.com y nos pondremos en contacto con 
+
+usted dentro de las 48 horas.
+
+¿Tengo que pagar por el servicio de asesoramiento 
+
+artístico?
+En absoluto, es parte de nuestra misión presentar a los 
+
+coleccionistas nuevas obras de arte.
+
+Quiero hacer un regalo, pero no sé qué obra elegir. ¿Qué 
+
+puedo hacer?
+Es una gran idea regalar arte. Sin embargo, puede ser 
+
+difícil elegir una obra de arte para otra persona, incluso 
+
+si la conoces bien.
+Hay dos opciones para ayudarte a dar un regalo único: 
+
+podemos hablar sobre la persona a quien quieres regalarle 
+
+arte, y pensar en lo que le gusta y lo que le vendría bien 
+
+en su hogar. Luego podemos ofrecerte una selección 
+
+personalizada dentro de tu presupuesto.
+La otra opción: regálale una tarjeta regalo por el importe 
+
+de tu elección. Con cada tarjeta regalo, ofrecemos una hora 
+
+de asesoramiento personalizado, para ayudarle a elegir una 
+
+obra de arte que le encante.
+
+3
+Adquirir una obra en nuestro sitio
+¿Cómo averiguo si tiene obras del artista que estoy 
+
+buscando?
+Si tiene un nombre de artista en mente, puede buscarlo en 
+
+nuestra página de artistas .
+Si no hay resultados, déjenos sus datos. Si el artista se 
+
+une a SINGULART, le informaremos de inmediato.
+
+¿Qué hace el corazón junto a las obras de arte?
+Este ícono le permite elegir las obras de arte mientras se 
+
+encuentra en el sitio, por lo que puede encontrarlas todas 
+
+en una sola página. Para ver esto, haga clic en el corazón 
+
+en el menú principal. Para asegurarse de que sus favoritos 
+
+estén guardados, se necesita crear una cuenta .
+
+¿Cómo puedo verificar las dimensiones de la obra de arte?
+Las dimensiones de las obras se indican en la página del 
+
+trabajo. ¿Alguna duda? No dude en ponerse en contacto con 
+
+nosotros, estamos aquí para eso y podemos enviarle imágenes 
+
+adicionales para ayudarlo a comprender las dimensiones del 
+
+trabajo de manera más concreta.
+
+¿La imagen presentada en el sitio representa exactamente la 
+
+obra?
+La imagen en el sitio es una representación exacta de la 
+
+obra de arte, pero no tiene valor contractual. Podemos 
+
+enviarte imágenes adicionales a petición.
+Si la obra de arte que pediste no es lo que esperabas, lo 
+
+sentimos mucho. Tienes 30 días para devolver el trabajo 
+
+después de su entrega.
+
+¿Cómo comprar arte en SINGULART?
+Para comprar una obra de arte, debe hacer clic en el botón 
+
+"Adquirir esta obra de arte" que se encuentra en todas las 
+
+páginas de obras de arte. Serás redirigido a tu carrito. 
+
+Una vez que haya hecho clic en 'Proceder', le pediremos que 
+
+elija su método de pago (tarjeta, Paypal, o llámenos para 
+
+transferencias bancarias). Una vez que se haya procesado el 
+
+pago, recibirá la confirmación de nuestro procesador de 
+
+pagos, Stripe. Estaremos encantados de confirmar que su 
+
+pago ha sido recibido.
+
+¿Qué métodos de pago se aceptan?
+Todas las tarjetas de crédito (Mastercard, Visa, American 
+
+Express, etc.), el pago a través de Paypal, Apple Pay, 
+
+Google Pay y la transferencia bancaria.
+
+¿Puedo pagar en cuotas?
+¡Absolutamente! Contáctenos para más información: +34 911 
+
+23 97 81
+
+¿Qué sucede cuando el pago ha sido procesado?
+Una vez realizado el pago, el trabajo está reservado para 
+
+usted. Le contactamos rápidamente para confirmar la 
+
+disponibilidad y los plazos de entrega (en promedio 7 
+
+días). Luego definimos juntos el día ideal de entrega en la 
+
+dirección que indicó durante el pago.
+
+¿Cuándo se hará el cargo a mi tarjeta de crédito?
+Su tarjeta de crédito será cargada en el momento de la 
+
+compra cuando confirme su compra. Este es el punto en el 
+
+que su pago es autorizado y procesado por nuestra pasarela 
+
+de pago. Tenga en cuenta que si utiliza una tarjeta de 
+
+débito, el pago puede ser deducido inmediatamente de su 
+
+saldo de cuenta.
+
+¿Puedo cancelar mi orden?
+Por supuesto. Antes de que se haya enviado la obra, puede 
+
+cancelar su pedido por correo electrónico. Una vez que se 
+
+ha enviado, el período de cancelación comienza 30 días 
+
+después de la entrega. Si el trabajo ha sido devuelto, 
+
+devolveremos su dinero hasta que la obra se encuentre de 
+
+regreso en buen estado con el artista. Puede contactar a <a 
+
+href="mailto:customer-care@singulart.com">customer-
+
+care@singulart.com</a> para cancelar su pedido.
+
+¿Hay algún problema con la confirmación de tu pedido?
+No dude en contactarnos en cualquier momento para cualquier 
+
+pregunta, sobre los medios de pago, la entrega o cualquier 
+
+otra pregunta.
+Contacto: +34 911 23 97 81
+
+4
+Envío y Entrega
+La entrega segura de su pedido es nuestra prioridad. Para 
+
+cada cliente, tenemos un equipo dedicado de Customer Care 
+
+que puede ser contactado para ayudar con el proceso de 
+
+envío y entrega. Puede contactar al Customer Care en <a 
+
+href="mailto:customer-care@singulart.com">customer-
+
+care@singulart.com</a>.
+
+Utilizamos proveedores logísticos externos profesionales 
+
+(3PLP) para llevarle sus artículos de la manera más segura 
+
+posible.
+
+¿Dónde entrega SINGULART?
+Como empresa internacional, estamos orgullosos de entregar 
+
+nuestros artículos en todo el mundo.
+
+¿Cuánto tarda SINGULART en entregar mi pedido?
+Por lo general, entregamos los pedidos dentro de los 7 a 10 
+
+días posteriores a la compra.
+Para piezas hechas a pedido, el tiempo de producción debe 
+
+agregarse al tiempo de entrega regular.
+El tiempo de entrega puede variar según el país de salida y 
+
+el país de destino de los productos comprados y si se ha 
+
+agregado una opción de enmarcado o estirado a su pedido.
+¿Cómo puedo seguir mi pedido?
+Puede realizar un seguimiento de su pedido con un enlace de 
+
+seguimiento que recibirá por correo electrónico de 2 a 3 
+
+días (en promedio) después de su compra.
+Tan pronto como esté disponible, también podrá encontrar su 
+
+enlace de seguimiento en su página Mis pedidos.
+Como trabajamos con proveedores externos, este servicio 
+
+puede diferir ligeramente de un pedido a otro. Algunas 
+
+compañías de envío pueden ofrecer la posibilidad de 
+
+programar a su conveniencia, aunque SINGULART no puede 
+
+garantizarlo.
+Tenga en cuenta que nuestros servicios de entrega externos 
+
+son los que le enviarán la información de seguimiento.
+¿Cuánto cuesta mi envío?
+El precio de la entrega ya está incluido en el precio de la 
+
+obra.
+Tenga en cuenta que nuestros precios incluyen:
+Seguro. Su pedido está 100% protegido en caso de cualquier 
+
+daño o pérdida.
+Todas las tasas aduaneras, todos los impuestos y la 
+
+preparación de documentos.
+Costos de envío del proveedor de logística tercero.
+Un especialista dedicado de atención al cliente de 
+
+SINGULART que lo ayudará con cualquier pregunta o problema 
+
+durante el envío.
+Puede elegir una opción de entrega White-Glove realizada 
+
+por profesionales del arte. En este caso se aplican costos 
+
+adicionales.
+Impuestos y Aduanas:
+Los impuestos y las tasas de aduanas ya están incluidos en 
+
+el precio de la obra.
+En algunos casos raros, la empresa de envío le pedirá que 
+
+pague las tarifas de importación de aduanas. Si este fuera 
+
+el caso, anticipe el pago y comparta un recibo/estado de 
+
+cuenta bancario con su especialista de atención al cliente. 
+
+De esta manera, no habrá más demora y podremos reembolsarle 
+
+el monto total.
+Tipos de servicios de entrega:
+Puede elegir entre 3 opciones de envío:
+
+Entrega profesional en la puerta de su edificio
+Su pedido será entregado personalmente en su edificio o en 
+
+la puerta de su casa por una empresa de envío de confianza 
+
+(DHL, FedEx, UPS). Todos los productos son cuidadosamente 
+
+empaquetados por los artistas siguiendo las pautas de 
+
+SINGULART.
+
+Entrega White-Glove
+Un profesional del arte se encargará de su entrega. Puede 
+
+elegir el día y la hora de su entrega y su artículo será 
+
+entregado en la habitación de su elección. Se 
+
+desempaquetará el artículo y se retirará todo el embalaje 
+
+de su hogar.
+
+Entrega White-Glove e instalación
+Esta opción es la misma que la Entrega Premium, además, su 
+
+manejador de arte se encargará de instalar su obra (la 
+
+colgará si es una pintura).
+
+¿Dónde esta mi pedido?
+Como utilizamos servicios de entrega de terceros, le 
+
+recomendamos que utilice el enlace de seguimiento que 
+
+recibirá por correo electrónico dentro de los 2-3 días (en 
+
+promedio) de su compra.
+También puede ver el estado de su pedido haciendo clic en 
+
+el enlace de seguimiento en su página Mis pedidos.
+¿Preguntas? Llámenos al +34 911 23 97 81.
+¿Qué sucede si mi pedido se pierde o llega dañado?
+Si hay algún problema con su pedido, comuníquese con su 
+
+especialista en atención al cliente personal o comuníquese 
+
+con nosotros al +34 911 23 97 81.
+Tome fotos del empaque (preferiblemente antes de abrirlo) y 
+
+del daño real de los productos. Cuantas más fotos tengamos, 
+
+más fácil será para nosotros ayudarle.
+Su pedido está 100% asegurado. En caso de que algo esté mal 
+
+con el producto, es elegible para un reembolso completo a 
+
+menos que elija que lo reparen o lo reemplacen. En este 
+
+caso, organizaremos la reparación o la sustitución de su 
+
+artículo. Todas estas opciones están libres de cualquier 
+
+cargo adicional.
+Si elige recibir un reembolso, SINGULART cubrirá todos los 
+
+costos de devolución.
+5
+Política de devoluciones
+En caso de que un artículo no cumpla con sus expectativas 
+
+o, simplemente, cambie de opinión, puede solicitar la 
+
+devolución de sus productos durante un plazo máximo de 30 
+
+días tras la entrega. También puede solicitar un cambio o 
+
+un reembolso.
+
+Política de devoluciones
+Si, por el motivo que sea, no queda totalmente satisfecho, 
+
+puede solicitar la devolución del producto dentro de un 
+
+plazo de 30 días tras la recepción de su pedido.
+Si recibe un artículo dañado, puede solicitar la 
+
+reparación, sustitución o reembolso durante un plazo de 30 
+
+días tras la entrega.
+Tenga en cuenta que los productos hechos a pedido, como una 
+
+obra de arte encargada y piezas de diseño personalizadas y 
+
+hechas a pedido, no son elegibles para devolución o 
+
+reembolso.
+SINGULART se hace cargo de todos los gastos de devolución, 
+
+sin embargo le pedimos que conserve el embalaje original 
+
+para poder reembalar la obra.
+Cambié de opinión, ¿cómo devuelvo mi pedido?
+Una vez que se haya entregado su artículo, puede solicitar 
+
+una devolución comunicándose con su especialista de 
+
+Atención al Cliente al +34 911 23 97 81 o customer-
+
+care@singulart.com.
+Incluso si decide devolver su artículo, queremos asegurarle 
+
+el mejor servicio posible.
+¿La devolución también debe realizarse dentro del plazo de 
+
+30 días tras recepción del pedido, o ese plazo solo se 
+
+aplica a la solicitud?
+Lo único que debe realizarse dentro del plazo de 30 días 
+
+tras la entrega es la solicitud de devolución. Podrá 
+
+devolver su pedido de forma segura tan pronto como la 
+
+recibamos.
+
+¿Cómo funciona?
+Uno de nuestros especialistas de Atención al Cliente le 
+
+informará cómo proceder con su devolución una vez que haya 
+
+recibido su solicitud.
+Recibirá los documentos de envío de devolución con 
+
+instrucciones claras.
+Si es necesario, podemos ubicar restauradores en su nombre, 
+
+comunicarnos con los artistas u organizar su envío de 
+
+devolución. Nuestro equipo quiere hacer que este proceso 
+
+sea lo más fácil posible para usted.
+Las devoluciones son gratuitas:
+Pagamos los gastos de devolución, por lo que es 100 % 
+
+gratuito.
+Esto incluye re-empaque, recogida, envío, aduanas, etc.
+¿Qué se reembolsa?
+Recibirá un reembolso completo, que incluye el precio de su 
+
+artículo y los gastos de envío.
+
+¿Puedo devolver productos hechos a pedido?
+No, los productos hechos a pedido no son elegibles para 
+
+devolución. Esto incluye obras de arte encargadas.
+Sin embargo, una vez que la pieza encargada esté terminada 
+
+y lista para ser enviada, se le pedirá que dé una 
+
+confirmación final basada en la foto de la pieza encargada. 
+
+Mientras no se haya enviado, aún puede cancelar el pedido y 
+
+recibir un reembolso completo.
+Una vez que confirma el pedido, se envía y ya no es 
+
+elegible para devolución o reembolso.
