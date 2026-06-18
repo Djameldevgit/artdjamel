@@ -1,0 +1,202 @@
+{
+	 
+		"emailActivation": {
+		  "subject": "Activate your Tassili Art account",
+		  "body": "Welcome to Tassili Art! To join our artistic community and access all features, please verify your account. Click the button below to complete the verification process:",
+		  "button": "Verify account",
+		  "alt": "If the button doesn’t work, copy and paste the link below into your browser to activate your Tassili Art account."
+		},
+		"emailReset": {
+		  "subject": "Reset your Tassili Art password",
+		  "body": "You requested to reset your password on Tassili Art. Click the button below to continue the recovery process:",
+		  "button": "Reset password",
+		  "alt": "If you didn’t make this request, please ignore this message."
+		},
+		"emailInformativo": {
+		  "subject": "News from Tassili Art",
+		  "body": "Stay up to date with the latest news and updates from Tassili Art. Discover new artworks, artists, and features on our platform.",
+		  "button": "Explore now",
+		  "alt": "If the button doesn’t work, visit our website for more information."
+		 
+	  },
+	  
+
+
+
+
+
+
+	"auth": {
+		"username_exists": "Username already exists.",
+		"email_exists": "Email already exists.",
+		"password_too_short": "Password must be at least 6 characters.",
+		"register_success": "Registration successful!",
+		"email_not_exist": "This email does not exist.",
+		"incorrect_password": "Incorrect password.",
+		"login_success": "Login successful!",
+		"logout_success": "Logout successful!",
+		"login_required": "Please log in now.",
+		"user_not_found": "User not found.",
+		"server_error": "Server error.",
+		"activation_email_sent": "auth.activation_email_sent",
+		"forgot_email_sent": "auth.forgot_email_sent",
+		"account_activated": "✅ Account activated successfully.",
+		"reset_email_sent": "Password reset link sent.",
+		"password_changed": "Password changed successfully."
+	},
+	"post": {
+		"POST": "POST",
+		"created_post": "We've received your message, our team is reviewing it. We'll notify you when approved.",
+		"updated_post": "Post updated!",
+		"deleted_post": "Post deleted!",
+		"liked_post": "You liked the post!",
+		"unliked_post": "Like removed from post!",
+		"saved_post": "Post saved!",
+		"unsaved_post": "Post removed from saved!",
+		"post_not_exist": "This post does not exist.",
+		"user_not_exist": "This user does not exist.",
+		"already_liked": "You already liked this post.",
+		"already_saved": "You already saved this post.",
+		"please_add_photo": "Please add a photo.",
+		"post_approved": "Post approved!",
+		"post_not_found": "Post not found.",
+		"success": "Success!",
+		"USER": "USER",
+		"user_not_found": "User not found.",
+		"please_add_username": "Please add username.",
+		"update_success": "Update successful!",
+		"already_followed": "You already follow this user.",
+		"follow_success": "Follow successful!",
+		"unfollow_success": "Unfollow successful!",
+		"search_failed": "User search failed.",
+		"suggestions_loaded": "User suggestions loaded.",
+		"error": "An error occurred.",
+		"no_users_found": "No users found.",
+		"invalid_user_id": "Invalid user ID.",
+		"updated_arabic": "language.updated_arabic",
+		"updated_french": "language.updated_french",
+		"updated_spanish": "language.updated_spanish"
+	},
+	"comment": {
+		"error_post_not_exist": "This post does not exist.",
+		"error_comment_not_exist": "This comment does not exist.",
+		"success": "Comment created successfully!"
+	},
+	"lang": {
+		"langUpdatedToSpanish": "Language updated to Spanish",
+		"langUpdatedToRussian": "Language updated to Russian",
+		"langUpdatedToKabyle": "Language updated to Kabyle",
+		"langUpdatedToChinese": "Language updated to Chinese",
+		"langUpdatedToEnglish": "Language updated to English",
+		"langUpdatedToFrench": "Language updated to French",
+		"langUpdatedToArabic": "Language updated to Arabic",
+		"langUpdated": "Language updated",
+		"languageNotSpecified": "Language not specified",
+		"userNotFoundOrAlreadyUpdated": "User not found or language already updated",
+		"errorUpdatingLanguage": "Error updating language",
+		"languageSavedForVisitor": "Language saved for visitor",
+		"errorSavingLanguageForVisitor": "Error saving language for visitor"
+	},
+	"cart": {
+		"postNotFoundOrNoPrice": "Post not found or no price",
+		"postAddedToCart": "Post added to cart",
+		"priceMustBeNumber": "Price must be a number",
+		"priceMustBePositive": "Price must be positive",
+		"quantityAtLeastOne": "Quantity must be at least 1",
+		"productRemoved": "Product removed",
+		"serverError": "Server error",
+		"invalidQuantity": "Invalid quantity",
+		"productNotFoundInCart": "Product not found in cart",
+		"quantityUpdated": "Quantity updated"
+	},
+	"language": {
+		"updated_arabic": "language.updated_arabic",
+		"updated_spanish": "language.updated_spanish",
+		"updated_english": "language.updated_english",
+		"updated_french": "language.updated_french"
+	},
+	"email": {
+		"subject": "Jamal Art",
+		"title": "Welcome to Tassili Art",
+		"body": "Congratulations! You're about to use the app. Click the button or link below to confirm your email.",
+		"button": "Confirm Email",
+		"alt": "If the button doesn't work, you can also click the following link:",
+		"reset_button": "email.reset_button"
+	},
+	"user_not_found": "User not found.",
+	"already_verified": "Account already verified.",
+	"activation_email_sent": "Activation email sent to your address.",
+	"server_error": "Internal server error.",
+	"order": {
+		"cart_empty": "Cart is empty",
+		"created_success": "✅ Order created successfully",
+		"not_found": "Order not found",
+		"status_updated": "Order status updated",
+		"deleted_success": "Order deleted successfully"
+	},
+	"role": {
+		"user_not_found": "User not found",
+		"role_assigned": "User role assigned successfully",
+		"Super-utilisateur": "Superuser role assigned successfully",
+		"moderator_assigned": "Moderator role assigned successfully",
+		"admin_assigned": "Admin role assigned successfully",
+		"update_error": "Error updating user role"
+	},
+	"message": {
+		"create_success": "Message created successfully!",
+		"delete_success": "Successfully deleted!",
+		"invalid_data": "Invalid data: recipient and message content required",
+		"server_error": "Message server error",
+		"createMessage.empty": "Message cannot be empty.",
+		"createMessage.success": "Message created successfully!",
+		"deleteMessage.success": "Message deleted successfully!",
+		"deleteConversation.success": "Conversation deleted successfully!"
+	},
+	"report": {
+		"missing_fields": "All fields are required",
+		"create_success": "Report created successfully",
+		"server_error": "Report server error",
+		"report_not_found": "Report not found",
+		"update_success": "Report status updated successfully",
+		"delete_success": "Report deleted successfully"
+	},
+	"block": {
+		"user_not_found": "User not found",
+		"already_blocked": "This user is already blocked",
+		"default_reason": "Reason not specified",
+		"default_content": "No additional content",
+		"default_date": "Start date not specified",
+		"block_success": "User blocked successfully",
+		"not_blocked": "This user is not blocked",
+		"unblock_success": "User unblocked successfully",
+		"server_error": "Block server error"
+	},
+	"user": {
+		"activation_message_required": "Message required for account activation",
+		"activation_request_sent": "✅ Activation request sent to admin",
+		"server_error": "User server error",
+		"unauthenticated": "User unauthenticated",
+		"contact_title_message_required": "Title and message required",
+		"contact_message_sent": "Support message sent successfully",
+		"contact_send_error": "Error sending support message",
+		"blocked_message_required": "Message required for appeal request",
+		"blocked_request_sent": "✅ Block appeal request sent",
+		"blocked_send_error": "Error sending appeal request",
+		"not_found": "User not found",
+		"account_deleted_unverified": "Your account was deleted for non-verification within 3 days. Sign up again to access",
+		"status_updated": "User status updated",
+		"not_exist": "User does not exist",
+		"success": "Success",
+		"username_required": "Full name required",
+		"update_success": "User updated successfully!",
+		"already_followed": "You already follow this user",
+		"delete_denied_admin": "Denied: Admin privileges required",
+		"invalid_id": "Invalid user ID",
+		"delete_self_denied": "You cannot delete your own account",
+		"delete_success": "User and related content deleted successfully",
+		"delete_error": "Error deleting user",
+		"cleanup_denied_admin": "Denied: Admin privileges required for cleanup",
+		"cleanup_success": "Cleaned up: {{posts}} posts and {{comments}} comments",
+		"cleanup_error": "Error cleaning up remaining content"
+	}
+}

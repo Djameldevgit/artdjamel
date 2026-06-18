@@ -1,0 +1,55 @@
+/* UserVideoPage.css - Agrega o verifica estos estilos */
+
+.uv-avatar-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .uv-avatar {
+    width: 110px !important;
+    height: 110px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 3px solid #fe2c55 !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  /* Para el fallback cuando no hay imagen */
+  .uv-avatar-fallback {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    border: 3px solid #fe2c55;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .uv-edit-avatar-btn {
+    position: absolute;
+    bottom: 5px;
+    right: calc(50% - 55px);
+    background: #fe2c55;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.2s;
+  }
+  
+  .uv-edit-avatar-btn:hover {
+    transform: scale(1.05);
+    background: #ff4d6d;
+  }

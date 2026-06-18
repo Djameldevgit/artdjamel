@@ -1,0 +1,63 @@
+/* Styles spécifiques au dashboard */
+.dashboard-container {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    transition: all 0.3s ease;
+}
+
+.main-content {
+    margin-left: 280px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+.stat-card {
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.hover-lift {
+    transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-3px);
+}
+
+.message-bubble {
+    border-radius: 18px;
+    padding: 12px 16px;
+    max-width: 70%;
+}
+
+.message-sent {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
+}
+
+.message-received {
+    background-color: #f1f3f5;
+    color: #212529;
+}
+
+.verification-badge {
+    border: 2px solid;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.progress-thin {
+    height: 6px;
+}

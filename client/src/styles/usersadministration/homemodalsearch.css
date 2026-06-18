@@ -1,0 +1,126 @@
+/* Estilos para el modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalcontentsearch {
+    background: white;
+    border-radius: 10px;
+    
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh; /* Altura máxima del modal */
+    overflow-y: auto; /* Scroll automático si el contenido es muy largo */
+    position: relative;
+}
+
+/* Estilos para el contenedor del título y el botón de cierre */
+.titlebusqueda {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Estilos para el título */
+.titlebusqueda h5 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Estilos para el botón de cierre */
+.modalclosesearch {
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.modalclosesearch:hover {
+    color: #333;
+}
+
+/* Contenedor de los filtros */
+.filters-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    padding: 0.4rem; /* Espaciado interno */
+}
+
+/* Grupo de filtros */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: 0.4rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.filter-group small {
+    font-size: 0.7rem;
+    color: #666;
+}
+
+/* Botón de reset */
+.reset-button {
+    grid-column: 1 / -1;
+    padding: 0.4rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+    background-color: #c82333;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .filters-container {
+        grid-template-columns: 1fr;
+    }
+
+    .modalcontentsearch {
+        padding: 0.5rem;
+    }
+}

@@ -1,0 +1,696 @@
+/* ═══════════════════════════════════════════════════════════
+   BoutiqueHeader.css  — Versión mejorada (marketplace MERN)
+   ─────────────────────────────────────────────────────────── */
+
+   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+   :root {
+     --theme-color:       #2563eb;
+     --theme-color-dark:  #1e40af;
+     --theme-color-light: #dbeafe;
+     --bh-radius:         16px;
+     --bh-transition:     all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+     --font-display:      'Playfair Display', Georgia, serif;
+     --font-body:         'DM Sans', 'Segoe UI', sans-serif;
+   }
+   
+   /* ─── Base ─────────────────────────────────────────────────── */
+   .bh-container {
+     position: relative;
+     width: 100%;
+     background: #fff;
+     font-family: var(--font-body);
+   }
+   
+   /* ══════════════════════════════════════════════════════════════
+      HERO  —  carousel con border-radius + altura reducida 10 px
+      ══════════════════════════════════════════════════════════════ */
+   .bh-hero {
+     position: relative;
+     min-height: 310px;           /* -10px respecto al original */
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+     overflow: hidden;
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     transition: background-image 0.6s ease-in-out;
+     border-radius: 0 0 var(--bh-radius) var(--bh-radius);  /* border-radius inferior */
+   }
+   
+   @media (min-width: 768px)  { .bh-hero { min-height: 390px; } }   /* -10px */
+   @media (min-width: 1024px) { .bh-hero { min-height: 440px; } }   /* -10px */
+   @media (max-width: 576px)  { .bh-hero { min-height: 270px; } }   /* -10px */
+   
+   /* Overlay más suave → imágenes más naturales, menos opacas */
+   .bh-overlay {
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(
+       to bottom,
+       rgba(0,0,0,0.08) 0%,
+       rgba(0,0,0,0.28) 45%,
+       rgba(0,0,0,0.62) 100%
+     );
+     z-index: 1;
+     pointer-events: none;
+     border-radius: inherit;
+   }
+   
+   /* Boutique inactiva */
+   .bh-hero--inactive { filter: grayscale(55%); opacity: 0.88; }
+   
+   /* ─── Cuerpo del hero ─────────────────────────────────────── */
+   .bh-hero-body {
+     position: relative;
+     z-index: 2;
+     width: 100%;
+     padding: 0 22px 24px;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     color: #fff;
+     align-items: center;          /* ← centra todo horizontalmente */
+     text-align: center;
+   }
+   
+   @media (min-width: 768px) { .bh-hero-body { padding: 0 36px 30px; gap: 12px; } }
+   @media (min-width: 1200px){ .bh-hero-body { padding: 0 52px 36px; } }
+   
+   /* ─── Sistema de filas ────────────────────────────────────── */
+   .bh-row {
+     display: flex;
+     align-items: center;
+     width: 100%;
+     justify-content: center;      /* centra los hijos */
+   }
+   
+   /* ══════════════════════════════════════════════════════════════
+      FILA 1 — Logo  +  Nombre
+      ══════════════════════════════════════════════════════════════ */
+   .bh-row--name {
+     gap: 16px;
+     flex-direction: column;       /* logo arriba, nombre abajo en mobile */
+     align-items: center;
+   }
+   
+   @media (min-width: 600px) {
+     .bh-row--name { flex-direction: row; justify-content: center; }
+   }
+   
+   /* ── Logo mejorado con anillo exterior ──────────────────────── */
+   .bh-logo {
+     flex-shrink: 0;
+     width: 90px;
+     height: 90px;
+     border-radius: 50%;
+     overflow: hidden;
+     /* anillo doble: blanco interior + tono temático exterior */
+     border: 3px solid #ffffff;
+     outline: 3.5px solid rgba(255,255,255,0.45);
+     outline-offset: 3px;
+     background: #fff;
+     box-shadow:
+       0 0 0 6px rgba(255,255,255,0.18),
+       0 8px 24px rgba(0,0,0,0.35);
+     transition: var(--bh-transition);
+   }
+   
+   .bh-logo:hover { transform: scale(1.06); box-shadow: 0 0 0 8px rgba(255,255,255,0.25), 0 12px 32px rgba(0,0,0,0.4); }
+   
+   .bh-logo img { width: 100%; height: 100%; object-fit: cover; }
+   
+   @media (min-width: 768px) { .bh-logo { width: 100px; height: 100px; } }
+   
+   /* ── Bloque de nombre ───────────────────────────────────────── */
+   .bh-name-block {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 6px;
+     min-width: 0;
+   }
+   
+   @media (min-width: 600px) { .bh-name-block { align-items: flex-start; } }
+   
+   /* ── Título  —  tipografía de display + mayúsculas ──────────── */
+   .bh-title {
+     font-family: var(--font-display);
+     font-size: clamp(1.5rem, 6vw, 2.5rem);
+     font-weight: 800;
+     margin: 0;
+     letter-spacing: 0.03em;
+     text-transform: uppercase;
+     text-shadow:
+       0 2px 4px rgba(0,0,0,0.4),
+       0 4px 12px rgba(0,0,0,0.25);
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     max-width: 100%;
+     /* sutil degradado en el texto */
+     background: linear-gradient(135deg, #ffffff 55%, rgba(255,255,255,0.78));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+   }
+   
+   /* Badges */
+   .bh-verified {
+     background: linear-gradient(135deg, #059669, #10b981);
+     border-radius: 50px;
+     padding: 4px 11px;
+     font-size: 0.72rem;
+     font-weight: 700;
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+     display: inline-flex;
+     align-items: center;
+     gap: 5px;
+     flex-shrink: 0;
+     box-shadow: 0 2px 8px rgba(16,185,129,0.35);
+   }
+   
+   .bh-inactive-badge {
+     background: rgba(107,114,128,0.85);
+     border-radius: 50px;
+     padding: 4px 11px;
+     font-size: 0.72rem;
+     font-weight: 600;
+     display: inline-flex;
+     align-items: center;
+     gap: 5px;
+   }
+   
+   /* ══════════════════════════════════════════════════════════════
+      FILA 2 — Slogan
+      ══════════════════════════════════════════════════════════════ */
+   .bh-row--slogan { justify-content: center; }
+   
+   .bh-slogan {
+     margin: 0;
+     font-family: var(--font-body);
+     font-size: clamp(0.85rem, 3.8vw, 1.08rem);
+     font-weight: 500;
+     font-style: italic;
+     opacity: 0.93;
+     text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     max-width: 90%;
+     letter-spacing: 0.02em;
+   }
+   
+   /* ══════════════════════════════════════════════════════════════
+      FILA 3 — Categoría + Rating
+      ══════════════════════════════════════════════════════════════ */
+   .bh-row--category { gap: 10px; flex-wrap: wrap; justify-content: center; }
+   
+   .bh-category-badge {
+     background: rgba(255,255,255,0.18);
+     backdrop-filter: blur(8px);
+     border-radius: 50px;
+     padding: 5px 14px;
+     font-size: 0.73rem;
+     font-weight: 700;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     display: inline-flex;
+     align-items: center;
+     gap: 6px;
+     border: 1px solid rgba(255,255,255,0.3);
+   }
+   
+   .bh-rating { display: flex; align-items: center; gap: 6px; }
+   .bh-rating-stars { display: flex; gap: 3px; }
+   .bh-rating-count { font-size: 0.72rem; opacity: 0.85; }
+   
+   /* ══════════════════════════════════════════════════════════════
+      FILA 4 — Productos · Seguir · Share · ⋯
+      ══════════════════════════════════════════════════════════════ */
+   .bh-row--actions {
+     justify-content: center;
+     flex-wrap: nowrap;
+     gap: 10px;
+     margin-top: 6px;
+   }
+   
+   .bh-row-left {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     flex-shrink: 1;
+     min-width: 0;
+     flex-wrap: nowrap;
+   }
+   
+   .bh-row-right {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     flex-shrink: 0;
+   }
+   
+   /* Pill productos */
+   .bh-stat-pill {
+     display: inline-flex;
+     align-items: center;
+     gap: 6px;
+     background: rgba(0,0,0,0.30);
+     backdrop-filter: blur(10px);
+     border: 1px solid rgba(255,255,255,0.22);
+     border-radius: 50px;
+     padding: 6px 14px;
+     color: #fff;
+     font-size: 0.80rem;
+     white-space: nowrap;
+   }
+   
+   .bh-stat-value { font-weight: 800; font-size: 0.88rem; }
+   .bh-stat-label { opacity: 0.80; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
+   
+   /* Botón Seguir */
+   .bh-btn-follow {
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     padding: 7px 16px;
+     border-radius: 50px;
+     border: 2px solid rgba(255,255,255,0.80);
+     background: rgba(255,255,255,0.15);
+     backdrop-filter: blur(10px);
+     color: #fff;
+     font-size: 0.83rem;
+     font-weight: 700;
+     letter-spacing: 0.03em;
+     text-transform: uppercase;
+     cursor: pointer;
+     transition: var(--bh-transition);
+     white-space: nowrap;
+   }
+   
+   .bh-btn-follow:hover:not(:disabled) {
+     background: rgba(255,255,255,0.30);
+     transform: translateY(-2px);
+     box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+   }
+   
+   .bh-btn-follow--active {
+     background: rgba(255,255,255,0.94);
+     color: var(--theme-color-dark);
+     border-color: transparent;
+     box-shadow: 0 4px 16px rgba(37,99,235,0.25);
+   }
+   
+   .bh-btn-follow--active:hover:not(:disabled) { background: #fff; }
+   
+   .bh-btn-count {
+     background: rgba(255,255,255,0.22);
+     padding: 1px 7px;
+     border-radius: 20px;
+     font-size: 0.70rem;
+     font-weight: 800;
+   }
+   
+   .bh-btn-follow--active .bh-btn-count {
+     background: rgba(37,99,235,0.12);
+     color: var(--theme-color-dark);
+   }
+   
+   /* Botones icono (hero) */
+   .bh-icon-btn {
+     width: 38px;
+     height: 38px;
+     border-radius: 50%;
+     border: 2px solid rgba(255,255,255,0.65);
+     background: rgba(255,255,255,0.15);
+     backdrop-filter: blur(10px);
+     color: #fff;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     padding: 0;
+     transition: var(--bh-transition);
+   }
+   
+   .bh-icon-btn::after { display: none !important; }
+   .bh-icon-btn:hover { background: rgba(255,255,255,0.32); transform: scale(1.08); }
+   
+   /* Variante oscura (barra inferior) */
+   .bh-icon-btn--dark {
+     border: 1.5px solid #e5e7eb;
+     background: #fff;
+     color: #374151;
+     backdrop-filter: none;
+     border-radius: 10px;
+     width: auto;
+     height: auto;
+     padding: 8px 12px;
+     box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+   }
+   
+   .bh-icon-btn--dark:hover { background: #f3f4f6; }
+   
+   /* ─── Controles carousel ──────────────────────────────────── */
+   .bh-carousel-btn {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     z-index: 10;
+     width: 38px;
+     height: 38px;
+     border-radius: 50%;
+     border: none;
+     background: rgba(255,255,255,0.22);
+     backdrop-filter: blur(10px);
+     color: #fff;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     opacity: 0;
+     transition: var(--bh-transition);
+   }
+   
+   .bh-hero:hover .bh-carousel-btn { opacity: 1; }
+   .bh-carousel-btn:hover { background: rgba(255,255,255,0.48); transform: translateY(-50%) scale(1.08); }
+   .bh-carousel-btn--left  { left: 16px; }
+   .bh-carousel-btn--right { right: 16px; }
+   
+   @media (min-width: 768px) {
+     .bh-carousel-btn { width: 46px; height: 46px; }
+     .bh-carousel-btn--left  { left: 26px; }
+     .bh-carousel-btn--right { right: 26px; }
+   }
+   
+   /* Indicadores */
+   .bh-indicators {
+     position: absolute;
+     bottom: 96px;
+     left: 50%;
+     transform: translateX(-50%);
+     z-index: 10;
+     display: flex;
+     gap: 8px;
+   }
+   
+   .bh-dot {
+     width: 8px;
+     height: 8px;
+     border-radius: 50%;
+     border: none;
+     background: rgba(255,255,255,0.42);
+     cursor: pointer;
+     padding: 0;
+     transition: var(--bh-transition);
+   }
+   
+   .bh-dot--active {
+     background: #fff;
+     transform: scale(1.35);
+     box-shadow: 0 0 6px rgba(255,255,255,0.6);
+   }
+   
+   /* ══════════════════════════════════════════════════════════════
+      BARRA INFERIOR  —  métricas + acciones  (iconos más grandes)
+      ══════════════════════════════════════════════════════════════ */
+   .bh-bar {
+     background: #fff;
+     border-bottom: 1px solid #eef2f6;
+     box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+     margin: 0 4px;                /* pequeño margen lateral */
+     border-radius: 0 0 14px 14px;
+   }
+   
+   .bh-bar-inner {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 12px 20px;
+     gap: 14px;
+     flex-wrap: nowrap;
+   }
+   
+   @media (min-width: 768px)  { .bh-bar-inner { padding: 14px 36px; } }
+   @media (min-width: 1200px) { .bh-bar-inner { padding: 14px 52px; } }
+   
+   /* ── Métricas (vistas / followers / likes) ─── iconos GRANDES + coloridos */
+   .bh-bar-metrics {
+     display: flex;
+     align-items: center;
+     gap: 6px;
+     flex-wrap: nowrap;
+     flex-shrink: 1;
+     min-width: 0;
+   }
+   
+   .bh-metric {
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     padding: 8px 14px;
+     border-radius: 50px;
+     font-size: 0.84rem;
+     color: #4b5563;
+     white-space: nowrap;
+     border: none;
+     background: transparent;
+     cursor: default;
+     transition: var(--bh-transition);
+     font-family: var(--font-body);
+   }
+   
+   /* Iconos más grandes y coloridos */
+   .bh-metric-icon  { font-size: 18px; flex-shrink: 0; color: #6b7280; transition: var(--bh-transition); }
+   .bh-metric-value { font-weight: 800; font-size: 0.96rem; color: #111827; }
+   .bh-metric-label { color: #9ca3af; font-size: 0.73rem; text-transform: uppercase; letter-spacing: 0.04em; }
+   
+   /* Metric — vistas: icono azul */
+   .bh-metric:nth-child(1) .bh-metric-icon { color: #3b82f6; }
+   .bh-metric:nth-child(1) .bh-metric-value { color: #1d4ed8; }
+   
+   /* Metric — followers: icono índigo/violeta */
+   .bh-metric:nth-child(2) .bh-metric-icon { color: #8b5cf6; }
+   .bh-metric:nth-child(2) .bh-metric-value { color: #6d28d9; }
+   
+   /* Metric interactivo (botón) */
+   .bh-metric--btn {
+     cursor: pointer;
+     border: 1.5px solid #e5e7eb;
+     background: #f9fafb;
+     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+   }
+   
+   .bh-metric--btn:hover:not(:disabled) {
+     background: #fef2f2;
+     border-color: #fca5a5;
+     transform: translateY(-2px);
+     box-shadow: 0 4px 12px rgba(239,68,68,0.15);
+   }
+   
+   /* Likes — icono rojo */
+   .bh-metric--btn .bh-metric-icon { color: #f87171; }
+   .bh-metric--btn .bh-metric-value { color: #dc2626; }
+   .bh-metric--btn .bh-metric-label { color: #f87171; }
+   
+   /* Estado "liked" */
+   .bh-metric--liked .bh-metric-icon { color: #ef4444; }
+   .bh-metric--liked .bh-metric-value { color: #dc2626; }
+   .bh-metric--liked .bh-metric-label { color: #ef4444; }
+   .bh-metric--liked {
+     border-color: #fca5a5;
+     background: #fef2f2;
+     box-shadow: 0 3px 10px rgba(239,68,68,0.18);
+   }
+   
+   /* ── Acciones owner ─────────────────────────────────────────── */
+   .bh-bar-actions {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     flex-shrink: 0;
+   }
+   
+   /* Botón Publicar */
+   .bh-btn-publish {
+     display: inline-flex;
+     align-items: center;
+     padding: 8px 18px;
+     border-radius: 10px;
+     font-size: 0.86rem;
+     font-weight: 700;
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+     color: #fff;
+     border: none;
+     cursor: pointer;
+     transition: var(--bh-transition);
+     white-space: nowrap;
+     box-shadow: 0 3px 10px rgba(37,99,235,0.3);
+   }
+   
+   .bh-btn-publish::after { display: none !important; }
+   .bh-btn-publish:hover { filter: brightness(1.10); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37,99,235,0.35); }
+   
+   /* Botón reportar */
+   .bh-report-btn {
+     color: #9ca3af !important;
+     font-size: 0.82rem !important;
+     text-decoration: none !important;
+     padding: 6px 12px !important;
+     border-radius: 8px;
+     transition: var(--bh-transition);
+   }
+   .bh-report-btn:hover { color: #ef4444 !important; background: #fef2f2; }
+   
+   /* ─── Dropdowns ───────────────────────────────────────────── */
+   .bh-dropdown {
+     border: none !important;
+     border-radius: 16px !important;
+     box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
+     padding: 8px 0 !important;
+     min-width: 230px !important;
+     background: #fff !important;
+     animation: bhFadeUp 0.2s ease;
+   }
+   
+   .bh-dropdown-header {
+     padding: 7px 18px 5px !important;
+     font-size: 0.69rem !important;
+     font-weight: 800 !important;
+     text-transform: uppercase !important;
+     letter-spacing: 0.6px !important;
+     color: #9ca3af !important;
+   }
+   
+   .bh-thumb {
+     width: 32px;
+     height: 32px;
+     object-fit: cover;
+     border-radius: 6px;
+     flex-shrink: 0;
+   }
+   
+   /* ─── Modales ─────────────────────────────────────────────── */
+   .bh-modal .modal-content {
+     border-radius: 22px !important;
+     border: none !important;
+     overflow: hidden;
+   }
+   
+   .bh-modal-header  { border-bottom: 1px solid #eef2f6; padding: 20px 24px; background: #fafbfc; }
+   .bh-modal-body    { padding: 22px 24px; }
+   .bh-modal-footer  { border-top: 1px solid #eef2f6; padding: 16px 24px; background: #fafbfc; }
+   
+   /* Upload zone */
+   .bh-upload-zone {
+     border: 2px dashed #d1d5db;
+     border-radius: 14px;
+     padding: 30px;
+     text-align: center;
+     cursor: pointer;
+     background: #f9fafb;
+     transition: var(--bh-transition);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+   }
+   
+   .bh-upload-zone:hover { border-color: var(--theme-color); background: #eff6ff; }
+   
+   /* Grid de imágenes */
+   .bh-image-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+     gap: 12px;
+   }
+   
+   @media (min-width: 768px) { .bh-image-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); } }
+   
+   .bh-image-card {
+     position: relative;
+     border-radius: 12px;
+     overflow: hidden;
+     aspect-ratio: 16/9;
+     background: #f1f5f9;
+   }
+   
+   .bh-image-card img { width: 100%; height: 100%; object-fit: cover; }
+   
+   .bh-delete-btn {
+     position: absolute;
+     top: 6px;
+     right: 6px;
+     width: 26px;
+     height: 26px;
+     border-radius: 50%;
+     background: rgba(0,0,0,0.55);
+     border: none;
+     color: #fff;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: var(--bh-transition);
+     backdrop-filter: blur(4px);
+   }
+   
+   .bh-delete-btn:hover { background: #ef4444; transform: scale(1.12); }
+   
+   .bh-active-badge {
+     position: absolute;
+     bottom: 6px;
+     left: 6px;
+     background: var(--theme-color);
+     color: #fff;
+     font-size: 0.65rem;
+     padding: 2px 8px;
+     border-radius: 20px;
+     font-weight: 700;
+   }
+   
+   /* ─── Animaciones ─────────────────────────────────────────── */
+   @keyframes bhFadeUp {
+     from { opacity: 0; transform: translateY(10px); }
+     to   { opacity: 1; transform: translateY(0); }
+   }
+   
+   /* ══════════════════════════════════════════════════════════════
+      RESPONSIVE ANDROID / MÓVILES PEQUEÑOS  (≤ 480 px)
+      ══════════════════════════════════════════════════════════════ */
+   @media (max-width: 480px) {
+     .bh-hero { min-height: 230px; border-radius: 0 0 12px 12px; }
+   
+     .bh-hero-body { gap: 7px; padding: 0 10px 14px; }
+     .bh-title     { font-size: 1.35rem; letter-spacing: 0.02em; }
+     .bh-slogan    { font-size: 0.82rem; }
+   
+     .bh-logo { width: 78px; height: 78px; }
+   
+     /* Ocultar etiquetas secundarias en móvil */
+     .bh-stat-label          { display: none; }
+     .bh-btn-follow span:first-of-type { display: none; }
+   
+     /* Barra inferior */
+     .bh-bar        { margin: 0; border-radius: 0; }
+     .bh-bar-inner  { padding: 9px 12px; gap: 8px; }
+   
+     /* Métricas sin label en móvil */
+     .bh-metric-label { display: none; }
+     .bh-metric       { padding: 7px 10px; gap: 5px; }
+     .bh-metric-icon  { font-size: 17px; }
+     .bh-metric-value { font-size: 0.88rem; }
+   
+     /* Botón publicar compacto */
+     .bh-btn-publish span { display: none; }
+     .bh-btn-publish      { padding: 8px 12px; border-radius: 10px; }
+   }
+   
+   /* ─── Scrollbar personalizada ─────────────────────────────── */
+   ::-webkit-scrollbar         { width: 5px; height: 5px; }
+   ::-webkit-scrollbar-track   { background: #f1f5f9; border-radius: 10px; }
+   ::-webkit-scrollbar-thumb   { background: #cbd5e1; border-radius: 10px; }
+   ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }

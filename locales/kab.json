@@ -1,0 +1,199 @@
+{
+
+	 
+		"emailActivation": {
+		  "subject": "Sermed amaynut-inek di Tassili Art",
+		  "body": "Anṣuf yiswen di Tassili Art! Iwakken ad tgeḍ amejmuɛ n yifenniyen akked timahilin n tneflit, ḥeqqed amiḍan-inek. Sit ɣef tqeffalt-agi akken ad tkemmleḍ asenqed:",
+		  "button": "Ssenqed amiḍan",
+		  "alt": "Ma yella tqeffalt ur tetteddu ara, nɣel ɣer iminig-inek aseɣwen-agi akken ad tesermed amiḍan-inek di Tassili Art."
+		},
+		"emailReset": {
+		  "subject": "Ales awennez n wawal n uɛeddi n Tassili Art",
+		  "body": "Tesutreḍ ad terrezed awal-inek n uɛeddi di Tassili Art. Sit ɣef tqeffalt-agi akken ad tkemmleḍ tamhelt:",
+		  "button": "Ales awennez",
+		  "alt": "Ma ur tesutreḍ ara asenqed-agi, tzemreḍ ad ttruḍ izen-agi."
+		},
+		"emailInformativo": {
+		  "subject": "Tilɣa timaynutin si Tassili Art",
+		  "body": "Wali tilɣa timaynutin d leqdic n Tassili Art. Snifel iɣefsen, imennayen d timahilin timaynutin di tneflit-nneɣ.",
+		  "button": "Snefli tura",
+		  "alt": "Ma yella tqeffalt ur tetteddu ara, rzu ɣer usmel-nneɣ web i wugar n telɣut."
+		},
+	  
+	  
+
+
+	"auth": {
+		"username_exists": "Isem n useqdac yella yakan.",
+		"email_exists": "Imayl yella yakan.",
+		"password_too_short": "Awal uffir ilaq ad yili d talat 6 n isekkilen.",
+		"register_success": "Amazray yemmed!",
+		"email_not_exist": "Imayl-a ulac-it.",
+		"incorrect_password": "Awal uffir d arameɣtu.",
+		"login_success": "Tuqqna yemmed!",
+		"logout_success": "Tuɣa yemmed!",
+		"login_required": "Ttxil-k·m kem ttuqqned tura.",
+		"user_not_found": "Aseqdac-a ulac-it.",
+		"server_error": "Tuccḍa n serveur.",
+		"activation_email_sent": "auth.activation_email_sent",
+		"forgot_email_sent": "auth.forgot_email_sent",
+		"account_activated": "✅ Amiḍan yettwasegmed akken ilaq.",
+		"reset_email_sent": "Aseɣwen n uwal uffir yettwazen.",
+		"password_changed": "Awal uffir yettubeddel akken ilaq."
+	},
+	"post": {
+		"POST": "POST",
+		"created_post": "Nerra awen-d ameslay, tarbaɛt-nneɣ tettεaṛed. Ad k·m-nenɣer m'ara tettwaqebbel.",
+		"updated_post": "Icer amaynut!",
+		"deleted_post": "Icer yettwakkes!",
+		"liked_post": "Tzemreḍ iceṛ!",
+		"unliked_post": "Tzemreḍ yettwakkes!",
+		"saved_post": "Icer yettwaker!",
+		"unsaved_post": "Icer yettwakkes seg ukersu!",
+		"post_not_exist": "Icer-a ulac-it.",
+		"user_not_exist": "Aseqdac-a ulac-it.",
+		"already_liked": "Yakan tzemreḍ iceṛ-a.",
+		"already_saved": "Yakan tkerḍ iceṛ-a.",
+		"please_add_photo": "Ttxil-k·m rnu tuga.",
+		"post_approved": "Icer yettwaqbel!",
+		"post_not_found": "Ulac iceṛ.",
+		"success": "Yemmed!",
+		"USER": "USER",
+		"user_not_found": "Ulac aseqdac.",
+		"please_add_username": "Ttxil-k·m rnu isem n useqdac.",
+		"update_success": "Leqday yemmed!",
+		"already_followed": "Yakan tteddiḍ aseqdac-a.",
+		"follow_success": "Tameddit yemmed!",
+		"unfollow_success": "Tuffɣa n tmeddit yemmed!",
+		"search_failed": "Aneqqis n iseqdacen ur yeddi ara.",
+		"suggestions_loaded": "Iwellihen n iseqdacen ttwasulin.",
+		"error": "Teḍra-d tuccḍa.",
+		"no_users_found": "Ulac iseqdacen.",
+		"invalid_user_id": "ID n useqdac d arameɣtu.",
+		"updated_arabic": "language.updated_arabic",
+		"updated_french": "language.updated_french",
+		"updated_spanish": "language.updated_spanish"
+	},
+	"comment": {
+		"error_post_not_exist": "Icer-a ulac-it.",
+		"error_comment_not_exist": "Ameyyiz-a ulac-it.",
+		"success": "Ameyyiz yettwarna akken ilaq!"
+	},
+	"lang": {
+		"langUpdatedToSpanish": "Tutlayt tettwaleqqed ɣer Taspenyult",
+		"langUpdatedToRussian": "Tutlayt tettwaleqqed ɣer Tarusit",
+		"langUpdatedToKabyle": "Tutlayt tettwaleqqed ɣer Taqbaylit",
+		"langUpdatedToChinese": "Tutlayt tettwaleqqed ɣer Tacinwit",
+		"langUpdatedToEnglish": "Tutlayt tettwaleqqed ɣer Taglizit",
+		"langUpdatedToFrench": "Tutlayt tettwaleqqed ɣer Tafransist",
+		"langUpdatedToArabic": "Tutlayt tettwaleqqed ɣer Taɛrabt",
+		"langUpdated": "Tutlayt tettwaleqqed",
+		"languageNotSpecified": "Tutlayt ulac ttusbadu",
+		"userNotFoundOrAlreadyUpdated": "Aseqdac ulac-it neɣ tutlayt yakan tettwaleqqed",
+		"errorUpdatingLanguage": "Tuccḍa deg uleqqed n tutlayt",
+		"languageSavedForVisitor": "Tutlayt tettwaker i unebdad",
+		"errorSavingLanguageForVisitor": "Tuccḍa deg ukers n tutlayt i unebdad"
+	},
+	"cart": {
+		"postNotFoundOrNoPrice": "Ulac iceṛ neɣ ulac ssuma",
+		"postAddedToCart": "Icer yettwarna ɣer taḥarit",
+		"priceMustBeNumber": "Ssuma ilaq ad tili d amḍan",
+		"priceMustBePositive": "Ssuma ilaq ad tili d imeɣli",
+		"quantityAtLeastOne": "Amḍan ilaq ad yili d wayen yegdan 1",
+		"productRemoved": "Afaris yettwakkes",
+		"serverError": "Tuccḍa n serveur",
+		"invalidQuantity": "Amḍan d arameɣtu",
+		"productNotFoundInCart": "Ulac afaris deg taḥarit",
+		"quantityUpdated": "Amḍan yettwaleqqed"
+	},
+	"language": {
+		"updated_arabic": "language.updated_arabic",
+		"updated_spanish": "language.updated_spanish",
+		"updated_english": "language.updated_english",
+		"updated_french": "language.updated_french"
+	},
+	"email": {
+		"subject": "Jamal Art",
+		"title": "Ansuf γer tnezzut n Tassili",
+		"body": "Tifrat! Aql-ak·kem tebγiḍ tesεiḍ asnas. Rzu γer tqeffalt neɣ aseγwen ades i wakken ad tseγdeḍ imayl-ik·im.",
+		"button": "Sεeged Imayl",
+		"alt": "Ma ulac tqeffalt tettwarnam, tzemreḍ ad tzuγeḍ aseγwen-a:",
+		"reset_button": "email.reset_button"
+	},
+	"user_not_found": "Ulac aseqdac.",
+	"already_verified": "Amiḍan yakan yettwasεed.",
+	"activation_email_sent": "Imayl n usegmed yettwazen γer tansa-ik·im.",
+	"server_error": "Tuccḍa n serveur anẓil.",
+	"order": {
+		"cart_empty": "Taḥarit tebla",
+		"created_success": "✅ Tladna yettwarna akken ilaq",
+		"not_found": "Ulac tladna",
+		"status_updated": "Addad n tladna yettwaleqqed",
+		"deleted_success": "Tladna tettwakkes akken ilaq"
+	},
+	"role": {
+		"user_not_found": "Ulac aseqdac",
+		"role_assigned": "Aγerfi n useqdac yettwasbadu akken ilaq",
+		"Super-utilisateur": "Aγerfi n superuser yettwasbadu",
+		"moderator_assigned": "Aγerfi n umsengad yettwasbadu",
+		"admin_assigned": "Aγerfi n umaεiul yettwasbadu",
+		"update_error": "Tuccḍa deg uleqqed n uγerfi"
+	},
+	"message": {
+		"create_success": "Izen yettwarna akken ilaq!",
+		"delete_success": "Tukkist temmed!",
+		"invalid_data": "Talɣut d tarameɣtut: ilaq ad yili umara d ugbur n yizen",
+		"server_error": "Tuccḍa n serveur n yizen",
+		"createMessage.empty": "Izen ur izmir ad yili d aberkan.",
+		"createMessage.success": "Izen yettwarna akken ilaq!",
+		"deleteMessage.success": "Izen yettwakkes akken ilaq!",
+		"deleteConversation.success": "Ammeslay yettwakkes akken ilaq!"
+	},
+	"report": {
+		"missing_fields": "Akk iγbula ilaqen",
+		"create_success": "Aneqqis yettwarna akken ilaq",
+		"server_error": "Tuccḍa n serveur n yineqqisen",
+		"report_not_found": "Ulac aneqqis",
+		"update_success": "Addad n uneqqis yettwaleqqed",
+		"delete_success": "Aneqqis yettwakkes akken ilaq"
+	},
+	"block": {
+		"user_not_found": "Ulac aseqdac",
+		"already_blocked": "Aseqdac-a yakan yettwaγel",
+		"default_reason": "Aγilif ulac ttusbadu",
+		"default_content": "Ulac ugbur unafid",
+		"default_date": "Azemz n tazwara ulac ttusbadu",
+		"block_success": "Aseqdac yettwaγel akken ilaq",
+		"not_blocked": "Aseqdac-a ur ittuγal ara",
+		"unblock_success": "Aseqdac yettwasfaḍ akken ilaq",
+		"server_error": "Tuccḍa n serveur n uγellu"
+	},
+	"user": {
+		"activation_message_required": "Izen ilaq i usegmed n umiḍan",
+		"activation_request_sent": "✅ Asuter n usegmed yettwazen γer umaεiul",
+		"server_error": "Tuccḍa n serveur n iseqdacen",
+		"unauthenticated": "Aseqdac ur isεin ara tusnet",
+		"contact_title_message_required": "Azwel d yizen ilaqen",
+		"contact_message_sent": "Izen n tallalt yettwazen akken ilaq",
+		"contact_send_error": "Tuccḍa deg tuzna n yizen n tallalt",
+		"blocked_message_required": "Izen ilaq i usuter n usenqed",
+		"blocked_request_sent": "✅ Asuter n usenqed n uγellu yettwazen",
+		"blocked_send_error": "Tuccḍa deg tuzna n usuter n usenqed",
+		"not_found": "Ulac aseqdac",
+		"account_deleted_unverified": "Amiḍan-ik·im yettwakkes imi ur isεed ara deg 3 wussan. Mmel tikelt nniḍen i wakken ad tkecmeḍ.",
+		"status_updated": "Addad n useqdac yettwaleqqed",
+		"not_exist": "Aseqdac ulac-it",
+		"success": "Yemmed",
+		"username_required": "Isem ummid ilaq",
+		"update_success": "Aseqdac yettwaleqqed akken ilaq!",
+		"already_followed": "Yakan tteddiḍ aseqdac-a",
+		"delete_denied_admin": "Ur yettwasireg: ilaqen tisirag n umaεiul",
+		"invalid_id": "ID n useqdac d arameɣtu",
+		"delete_self_denied": "Ur tezmireḍ ad tekksed amiḍan-ik·im",
+		"delete_success": "Aseqdac d ugbur yemtawan yettwakksen akken ilaq",
+		"delete_error": "Tuccḍa deg tukksa n useqdac",
+		"cleanup_denied_admin": "Ur yettwasireg: ilaqen tisirag n umaεiul i usfeḍ",
+		"cleanup_success": "Yettwasfeḍ: {{posts}} isura d {{comments}} imeyyizen",
+		"cleanup_error": "Tuccḍa deg usfeḍ n ugbur i d-yeggran"
+	}
+}

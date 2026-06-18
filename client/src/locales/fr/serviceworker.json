@@ -1,0 +1,11 @@
+{
+ 
+      "installing": "Service Worker: Installation en cours...",
+      "caching": "Service Worker: Mise en cache des ressources",
+      "installation_complete": "Service Worker: Installation terminée",
+      "activating": "Service Worker: Activation...",
+      "deleting_old_cache": "Service Worker: Suppression de l'ancien cache",
+      "activated": "Service Worker: Maintenant actif!",
+      "fetch_failed": "Échec de la récupération; retour à la page hors ligne:"
+    }
+ 

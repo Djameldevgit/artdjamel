@@ -1,0 +1,10 @@
+{
+  "followers": "المتابعون",
+  "following": "يتبع",
+  "noFollowers": "لا يوجد متابعون",
+  "noFollowersMessage": "هذا المستخدم ليس لديه متابعين بعد.",
+  "noFollowing": "لا يتابع أحد",
+  "noFollowingMessage": "هذا المستخدم لا يتابع أي شخص بعد.",
+  "totalFollowers": "إجمالي المتابعين: {{count}}",
+  "totalFollowing": "إجمالي المتابَعين: {{count}}"
+}

@@ -1,0 +1,402 @@
+/* components/Video/css/replyItem.css */
+
+/* ============================================
+   REPLY ITEM - Estilo profesional
+   ============================================ */
+
+   .reply-item {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 8px 0;
+    transition: all 0.2s ease;
+    border-radius: 12px;
+  }
+  
+  .reply-item:first-child {
+    margin-top: 0;
+  }
+  
+  .reply-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  
+  /* Avatar de respuesta */
+  .reply-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(102, 126, 234, 0.3);
+    transition: transform 0.2s ease;
+  }
+  
+  .reply-avatar:active {
+    transform: scale(0.95);
+  }
+  
+  /* Contenido de respuesta */
+  .reply-content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  /* Header de respuesta */
+  .reply-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  
+  .reply-user-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .reply-username {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    transition: color 0.2s ease;
+  }
+  
+  .reply-username:hover {
+    color: #667eea;
+  }
+  
+  .reply-time {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Badge de edición */
+  .reply-item .edited-badge {
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+    margin-left: 4px;
+  }
+  
+  /* Menú de respuesta */
+  .reply-menu {
+    position: relative;
+  }
+  
+  .reply-menu .menu-trigger {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  
+  .reply-menu .menu-trigger:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .reply-menu .menu-trigger:active {
+    transform: scale(0.9);
+  }
+  
+  /* Dropdown pequeño para respuestas */
+  .menu-dropdown.small {
+    min-width: 120px;
+    right: 0;
+    top: 100%;
+    background: #1e1e2a;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 4px 0;
+    z-index: 100;
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+    animation: fadeInScale 0.15s ease;
+  }
+  
+  .menu-dropdown.small button {
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    gap: 8px;
+  }
+  
+  .menu-dropdown.small button:first-child {
+    color: #667eea;
+  }
+  
+  .menu-dropdown.small button.danger {
+    color: #ef4444;
+  }
+  
+  /* Texto de respuesta */
+  .reply-text {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    line-height: 1.4;
+    word-break: break-word;
+    transition: color 0.2s ease;
+  }
+  
+  /* Modo edición inline para respuestas */
+  .edit-mode.inline {
+    margin: 4px 0;
+  }
+  
+  .edit-mode.inline textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 12px;
+    padding: 8px 10px;
+    color: white;
+    font-size: 0.75rem;
+    resize: vertical;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+  
+  .edit-mode.inline textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  }
+  
+  .edit-mode.inline .edit-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    justify-content: flex-end;
+  }
+  
+  .edit-mode.inline .save-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  .edit-mode.inline .save-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .edit-mode.inline .cancel-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  .edit-mode.inline .cancel-btn:active {
+    transform: scale(0.95);
+  }
+  
+  /* Animación de entrada para respuestas */
+  .reply-item {
+    animation: replySlideIn 0.2s ease backwards;
+  }
+  
+  .reply-item:nth-child(1) { animation-delay: 0.02s; }
+  .reply-item:nth-child(2) { animation-delay: 0.04s; }
+  .reply-item:nth-child(3) { animation-delay: 0.06s; }
+  
+  @keyframes replySlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Animación de fade para dropdown */
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Indicador de "nueva respuesta" */
+  .reply-item.new {
+    animation: replyHighlight 1s ease;
+  }
+  
+  @keyframes replyHighlight {
+    0% {
+      background: rgba(102, 126, 234, 0.2);
+    }
+    100% {
+      background: transparent;
+    }
+  }
+  
+  /* Responsive para Android */
+  @media (max-width: 480px) {
+    .reply-item {
+      gap: 8px;
+      margin-top: 10px;
+    }
+    
+    .reply-avatar {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .reply-username {
+      font-size: 0.7rem;
+    }
+    
+    .reply-time {
+      font-size: 0.55rem;
+    }
+    
+    .reply-text {
+      font-size: 0.7rem;
+    }
+    
+    .menu-dropdown.small {
+      min-width: 100px;
+      right: -10px;
+    }
+    
+    .menu-dropdown.small button {
+      padding: 6px 12px;
+      font-size: 0.65rem;
+    }
+    
+    .edit-mode.inline textarea {
+      font-size: 0.7rem;
+      padding: 6px 8px;
+    }
+    
+    .edit-mode.inline .save-btn,
+    .edit-mode.inline .cancel-btn {
+      padding: 3px 10px;
+      font-size: 0.6rem;
+    }
+  }
+  
+  /* Para pantallas muy pequeñas */
+  @media (max-width: 360px) {
+    .reply-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .reply-menu {
+      align-self: flex-end;
+      margin-top: -20px;
+    }
+    
+    .reply-text {
+      font-size: 0.65rem;
+    }
+  }
+  
+  /* Touch optimizations */
+  .reply-item .menu-trigger,
+  .edit-mode.inline .save-btn,
+  .edit-mode.inline .cancel-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Hover solo para dispositivos con mouse */
+  @media (hover: hover) {
+    .reply-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    .reply-username:hover {
+      color: #667eea;
+    }
+    
+    .reply-text:hover {
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+  
+  /* Modo oscuro consistente */
+  @media (prefers-color-scheme: dark) {
+    .reply-item {
+      background: transparent;
+    }
+    
+    .menu-dropdown.small {
+      background: #1a1a1a;
+    }
+  }
+  
+  /* Estado de carga para respuestas */
+  .reply-skeleton {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+  }
+  
+  .reply-skeleton-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+  }
+  
+  .reply-skeleton-content {
+    flex: 1;
+  }
+  
+  .reply-skeleton-line {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+  }
+  
+  .reply-skeleton-line:last-child {
+    width: 70%;
+    margin-bottom: 0;
+  }
+  
+  @keyframes skeletonPulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }

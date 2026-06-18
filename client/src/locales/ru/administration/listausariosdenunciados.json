@@ -1,0 +1,67 @@
+{
+  
+    "header": {
+      "title": "المستخدمون المبلغ عنهم"
+    },
+    "tableHeaders": {
+      "reporter": "المبلغ",
+      "reportedUser": "المستخدم المبلغ عنه",
+      "postTitle": "عنوان المنشور",
+      "reason": "السبب",
+      "date": "التاريخ",
+      "status": "الحالة",
+      "userStatus": "حالة المستخدم",
+      "actions": "الإجراءات"
+    },
+    "status": {
+      "pending": "قيد الانتظار",
+      "resolved": "تم الحل",
+      "rejected": "مرفوض",
+      "active": "نشط",
+      "inactive": "غير نشط",
+      "blocked": "محظور",
+      "notBlocked": "غير محظور"
+    },
+    "actions": {
+      "view": "عرض التفاصيل",
+      "resolve": "حل",
+      "reject": "رفض",
+      "activate": "تفعيل",
+      "deactivate": "تعطيل",
+      "delete": "حذف",
+      "block": "حظر",
+      "unblock": "رفع الحظر"
+    },
+    "filters": {
+      "all": "الكل",
+      "pending": "قيد الانتظار",
+      "resolved": "تم الحل",
+      "rejected": "مرفوض"
+    },
+    "reportDetails": "تفاصيل التقرير",
+    "additionalInfo": "معلومات إضافية",
+    "notAvailable": "غير متوفر",
+    "notSpecified": "غير محدد",
+    "notProvided": "غير مقدم",
+    "unknownUser": "مستخدم غير معروف",
+    "totalReports": "إجمالي البلاغات",
+    "loading": "جاري التحميل...",
+    "noReports": "لا توجد تقارير لعرضها",
+    "close": "إغلاق",
+    "errors": {
+      "fetchError": "خطأ في تحميل التقارير",
+      "invalidData": "بيانات غير صالحة"
+    },
+ 
+  "users": {
+    "deleteModal": {
+      "title": "تأكيد الحذف",
+      "message": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذا الإجراء.",
+      "cancel": "إلغاء",
+      "confirm": "حذف"
+    }
+  },
+  "reporteusers": {
+    "unknownUser": "مستخدم غير معروف"
+  }
+}

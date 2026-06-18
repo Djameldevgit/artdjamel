@@ -1,0 +1,99 @@
+/* Estilos para el fondo del modal */
+.modalbackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que el modal esté por encima de otros elementos */
+}
+
+/* Estilos para el contenido del modal */
+.modalcontentreport {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px; /* Bordes más redondeados */
+    width: 400px; /* Ancho aumentado */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    position: relative; /* Para posicionar el botón de cierre */
+}
+
+/* Estilos para el botón de cierre */
+.modalclose {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(255, 0, 0);
+}
+
+.modalclose:hover {
+    color: #000;
+}
+
+/* Estilos para el select */
+.modalcontent select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Estilos para los botones */
+.modalcontent button {
+ 
+    cursor: pointer;
+    
+}
+
+.modalcontent button.primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.modalcontent button.primary:hover {
+    background-color: #0056b3;
+}
+
+.modalcontent button.secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.modalcontent button.secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Estilos para el botón de cierre */
+.modalclose {
+    position: absolute;
+    top: 12px;
+    right: 11px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalclose:hover {
+    color: #000;
+    background-color: #f5f5f5;
+}

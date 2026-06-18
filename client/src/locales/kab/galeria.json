@@ -1,0 +1,252 @@
+{
+  "inspirationGallery": {
+    "title": "Agrawal n Uḥric",
+    "subtitle": "Af-d tneẓruft tufrint i twiri-ik·im s wudem",
+    "description": "Snirem agraw-nneɣ n yineẓrufen i wakken ad tafeḍ·tafeḍeḍ aḥric d aɣanib i d-yettwaɛeddi ɣef ṭṭamy-ik·im.",
+    "inspirationBadge": "Agrawal n uḥric i twizi",
+ 
+    "filters": {
+      "all": "🎨 Akken isentalen",
+      "retratos": "👤 Tidmawin",
+      "paisajes": "🏞️ Tilɣiwin n tmurt",
+      "marinas": "🌊 Tilɣiwin n yilel",
+      "bodegones": "🍎 Tudert tasebɣant",
+      "animales": "🐾 Iɣersiwen",
+      "flores": "🌹 Ineccačen",
+      "naturalezaMuerta": "📚 Tudert tasebɣant tameqrant",
+      "oriental": "🎎 Tneẓruft n umalu"
+    },
+    
+    "filterByTheme": "Sizdeg s waddad n usentel :",
+    "searchPlaceholder": "Nadi s waddad n uzwel, tafawt neɣ aglam...",
+    "resultsCount": "{{count}} n yineẓrufen ttwafen",
+    "clearFilter": "Sfeḍ asizdeg",
+    
+    "howToUseTitle": "Amek i tesseqdaceḍ agrawal-a",
+    "howToUseDescription": "Agrawal-a yettwarna i wakken ad ak·akem-mudden afus ad tafeḍ·tafeḍeḍ aḥric i twiri-ik·im s wudem.",
+    "usageSteps": {
+      "title": "Tiwizi n useqdec",
+      "step1": "Snirem ineẓrufen s waddad n usentel s useqdec n yisizdegen",
+      "step2": "Sit ɣef 'Wali talqayt' i wakken ad temɣeḍ·temɣeḍeḍ tugna",
+      "step3": "Mi ara tafeḍ·tafeḍeḍ tneẓruft i teɛeẓbeḍ·teɛeẓbeḍeḍ, sit ɣef 'Seqdec d amsel'",
+      "step4": "Amsel ad yettwanɣel s wudem awurman i twiri-ik·im"
+    },
+    
+    "viewDetails": "Wali talqayt",
+    "useAsReference": "Seqdec d amsel",
+    "workDetails": "Talqayt n tneẓruft",
+    "theme": "Asentel",
+    "technique": "Tafawt",
+    "close": "Mdel",
+    
+    "noResults": "Ulac tneẓruft yettwafen",
+    "tryDifferentSearch": "Ɛreḍ wawalen-nniḍen n unadi neɣ beddel asizdeg",
+    "showAllWorks": "Sken akken yineẓrufen",
+    
+    "copySuccess": "✅ Amsel yettwanɣel ɣer taffa",
+    "copyError": "❌ Tuccḍa deg unɣel n umsel",
+    
+    "referenceText": "Amsel : \"{{title}}\" - Asentel : {{theme}} - Tafawt : {{technique}}",
+    
+    "themes": {
+      "retratos": "Tidmawin",
+      "paisajes": "Tilɣiwin n tmurt",
+      "marinas": "Tilɣiwin n yilel",
+      "bodegones": "Tudert tasebɣant",
+      "animales": "Iɣersiwen",
+      "flores": "Ineccačen",
+      "naturaleza-muerta": "Tudert tasebɣant tameqrant",
+      "oriental": "Tneẓruft n umalu"
+    },
+    
+    "techniques": {
+      "oil": "Izzi ɣef taseṭṭa"
+    },
+    
+    "works": {
+      "retratos": {
+        "retrato01": {
+          "title": "Tugna tameqrant",
+          "description": "Tugna tidett s tafawt n yizzi tameqrant"
+        },
+        "retrato02": {
+          "title": "Tugna n tmetṭut",
+          "description": "Tugna tidett s yizzi ɣef taseṭṭa"
+        },
+        "retrato03": {
+          "title": "Tugna n tlawin",
+          "description": "Tugna tidett s yizzi ɣef taseṭṭa"
+        },
+        "retrato04": {
+          "title": "Tugna n yibeddaɛen",
+          "description": "Tugna tidett n yibeddaɛen s yizzi ɣef taseṭṭa"
+        },
+        "retrato05": {
+          "title": "Tugna tasebɣant",
+          "description": "Tugna tidett s yizzi ɣef taseṭṭa"
+        }
+      },
+      
+      "paisajes": {
+        "paisaje01": {
+          "title": "Talɣa n wadrar",
+          "description": "Talɣa n tmurt s teɣmert n tafat n tḍebṣit"
+        },
+        "paisaje02": {
+          "title": "Talɣa n yilel",
+          "description": "Talɣa n tmurt s teɣmert n tafat n tḍebṣit"
+        },
+        "paisaje03": {
+          "title": "Asuq amatunt n temdint",
+          "description": "Talɣa n temdint s tɣuṛi tamatunt"
+        },
+        "paisaje04": {
+          "title": "Talɣa n yilel tasebɣant",
+          "description": "Talɣa n yilel s aḥric tasebɣant"
+        },
+        "paisaje05": {
+          "title": "Inɣumen n wadrar",
+          "description": "Talɣa n tmurt s teɣmert n tafat n tḍebṣit"
+        }
+      },
+      
+      "marinas": {
+        "marina01": {
+          "title": "Aɣeṛṛaṛ s yilellen",
+          "description": "Tɣuṛi n yilel s yiniwen iḥerman n yinɣumen"
+        },
+        "marina02": {
+          "title": "Iḍellen deg yilel",
+          "description": "Tɣuṛi n yilel tirmitin s tafawt n useɣẓu"
+        },
+        "marina03": {
+          "title": "Inɣumen n yilel",
+          "description": "Tɣuṛi n yilel deg yinɣumen"
+        },
+        "marina04": {
+          "title": "Ilellen n umelɣu",
+          "description": "Tazmert d tinerna n yilellen"
+        },
+        "marina05": {
+          "title": "Talwit n yilel",
+          "description": "Tɣuṛi n yilel deg talwit"
+        }
+      },
+      
+      "bodegones": {
+        "bodegon01": {
+          "title": "Tudert tasebɣant s yemɣan",
+          "description": "Asenfar tameqrant n tudert tasebɣant s yemɣan ifeṣṣen"
+        },
+        "bodegon02": {
+          "title": "Tudert tasebɣant s tizeryin d lqerɛa",
+          "description": "Asenfar n tudert tasebɣant s yiferdisen timatunin"
+        },
+        "bodegon03": {
+          "title": "Tudert tasebɣant s tineṭṭalin",
+          "description": "Tudert tasebɣant s yemɣan yiqerṛen timatunin"
+        },
+        "bodegon04": {
+          "title": "Tudert tasebɣant s tizeryin",
+          "description": "Asenfar s tizeryin d yiferdisen imẓawanen"
+        },
+        "bodegon05": {
+          "title": "Tudert tasebɣant s ticriken",
+          "description": "Asenfar tameqrant n tudert tasebɣant s yemɣan ifeṣṣen"
+        }
+      },
+      
+      "animales": {
+        "animal01": {
+          "title": "Tugna n umcic",
+          "description": "Tugna n uɣersiw s telqayt tidett"
+        },
+        "animal02": {
+          "title": "Amcic asebɣan",
+          "description": "Tugna n umcic s wawal uṣeḥḥ"
+        },
+        "animal03": {
+          "title": "Tameṭṭi n yimcac",
+          "description": "Aṭṭeg n tayri n yimcac"
+        },
+        "animal04": {
+          "title": "Amcic yettṛuḥ",
+          "description": "Tɣuṛi n usewwel aɣersiw"
+        },
+        "animal05": {
+          "title": "Tugna n yimcac",
+          "description": "Tugna n uɣersiw s telqayt tidett"
+        }
+      },
+      
+      "flores": {
+        "flor01": {
+          "title": "Werd ɣef uɣeṛṛaṛ",
+          "description": "Ineccačen idisanen s tafawt n umidad aččuran"
+        },
+        "flor02": {
+          "title": "Werd iḥermamen",
+          "description": "Ineccačen s yiniwen ittremden"
+        },
+        "flor03": {
+          "title": "Taqeffalt n werd",
+          "description": "Asenfar n yineccačen yemcabin"
+        },
+        "flor04": {
+          "title": "Werd imellalen",
+          "description": "Tasebɣant deg ineccačen imellalen"
+        },
+        "flor05": {
+          "title": "Lebɣert n werd",
+          "description": "Tɣuṛi n yineccačen imẓawanen"
+        }
+      },
+      
+      "naturalezaMuerta": {
+        "nm01": {
+          "title": "Tudert tasebɣant tameqrant",
+          "description": "Asenfar tamatunt n tudert tasebɣant"
+        },
+        "nm02": {
+          "title": "Asenfar tameqrant",
+          "description": "Asenfar tamatunt n tudert tasebɣant"
+        },
+        "nm03": {
+          "title": "Iferdisen imẓawanen",
+          "description": "Asenfar tamatunt n tudert tasebɣant"
+        },
+        "nm04": {
+          "title": "Tudert tasebɣant tamatunt",
+          "description": "Asenfar tamatunt n tudert tasebɣant"
+        },
+        "nm05": {
+          "title": "Tudert tasebɣant",
+          "description": "Asenfar tamatunt n tudert tasebɣant"
+        }
+      },
+      
+      "oriental": {
+        "oriental01": {
+          "title": "Abeddaɛ n umalu",
+          "description": "Awaled tamaddudt n umalu"
+        },
+        "oriental02": {
+          "title": "Tugna n umalu",
+          "description": "Tneẓruft tamatunt n umalu"
+        },
+        "oriental03": {
+          "title": "Tasekla n umalu",
+          "description": "Timenɣiwin timaddudin n umalu"
+        },
+        "oriental04": {
+          "title": "Tneẓruft n umalu",
+          "description": "Tifawin timatunin n umalu"
+        },
+        "oriental05": {
+          "title": "Awaled n umalu",
+          "description": "Amxalef n yiɣaniben n umalu"
+        }
+      }
+    }
+  }
+}

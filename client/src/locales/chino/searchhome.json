@@ -1,0 +1,121 @@
+{
+   
+    "auth": {
+        "attention": "تنبيه",
+        "login_required": "يجب عليك تسجيل الدخول أولاً للوصول إلى هذه الميزة.",
+        "go_to_login": "الذهاب إلى صفحة تسجيل الدخول",
+        "verify_account": "تحقق من الحساب",
+        "verify_required": "يجب عليك التحقق من حسابك قبل استخدام هذه الميزة.",
+        "resend_verification": "إعادة إرسال رابط التحقق",
+        "account_deactivated": "الحساب معطل",
+        "contact_admin": "حسابك معطل حالياً. يرجى الاتصال بالإدارة لمزيد من المعلومات.",
+        "contact_us": "اتصل بنا"
+      },
+
+
+        "busqueda_de_obras_arte": "بحث عن الأعمال الفنية",
+        "seleccione_titulo_busqueda": "اختر عنوان البحث",
+        "hide_advanced_search": "إخفاء البحث المتقدم",
+        "show_advanced_search": "إظهار البحث المتقدم",
+    
+    "categorias": "categoriasssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+    "select_category": "اختر فئة",
+    "category": {
+        "painting": "الرسم",
+        "sculpture": "النحت",
+        "photography": "التصوير الفوتوغرافي",
+        "drawing": "الرسم باليد",
+        "engraving": "النقش",
+        "digital_art": "الفن الرقمي",
+        "collage": "كولاج",
+        "textile_art": "فن النسيج"
+    },
+    "min_price": "الحد الأدنى للسعر",
+    "min_price_placeholder": "أدنى سعر...",
+    "max_price": "الحد الأقصى للسعر",
+    "max_price_placeholder": "أعلى سعر...",
+    "reset_filters": "إعادة تعيين الفلاتر",
+    "themee": "themeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "select_theme": "اختر موضوعًا",
+    "theme": {
+        "abstrait": "تجريدي",
+        "colore": "ملون",
+        "graffiti": "جرافيتي",
+        "geometrique": "هندسي",
+        "surrealisme": "سريالية",
+        "conceptuel": "مفاهيمي",
+        "replica": "نسخة طبق الأصل",
+        "reproduction": "إعادة إنتاج",
+        "animal": "حيوان",
+        "chat": "قط",
+        "chien": "كلب",
+        "cheval": "حصان",
+        "oiseau": "طائر",
+        "poisson": "سمك",
+        "paysage": "منظر طبيعي",
+        "foret": "غابة",
+        "montagne": "جبل",
+        "fleurs": "زهور",
+        "mer": "بحر",
+        "ciel": "سماء",
+        "portrait": "بورتريه",
+        "corps_humain": "جسم الإنسان",
+        "famille": "عائلة",
+        "culture_populaire": "ثقافة شعبية",
+        "bandes_dessinees": "قصص مصورة",
+        "cinema": "سينما",
+        "dessin_anime": "رسوم متحركة",
+        "jeu_video": "لعبة فيديو",
+        "mode": "موضة",
+        "mythologie": "أساطير",
+        "religion": "دين",
+        "histoire": "تاريخ",
+        "fantastique": "خيالي",
+        "science_fiction": "خيال علمي",
+        "onirique": "حلمي",
+        "ville": "مدينة",
+        "architecture": "عمارة",
+        "societe": "مجتمع",
+        "technologie": "تكنولوجيا"
+    },
+    "theme_groups": {
+        "styles": "🎨 أنماط",
+        "animaux": "🐾 حيوانات",
+        "nature": "🌳 طبيعة",
+        "humain": "👤 إنسان",
+        "culture": "🌍 ثقافة",
+        "imagination": "🧠 خيال",
+        "societe": "🏙️ مجتمع"
+    },
+    "styless": "styleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "groups": {
+        "modernes": "الحديثة",
+        "contemporains": "المعاصرة",
+        "classique_traditionnel": "الكلاسيكية والتقليدية",
+        "autres_styles": "أنماط أخرى"
+    },
+    "styles": {
+        "select_style": "اختر نمطًا",
+        "abstrait": "فن تجريدي",
+        "impressionnisme": "انطباعية",
+        "expressionnisme": "تعبيرية",
+        "cubisme": "تكعيبية",
+        "pop_art": "بوب آرت",
+        "art_conceptuel": "فن conceptual",
+        "street_art": "فن الشارع",
+        "pixel_art": "فن البكسل",
+        "nft": "إن إف تي",
+        "generatif": "فن توليدي",
+        "figuratif": "فن تصويري",
+        "classicisme": "كلاسيكية",
+        "baroque": "باروك",
+        "croquis": "رسم تخطيطي",
+        "documentaire": "توثيقي",
+        "noir_et_blanc": "أبيض وأسود",
+        "tissagee": "فن النسيج",
+        "mixte": "مختلط"
+    },
+    "textile_arttt": {
+        "tissagee": "فن النسيج"
+    }
+}

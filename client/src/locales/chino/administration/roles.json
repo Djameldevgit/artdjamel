@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "title": "إدارة أدوار المستخدم",
+    "totalUsers": "إجمالي المستخدمين: {{count}}"
+  },
+  "tableHeadersss": {
+    "user": "المستخدم",
+    "currentRole": "الدور الحالي",
+    "changeRole": "تغيير الدور"
+  },
+  "roles": {
+    "user": "مستخدم",
+    "Super-utilisateur": "مستخدم متميز",
+    "Moderateur": "مشرف",
+    "admin": "مسؤول"
+  },
+  "noUsersAvailable": "لا يوجد مستخدمون متاحون في الوقت الحالي."
+}

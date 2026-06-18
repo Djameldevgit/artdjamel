@@ -1,0 +1,212 @@
+{
+	 
+	 
+		"emailActivation": {
+		  "subject": "DJMAEL APS فعّل حسابك في ",
+		  "body": "مرحباً بك في DJMAEL APS! للانضمام إلى مجتمع الفن والاستفادة من جميع ميزات المنصة، يرجى تأكيد حسابك. اضغط على الزر أدناه لإكمال عملية التحقق:",
+		  "button": "تأكيد الحساب",
+		  "alt": "إذا لم يعمل الزر، انسخ الرابط التالي والصقه في متصفحك لتفعيل حسابك في DJMAEL APS."
+		},
+		"emailReset": {
+		  "subject": "إعادة تعيين كلمة المرور في DJMAEL APS",
+		  "body": "لقد طلبت إعادة تعيين كلمة المرور الخاصة بك في DJMAEL APS. اضغط على الزر أدناه لمتابعة عملية الاستعادة:",
+		  "button": "إعادة تعيين كلمة المرور",
+		  "alt": "إذا لم تطلب هذا التغيير، يمكنك تجاهل هذه الرسالة بأمان."
+		},
+		"emailInformativo": {
+		  "subject": "أخبار جديدة من DJMAEL APS",
+		  "body": "تابع أحدث الأخبار والتحديثات من DJMAEL APS. اكتشف أعمالاً فنية جديدة وفنانين وميزات مميزة في منصتنا.",
+		  "button": "استكشاف الآن",
+		  "alt": "إذا لم يعمل الزر، يمكنك زيارة موقعنا الإلكتروني للمزيد من المعلومات."
+		},
+	 
+	  
+	
+	
+	"auth": {
+		"empty_fields":"الحقول فارغة",
+		 
+		"username_exists": "اسم المستخدم موجود بالفعل.",
+		"email_exists": "البريد الإلكتروني موجود بالفعل.",
+		"password_too_short": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
+		"register_success": "تم التسجيل بنجاح!",
+		"email_not_exist": "هذا البريد الإلكتروني غير موجود.",
+		"incorrect_password": "كلمة المرور غير صحيحة.",
+		"login_success": "تم تسجيل الدخول بنجاح!",
+		"logout_success": "تم تسجيل الخروج!",
+		"login_required": "يرجى تسجيل الدخول الآن.",
+		"user_not_found": "هذا المستخدم غير موجود.",
+		"server_error": "حدث خطأ في الخادم.",
+		"activation_email_sent": "لقد أرسلنا لك بريدًا إلكترونيًا للتحقق من الحساب.",
+		"forgot_email_sent": "auth.forgot_email_sent",
+		"account_activated": "✅ تم تفعيل الحساب بنجاح.",
+		"reset_email_sent": "تم إرسال رابط إعادة تعيين كلمة المرور.",
+		"password_changed": "تم تغيير كلمة المرور بنجاح."
+	},
+	"post": {
+		"POST": "POST",
+		"created_post": "تم إرسال منشورك بنجاح إلى الإدارة، وهو بانتظار الموافقة. سنُعلمك بذلك.",
+		"updated_post": "تم تحديث المنشور!",
+		"deleted_post": "تم حذف المنشور!",
+		"liked_post": "أعجبتك المنشور!",
+		"unliked_post": "تم إزالة الإعجاب من المنشور!",
+		"saved_post": "تم حفظ المنشور!",
+		"unsaved_post": "تم إزالة المنشور من الحفظ!",
+		"post_not_exist": "هذا المنشور غير موجود.",
+		"user_not_exist": "هذا المستخدم غير موجود.",
+		"already_liked": "لقد أعجبت بهذا المنشور من قبل.",
+		"already_saved": "لقد قمت بحفظ هذا المنشور من قبل.",
+		"please_add_photo": "يرجى إضافة صورة.",
+		"post_approved": "تمت الموافقة على المنشور!",
+		"post_not_found": "لم يتم العثور على المنشور.",
+		"success": "تم بنجاح!",
+		"USER": "USER",
+		"user_not_found": "المستخدم غير موجود.",
+		"please_add_username": "يرجى إضافة اسم المستخدم.",
+		"update_success": "تم التحديث بنجاح!",
+		"already_followed": "لقد قمت بمتابعة هذا المستخدم من قبل.",
+		"follow_success": "تمت المتابعة بنجاح!",
+		"unfollow_success": "تم إلغاء المتابعة بنجاح!",
+		"search_failed": "فشل في البحث عن المستخدمين.",
+		"suggestions_loaded": "تم تحميل اقتراحات المستخدمين.",
+		"error": "حدث خطأ ما.",
+		"no_users_found": "لم يتم العثور على مستخدمين.",
+		"invalid_user_id": "معرّف المستخدم غير صالح.",
+		"updated_arabic": "language.updated_arabic",
+		"updated_french": "language.updated_french",
+		"updated_spanish": "language.updated_spanish"
+	},
+	"comment": {
+		"error_post_not_exist": "هذا المنشور غير موجود.",
+		"error_comment_not_exist": "هذا التعليق غير موجود.",
+		"success": "تم إنشاء التعليق!"
+	},
+	 
+		"language": {
+		  "en": "الإنجليزية",
+		  "fr": "الفرنسية",
+		  "ar": "العربية",
+		  "es": "الإسبانية",
+		  "ru": "الروسية",
+		  "kab": "القبايلية",
+		  "chino": "الصينية",
+	  
+		  "updated": "تم تحديث اللغة بنجاح",
+		  "updated_english": "تم تغيير اللغة إلى الإنجليزية",
+		  "updated_french": "تم تغيير اللغة إلى الفرنسية",
+		  "updated_arabic": "تم تغيير اللغة إلى العربية",
+		  "updated_spanish": "تم تغيير اللغة إلى الإسبانية",
+		  "updated_russian": "تم تغيير اللغة إلى الروسية",
+		  "updated_kabyle": "تم تغيير اللغة إلى القبايلية",
+		  "updated_chinese": "تم تغيير اللغة إلى الصينية",
+	  
+		  "not_specified": "لم يتم تحديد اللغة",
+		  "not_updated": "لم يتم تحديث اللغة",
+		  "visitor_saved": "تم حفظ تفضيل اللغة للزائر"
+		},
+	 
+	  
+	"cart": {
+		"postNotFoundOrNoPrice": "المشاركة غير موجودة أو بدون سعر",
+		"postAddedToCart": "تمت إضافة المشاركة إلى العربة",
+		"priceMustBeNumber": "يجب أن يكون السعر رقماً",
+		"priceMustBePositive": "يجب أن يكون السعر إيجابياً",
+		"quantityAtLeastOne": "يجب أن تكون الكمية على الأقل 1",
+		"productRemoved": "تم إزالة المنتج",
+		"serverError": "خطأ في الخادم",
+		"invalidQuantity": "كمية غير صالحة",
+		"productNotFoundInCart": "المنتج غير موجود في العربة",
+		"quantityUpdated": "تم تحديث الكمية"
+	},
+ 
+	"email": {
+		"subject": "جمال آرت",
+	 "appName": "رحلات ",
+		"body": "مبروك! أنت على وشك استخدام التطبيق. اضغط على الزر أو الرابط أدناه لتأكيد بريدك الإلكتروني.",
+		"button": "تأكيد البريد الإلكتروني",
+		"alt": "إذا لم يعمل الزر، يمكنك أيضًا النقر على الرابط التالي:",
+		"reset_button": "email.reset_button"
+	},
+	"user_not_found": "المستخدم غير موجود.",
+	"already_verified": "تم التحقق من الحساب بالفعل.",
+ 
+	"server_error": "خطأ في الخادم الداخلي.",
+	"order": {
+		"cart_empty": "سلة التسوق فارغة",
+		"created_success": "✅ تم إنشاء الطلب بنجاح",
+		"not_found": "الطلب غير موجود",
+		"status_updated": "تم تحديث حالة الطلب",
+		"deleted_success": "تم حذف الطلب بنجاح"
+	},
+	"role": {
+		"user_not_found": "المستخدم غير موجود",
+		"role_assigned": "تم تعيين دور المستخدم بنجاح",
+		"Super-utilisateur": "تم تعيين دور المستخدم المتميز بنجاح",
+		"moderator_assigned": "تم تعيين دور المشرف بنجاح",
+		"admin_assigned": "تم تعيين دور المدير بنجاح",
+		"update_error": "حدث خطأ أثناء تحديث دور المستخدم"
+	},
+	"message": {
+		"create_success": "تم إنشاء الرسالة بنجاح!",
+		"delete_success": "تم الحذف بنجاح!",
+		"invalid_data": "بيانات غير صالحة: يجب توفير مستلم ومحتوى الرسالة",
+		"server_error": "حدث خطأ في خادم الرسائل",
+		"createMessage.empty": "لا يمكن أن تكون الرسالة فارغة.",
+		"createMessage.success": "تم إنشاء الرسالة بنجاح!",
+		"deleteMessage.success": "تم حذف الرسالة بنجاح!",
+		"deleteConversation.success": "تم حذف المحادثة بنجاح!"
+	},
+	"report": {
+	 
+		"report_not_found": "التقرير غير موجود",
+		"update_success": "تم تحديث حالة التقرير بنجاح",
+		"delete_success": "تم حذف التقرير بنجاح",
+		"missing_fields": "جميع الحقول مطلوبة.",
+		"already_reported": "لقد أبلغت عن هذا المنشور من قبل.",
+		"create_success": "تم الإبلاغ بنجاح.",
+		"server_error": "حدث خطأ في الخادم."
+	 
+
+
+
+	},
+	"block": {
+		"user_not_found": "المستخدم غير موجود",
+		"already_blocked": "هذا المستخدم محظور بالفعل",
+		"default_reason": "لم يتم تحديد السبب",
+		"default_content": "لا يوجد محتوى إضافي",
+		"default_date": "بداية تاريخ غير محدد",
+		"block_success": "تم حظر المستخدم بنجاح",
+		"not_blocked": "هذا المستخدم غير محظور",
+		"unblock_success": "تم إلغاء حظر المستخدم بنجاح",
+		"server_error": "حدث خطأ في خادم الحظر"
+	},
+	"user": {
+		"activation_message_required": "الرسالة مطلوبة لتفعيل الحساب",
+		"activation_request_sent": "✅ تم إرسال طلب التفعيل إلى المسؤول",
+		"server_error": "خطأ في خادم المستخدمين",
+		"unauthenticated": "المستخدم غير مصادق عليه",
+		"contact_title_message_required": "العنوان والرسالة مطلوبان",
+		"contact_message_sent": "تم إرسال رسالة الدعم بنجاح",
+		"contact_send_error": "خطأ في إرسال رسالة الدعم",
+		"blocked_message_required": "الرسالة مطلوبة لطلب إعادة النظر",
+		"blocked_request_sent": "✅ تم إرسال طلب إعادة النظر في الحظر",
+		"blocked_send_error": "خطأ في إرسال طلب إعادة النظر",
+		"not_found": "المستخدم غير موجود",
+		"account_deleted_unverified": "تم حذف حسابك لعدم تفعيله خلال 3 أيام. سجّل مرة أخرى للوصول",
+		"status_updated": "تم تحديث حالة المستخدم",
+		"not_exist": "المستخدم غير موجود",
+		"success": "نجاح",
+		"username_required": "اسم المستخدم الكامل مطلوب",
+		"update_success": "تم تحديث المستخدم بنجاح!",
+		"already_followed": "أنت تتابع هذا المستخدم بالفعل",
+		"delete_denied_admin": "تم الرفض: يلزم صلاحيات المسؤول",
+		"invalid_id": "معرف المستخدم غير صالح",
+		"delete_self_denied": "لا يمكنك حذف حسابك الخاص",
+		"delete_success": "تم حذف المستخدم ومحتوياته المرتبطة بنجاح",
+		"delete_error": "خطأ في حذف المستخدم",
+		"cleanup_denied_admin": "تم الرفض: يلزم صلاحيات المسؤول للتنظيف",
+		"cleanup_success": "تم التنظيف: {{posts}} منشورات و{{comments}} تعليقات",
+		"cleanup_error": "خطأ في تنظيف المحتويات المتبقية"
+	}
+}

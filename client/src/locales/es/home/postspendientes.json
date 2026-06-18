@@ -1,0 +1,51 @@
+{
+ 
+    
+      "title": "Posts Pendientes",
+      "subtitle": "Gestiona y revisa los posts pendientes de aprobación",
+      "totalPending": "Posts Pendientes",
+      "selected": "Seleccionados",
+      "readyForAction": "Listos para acción",
+      "postsSelected": "posts seleccionados",
+      "approveSelected": "Aprobar Seleccionados",
+      "deleteSelected": "Eliminar Seleccionados",
+      "selectAll": "Seleccionar Todos",
+      "pendingList": "Lista de Posts Pendientes",
+      "noPostsSelected": "Selecciona al menos un post",
+      "postsApprovedSuccessfully": "{{count}} posts aprobados exitosamente",
+      "postsDeletedSuccessfully": "{{count}} posts eliminados exitosamente",
+      "noPending": "No hay posts pendientes",
+      "loading": "Cargando más posts...",
+      "confirm": {
+        "approve": "¿Estás seguro de que quieres aprobar este post?",
+        "approveMultiple": "¿Estás seguro de que quieres aprobar {{count}} posts?",
+        "delete": "¿Estás seguro de que quieres eliminar este post?",
+        "deleteMultiple": "¿Estás seguro de que quieres eliminar {{count}} posts?",
+        "block": "¿Estás seguro de que quieres bloquear al usuario {{user}}?"
+      },
+      "table": {
+        "image": "Imagen",
+        "content": "Contenido",
+        "user": "Usuario",
+        "category": "Categoría",
+        "title": "Título",
+        "status": "Estado",
+        "date": "Fecha",
+        "actions": "Acciones"
+      },
+      "status": {
+        "pendiente": "Pendiente",
+        "aprobado": "Aprobado",
+        "rechazado": "Rechazado"
+      },
+      "actionss": {
+        "approve": "Aprobar",
+        "sendMessage": "Enviar Mensaje",
+        "delete": "Eliminar",
+        "blockUser": "Bloquear Usuario"
+      },
+      "noImage": "Sin imagen"
+    
+} 
+   
+ 

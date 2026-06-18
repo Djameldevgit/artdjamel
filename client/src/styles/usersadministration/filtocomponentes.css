@@ -1,0 +1,54 @@
+/* Estilos para el contenedor de los filtros */
+.filters-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Dos columnas en pantallas grandes */
+    gap: 1rem; /* Espacio entre los elementos */
+    padding: 1rem;
+}
+
+/* Estilos para cada grupo de filtro */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Espacio entre la etiqueta y el input */
+}
+
+/* Estilos para las etiquetas */
+.filter-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilos para los inputs y selects */
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover y focus para inputs y selects */
+.filter-group input:hover,
+.filter-group select:hover,
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Estilo específico para los inputs de fecha */
+.filter-group input[type="date"] {
+    appearance: none; /* Elimina el estilo por defecto del navegador */
+}
+
+/* Estilos para pantallas más pequeñas (responsive) */
+@media (max-width: 768px) {
+    .filters-container {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+}

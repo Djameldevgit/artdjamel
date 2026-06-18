@@ -1,0 +1,19 @@
+// src/components/SlidersCategories/index.js
+export { default as SliderVehicule } from './SliderVehicule';
+export { default as SliderVetements } from './SliderVetements';
+export { default as SliderImmobiler } from './SliderImmobiler';
+export { default as SliderElectromenager } from './SliderElectromenager';
+export { default as SliderTelephones } from './SliderTelephones';
+export { default as SliderInformatique } from './SliderInformatique';
+export { default as SliderPiecesDetachees } from './SliderPiecesDetachees';
+export { default as SliderSanteBeaute } from './SliderSanteBeaute';
+export { default as SliderMeubles } from './SliderMeubles';
+export { default as SliderLoisirs } from './SliderLoisirs';
+export { default as SliderSport } from './SliderSport';
+export { default as SliderAlimentaires } from './SliderAlimentaires';
+export { default as SliderServices } from './SliderServices';
+export { default as SliderMateriaux } from './SliderMateriaux';
+export { default as SliderVoyages } from './SliderVoyages';
+export { default as SliderEmploi } from './SliderEmploi';
+export { default as SliderBoutiques } from './SliderBoutiques';
+export { default as CategorySlider } from './CategorySlider';

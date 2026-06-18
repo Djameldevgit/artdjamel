@@ -1,0 +1,36 @@
+.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333; /* Color del texto */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #007bff; /* Color al hacer hover */
+}
+
+/* Estilos para los íconos de Material Icons */
+.nav-link .material-icons {
+    font-size: 24px;
+}
+
+/* Estilos para los íconos de FontAwesome */
+.nav-link .fas {
+    font-size: 13px;
+}
+
+/* Estilo especial para el ícono de "Discover" (signo más) */
+.nav-link .fa-plus {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.nav-link .fa-plus:hover {
+    background-color: #0056b3;
+}

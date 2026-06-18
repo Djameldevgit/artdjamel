@@ -1,0 +1,97 @@
+{
+  "shopPresentation": "أكثر من 10 سنوات في تصميم أزياء المرأة العصرية. متخصصون في الأزياء التقليدية، فساتين السهرة والملابس اليومية عالية الجودة. أقمشة مستوردة وتصاميم حصرية.",
+    
+    "distanceToShop": "المسافة إلى المتجر",
+    "calculate": "احسب",
+    "recalculate": "إعادة الحساب",
+    "meters": "م",
+    "kilometers": "كم",
+    "distanceDescription": "المسافة في خط مستقيم من موقعك الحالي",
+    "getDistance": "انقر على \"احسب\" لمعرفة المسافة من موقعك الحالي",
+    "yourLocation": "موقعك الحالي",
+    "distanceCalculationError": "خطأ في حساب المسافة",
+    "street": "الشارع",
+    "satellite": "القمر الصناعي",
+    "terrain": "التضاريس",
+    "location": "الموقع على الخريطة",
+    "searching": "جاري البحث عن الموقع...",
+    "locationUnavailable": "الموقع غير متوفر",
+    "reload": "تحديث",
+    "usingData": "استخدام البيانات الرسمية للمتجر",
+    "officialInfo": "المعلومات الرسمية لمتجرنا",
+    "loginForFeatures": "سجل الدخول للوصول إلى جميع الميزات",
+    "clothingShop": "متجر ملابس وأزياء",
+    "owner": "المالك",
+    "saleTypes": "أنواع البيع",
+    "phone": "الهاتف",
+    "call": "اتصال",
+    "video": "فيديو",
+    "presentation": "العرض",
+    "contactWhatsApp": "الاتصال عبر واتساب",
+    "phoneNotAvailable": "رقم الهاتف غير متوفر",
+    "videoCallSoon": "ستكون ميزة الاتصال المرئي متاحة قريباً!",
+    "whatsappMessage": "مرحباً {{username}}، لقد رأيت متجرك في التطبيق وأنا مهتم بمنتجاتك.",
+    "locationSearchWarning": "تحذير أثناء البحث عن الموقع",
+    "locationNotFound": "الموقع غير موجود للبيانات المقدمة",
+    "locationError": "خطأ في الموقع",
+    "generalError": "خطأ أثناء تحميل الموقع",
+   
+    "shop": {
+      "officialInfo": "المعلومات الرسمية لمتجرنا",
+      "boutiqueName": "المتجر"
+    },
+    "auth": {
+      "loginToAccess": "سجل الدخول للوصول إلى جميع الوظائف"
+    
+         
+    },
+    "user": {
+      "owner": "المالك"
+    },
+    "contact": {
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "whatsapp": "واتساب",
+      "contactWhatsApp": "التواصل عبر واتساب"
+    },
+  
+    "profile": {
+      "presentation": "التقديم"
+    },
+    "map": {
+      "location": "الموقع على الخريطة",
+      "searching": "جاري البحث عن الموقع...",
+      "locationUnavailable": "الموقع غير متوفر",
+      "usingData": "باستخدام البيانات الرسمية للمتجر",
+      "reload": "تحديث",
+      "street": "الشوارع",
+      "satellite": "الأقمار الصناعية",
+      "terrain": "التضاريس",
+      "distanceToShop": "المسافة إلى المتجر",
+      "recalculate": "إعادة الحساب",
+      "calculate": "حساب",
+      "distanceDescription": "المسافة في خط مستقيم من موقعك الحالي",
+      "getDistance": "انقر على \"حساب\" لمعرفة المسافة من موقعك الحالي",
+      "yourLocation": "موقعك الحالي",
+      "distanceCalculationError": "خطأ في حساب المسافة:",
+      "meters": "م",
+      "kilometers": "كم",
+      "locationNotFound": "الموقع غير موجود للبيانات المقدمة",
+      "generalError": "خطأ في تحميل الموقع",
+      "locationSearchWarning": "تحذير أثناء البحث عن الموقع:",
+      "locationError": "خطأ في الموقع:"
+    },
+    "common": {
+      "back": "رجوع",
+      "initial": "ت",
+      "noImages": "لا توجد صور متاحة",
+      "shopImage": "صورة المتجر",
+      "imageNotAvailable": "الصورة غير متاحة"
+    },
+    "whatsapp": {
+      "defaultMessage": "مرحباً {{username}}، لقد رأيت متجرك في التطبيق وأرغب في معرفة المزيد عن منتجاتك."
+    }
+  }
+  
+ 
+ 

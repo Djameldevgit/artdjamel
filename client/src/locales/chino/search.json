@@ -1,0 +1,64 @@
+{
+  "title": "🔍 搜索艺术",
+  "subtitle": "发现艺术品和艺术家",
+  "searchPlaceholder": "例如：油画风景、抽象肖像、现代雕塑...",
+  "searchLabel": "您在寻找什么？",
+  "searchHelp": "按标题、艺术家、技术或描述搜索",
+  "artistsFound": "找到的艺术家",
+  "searchingArtists": "搜索艺术家...",
+  "categories": {
+    "title": "艺术类别",
+    "painting": "绘画",
+    "sculpture": "雕塑",
+    "photography": "摄影",
+    "drawing": "素描",
+    "engraving": "版画",
+    "digital_art": "数字艺术",
+    "collage": "拼贴",
+    "textile_art": "纺织艺术"
+  },
+  "advancedSearch": {
+    "title": "高级搜索",
+    "theme": "主题",
+    "themePlaceholder": "例如：自然、抽象、肖像...",
+    "style": "风格",
+    "stylePlaceholder": "例如：现实主义、印象派、现代...",
+    "minPrice": "最低价格",
+    "minPricePlaceholder": "例如：50",
+    "maxPrice": "最高价格",
+    "maxPricePlaceholder": "例如：500",
+    "location": "位置（省）",
+    "locationPlaceholder": "例如：阿尔及尔、奥兰、君士坦丁..."
+  },
+  "buttons": {
+    "search": "搜索艺术品",
+    "searching": "搜索中...",
+    "clear": "清除",
+    "close": "×"
+  },
+  "results": {
+    "found": "找到 {{count}} 件与您搜索匹配的艺术品",
+    "searching": "搜索艺术品中...",
+    "loading": "这可能需要几秒钟",
+    "noResults": "未找到与您搜索匹配的艺术品"
+  },
+  "errors": {
+    "searchError": "搜索错误",
+    "userSearchError": "搜索用户时出错"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "yes": "是",
+    "no": "否",
+    "confirm": "确认",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步"
+  }
+}

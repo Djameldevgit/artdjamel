@@ -1,0 +1,66 @@
+{
+  "inspirationGallery": {
+    "title": "Galerie d'Inspiration",
+    "subtitle": "Trouvez l'œuvre parfaite pour votre commande personnalisée",
+    "description": "Explorez notre collection d'œuvres d'art pour l'inspiration et trouvez le style qui correspond à votre goût.",
+    "inspirationBadge": "Galerie d'inspiration pour commandes",
+ 
+    "filters": {
+      "all": "🎨 Tous les thèmes",
+      "retratos": "👤 Portraits",
+      "paisajes": "🏞️ Paysages",
+      "marinas": "🌊 Marines",
+      "bodegones": "🍎 Natures mortes",
+      "animales": "🐾 Animaux",
+      "flores": "🌹 Fleurs",
+      "naturalezaMuerta": "📚 Natures mortes classiques",
+      "oriental": "🎎 Art oriental"
+    },
+    
+    "filterByTheme": "Filtrer par thème :",
+    "searchPlaceholder": "Rechercher par titre, technique ou description...",
+    "resultsCount": "{{count}} œuvres trouvées",
+    "clearFilter": "Effacer le filtre",
+    
+    "howToUseTitle": "Comment utiliser cette galerie",
+    "howToUseDescription": "Cette galerie est conçue pour vous aider à trouver l'inspiration pour votre commande personnalisée.",
+    "usageSteps": {
+      "title": "Instructions d'utilisation",
+      "step1": "Explorez les œuvres par thème en utilisant les filtres",
+      "step2": "Cliquez sur 'Voir les détails' pour agrandir l'image",
+      "step3": "Quand vous trouvez une œuvre que vous aimez, cliquez sur 'Utiliser comme référence'",
+      "step4": "La référence sera automatiquement copiée pour votre commande"
+    },
+    
+    "viewDetails": "Voir les détails",
+    "useAsReference": "Utiliser comme référence",
+    "workDetails": "Détails de l'œuvre",
+    "theme": "Thème",
+    "technique": "Technique",
+    "close": "Fermer",
+    
+    "noResults": "Aucune œuvre trouvée",
+    "tryDifferentSearch": "Essayez d'autres termes de recherche ou changez le filtre",
+    "showAllWorks": "Afficher toutes les œuvres",
+    
+    "copySuccess": "✅ Référence copiée dans le presse-papiers",
+    "copyError": "❌ Erreur de copie de la référence",
+    
+    "referenceText": "Référence : \"{{title}}\" - Thème : {{theme}} - Technique : {{technique}}",
+    
+    "themes": {
+      "retratos": "Portraits",
+      "paisajes": "Paysages",
+      "marinas": "Marines",
+      "bodegones": "Natures mortes",
+      "animales": "Animaux",
+      "flores": "Fleurs",
+      "naturaleza-muerta": "Natures mortes classiques",
+      "oriental": "Art oriental"
+    },
+    
+    "techniques": {
+      "oil": "Huile sur toile"
+    }
+  }
+}

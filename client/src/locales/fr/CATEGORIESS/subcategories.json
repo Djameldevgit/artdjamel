@@ -1,0 +1,371 @@
+{
+
+ 
+     
+      "fields": {
+        "type_service": "Type de service",
+        "competence": "Compétence",
+        "experience": "Expérience",
+        "diplome": "Diplôme",
+        "zone_intervention": "Zone d'intervention",
+        "tarif_horaire": "Tarif horaire",
+        "tarif_forfait": "Tarif forfaitaire",
+        "disponibilite": "Disponibilité",
+        "mode_travail": "Mode de travail",
+        "portfolio": "Portfolio",
+        "reference": "Références",
+        "certification": "Certification",
+        "langue": "Langue parlée",
+        "outils": "Outils utilisés",
+        "delai_livraison": "Délai de livraison",
+        "garantie": "Garantie",
+        "support": "Support après-service"
+      },
+      "common": {
+        "select_category": "Sélectionnez une catégorie de service",
+        "all_categories": "Toutes les catégories",
+        "professional_services": "Services professionnels",
+        "personal_services": "Services personnels",
+        "online_services": "Services en ligne",
+        "onsite_services": "Services sur place",
+        "urgent": "Urgent",
+        "available_now": "Disponible maintenant",
+        "best_rated": "Mieux notés",
+        "price_low_high": "Prix : croissant",
+        "price_high_low": "Prix : décroissant",
+        "newest": "Plus récents"
+      },
+  
+ 
+ 
+  "select_subcategory_option": "Sélectionnez une sous-catégorie...",
+   
+    "select_operation": "Sélectionnez une opération...",
+    "type_property": "Type de bien",
+    "select_property": "Sélectionnez un type de bien...",
+    "type_vehicle": "Type de véhicule",
+    "type_clothing": "Type de vêtement",
+    "type_phone": "Type de téléphone",
+    "type_computer": "Type d'équipement informatique",
+    "type_appliance": "Type d'appareil électroménager",
+    "type_pieces_detachees": "Type de pièces détachées",
+    "type_sante_beaute": "Type de produit santé & beauté",
+    "type_meubles": "Type de meuble & maison",
+    "type_loisirs": "Type de loisirs & divertissements",
+    "type_emploi": "Type d'offre/emploi",
+    "type_sport": "Type de sport",
+    "type_alimentaires": "Type de produit alimentaire",
+    "type_materiaux": "Type de matériaux & équipement",
+    "type_services": "Type de service",
+    "type_voyages": "Type de voyage",
+    "select_category_first": "Veuillez d'abord sélectionner une catégorie principale",
+  
+    "enter_subcategory": "Entrez la sous-catégorie manuellement",
+ 
+
+
+
+
+
+
+    "subcategories": "Sous-catégories",
+    "select_subcategory": "Sélectionnez une sous-catégorie",
+    "type_operation": "Type d'opération",
+  
+    
+    "immobilier": {
+      "operation": {
+        "vente": "Vente",
+        "location": "Location",
+        "location_vacances": "Location vacances",
+        "cherche_location": "Cherche location",
+        "cherche_achat": "Cherche achat"
+      },
+      "property": {
+        "appartement": "Appartement",
+        "local": "Local",
+        "villa": "Villa",
+        "terrain": "Terrain",
+        "terrain_agricole": "Terrain Agricole",
+        "immeuble": "Immeuble",
+        "bungalow": "Bungalow"
+      }
+    },
+    "pieces_detachees": {
+      "categories": {
+        "pieces_automobiles": "Pièces automobiles",
+        "pieces_vehicules": "Pièces véhicules lourds",
+        "pieces_moto": "Pièces moto",
+        "pieces_bateaux": "Pièces bateaux",
+        "alarme_securite": "Alarme & sécurité",
+        "nettoyage_entretien": "Nettoyage & entretien",
+        "outils_diagnostics": "Outils & diagnostics",
+        "lubrifiants": "Lubrifiants"
+      }
+    
+  },
+    "vehicules": {
+      "categories": {
+        "voitures": "Voitures",
+        "utilitaire": "Utilitaire",
+        "motos": "Motos & Scooters",
+        "quads": "Quads",
+        "fourgon": "Fourgon",
+        "camion": "Camion",
+        "bus": "Bus",
+        "engin": "Engin",
+        "tracteurs": "Tracteurs",
+        "remorques": "Remorques",
+        "bateaux": "Bateaux & Barques"
+      }
+    },
+    
+    "vetements": {
+      "categories": {
+        "vetements_homme": "Vêtements Homme",
+        "vetements_femme": "Vêtements Femme",
+        "chaussures_homme": "Chaussures Homme",
+        "chaussures_femme": "Chaussures Femme",
+        "garcons": "Garçons",
+        "filles": "Filles",
+        "bebe": "Bébé",
+        "tenues_pro": "Tenues professionnelles",
+        "sacs": "Sacs & Valises",
+        "montres": "Montres",
+        "lunettes": "Lunettes",
+        "bijoux": "Bijoux"
+      }
+    },
+    
+    "telephones": {
+      "categories": {
+        "smartphones": "Smartphones",
+        "telephones_cellulaires": "Téléphones cellulaires",
+        "tablettes": "Tablettes",
+        "fixes_fax": "Fixes & Fax",
+        "smartwatchs": "Smartwatchs",
+        "protection_antichoc": "Protection & Antichoc",
+        "ecouteurs_son": "Écouteurs & Son",
+        "chargeurs_cables": "Chargeurs & Câbles",
+        "supports_stabilisateurs": "Supports & Stabilisateurs",
+        "manettes": "Manettes",
+        "vr": "VR",
+        "power_banks": "Power banks",
+        "stylets": "Stylets",
+        "cartes_memoire": "Cartes Mémoire",
+        "accessoires": "Accessoires",
+        "pieces_rechange": "Pièces de rechange",
+        "offres_abonnements": "Offres & Abonnements"
+      }
+    },
+    
+    "informatique": {
+      "categories": {
+        "ordinateurs_portables": "Ordinateurs portables",
+        "ordinateurs_bureau": "Ordinateurs de bureau",
+        "serveurs": "Serveurs",
+        "ecrans": "Écrans",
+        "composants_pc_fixe": "Composants PC fixe",
+        "composants_pc_portable": "Composants PC portable",
+        "composants_serveur": "Composants serveur",
+        "imprimantes_cartouches": "Imprimantes & Cartouches",
+        "reseau_connexion": "Réseau & Connexion",
+        "stockage_externe_racks": "Stockage externe & Racks",
+        "onduleurs_stabilisateurs": "Onduleurs & Stabilisateurs",
+        "compteuses_billets": "Compteuses de billets",
+        "claviers_souris": "Claviers & Souris",
+        "casques_son": "Casques & Son",
+        "webcam_videoconference": "Webcam & Vidéoconférence",
+        "data_shows": "Data shows",
+        "cables_adaptateurs": "Câbles & Adaptateurs",
+        "stylets_tablettes": "Stylets & Tablettes",
+        "cartables_sacoches": "Cartables & Sacoches",
+        "manettes_simulateurs": "Manettes & Simulateurs",
+        "vr": "VR"
+      }
+    },
+    
+    "electromenager": {
+      "categories": {
+        "televiseurs": "Téléviseurs",
+        "demodulateurs_box_tv": "Démodulateurs & Box TV",
+        "paraboles_switch_tv": "Paraboles & Switch TV",
+        "abonnements_iptv": "Abonnements IPTV",
+        "cameras_accessories": "Caméras & Accessoires",
+        "audio": "Audio",
+        "refrigerateurs_congelateurs": "Réfrigérateurs & Congélateurs",
+        "machines_laver": "Machines à laver",
+        "lave_vaisselles": "Lave vaisselles",
+        "fours_cuisson": "Fours & Cuisson",
+        "chauffage_climatisation": "Chauffage & Climatisation",
+        "appareils_cuisine": "Appareils de cuisine",
+        "aspirateurs_nettoyeurs": "Aspirateurs & Nettoyeurs",
+        "repassage": "Repassage",
+        "beaute_hygiene": "Beauté & Hygiène",
+        "machines_coudre": "Machines à coudre",
+        "telecommandes": "Télécommandes",
+        "securite_gps": "Sécurité & GPS",
+        "composants_electroniques": "Composants électroniques",
+        "pieces_rechange": "Pièces de rechange",
+        "autre": "Autre"
+      }
+    },
+    
+    "tips": {
+      "vente": "Achat/Vente de bien immobilier",
+      "location": "Location à long terme",
+      "location_vacances": "Location saisonnière/touristique",
+      "cherche_location": "Recherche d'un bien à louer",
+      "cherche_achat": "Recherche d'un bien à acheter",
+      "appartement": "Appartement résidentiel",
+      "local": "Local commercial/bureau",
+      "villa": "Maison individuelle",
+      "terrain": "Terrain constructible",
+      "terrain_agricole": "Terrain agricole/exploitation",
+      "immeuble": "Immeuble entier",
+      "bungalow": "Bungalow/chalet"
+    },
+
+
+
+
+    "sante_beaute": {
+      "categories": {
+        "cosmetiques_beaute": "Cosmétiques & Beauté",
+        "parfums_deodorants_femme": "Parfums et déodorants femme",
+        "parfums_deodorants_homme": "Parfums et déodorants homme",
+        "parapharmacie_sante": "Parapharmacie & Santé"
+      }
+    },
+    "meubles": {
+      "categories": {
+        "meubles_maison": "Meubles de maison",
+        "decoration": "Décoration",
+        "vaisselle": "Vaisselle",
+        "meubles_bureau": "Meubles de bureau",
+        "rideaux": "Rideaux",
+        "literie_linge": "Literie & Linge",
+        "puericulture": "Puériculture",
+        "tapis_moquettes": "Tapis & Moquettes",
+        "meubles_exterieur": "Meubles d'extérieur",
+        "fournitures_scolaires": "Fournitures et articles scolaires",
+        "luminaire": "Luminaire",
+        "autre": "Autre"
+      }
+    },
+    "loisirs": {
+      "categories": {
+        "animalerie": "Animalerie",
+        "consoles_jeux_videos": "Consoles et Jeux Vidéos",
+        "livres_magazines": "Livres & Magazines",
+        "instruments_musique": "Instruments de Musique",
+        "jeux_loisirs": "Les Jeux de loisirs",
+        "jouets": "Jouets",
+        "chasse_peche": "Chasse & Pêche",
+        "jardinage": "Jardinage",
+        "antiquites_collections": "Antiquités & Collections",
+        "barbecue_grillades": "Barbecue & Grillades",
+        "vapes_chichas": "Vapes & Chichas",
+        "produits_accesoires_ete": "Produits & Accessoires d'été",
+        "autre": "Autre"
+      }
+    },
+
+
+    
+      "emploi": {
+        "categories": {
+          "offres_emploi": "Offres d'emploi",
+          "demandes_emploi": "Demandes d'emploi"
+        }
+      },
+      "sport": {
+        "categories": {
+          "football": "Football",
+          "hand_voley_basket": "Handball/Volley/Basketball",
+          "sport_combat": "Sports de combat",
+          "fitness_musculation": "Fitness & Musculation",
+          "natation": "Natation",
+          "velos_trotinettes": "Vélos & Trotinettes",
+          "sports_raquette": "Sports de raquette",
+          "sport_aquatiques": "Sports aquatiques"
+        }
+      },
+      "alimentaires": {
+        "categories": {
+          "produits_laitiers": "Produits laitiers",
+          "fruits_secs": "Fruits secs",
+          "graines_riz_cereales": "Graines - Riz - Céréales",
+          "sucres_produits_sucres": "Sucres et produits sucrés",
+          "boissons": "Boissons",
+          "viandes_poissons": "Viandes & Poissons",
+          "cafe_the_infusion": "Café - Thé - Infusions",
+          "complements_alimentaires": "Compléments alimentaires",
+          "miel_derives": "Miel et dérivés",
+          "fruits_legumes": "Fruits & Légumes",
+          "ble_farine": "Blé & Farine",
+          "bonbons_chocolat": "Bonbons & Chocolat",
+          "boulangerie_viennoiserie": "Boulangerie & Viennoiserie",
+          "ingredients_cuisine_patisserie": "Ingrédients cuisine & pâtisserie",
+          "noix_graines": "Noix & Graines",
+          "plats_cuisines": "Plats cuisinés",
+          "sauces_epices_condiments": "Sauces - Épices - Condiments",
+          "oeufs": "Œufs",
+          "huiles": "Huiles",
+          "pates": "Pâtes",
+          "gateaux": "Gâteaux",
+          "emballage": "Emballage",
+          "aliments_bebe": "Aliments bébé",
+          "aliments_dietetiques": "Aliments diététiques"
+        }
+      },
+      "materiaux": {
+        "categories": {
+          "materiel_professionnel": "Matériel professionnel",
+          "outillage_professionnel": "Outillage professionnel",
+          "materiaux_construction": "Matériaux de construction",
+          "matieres_premieres": "Matières premières",
+          "produits_hygiene": "Produits d'hygiène",
+          "materiel_agricole": "Matériel agricole",
+          "autre": "Autre"
+        }
+      
+    },
+   
+      "services": {
+        "categories": {
+          "construction_travaux": "Construction & Travaux",
+          "ecoles_formations": "Écoles & Formation",
+          "industrie_fabrication": "Industrie & Fabrication",
+          "transport_demenagement": "Transport & Déménagement",
+          "decoration_amenagement": "Décoration & Aménagement",
+          "publicite_communication": "Publicité & Communication",
+          "nettoyage_jardinage": "Nettoyage & Jardinage",
+          "froid_climatisation": "Froid & Climatisation",
+          "traiteurs_gateaux": "Restauration & Pâtisserie",
+          "medecine_sante": "Médecine & Santé",
+          "reparation_auto_diagnostic": "Réparation auto & Diagnostic",
+          "securite_alarme": "Sécurité & Alarmes",
+          "projets_etudes": "Projets & Études",
+          "bureautique_internet": "Bureautique & Internet",
+          "location_vehicules": "Location de véhicules",
+          "menuiserie_meubles": "Menuiserie & Meubles",
+          "impression_edition": "Impression & Édition",
+          "hotellerie_restauration_salles": "Hôtellerie, Restauration & Salles",
+          "esthetique_beaute": "Esthétique & Beauté",
+          "image_son": "Image & Son",
+          "comptabilite_economie": "Comptabilité & Économie",
+          "couture_confection": "Couture & Confection",
+          "maintenance_informatique": "Maintenance informatique",
+          "reparation_electromenager": "Réparation électroménager",
+          "evenements_divertissement": "Événements & Divertissement",
+          "paraboles_demos": "Paraboles & Décodeurs",
+          "reparation_electronique": "Réparation électronique",
+          "services_etranger": "Services à l'étranger",
+          "flashage_reparation_telephones": "Flashage & Réparation téléphones",
+          "flashage_installation_jeux": "Flashage & Installation jeux",
+          "juridique": "Juridique"
+        }
+      }
+    
+  }

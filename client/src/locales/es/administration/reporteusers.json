@@ -1,0 +1,39 @@
+{
+  "reporteusers": {
+    "headerrr": {
+      "title": "Usuarios Reportados"
+    },
+    "errors": {
+      "fetchError": "Error al cargar los reportes",
+      "invalidData": "Datos de reportes no válidos"
+    },
+    "loading": "Cargando reportes...",
+    "noReports": "No hay reportes disponibles",
+    "tableHeadersss": {
+      "reporter": "Reportador",
+      "reportedUser": "Usuario Reportado",
+      "postTitle": "Título de Publicación",
+      "reason": "Razón",
+      "date": "Fecha",
+      "status": "Estado",
+      "actionss": "Acciones"
+    },
+    "notAvailable": "No disponible",
+    "notSpecified": "No especificado",
+    "actions": {
+      "view": "Ver detalles",
+      "edit": "Editar",
+      "deactivate": "Desactivar",
+      "delete": "Eliminar"
+    },
+    "unknownUser": "Usuario desconocido",
+    "reportDetails": "Detalles del Reporte",
+    "close": "Cerrar",
+    "status": {
+      "pending": "Pendiente",
+      "resolved": "Resuelto",
+      "rejected": "Rechazado",
+      "inReview": "En revisión"
+    }
+  }
+}

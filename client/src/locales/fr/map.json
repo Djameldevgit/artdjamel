@@ -1,0 +1,106 @@
+  {
+
+   
+      "distanceToShop": "Distance à la boutique",
+      "calculate": "Calculer",
+      "recalculate": "Recalculer",
+      "meters": "m",
+      "kilometers": "km",
+      "distanceDescription": "Distance en ligne droite depuis votre position actuelle",
+      "getDistance": "Cliquez sur \"Calculer\" pour connaître la distance depuis votre position actuelle",
+      "yourLocation": "Votre position actuelle",
+      "distanceCalculationError": "Erreur de calcul de distance",
+      "street": "Rue",
+      "satellite": "Satellite",
+      "terrain": "Terrain",
+      "location": "Localisation sur la Carte",
+      "searching": "Recherche de localisation...",
+      "locationUnavailable": "Localisation non disponible",
+      "reload": "Actualiser",
+      "usingData": "Utilisation des données officielles de la boutique",
+      "officialInfo": "Informations officielles de notre boutique",
+      "loginForFeatures": "Connectez-vous pour accéder à toutes les fonctionnalités",
+      "clothingShop": "Boutique de vêtements et mode",
+      "owner": "Propriétaire",
+      "saleTypes": "Types de vente",
+      "phone": "Téléphone",
+      "call": "Appeler",
+      "video": "Vidéo",
+      "presentation": "Présentation",
+      "contactWhatsApp": "Contacter par WhatsApp",
+      "phoneNotAvailable": "Numéro de téléphone non disponible",
+      "videoCallSoon": "Fonction d'appel vidéo sera bientôt disponible!",
+      "whatsappMessage": "Bonjour {{username}}, j'ai vu votre boutique dans l'application et je suis intéressé par vos produits.",
+      "locationSearchWarning": "Avertissement lors de la recherche de localisation",
+      "locationNotFound": "Localisation non trouvée pour les données fournies",
+      "locationError": "Erreur de localisation",
+      "generalError": "Erreur lors du chargement de la localisation",
+  
+
+
+
+
+
+
+
+
+
+
+
+  "shop": {
+    "officialInfo": "Informations officielles de notre boutique",
+    "boutiqueName": "Boutique"
+  },
+  "auth": {
+    "loginToAccess": "Connectez-vous pour accéder à toutes les fonctionnalités"
+  },
+  "user": {
+    "owner": "Propriétaire"
+  },
+  "contact": {
+    "phone": "Téléphone",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "contactWhatsApp": "Contacter par WhatsApp"
+  },
+ 
+ 
+    "shopPresentation": "Plus de 10 ans à habiller la femme moderne. Spécialistes en tenues traditionnelles, robes de soirée et vêtements décontractés de haute qualité. Tissus importés et designs exclusifs.",
+ 
+  "profile": {
+    "presentation": "Présentation"
+  },
+  "map": {
+    "location": "Emplacement sur la carte",
+    "searching": "Recherche de l'emplacement...",
+    "locationUnavailable": "Emplacement non disponible",
+    "usingData": "Utilisation des données officielles de la boutique",
+    "reload": "Actualiser",
+    "street": "Rues",
+    "satellite": "Satellite",
+    "terrain": "Terrain",
+    "distanceToShop": "Distance à la boutique",
+    "recalculate": "Recalculer",
+    "calculate": "Calculer",
+    "distanceDescription": "Distance en ligne droite depuis votre emplacement actuel",
+    "getDistance": "Cliquez sur \"Calculer\" pour connaître la distance depuis votre emplacement actuel",
+    "yourLocation": "Votre emplacement actuel",
+    "distanceCalculationError": "Erreur lors du calcul de la distance :",
+    "meters": "m",
+    "kilometers": "km",
+    "locationNotFound": "Emplacement non trouvé pour les données fournies",
+    "generalError": "Erreur lors du chargement de l'emplacement",
+    "locationSearchWarning": "Avertissement lors de la recherche d'emplacement :",
+    "locationError": "Erreur d'emplacement :"
+  },
+  "common": {
+    "back": "Retour",
+    "initial": "T",
+    "noImages": "Aucune image disponible",
+    "shopImage": "Image de la boutique",
+    "imageNotAvailable": "Image non disponible"
+  },
+  "whatsapp": {
+    "defaultMessage": "Bonjour {{username}}, j'ai vu votre boutique dans l'application et je souhaite en savoir plus sur vos produits."
+  }
+} 

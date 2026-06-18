@@ -1,0 +1,355 @@
+// frontend/src/components/carousel/CarouselHome.jsx
+import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Container, Row, Col, Carousel, Badge, Button, Dropdown } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { FaExternalLinkAlt, FaEllipsisV, FaEdit, FaTrash } from 'react-icons/fa';
+import { getHomeCarousel, deleteCarouselImage } from '../../redux/actions/carouselHomeAction';
+
+// Imágenes estáticas para el carrusel lateral (derecha)
+const sideImages = [
+  {
+    url: "https://res.cloudinary.com/dfjipgj2o/image/upload/v1773122901/carousjhjhj_rdunbx.png",
+    title: "Promo -30%",
+    color: "#dc3545"
+  },
+  {
+    url: "https://res.cloudinary.com/dfjipgj2o/image/upload/v1773122893/carousjhjhj2_ra5znt.png",
+    title: "Livraison Rapide",
+    color: "#198754"
+  },
+  {
+    url: "https://res.cloudinary.com/dfjipgj2o/image/upload/v1773122901/carousjhjhj_rdunbx.png",
+    title: "Nouveautés",
+    color: "#0d6efd"
+  }
+];
+
+const CarouselHome = memo(() => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { homeImages, loading } = useSelector(state => state.carousel);
+  const authState = useSelector(state => state.auth);
+  
+  const auth = authState?.auth || authState;
+  const token = auth?.token || authState?.token;
+  const user = auth?.user || authState?.user;
+  const isAdmin = user?.role === 'admin';
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  const timeoutRef = useRef(null);
+  const carouselPausedRef = useRef(false);
+  
+  // Detectar tamaño de pantalla
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Cargar datos del carrusel principal
+  useEffect(() => {
+    dispatch(getHomeCarousel());
+  }, [dispatch]);
+  
+  // Auto-play para carrusel principal
+  const goToNextSlide = useCallback(() => {
+    if (homeImages.length === 0) return;
+    setCurrentIndex(prev => (prev + 1) % homeImages.length);
+  }, [homeImages.length]);
+  
+  useEffect(() => {
+    if (carouselPausedRef.current || homeImages.length === 0) return;
+    timeoutRef.current = setInterval(goToNextSlide, 5000);
+    return () => { if (timeoutRef.current) clearInterval(timeoutRef.current); };
+  }, [goToNextSlide, homeImages.length]);
+  
+  const handleMouseEnter = () => {
+    carouselPausedRef.current = true;
+    if (timeoutRef.current) clearInterval(timeoutRef.current);
+  };
+  
+  const handleMouseLeave = () => {
+    carouselPausedRef.current = false;
+    timeoutRef.current = setInterval(goToNextSlide, 5000);
+  };
+  
+  const handleImageClick = useCallback((slide) => {
+    if (!slide.link || slide.linkType === 'none') return;
+    if (slide.linkType === 'internal') {
+      history.push(slide.link);
+    } else if (slide.linkType === 'external') {
+      window.open(slide.link, '_blank');
+    }
+  }, [history]);
+  
+  // Click en carrusel lateral estático
+  const handleSideImageClick = useCallback((slide) => {
+    console.log('Click en carrusel lateral:', slide.title);
+  }, [history]);
+  
+  // Manejar edición
+  const handleEdit = useCallback((slideId, e) => {
+    e.stopPropagation();
+    console.log('✏️ Editando imagen con ID:', slideId);
+    if (slideId) {
+      history.push(`/admin/carousel/edit/${slideId}`);
+    }
+  }, [history]);
+  
+  // Manejar eliminación
+  const handleDelete = useCallback(async (slideId, publicId, e) => {
+    e.stopPropagation();
+    console.log('🗑️ Eliminando imagen con ID:', slideId);
+    
+    if (!slideId) return;
+    if (!window.confirm('¿Eliminar esta imagen del carrusel?')) return;
+    if (!token) return alert('Error de autenticación');
+    
+    const result = await dispatch(deleteCarouselImage(slideId, { token, user }));
+    if (result?.success) {
+      dispatch(getHomeCarousel());
+      alert('✅ Imagen eliminada');
+    }
+  }, [token, user, dispatch]);
+  
+  // Renderizar slide principal (dinámico - izquierda)
+  const renderMainSlide = useCallback((slide, index) => {
+    const hasLink = slide.link && slide.linkType !== 'none';
+    
+    return (
+      <Carousel.Item key={slide._id || index}>
+        <div 
+          style={{ 
+            height: isMobile ? '250px' : '40vh',
+            overflow: 'hidden', 
+            borderRadius: '12px',
+            position: 'relative',
+            cursor: hasLink ? 'pointer' : 'default'
+          }}
+          onClick={() => hasLink && handleImageClick(slide)}
+        >
+          <img 
+            src={slide.image?.url} 
+            alt={slide.title} 
+            style={{ 
+              width: '100%', 
+              height: isMobile ? '250px' : '40vh',
+              objectFit: 'cover', 
+              borderRadius: '12px' 
+            }} 
+          />
+          
+          {/* 🔥 Botón de tres puntos para admin - CORREGIDO */}
+          {isAdmin && (
+            <Dropdown>
+              <Dropdown.Toggle 
+                variant="dark"
+                size="sm"
+                className="position-absolute top-0 end-0 m-2"
+                style={{ 
+                  zIndex: 20,
+                  backgroundColor: 'rgba(0,0,0,0.7)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '8px 12px'
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <FaEllipsisV size={14} color="white" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu align="end">
+                <Dropdown.Item onClick={(e) => handleEdit(slide._id, e)}>
+                  <FaEdit className="me-2 text-primary" size={14} />
+                  Editar
+                </Dropdown.Item>
+                <Dropdown.Item 
+                  onClick={(e) => handleDelete(slide._id, slide.image?.public_id, e)}
+                  className="text-danger"
+                >
+                  <FaTrash className="me-2" size={14} />
+                  Eliminar
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
+          
+          {/* Indicador de enlace */}
+          {hasLink && (
+            <div className="position-absolute bottom-0 end-0 m-3" style={{ zIndex: 15 }}>
+              <Badge 
+                bg="dark" 
+                className="opacity-75"
+                style={{ cursor: 'pointer' }}
+                onClick={(e) => { 
+                  e.stopPropagation(); 
+                  handleImageClick(slide);
+                }}
+              >
+                <FaExternalLinkAlt size={10} className="me-1" />
+                {slide.linkType === 'internal' ? 'Ir al enlace' : 'Ver más'}
+              </Badge>
+            </div>
+          )}
+        </div>
+        
+        {(slide.title || slide.description) && (
+          <Carousel.Caption style={{ 
+            backgroundColor: 'rgba(0,0,0,0.4)',
+            backdropFilter: 'blur(4px)',
+            borderRadius: '10px', 
+            padding: '12px 20px', 
+            bottom: '20px'
+          }}>
+            {slide.title && (
+              <h3 style={{ 
+                fontSize: isMobile ? '1rem' : '1.5rem', 
+                color: '#fff',
+                marginBottom: slide.description ? '8px' : 0
+              }}>
+                {slide.title}
+              </h3>
+            )}
+            {slide.description && (
+              <p style={{ 
+                fontSize: isMobile ? '0.75rem' : '0.9rem', 
+                color: '#f8f8f8',
+                marginBottom: 0
+              }}>
+                {slide.description}
+              </p>
+            )}
+          </Carousel.Caption>
+        )}
+      </Carousel.Item>
+    );
+  }, [isAdmin, isMobile, handleImageClick, handleEdit, handleDelete]);
+  
+  // Renderizar slide lateral (estático - derecha)
+  const renderSideSlide = useCallback((slide, index) => {
+    return (
+      <Carousel.Item key={index}>
+        <img
+          src={slide.url}
+          alt={slide.title}
+          style={{ 
+            width: '100%', 
+            height: isMobile ? '250px' : '40vh',
+            objectFit: 'cover',
+            borderRadius: '12px'
+          }}
+          loading="lazy"
+        />
+        <Carousel.Caption style={{ 
+          backgroundColor: 'rgba(0,0,0,0.4)',
+          backdropFilter: 'blur(4px)',
+          borderRadius: '10px', 
+          padding: '12px 20px', 
+          bottom: '20px'
+        }}>
+          <h3 style={{ fontSize: '1rem', color: '#fff', marginBottom: 0 }}>
+            {slide.title}
+          </h3>
+        </Carousel.Caption>
+      </Carousel.Item>
+    );
+  }, [isMobile]);
+  
+  if (loading) {
+    return (
+      <Container fluid className="py-5 text-center" style={{ backgroundColor: '#CACECF' }}>
+        <div className="spinner-border text-primary" />
+      </Container>
+    );
+  }
+  
+  // Versión móvil (solo carrusel principal)
+  if (isMobile) {
+    if (!homeImages || homeImages.length === 0) {
+      return (
+        <Container fluid className="py-5 text-center" style={{ backgroundColor: '#CACECF' }}>
+          <p className="text-muted">No hay imágenes en el carrusel</p>
+          {isAdmin && (
+            <Button variant="primary" onClick={() => history.push('/admin/carousel')}>
+              Agregar imágenes
+            </Button>
+          )}
+        </Container>
+      );
+    }
+    
+    return (
+      <Container fluid style={{ padding: '10px 5px', backgroundColor: '#CACECF' }}>
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Carousel 
+            activeIndex={currentIndex} 
+            onSelect={setCurrentIndex} 
+            fade 
+            indicators 
+            controls 
+            interval={null}
+          >
+            {homeImages.map((img, idx) => renderMainSlide(img, idx))}
+          </Carousel>
+        </div>
+      </Container>
+    );
+  }
+  
+  // Versión desktop (carrusel principal + lateral)
+  return (
+    <Container fluid style={{ padding: '10px 5px', backgroundColor: '#CACECF' }}>
+      <Row className="g-0">
+        {/* CARRUSEL PRINCIPAL - IZQUIERDA (9 columnas - 75%) */}
+        <Col lg={9} md={12} style={{ paddingRight: '5px' }}>
+          {!homeImages || homeImages.length === 0 ? (
+            <div className="text-center py-5 bg-light rounded" style={{ height: '40vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div>
+                <p className="text-muted">No hay imágenes en el carrusel principal</p>
+                {isAdmin && (
+                  <Button variant="primary" size="sm" onClick={() => history.push('/admin/carousel')}>
+                    Agregar imágenes
+                  </Button>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <Carousel 
+                activeIndex={currentIndex} 
+                onSelect={setCurrentIndex} 
+                fade 
+                indicators 
+                controls 
+                interval={null}
+                className="main-carousel"
+              >
+                {homeImages.map((img, idx) => renderMainSlide(img, idx))}
+              </Carousel>
+            </div>
+          )}
+        </Col>
+        
+        {/* CARRUSEL LATERAL - DERECHA (3 columnas - 25%) - ESTÁTICO */}
+        <Col lg={3} md={0} className="d-none d-lg-block" style={{ paddingLeft: 0 }}>
+          <Carousel 
+            activeIndex={currentIndex % sideImages.length} 
+            onSelect={(index) => setCurrentIndex(index)}
+            indicators={false} 
+            controls={false} 
+            interval={null}
+            className="side-carousel"
+          >
+            {sideImages.map((img, idx) => renderSideSlide(img, idx))}
+          </Carousel>
+        </Col>
+      </Row>
+    </Container>
+  );
+});
+
+CarouselHome.displayName = 'CarouselHome';
+export default CarouselHome;

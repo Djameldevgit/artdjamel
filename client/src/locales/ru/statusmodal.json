@@ -1,0 +1,32 @@
+{
+  "errors": {
+    "maxImages": "Максимум {{max}} изображений разрешено. {{extra}}",
+    "superUserExtra": "Премиум-пользователи могут загружать до 4 изображений.",
+    "fileNotExist": "Файл не существует.",
+    "invalidType": "Разрешены только файлы изображений (JPEG, JPG, PNG, GIF).",
+    "invalidName": "Название \"{{name}}\" содержит недопустимые символы.",
+    "maxSize": "Изображение не может превышать 5 МБ.",
+    "minDimensions": "Изображение должно быть не менее {{width}}x{{height}} пикселей.",
+    "maxDimensions": "Изображение не может превышать {{width}}x{{height}} пикселей.",
+    "duplicateImage": "Изображение \"{{name}}\" уже было выбрано.",
+    "imageLoad": "Ошибка загрузки изображения.",
+    "categoryRequired": "Пожалуйста, выберите категорию.",
+    "imageRequired": "Пожалуйста, добавьте хотя бы одно изображение.",
+    "invalidFiles": "Разрешены только файлы изображений (JPEG, JPG, PNG, GIF, WEBP)."
+  },
+  "statusModal": {
+    "title": "Создать публикацию"
+  },
+  "titulostatusmoddal": "Создать публикацию",
+  "sectionTitles": {
+    "basicInfo": "Основная информация",
+    "artisticDetails": "Художественные детали",
+    "dimensions": "Размеры",
+    "availabilityPrice": "Доступность и цена",
+    "saleLogistics": "Логистика продаж",
+    "artistInfo": "Информация о художнике"
+  },
+  "button": {
+    "post": "Опубликовать"
+  }
+}

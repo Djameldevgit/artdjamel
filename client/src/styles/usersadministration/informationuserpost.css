@@ -1,0 +1,101 @@
+/* Estilos base */
+.info-contact-container {
+    width: 100%;
+    max-width:1200px; /* Limita el ancho máximo para pantallas grandes */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.info-contact-card {
+    background-color: #f9f9f9; /* Fondo claro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 5px;
+}
+
+.info-contact-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Color de texto oscuro */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre ícono y texto */
+    border-bottom: 2px solid #4c93af; /* Línea decorativa */
+    padding-bottom: 10px;
+}
+
+.info-contact-title i {
+    color: #4c93af; /* Color azul para el ícono */
+}
+
+.info-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre ícono y texto */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre elementos */
+    font-size: 16px;
+    color: #555; /* Color de texto gris */
+}
+
+.info-contact-item:last-child {
+    border-bottom: none; /* Elimina la línea del último elemento */
+}
+
+.info-contact-item i {
+    color: #4c93af; /* Color azul para los íconos */
+    font-size: 18px;
+}
+
+.info-contact-item p {
+    margin: 0;
+    flex-grow: 1; /* Ocupa el espacio restante */
+}
+
+.toggle-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #e74c3c; /* Color rojo para el botón */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #c0392b; /* Color rojo más oscuro al pasar el ratón */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .info-contact-container {
+        padding: 5px;
+    }
+
+    .info-contact-title {
+        font-size: 20px;
+    }
+
+    .info-contact-item {
+        flex-direction: column; /* Cambia a disposición vertical en pantallas pequeñas */
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .toggle-button {
+        width: 100%; /* Botón ocupa todo el ancho en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .info-contact-title {
+        font-size: 18px;
+    }
+
+    .info-contact-item {
+        font-size: 14px;
+    }
+}

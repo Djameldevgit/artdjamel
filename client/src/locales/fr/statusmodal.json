@@ -1,0 +1,71 @@
+{
+  "titulostatusmoddal": "Publications d'œuvres d'art",
+  "sectionTitles": {
+    "basicInfo": "Informations de base de l'œuvre",
+    "artisticDetails": "Détails artistiques",
+    "dimensions": "Dimensions et matérialité",
+    "availabilityPrice": "Disponibilité et prix",
+    "saleLogistics": "Vente et livraison",
+    "artistInfo": "Informations de l'artiste"
+  },
+  "button": {
+    "post": "Publier"
+  },
+  "categories": {
+    "Painting": "Peinture",
+    "Sculpture": "Sculpture",
+    "Photography": "Photographie",
+    "drawing": "Dessin",
+    "Engraving": "Gravure",
+    "Digital_art": "Art numérique",
+    "Collage": "Collage",
+    "Textile_art": "Art textile"
+  },
+  "form": {
+    "title": "Titre de l'œuvre",
+    "description": "Description",
+    "category": "Catégorie",
+    "style": "Style",
+    "theme": "Thème",
+    "copyright": "Droits d'auteur",
+    "size": "Taille",
+    "measurements": "Dimensions",
+    "unit": "Unité de mesure",
+    "support": "Support",
+    "price": "Prix",
+    "currency": "Devise",
+    "negotiable": "Négociable",
+    "saleOptions": "Options de vente",
+    "packaging": "Emballage",
+    "location": "Localisation"
+  },
+  "messages": {
+    "selectCategory": "Sélectionnez une catégorie",
+    "enterTitle": "Entrez un titre",
+    "enterDescription": "Entrez une description",
+    "selectStyle": "Sélectionnez un style",
+    "selectTheme": "Sélectionnez un thème",
+    "enterMeasurements": "Entrez les dimensions",
+    "selectUnit": "Sélectionnez une unité",
+    "selectSupport": "Sélectionnez un support",
+    "enterPrice": "Entrez le prix",
+    "selectCurrency": "Sélectionnez une devise",
+    "selectSaleOption": "Sélectionnez une option de vente",
+    "selectPackaging": "Sélectionnez un emballage",
+    "selectLocation": "Sélectionnez une localisation"
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "minLength": "Minimum {{count}} caractères requis",
+    "maxLength": "Maximum {{count}} caractères autorisés",
+    "invalidFormat": "Format invalide"
+  },
+  "upload": {
+    "addImages": "Ajouter des images",
+    "takePhoto": "Prendre une photo",
+    "deleteImage": "Supprimer l'image",
+    "stopStream": "Arrêter le flux",
+    "images": "Images",
+    "videos": "Vidéos"
+  }
+}

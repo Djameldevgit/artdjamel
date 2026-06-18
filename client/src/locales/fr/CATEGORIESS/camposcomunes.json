@@ -1,0 +1,160 @@
+{
+    "commune": "Commune",
+    "wilaya": "Wilaya",
+    "select_commune": "Sélectionnez une commune",
+  
+    "select_wilaya_first": "Sélectionnez d'abord une wilaya",
+    "title": "Titre",
+    "description": "Description",
+    "price": "Prix",
+    "condition": "État",
+    "new": "Neuf",
+    "used": "Occasion",
+    "brand": "Marque",
+    "model": "Modèle",
+    "year": "Année",
+    "area": "Superficie",
+    "rooms": "Pièces",
+    "phone": "Téléphone",
+    "email": "Email",
+    "address": "Adresse",
+    "features": "Caractéristiques",
+    "required": "Requis",
+    "optional": "Optionnel",
+    "submit": "Envoyer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "upload": "Télécharger",
+    "browse": "Parcourir",
+    "remove": "Supprimer",
+    "back": "Retour",
+    "next": "Suivant",
+    "prev": "Précédent",
+    "confirm": "Confirmer",
+    "select_option": "-- Sélectionnez --",
+    "search_here": "Recherchez ici...",
+    "type_here": "Écrivez ici...",
+    "choose_file": "Choisir un fichier...",
+    "no_file_chosen": "Aucun fichier choisi",
+    "enter_phone": "Entrez un numéro de téléphone",
+    "enter_email": "Entrez un email",
+    "enter_price": "Entrez le prix",
+    "enter_title": "Entrez le titre",
+    "enter_description": "Entrez la description",
+    "select_brand": "Sélectionnez une marque",
+    "select_model": "Sélectionnez un modèle",
+    "select_year": "Sélectionnez l'année",
+    "select_condition": "Sélectionnez l'état",
+    "select_area": "Sélectionnez la superficie",
+    "select_rooms": "Sélectionnez le nombre de pièces",
+
+
+
+
+
+    
+      "marque": "Marque",
+      
+  
+      "other_brand": "Autre (précisez ci-dessous)",
+      "enter_brand": "Entrez la marque du produit",
+      "specify_brand": "Précisez le nom de la marque",
+      "brand_custom": "Marque personnalisée",
+      "available_brands": "{{count}} marque disponible",
+      "available_brands_plural": "{{count}} marques disponibles",
+      "no_brands_available": "Aucune marque prédéfinie pour cette combinaison",
+      "brand_required": "La marque est requise",
+      "select_category_first": "Sélectionnez d'abord une catégorie",
+      "brand_filter": "Filtrer les marques...",
+      "popular_brands": "Marques populaires",
+      "all_brands": "Toutes les marques",
+      "local_brands": "Marques locales",
+      "international_brands": "Marques internationales",
+    
+    
+      "categories": {
+        "automobiles": "Automobiles",
+        "telephones": "Téléphones",
+        "informatique": "Informatique",
+        "electromenager": "Électroménager",
+        "vetements": "Vêtements",
+        "immobilier": "Immobilier",
+        "services": "Services",
+        "voyages": "Voyages",
+        "emploi": "Emploi"
+      },
+    
+ 
+ 
+        "modele": "Modèle",
+      
+        "other_model": "Autre modèle",
+        "select_brand_first": "Sélectionnez d'abord une marque",
+        "enter_model_manually": "Entrez le modèle manuellement",
+        "specify_model": "Précisez le modèle",
+        "model_custom": "Modèle personnalisé",
+        "loading_models": "Chargement des modèles...",
+        "models_available": "{{count}} modèles disponibles",
+        "model_required": "Le modèle est requis",
+        "no_models_found": "Aucun modèle trouvé pour cette marque",
+        "selected_brand": "Marque sélectionnée",
+        "popular_models": "Modèles populaires",
+        "all_models": "Tous les modèles",
+        "validation": {
+          "model_required": "Veuillez sélectionner un modèle",
+          "custom_model_required": "Veuillez préciser le modèle",
+          "invalid_model": "Modèle invalide"
+        },
+        "messages": {
+          "loading_models": "Chargement des modèles...",
+          "no_models_found": "Aucun modèle trouvé pour cette marque",
+          "models_loaded": "{{count}} modèle(s) chargé(s)",
+          "auto_selected": "Modèle sélectionné automatiquement"
+        },
+        "hints": {
+          "brand_required": "La marque est requise pour afficher les modèles",
+          "model_not_listed": "Si votre modèle n'est pas listé, choisissez 'Autre modèle'",
+          "enter_custom_model": "Entrez le modèle exact",
+          "check_compatibility": "Vérifiez la compatibilité avec votre appareil"
+        },
+     
+        "contact_phone": "Numero Telephone",
+        "telephone": "Telephone",
+     
+        "quantity": "Quantité",
+        "enter_quantity": "Entrez la quantité",
+        "retail": "Vente al Detalle",
+        "wholesale": "Vente al por Mayor",
+        "both": "Vente Detalle y Mayor",
+        "retail_description": "Vente de produits individuels",
+        "wholesale_description": "Vente en grandes quantités",
+        "both_description": "Disponible pour ambos tipos",
+        "select_sale_type": "Selecciona el tipo de venta",
+
+        "select_wilaya": "Sélectionnez une wilaya",
+
+
+        "color": "Couleur",
+        "select_color": "Sélectionnez une couleur",
+        "autre": "Autre (précisez)",
+        "precisez_couleur": "Précisez la couleur exacte",
+        "couleurs_principales": "🎨 Couleurs principales",
+        "toutes_couleurs": "📋 Toutes les couleurs",
+
+        "select_size": "Sélectionnez la taille",
+        "other_size": "Autre taille",
+        "specify_size": "Précisez la taille",
+        "enter_size": "Entrez la taille",
+        "clothing_size_tip": "Consultez notre guide des tailles",
+        "shoe_size_tip": "Taille EU (France)",
+        "tv_size_tip": "Mesure diagonale en pouces",
+        "car_size_tip": "Catégorie du véhicule"
+
+
+
+
+
+
+  }

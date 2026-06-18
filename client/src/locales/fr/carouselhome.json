@@ -1,0 +1,47 @@
+{
+
+    "slides": {
+          "spring_collection": {
+            "title": "Nouvelle Collection Printemps",
+            "description": "Découvrez les dernières tendances de la saison"
+          },
+          "summer_sales": {
+            "title": "Soldes d'Été",
+            "description": "Jusqu'à -50% sur toute la collection été"
+          },
+          "men_collection": {
+            "title": "Collection Homme",
+            "description": "Style et élégance pour chaque occasion"
+          },
+          "women_collection": {
+            "title": "Collection Femme",
+            "description": "Élégance et confort pour votre quotidien"
+          }
+        },
+     
+
+
+
+
+    "buttons": {
+      "save": "Sauvegarder",
+      "unsave": "Retirer",
+      "like": "J'aime",
+      "unlike": "Je n'aime plus"
+    },
+    "modal": {
+      "auth_required": "Authentification requise",
+      "login_to_continue": "Veuillez vous connecter pour continuer",
+      "login": "Se connecter",
+      "register": "S'inscrire",
+      "cancel": "Annuler"
+    },
+    "currencies": {
+      "DZD": "DZD",
+      "EUR": "EUR",
+      "USD": "USD",
+      "CAD": "CAD"
+    },
+    "no_images": "Aucune image disponible",
+    "no_title": "Sans titre"
+  }

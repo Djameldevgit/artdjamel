@@ -1,0 +1,13 @@
+{
+  "views": "浏览",
+  "likes": "喜欢", 
+  "comments": "评论",
+  "published": "已发布",
+  "updated": "已更新",
+  "basic_info": "基本信息",
+  "technical_details": "技术细节",
+  "commercial_info": "商业信息", 
+  "location_rights": "位置和权利",
+  "read_more": "阅读更多",
+  "read_less": "收起"
+}

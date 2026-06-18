@@ -1,0 +1,133 @@
+/* Estilos para el contenedor principal del footer */
+.cardfootercomment {
+  padding: 0.9rem;
+  border-top: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Contenedor del contenido del footer */
+.footercommentcontent {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Estilos para la fecha */
+.carddate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+  font-size: 0.5rem;
+}
+
+.carddate .fa-clock {
+  font-size: 1.3rem;
+}
+
+.text-dat {
+  
+  font-size: 0.8rem;
+}
+
+/* Estilos para el botón de comentario */
+.footercommentcontent h6 {
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #007bff;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.footercommentcontent h6:hover {
+  color: #0056b3;
+}
+
+.footercommentcontent h6 .fa-comment-alt {
+  font-size: 0.8 rem;
+   
+}
+
+/* Estilos para el modal */
+.modalcontentcomment {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalcontent {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.modalcontent h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.modalcontent p {
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+/* Estilos para los botones del modal */
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #0056b3;
+}
+
+.modal-buttons button:nth-child(2) {
+  background-color: #28a745;
+  color: white;
+}
+
+.modal-buttons button:nth-child(2):hover {
+  background-color: #218838;
+}
+
+.modal-buttons button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #c82333;
+}

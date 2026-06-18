@@ -1,0 +1,70 @@
+/* src/pages/Home.css - Añadir estilos responsivos */
+
+/* Mobile first - 2 columnas por defecto */
+.category-section .videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 12px;
+}
+
+/* Tablet (≥ 600px) - 3 columnas */
+@media (min-width: 600px) {
+  .category-section .videos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .category-section h2 {
+    font-size: 20px;
+  }
+}
+
+/* Desktop (≥ 900px) - 4 columnas */
+@media (min-width: 900px) {
+  .category-section .videos-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Desktop grande (≥ 1200px) - 5 columnas */
+@media (min-width: 1200px) {
+  .category-section .videos-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Ajustes para títulos en móvil */
+@media (max-width: 480px) {
+  .category-section h2 {
+    font-size: 16px;
+  }
+  
+  .category-section .category-header {
+    padding: 0 8px;
+  }
+  
+  .category-section .category-title {
+    font-size: 14px;
+  }
+  
+  .category-section .video-title {
+    font-size: 12px;
+  }
+  
+  .category-section .video-channel {
+    font-size: 10px;
+  }
+  
+  .category-section .views-badge {
+    font-size: 9px;
+    padding: 2px 4px;
+  }
+  
+  .category-section .price-badge {
+    font-size: 9px;
+    padding: 2px 4px;
+  }
+}

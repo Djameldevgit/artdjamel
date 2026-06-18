@@ -1,0 +1,53 @@
+{
+  "searchUsers": "Search users...",
+  "noUsersFound": "No users found",
+  "noUsersFoundSearch": "No users found matching your search",
+  "searching": "Searching users...",
+  "tableHeader": {
+    "user": "User",
+    "status": "Status",
+    "lastDisconnect": "Last Disconnect",
+    "registration": "Registration",
+    "verification": "Verification",
+    "accountStatus": "Account Status",
+    "blockStatus": "Block Status",
+    "actions": "Actions"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "offlineSince": "Offline {{time}}",
+    "verified": "Verified",
+    "notVerified": "Not Verified",
+    "active": "Active",
+    "inactive": "Inactive",
+    "blocked": "Blocked",
+    "notBlocked": "Not Blocked"
+  },
+  "action": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "block": "Block",
+    "unblock": "Unblock",
+    "verify": "Verify",
+    "unverify": "Unverify",
+    "managePermissions": "Manage Permissions"
+  },
+  "deleteModal": {
+    "title": "Confirm Deletion",
+    "message": "Are you sure you want to delete this user? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete User"
+  },
+  "errors": {
+    "fetchUsers": "Error loading users",
+    "loadMore": "Error loading more users",
+    "deleteUser": "Error deleting user",
+    "blockUser": "Error blocking user",
+    "unblockUser": "Error unblocking user",
+    "toggleStatus": "Error changing status",
+    "toggleVerification": "Error changing verification"
+  }
+}

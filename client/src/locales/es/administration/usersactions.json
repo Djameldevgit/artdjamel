@@ -1,0 +1,43 @@
+{
+    "userManagement": "Gestión de Usuarios",
+    "searchUsers": "Buscar usuarios...",
+    "filterUsers": "Filtrar usuarios",
+    "filter": {
+        "latestRegistered": "Últimos registrados",
+        "lastLogin": "Último inicio de sesión",
+        "mostLikes": "Más likes",
+        "mostComments": "Más comentarios",
+        "mostFollowers": "Más seguidores",
+        "mostPosts": "Más publicaciones",
+        "mostReports": "Más reportes"
+    },
+    "tableHeadd": {
+        "user": "Usuario",
+        "registration": "Registro",
+        "login": "Último inicio",
+        "posts": "Publicaciones",
+        "reports": "Reportes enviados",
+        "reportsReceived": "Reportes recibidos",
+        "likesGiven": "Likes dados",
+        "likesReceived": "Likes recibidos",
+        "commentsMade": "Comentarios hechos",
+        "commentsReceived": "Comentarios recibidos",
+        "following": "Siguiendo",
+        "followers": "Seguidores",
+        "actions": "Acciones"
+    },
+    "actio": {
+        "title": "Acciones",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "block": "Bloquear",
+        "mute": "Silenciar",
+        "sendMessage": "Enviar mensaje",
+        "viewProfile": "Ver perfil",
+        "viewReports": "Ver reportes",
+        "loginAsUser": "Iniciar sesión como usuario"
+    },
+    "noUsersFound": "No se encontraron usuarios",
+    "neverLoggedIn": "Nunca ha iniciado sesión",
+    "deleteConfirmation": "¿Estás seguro de que deseas eliminar este usuario?"
+}

@@ -1,0 +1,9 @@
+{
+    "error": "Erreur",
+    "success": "Succès",
+    "login_failed": "Échec de la connexion",
+    "update_success": "Mise à jour réussie",
+    "loading": "Chargement...",
+    "errorTitle": "Erreur",
+    "successTitle": "Succès"
+}

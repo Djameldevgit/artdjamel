@@ -1,0 +1,74 @@
+/* components/boutique/styles/BoutiqueModals.css */
+
+/* Modal Base */
+.boutique-modal .modal-content {
+    border: none;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .boutique-modal .modal-header {
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  }
+  
+  .boutique-modal .modal-body {
+    padding: 0.5rem 1.5rem 1rem 1.5rem;
+  }
+  
+  .boutique-modal .modal-footer {
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  /* Icono del modal */
+  .boutique-modal .modal-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Listas */
+  .boutique-modal .list-group-item {
+    background: transparent;
+  }
+  
+  .boutique-modal .list-group-item:first-child {
+    padding-top: 0;
+  }
+  
+  /* Scrollbar personalizada */
+  .boutique-modal .modal-body::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .boutique-modal .modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .boutique-modal .modal-body::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+  }
+  
+  .boutique-modal .modal-body::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+  
+  /* Animaciones */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .boutique-modal .modal-content {
+    animation: fadeInUp 0.3s ease-out;
+  }

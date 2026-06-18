@@ -1,0 +1,149 @@
+import React, { useState, useEffect, useCallback, memo } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+
+const CategoryCarousel = memo(() => {
+  const { category } = useParams();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [mainCarouselImages, setMainCarouselImages] = useState([]);
+  const [sideCarouselImages, setSideCarouselImages] = useState([]);
+  const [mainSlides, setMainSlides] = useState([]);
+
+  // ===== URLs REALES DE CLOUDINARY (cámbialas por las tuyas) =====
+  const realImages = {
+    img1: "https://res.cloudinary.com/dfjipgj2o/image/upload/v1773016206/caoumiajj_zrdhuz.jpg",
+    img2: "https://res.cloudinary.com/dfjipgj2o/image/upload/v1773017994/caoumiajj2j_xyolln.png",
+    img3: "https://res.cloudinary.com/dfjipgj2o/image/upload/v1773017058/caoumiajj2_hnbg0o.jpg",
+    // Agrega aquí todas las que necesites
+  };
+
+  // Detectar tamaño pantalla
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Cargar imágenes por categoría
+  useEffect(() => {
+    const imagesByCategory = {
+      'automobiles-vehicules': {
+        main: [realImages.img1, realImages.img2, realImages.img3],
+        side: [realImages.img1, realImages.img2, realImages.img3]
+      },
+      'pieces-detachees': {
+        main: [realImages.img1, realImages.img2],
+        side: [] // sin imágenes laterales
+      },
+      'telephones-accessoires': {
+        main: [realImages.img1, realImages.img2]
+      },
+      // ... (completa con las demás categorías usando realImages)
+      services: {
+        main: [realImages.img1, realImages.img2, realImages.img3]
+      },
+      // Categoría por defecto
+      default: {
+        main: [realImages.img1, realImages.img2, realImages.img3],
+        side: [realImages.img1, realImages.img2]
+      }
+    };
+
+    const selected = imagesByCategory[category] || imagesByCategory.default;
+    setMainCarouselImages(selected.main || []);
+    setSideCarouselImages(selected.side || []);
+    setMainSlides([
+      { title: category?.toUpperCase() || 'Marketplace', description: 'Découvrez nos meilleures offres' },
+      { title: 'Nouveautés', description: 'Les dernières tendances du marché' },
+      { title: 'Promotions', description: 'Jusqu’à -50% aujourd’hui' }
+    ]);
+    setCurrentIndex(0);
+  }, [category]);
+
+  // Autoplay
+  const goToNextSlide = useCallback(() => {
+    setCurrentIndex(prev => (prev + 1) % mainCarouselImages.length);
+  }, [mainCarouselImages.length]);
+
+  useEffect(() => {
+    if (mainCarouselImages.length === 0) return;
+    const interval = setInterval(goToNextSlide, 4000);
+    return () => clearInterval(interval);
+  }, [goToNextSlide, mainCarouselImages.length]);
+
+  if (mainCarouselImages.length === 0) return null;
+
+  // Manejo de error en imagen (opcional)
+  const handleImageError = (e) => {
+    e.target.src = 'https://via.placeholder.com/600x400?text=Imagen+no+disponible';
+  };
+
+  // VERSIÓN MÓVIL
+  if (isMobile) {
+    return (
+      <Container fluid style={{ padding: '5px' }}>
+        <Carousel activeIndex={currentIndex} onSelect={setCurrentIndex} fade indicators controls>
+          {mainCarouselImages.map((image, index) => (
+            <Carousel.Item key={index}>
+              <img
+                src={image}
+                alt={mainSlides[index]?.title}
+                onError={handleImageError}
+                style={{ width: '100%', height: '164px', objectFit: 'cover', borderRadius: '10px' }}
+              />
+              <Carousel.Caption>
+                <h6>{mainSlides[index]?.title}</h6>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </Container>
+    );
+  }
+
+  // VERSIÓN DESKTOP
+  return (
+    <Container fluid style={{ padding: '7px' }}>
+      <Row className="g-0">
+        <Col lg={9} style={{ paddingRight: '5px' }}>
+          <Carousel activeIndex={currentIndex} onSelect={setCurrentIndex} fade indicators controls>
+            {mainCarouselImages.map((image, index) => (
+              <Carousel.Item key={index}>
+                <img
+                  src={image}
+                  alt={mainSlides[index]?.title}
+                  onError={handleImageError}
+                  style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '12px' }}
+                />
+                <Carousel.Caption>
+                  <h3>{mainSlides[index]?.title}</h3>
+                  <p>{mainSlides[index]?.description}</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </Col>
+        {sideCarouselImages.length > 0 && (
+          <Col lg={3} className="d-none d-lg-block" style={{ paddingLeft: 0 }}>
+            <Carousel activeIndex={currentIndex} onSelect={setCurrentIndex} indicators={false} controls={false}>
+              {sideCarouselImages.map((image, index) => (
+                <Carousel.Item key={index}>
+                  <img
+                    src={image}
+                    alt="side"
+                    onError={handleImageError}
+                    style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '12px' }}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Col>
+        )}
+      </Row>
+    </Container>
+  );
+});
+
+export default CategoryCarousel;

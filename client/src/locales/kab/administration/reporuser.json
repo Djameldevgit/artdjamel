@@ -1,0 +1,46 @@
+{
+    "headerrr": {
+      "title": "Usuarios reportados"
+    },
+    "tableHeadersss": {
+      "reporter": "Reportante",
+      "reportedUser": "Usuario reportado",
+      "postTitle": "Título de la publicación",
+      "reason": "Motivo",
+      "date": "Fecha",
+      "actionss": "Acciones"
+    },
+    "actions": {
+      "edit": "Editar",
+      "deactivate": "Desactivar",
+      "delete": "Eliminar"
+    },
+    "errors": {
+      "fetchError": "Error al obtener los reportes.",
+      "invalidData": "Datos inválidos recibidos del servidor."
+    },
+    "noReports": "No hay reportes disponibles.",
+    "notAvailable": "No disponible",
+    "notSpecified": "No especificado",
+
+    "tableHeadd": {
+      "user": "المستخدم",
+      "registration": "تاريخ التسجيل",
+      "login": "آخر تسجيل دخول",
+      "posts": "عدد المنشورات",
+      "reports": "التبليغات المُرسَلة",
+      "reportsReceived": "التبليغات المستلمة",
+      "likesGiven": "الإعجابات المرسلة",
+      "likesReceived": "الإعجابات المستلمة",
+      "commentsMade": "التعليقات المرسلة",
+      "commentsReceived": "التعليقات المستلمة",
+      "following": "المتابَعون",
+      "followers": "المتابِعون",
+      "actions": "الإجراءات"
+    }
+    
+
+
+
+  }
+  

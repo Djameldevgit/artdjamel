@@ -1,0 +1,119 @@
+{
+  "hero": {
+    "title": "Plataforma MERN Completa",
+    "subtitle": "Red social moderna con e-commerce, chat en tiempo real y soporte multi-idioma"
+  },
+  "about": {
+    "name": "Artista Desarrollador",
+    "title": "Pintor & Desarrollador Full Stack",
+    "greeting": "Sobre el Creador",
+    "description": "Soy un apasionado pintor y desarrollador full stack de Argel, Argelia. Mi trayectoria combina creatividad artística con precisión técnica, creando experiencias digitales que son tanto bellas como funcionales.",
+    "journey": "Mi filosofía de desarrollo está enraizada en fundamentos CRUD sólidos, potenciados por tecnologías IA de vanguardia como DeepSeek, Claude y ChatGPT. A través de años de investigación dedicada y codificación práctica, he transformado ideas complejas en aplicaciones completamente realizadas. Cada proyecto representa incontables horas de resolución de problemas y aprendizaje continuo.",
+    "philosophy": "A pesar de los desafíos de depurar y perfeccionar la arquitectura del código, mi determinación y optimismo me impulsan a completar cada aplicación. Creo en convertir obstáculos en oportunidades de crecimiento."
+  },
+  "sections": {
+    "features": "Características Principales",
+    "architecture": "Arquitectura Técnica",
+    "faq": "Preguntas Frecuentes", 
+    "statistics": "Estadísticas del Sistema"
+  },
+  "features": {
+    "multi_language": {
+      "title": "Sistema Multi-Idioma",
+      "description": "Cambio instantáneo entre 6+ idiomas incluyendo Amazigh, Árabe, Español, Inglés, Francés y más con un solo click."
+    },
+    "authentication": {
+      "title": "Seguridad Avanzada",
+      "description": "Múltiples métodos de autenticación: registro manual, login con un click de Google/Facebook, verificación por email y recuperación de contraseña."
+    },
+    "real_time_chat": {
+      "title": "Chat en Tiempo Real",
+      "description": "Mensajería privada con envío de imágenes, indicadores de conexión y comunicación instantánea directamente desde los posts."
+    },
+    "ecommerce": {
+      "title": "Sistema E-Commerce",
+      "description": "Carrito de compras completo, checkout seguro con integración bancaria local e historial de compras personalizado."
+    },
+    "responsive": {
+      "title": "Completamente Responsive",
+      "description": "Experiencia perfecta en todos los dispositivos: móviles, tablets y ordenadores con diseño moderno."
+    },
+    "performance": {
+      "title": "Alto Rendimiento",
+      "description": "Arquitectura MERN optimizada con limpieza automática, actualizaciones en tiempo real y gestión eficiente de datos."
+    }
+  },
+  "architecture": {
+    "frontend": "Tecnologías Frontend",
+    "backend": "Tecnologías Backend",
+    "frontend_points": {
+      "react": "Componentes modernos y hooks",
+      "redux": "Gestión de estado global",
+      "bootstrap": "Framework UI responsive",
+      "i18n": "Sistema de internacionalización"
+    },
+    "backend_points": {
+      "express": "Servidor API REST",
+      "mongodb": "Base de datos NoSQL",
+      "jwt": "Autenticación segura",
+      "socket": "Comunicación tiempo real"
+    }
+  },
+  "faq": {
+    "how_register": {
+      "question": "¿Cómo me registro en la plataforma?",
+      "answer": "Puedes registrarte de tres formas: 1) Registro manual con email y contraseña, 2) Un click con cuenta de Google, 3) Un click con cuenta de Facebook. Todos requieren verificación por email."
+    },
+    "language_change": {
+      "question": "¿Cómo cambio el idioma?",
+      "answer": "Haz click en el selector de idioma en la barra de navegación y elige tu idioma preferido. El cambio es instantáneo y se aplica a toda la plataforma."
+    },
+    "post_validation": {
+      "question": "¿Cuánto tarda la validación de posts?",
+      "answer": "Los posts son validados por administradores en segundos o minutos. Recibirás una notificación una vez que tu post sea aprobado y visible para la comunidad."
+    },
+    "security": {
+      "question": "¿Qué medidas de seguridad hay implementadas?",
+      "answer": "Usamos autenticación JWT, verificación por email, sistema de bloqueos automático, limpieza diaria de usuarios no verificados y monitoreo en tiempo real de actividad."
+    }
+  },
+  "stats": {
+    "validation_time": "Validación de Posts",
+    "validation_time_desc": "Segundos - Minutos",
+    "languages": "Idiomas Soportados",
+    "languages_desc": "6+ Idiomas", 
+    "verification_rate": "Verificación Email",
+    "verification_rate_desc": "> 95% Tasa de Éxito",
+    "chat_response": "Respuesta Chat",
+    "chat_response_desc": "< 30 segundos"
+  },
+  "cta": {
+    "title": "¿Listo para unirte a nuestra comunidad?",
+    "description": "Regístrate ahora y comienza a disfrutar de todas las características de nuestra plataforma social avanzada.",
+    "button": "Comenzar"
+  },
+
+
+ 
+    "apps": {
+      "title": "My Production Applications",
+      "subtitle": "Discover my marketplace platforms where users can publish and trade independently",
+      "marketplace": "Marketplace",
+      "art_marketplace": "Art Marketplace",
+      "art_marketplace_desc": "Platform for buying and selling artwork - Users can publish their creations",
+      "real_estate": "Real Estate",
+      "real_estate_desc": "Property marketplace - Users list and discover real estate opportunities",
+      "automobiles": "Vehicles Marketplace", 
+      "automobiles_desc": "Car and vehicle trading platform - User-driven listings and sales",
+      "smartphones": "Smartphones Market",
+      "smartphones_desc": "Mobile device marketplace - Users buy and sell smartphones freely",
+      "travel_agency": "Travel Agency",
+      "travel_agency_desc": "Travel services platform - Users share and book travel experiences"
+    
+  }
+
+
+
+
+
+}

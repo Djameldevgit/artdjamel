@@ -1,0 +1,27 @@
+{
+    "subcategories": "Sous-catégories",
+    "select_subcategory": "Sélectionnez une sous-catégorie",
+    "type_operation": "Type d'opération",
+    "type_property": "Type de bien",
+    "type_vehicle": "Type de véhicule",
+    "type_clothing": "Type d'article",
+   
+    "vetements": {
+      "categories": {
+        "vetements_homme": "Vêtements Homme",
+        "vetements_femme": "Vêtements Femme",
+        "chaussures_homme": "Chaussures Homme",
+        "chaussures_femme": "Chaussures Femme",
+        "garcons": "Garçons",
+        "filles": "Filles",
+        "bebe": "Bébé",
+        "tenues_pro": "Tenues professionnelles",
+        "sacs": "Sacs & Valises",
+        "montres": "Montres",
+        "lunettes": "Lunettes",
+        "bijoux": "Bijoux"
+      }
+    }
+    
+    
+  }

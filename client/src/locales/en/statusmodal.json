@@ -1,0 +1,32 @@
+{
+  "errors": {
+    "maxImages": "Maximum {{max}} images allowed. {{extra}}",
+    "superUserExtra": "Premium users can upload up to 4 images.",
+    "fileNotExist": "The file does not exist.",
+    "invalidType": "Only image files are allowed (JPEG, JPG, PNG, GIF).",
+    "invalidName": "The name \"{{name}}\" contains invalid characters.",
+    "maxSize": "The image cannot exceed 5 MB.",
+    "minDimensions": "The image must be at least {{width}}x{{height}} pixels.",
+    "maxDimensions": "The image cannot exceed {{width}}x{{height}} pixels.",
+    "duplicateImage": "The image \"{{name}}\" has already been selected.",
+    "imageLoad": "Error loading the image.",
+    "categoryRequired": "Please select a category.",
+    "imageRequired": "Please add at least one image.",
+    "invalidFiles": "Only image files are allowed (JPEG, JPG, PNG, GIF, WEBP)."
+  },
+  "statusModal": {
+    "title": "Create post"
+  },
+  "titulostatusmoddal": "Create post",
+  "sectionTitles": {
+    "basicInfo": "Basic information",
+    "artisticDetails": "Artistic details",
+    "dimensions": "Dimensions",
+    "availabilityPrice": "Availability and price",
+    "saleLogistics": "Sale logistics",
+    "artistInfo": "Artist information"
+  },
+  "button": {
+    "post": "Post"
+  }
+}

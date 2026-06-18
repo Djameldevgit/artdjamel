@@ -1,0 +1,51 @@
+Cómo usar el script modular
+1. Diagnosticar solo posts
+bash
+node scripts/diagnoseAndRepair.js diagnose
+# o
+node scriptTelephone/diagnoseAndRepairSolaCollection.js diagnose collection=posts
+2. Diagnosticar solo categorías
+bash
+node scripts/diagnoseAndRepair.js diagnose collection=categories
+3. Diagnosticar solo boutiques
+bash
+node scripts/diagnoseAndRepair.js diagnose collection=boutiques
+4. Diagnosticar solo usuarios
+bash
+node scripts/diagnoseAndRepair.js diagnose collection=users
+5. Diagnosticar todas las colecciones
+bash
+node scripts/diagnoseAndRepair.js diagnose collection=all
+6. Reparar posts
+bash
+# Simulación
+node scripts/diagnoseAndRepair.js repair
+
+# Reparación real
+node scripts/diagnoseAndRepair.js fix
+7. Buscar posts
+bash
+node scripts/diagnoseAndRepair.js find category=telephone
+node scripts/diagnoseAndRepair.js find title="iPhone"
+node scripts/diagnoseAndRepair.js find id=69cad6c19ae0f6003226c3c8
+8. Validar un post específico
+bash
+node scripts/diagnoseAndRepair.js validate id=69cad6c19ae0f6003226c3c8
+9. Estadísticas rápidas de posts
+bash
+node scripts/diagnoseAndRepair.js stats
+🎯 Ventajas de esta versión modular
+Ligera: Solo carga los modelos que necesitas
+
+Rápida: No hace consultas innecesarias a otras colecciones
+
+Enfocada: Te muestra solo lo que te interesa
+
+Extensible: Fácil de añadir más colecciones si las necesitas
+
+Segura: No modifica datos que no quieres tocar
+
+🔧 Si quieres diagnosticar una colección específica
+Simplemente cambia el valor de collection en el comando. Por defecto es posts, así que si solo trabajas con posts, no necesitas especificarlo.
+
+¿Quieres que añada más funcionalidades para alguna colección en específico?

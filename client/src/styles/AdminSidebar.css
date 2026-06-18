@@ -1,0 +1,543 @@
+/* 📂 components/adminitration/adminApove/AdminSidebar.css */
+
+/* ============================================
+   CONTENEDOR PRINCIPAL - FLOTANTE
+   ============================================ */
+   
+   .adm-sidebar,
+   .adm-sidebar * {
+     all: initial;
+     box-sizing: border-box;
+   }
+   
+   .adm-sidebar {
+     position: fixed;
+     top: 0;
+     left: 0;
+     bottom: 0;
+     width: 280px;
+     background: linear-gradient(180deg, #2d2d3a 0%, #1a1a24 100%);
+     color: #e0e0e0;
+     transform: translateX(-100%);
+     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+     /* 🔥 Z-INDEX MUY ALTO para estar por encima de todo */
+     z-index: 9999 !important;
+     overflow-y: auto;
+     overflow-x: hidden;
+     box-shadow: 8px 0 25px rgba(0, 0, 0, 0.3);
+     display: flex;
+     flex-direction: column;
+     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+   }
+   
+   .adm-sidebar.adm-open {
+     transform: translateX(0);
+   }
+   
+   /* Cuando está abierto, asegurar que está por encima */
+   .adm-sidebar.adm-open {
+     z-index: 9999 !important;
+     box-shadow: 8px 0 30px rgba(0, 0, 0, 0.4);
+   }
+   
+   /* Scrollbar */
+   .adm-sidebar::-webkit-scrollbar {
+     width: 4px;
+   }
+   
+   .adm-sidebar::-webkit-scrollbar-track {
+     background: rgba(255, 255, 255, 0.05);
+   }
+   
+   .adm-sidebar::-webkit-scrollbar-thumb {
+     background: rgba(255, 255, 255, 0.2);
+     border-radius: 4px;
+   }
+   
+   .adm-sidebar::-webkit-scrollbar-thumb:hover {
+     background: rgba(255, 255, 255, 0.3);
+   }
+   
+   /* ============================================
+      OVERLAY (fondo oscuro cuando sidebar está abierto)
+      ============================================ */
+   
+   .adm-sidebar-overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: rgba(0, 0, 0, 0.5);
+     /* 🔥 Z-index ligeramente menor que el sidebar */
+     z-index: 9998 !important;
+     animation: admFadeIn 0.3s ease;
+   }
+   
+   @keyframes admFadeIn {
+     from { opacity: 0; }
+     to { opacity: 1; }
+   }
+   
+   /* ============================================
+      HEADER
+      ============================================ */
+   
+   .adm-sidebar-header {
+     padding: 20px 16px;
+     background: rgba(255, 255, 255, 0.03);
+     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+   }
+   
+   .adm-header-content {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+   }
+   
+   .adm-header-icon {
+     width: 40px;
+     height: 40px;
+     background: rgba(255, 255, 255, 0.1);
+     border-radius: 12px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 1.2rem;
+     color: #cbd5e1;
+   }
+   
+   .adm-header-text h5 {
+     font-size: 1rem;
+     margin: 0;
+     color: #f1f5f9;
+     font-weight: 600;
+   }
+   
+   .adm-header-text span {
+     font-size: 0.7rem;
+     color: rgba(255, 255, 255, 0.4);
+   }
+   
+   .adm-sidebar-close {
+     color: rgba(255, 255, 255, 0.5);
+     padding: 0;
+     font-size: 1.2rem;
+     background: transparent;
+     border: none;
+     cursor: pointer;
+     transition: all 0.2s;
+   }
+   
+   .adm-sidebar-close:hover {
+     color: #f1f5f9;
+     transform: rotate(90deg);
+   }
+   
+   /* ============================================
+      BODY
+      ============================================ */
+   
+   .adm-sidebar-body {
+     flex: 1;
+     padding: 20px 12px;
+   }
+   
+   /* Tarjeta de resumen */
+   .adm-summary-card {
+     background: rgba(255, 255, 255, 0.04);
+     border-radius: 16px;
+     padding: 16px;
+     margin-bottom: 24px;
+     border: 1px solid rgba(255, 255, 255, 0.06);
+     transition: all 0.3s ease;
+   }
+   
+   .adm-summary-card:hover {
+     background: rgba(255, 255, 255, 0.06);
+     transform: translateY(-2px);
+   }
+   
+   .adm-summary-header {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     margin-bottom: 12px;
+   }
+   
+   .adm-summary-icon {
+     color: #94a3b8;
+     font-size: 1rem;
+   }
+   
+   .adm-summary-title {
+     font-size: 0.75rem;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     color: rgba(255, 255, 255, 0.4);
+   }
+   
+   .adm-summary-value {
+     font-size: 2rem;
+     font-weight: bold;
+     color: #f1f5f9;
+     margin-bottom: 8px;
+   }
+   
+   .adm-summary-footer {
+     font-size: 0.7rem;
+     color: rgba(255, 255, 255, 0.35);
+   }
+   
+   /* Módulos */
+   .adm-nav-module {
+     margin-bottom: 12px;
+   }
+   
+   .adm-nav-item {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     padding: 12px;
+     border-radius: 12px;
+     cursor: pointer;
+     transition: all 0.2s ease;
+     background: transparent;
+   }
+   
+   .adm-nav-item:hover {
+     background: rgba(255, 255, 255, 0.05);
+   }
+   
+   .adm-nav-item.adm-active {
+     background: rgba(255, 255, 255, 0.08);
+     border-left: 3px solid #94a3b8;
+   }
+   
+   .adm-nav-icon {
+     width: 36px;
+     height: 36px;
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 1rem;
+   }
+   
+   .adm-nav-icon.adm-boutique {
+     background: rgba(203, 213, 225, 0.15);
+     color: #cbd5e1;
+   }
+   
+   .adm-nav-icon.adm-product {
+     background: rgba(203, 213, 225, 0.15);
+     color: #cbd5e1;
+   }
+   
+   .adm-nav-content {
+     flex: 1;
+   }
+   
+   .adm-nav-title {
+     display: block;
+     font-size: 0.85rem;
+     font-weight: 500;
+     color: #e2e8f0;
+   }
+   
+   .adm-nav-desc {
+     font-size: 0.7rem;
+     color: rgba(255, 255, 255, 0.4);
+   }
+   
+   .adm-nav-badge {
+     background: rgba(239, 68, 68, 0.2);
+     color: #f87171;
+     border-radius: 20px;
+     padding: 2px 8px;
+     font-size: 0.7rem;
+     font-weight: 500;
+   }
+   
+   /* Separador */
+   .adm-sidebar-divider {
+     margin: 20px 0 16px 0;
+     position: relative;
+     text-align: center;
+   }
+   
+   .adm-sidebar-divider span {
+     font-size: 0.7rem;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     color: rgba(255, 255, 255, 0.3);
+     background: #1a1a24;
+     padding: 0 10px;
+   }
+   
+   .adm-sidebar-divider::before {
+     content: '';
+     position: absolute;
+     top: 50%;
+     left: 0;
+     right: 0;
+     height: 1px;
+     background: rgba(255, 255, 255, 0.06);
+     z-index: -1;
+   }
+   
+   /* Categorías */
+   .adm-categories-list {
+     display: flex;
+     flex-direction: column;
+     gap: 4px;
+   }
+   
+   .adm-category-group {
+     margin-bottom: 4px;
+   }
+   
+   .adm-category-item {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 10px 12px;
+     border-radius: 10px;
+     cursor: pointer;
+     transition: all 0.2s ease;
+   }
+   
+   .adm-category-item:hover {
+     background: rgba(255, 255, 255, 0.04);
+   }
+   
+   .adm-category-item.adm-active {
+     background: rgba(255, 255, 255, 0.06);
+   }
+   
+   .adm-category-left {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     flex: 1;
+   }
+   
+   .adm-category-chevron {
+     color: rgba(255, 255, 255, 0.4);
+     width: 14px;
+   }
+   
+   .adm-category-emoji {
+     font-size: 1rem;
+   }
+   
+   .adm-category-name {
+     font-size: 0.85rem;
+     font-weight: 500;
+     color: #cbd5e1;
+   }
+   
+   .adm-category-badge {
+     background: rgba(239, 68, 68, 0.2);
+     color: #f87171;
+     border-radius: 20px;
+     padding: 2px 8px;
+     font-size: 0.7rem;
+   }
+   
+   /* Subcategorías */
+   .adm-subcategories-list {
+     margin-left: 28px;
+     padding-left: 8px;
+     border-left: 1px dashed rgba(255, 255, 255, 0.08);
+     margin-top: 4px;
+     margin-bottom: 4px;
+   }
+   
+   .adm-subcategory-item {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     padding: 8px 12px;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: all 0.2s ease;
+     font-size: 0.8rem;
+   }
+   
+   .adm-subcategory-item:hover {
+     background: rgba(255, 255, 255, 0.03);
+   }
+   
+   .adm-subcategory-item.adm-active {
+     background: rgba(255, 255, 255, 0.05);
+     border-left: 2px solid #94a3b8;
+   }
+   
+   .adm-subcategory-emoji {
+     font-size: 0.85rem;
+   }
+   
+   .adm-subcategory-name {
+     flex: 1;
+     color: rgba(255, 255, 255, 0.6);
+   }
+   
+   .adm-subcategory-badge {
+     background: rgba(239, 68, 68, 0.2);
+     color: #f87171;
+     border-radius: 20px;
+     padding: 2px 6px;
+     font-size: 0.65rem;
+   }
+   
+   /* ============================================
+      FOOTER
+      ============================================ */
+   
+   .adm-sidebar-footer {
+     padding: 16px;
+     border-top: 1px solid rgba(255, 255, 255, 0.06);
+     background: rgba(0, 0, 0, 0.2);
+   }
+   
+   .adm-footer-user {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     margin-bottom: 12px;
+   }
+   
+   .adm-user-avatar {
+     width: 40px;
+     height: 40px;
+     border-radius: 12px;
+     background: rgba(255, 255, 255, 0.1);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     overflow: hidden;
+   }
+   
+   .adm-user-avatar img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+   }
+   
+   .adm-user-avatar span {
+     font-size: 1rem;
+     font-weight: bold;
+     color: #cbd5e1;
+   }
+   
+   .adm-user-info {
+     flex: 1;
+   }
+   
+   .adm-user-name {
+     font-size: 0.85rem;
+     font-weight: 500;
+     color: #e2e8f0;
+   }
+   
+   .adm-user-role {
+     font-size: 0.7rem;
+     color: rgba(255, 255, 255, 0.4);
+   }
+   
+   .adm-footer-stats {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     font-size: 0.7rem;
+     color: rgba(255, 255, 255, 0.35);
+     padding-top: 8px;
+   }
+   
+   /* ============================================
+      LOADING
+      ============================================ */
+   
+   .adm-sidebar-loading {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+     gap: 12px;
+     color: rgba(255, 255, 255, 0.6);
+   }
+   
+   /* ============================================
+      BOTÓN DE MENÚ FLOTANTE (SOLO MÓVIL)
+      ============================================ */
+   
+   .adm-menu-float-btn {
+     position: fixed;
+     left: 16px;
+     top: 70px;
+     z-index: 9997 !important;
+     width: 44px;
+     height: 44px;
+     border-radius: 12px;
+     background: #1e293b;
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.2s;
+     color: #cbd5e1;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+   }
+   
+   .adm-menu-float-btn:hover {
+     background: #334155;
+     transform: scale(1.02);
+   }
+   
+   /* ============================================
+      RESPONSIVE
+      ============================================ */
+   
+   /* En desktop, el sidebar es flotante (no ocupa espacio) */
+   @media (min-width: 768px) {
+     .adm-sidebar {
+       transform: translateX(-100%);
+       box-shadow: 8px 0 25px rgba(0, 0, 0, 0.3);
+     }
+     
+     .adm-sidebar.adm-open {
+       transform: translateX(0);
+     }
+     
+     /* El contenido principal NO tiene margin-left */
+     .adm-main-content {
+       margin-left: 0 !important;
+       width: 100% !important;
+     }
+     
+     /* Botón flotante visible en desktop también */
+     .adm-menu-float-btn {
+       display: flex;
+     }
+   }
+   
+   @media (max-width: 767px) {
+     .adm-sidebar {
+       width: 85%;
+       max-width: 300px;
+     }
+     
+     .adm-sidebar-header {
+       padding: 16px;
+     }
+     
+     .adm-sidebar-body {
+       padding: 16px 12px;
+     }
+   }

@@ -1,0 +1,39 @@
+/* Agrega estos estilos a tu CSS */
+.typing-indicator {
+    display: inline-flex;
+    align-items: center;
+    color: #666;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.typing-dots {
+    display: inline-flex;
+    margin-right: 5px;
+}
+
+.typing-dots span {
+    animation: typing-dot 1.5s infinite;
+    margin: 0 1px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing-dot {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    30% {
+        transform: translateY(-3px);
+        opacity: 1;
+    }
+}

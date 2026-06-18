@@ -1,0 +1,91 @@
+/* Estilos generales */
+.compact-carousel {
+    height: auto !important;
+    min-height: 120px !important;
+  }
+  
+  .carousel-item-compact {
+    height: 30vh !important;
+    max-height: 180px !important;
+    min-height: 120px !important;
+  }
+  
+  .carousel-image-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f8f9fa;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .carousel-caption-compact {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(3px) !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    bottom: 8px !important;
+    left: 5% !important;
+    right: 5% !important;
+  }
+  
+  .carousel-title {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 3px !important;
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  .carousel-description {
+    font-size: 0.8rem !important;
+    font-weight: 400 !important;
+    color: #f0f0f0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Media Queries específicas para Android */
+  @media (max-width: 768px) {
+    .carousel-item-compact {
+      height: 25vh !important;
+      max-height: 150px !important;
+      min-height: 100px !important;
+    }
+    
+    .carousel-caption-compact {
+      padding: 6px 8px !important;
+      bottom: 5px !important;
+    }
+    
+    .carousel-title {
+      font-size: 0.85rem !important;
+    }
+    
+    .carousel-description {
+      font-size: 0.75rem !important;
+      display: none; /* Ocultar descripción en móvil */
+    }
+    
+    /* Ocultar indicadores en móvil si ocupan espacio */
+    .carousel-indicators {
+      display: none !important;
+    }
+  }
+  
+  /* Para pantallas muy pequeñas (Android pequeños) */
+  @media (max-width: 480px) {
+    .carousel-item-compact {
+      height: 22vh !important;
+      max-height: 130px !important;
+      min-height: 90px !important;
+    }
+    
+    .carousel-title {
+      font-size: 0.8rem !important;
+    }
+  }

@@ -1,0 +1,67 @@
+{
+ 
+    "header": {
+      "title": "Usuarios Denunciados"
+    },
+    "tableHeaders": {
+      "reporter": "Denunciante",
+      "reportedUser": "Usuario Denunciado",
+      "postTitle": "Título de Publicación",
+      "reason": "Motivo",
+      "date": "Fecha",
+      "status": "Estado",
+      "userStatus": "Estado del Usuario",
+      "actions": "Acciones"
+    },
+    "status": {
+      "pending": "Pendiente",
+      "resolved": "Resuelto",
+      "rejected": "Rechazado",
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "blocked": "Bloqueado",
+      "notBlocked": "No Bloqueado"
+    },
+    "actions": {
+      "view": "Ver Detalles",
+      "resolve": "Resolver",
+      "reject": "Rechazar",
+      "activate": "Activar",
+      "deactivate": "Desactivar",
+      "delete": "Eliminar",
+      "block": "Bloquear",
+      "unblock": "Desbloquear"
+    },
+    "filters": {
+      "all": "Todos",
+      "pending": "Pendientes",
+      "resolved": "Resueltos",
+      "rejected": "Rechazados"
+    },
+    "reportDetails": "Detalles del Reporte",
+    "additionalInfo": "Información Adicional",
+    "notAvailable": "No disponible",
+    "notSpecified": "No especificado",
+    "notProvided": "No proporcionada",
+    "unknownUser": "Usuario desconocido",
+    "totalReports": "Reportes totales",
+    "loading": "Cargando...",
+    "noReports": "No hay reportes para mostrar",
+    "close": "Cerrar",
+    "errors": {
+      "fetchError": "Error al cargar los reportes",
+      "invalidData": "Datos inválidos"
+    },
+  
+  "users": {
+    "deleteModal": {
+      "title": "Confirmar Eliminación",
+      "message": "¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar"
+    }
+  },
+  "reporteusers": {
+    "unknownUser": "Usuario desconocido"
+  }
+}

@@ -1,0 +1,216 @@
+import React, { useState } from "react";
+import { postDataAPI } from "../utils/api"; // 👈 import del helper
+
+const DonatePage = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleDonate = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      // 🔥 reemplazo completo de fetch
+      const { data } = await postDataAPI("/api/checkout", {
+        amount: 1000,
+        currency: "dzd",
+      });
+
+      if (data?.checkout_url) {
+        window.location.href = data.checkout_url;
+      } else {
+        throw new Error("No checkout URL received");
+      }
+    } catch (err) {
+      setError(
+        err?.response?.data?.error ||
+          err.message ||
+          "Something went wrong"
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div
+      className="min-h-screen bg-gradient-to-b from-emerald-50 to-white"
+      dir="rtl"
+    >
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+
+          {/* Header */}
+          <div className="bg-[#1B4B36] text-white p-8 text-center">
+            <h1 className="text-3xl font-bold mb-4">
+              حملة التبرعات الخيرية
+            </h1>
+            <p className="text-lg text-yellow-300">
+              معاً لمستقبل أفضل
+            </p>
+          </div>
+
+          {/* Body */}
+          <div className="p-8">
+
+            {/* Amount */}
+            <div className="bg-emerald-50 p-6 rounded-lg text-center mb-8">
+              <h3 className="text-xl font-bold text-[#1B4B36] mb-2">
+                قيمة التبرع
+              </h3>
+              <p className="text-4xl font-bold text-[#1B4B36]">
+                1000 دج
+              </p>
+            </div>
+
+            {/* Button */}
+            <button
+              onClick={handleDonate}
+              disabled={loading}
+              className={`w-full font-bold py-4 px-8 rounded-lg transition-colors duration-200 text-lg ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#1B4B36] hover:bg-[#153828] text-yellow-300"
+              }`}
+            >
+              {loading ? "جاري التوجيه..." : "تبرع الآن"}
+            </button>
+
+            {/* Error */}
+            {error && (
+              <p className="text-red-500 text-center mt-4">
+                {error}
+              </p>
+            )}
+
+            {/* Trust message */}
+            <div className="text-center text-sm text-gray-600 mt-6">
+              <p>جميع التبرعات آمنة ومضمونة</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DonatePage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+import express from "express";
+import { createCheckout } from "../controllers/paymentController.js";
+
+
+
+
+
+
+
+
+const router = express.Router();
+
+// crear checkout
+router.post("/checkout", createCheckout);
+
+export default router;
+
+import axios from "axios";
+
+export const createCheckout = async (req, res) => {
+  try {
+    const { amount, currency } = req.body;
+
+    const { data } = await axios.post(
+      "https://pay.chargily.net/test/api/v2/checkouts",
+      {
+        amount,
+        currency,
+        success_url: "http://localhost:3000/success",
+        webhook_url: "http://localhost:5000/webhook",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.CHARGILY_SECRET_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return res.json(data);
+  } catch (err) {
+    console.log(err?.response?.data || err.message);
+    return res.status(500).json({ error: "checkout error" });
+  }
+};
+
+
+
+
+
+
+
+
+import express from "express";
+import { handleWebhook } from "../controllers/webhookController.js";
+
+const router = express.Router();
+
+// webhook de Chargily
+router.post("/webhook", handleWebhook);
+
+export default router;
+
+
+
+import crypto from "crypto";
+
+export const handleWebhook = (req, res) => {
+  try {
+    const signature = req.headers["signature"];
+
+    const payload = JSON.stringify(req.body);
+
+    const computedSignature = crypto
+      .createHmac("sha256", process.env.CHARGILY_SECRET_KEY)
+      .update(payload)
+      .digest("hex");
+
+    if (computedSignature !== signature) {
+      return res.status(403).json({ error: "Invalid signature" });
+    }
+
+    const event = req.body;
+
+    switch (event.type) {
+      case "checkout.paid":
+        console.log("Pago exitoso:", event.data);
+
+        // 👉 aquí: guardar en MongoDB
+        break;
+
+      case "checkout.failed":
+        console.log("Pago fallido:", event.data);
+        break;
+
+      default:
+        console.log("Evento no manejado:", event.type);
+    }
+
+    return res.json({ received: true });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "webhook error" });
+  }
+};

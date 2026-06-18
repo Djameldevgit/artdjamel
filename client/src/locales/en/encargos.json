@@ -1,0 +1,143 @@
+{
+  "title": "Custom Art Commission",
+  "subtitle": "Transform your vision into official artwork created personally for you",
+  "specialOffer": "Special offer - no legal fees!",
+  
+  "importantNote": "Important information for your project",
+  "importantDescription": "To create exactly what you envision personally, you need to have clear specifications so we can deliver to you.",
+  
+  "welcome": {
+    "title": "Welcome to the Custom Commission Service",
+    "description1": "Do you have a specific vision for a large space or want to own a unique piece of art? Our commission service allows you to collaborate personally with the artist to create an official piece that reflects your personal tastes and preferences in a grand way.",
+    "description2": "Whether you want a unique existing artwork or a custom creation, we are here to bring your artistic vision to life."
+  },
+  
+  "guarantee": {
+    "title": "Satisfaction Guarantee",
+    "description": "We work with you at every stage of the process to ensure the final result meets your expectations"
+  },
+  
+  "specificationRequirements": "Specifications required for your project",
+  "specificationDescription": "Please provide the following information so we can create your perfect artwork:",
+  
+  "requirements": {
+    "style": {
+      "title": "Art Style",
+      "items": ["Realistic or abstract", "Modern or classical", "Specific style (impressionist, cubist, etc.)", "Has meaning or specific theme"]
+    },
+    "measurements": {
+      "title": "Dimensions and Format",
+      "items": ["Exact width and height", "Format (horizontal, vertical, square)", "Frame size if applicable", "Available space where you plan to place the artwork"]
+    },
+    "technique": {
+      "title": "Technique and Materials",
+      "items": ["Oil, acrylic, watercolor", "Mixed techniques", "Type of brushwork you prefer", "Specific textures"]
+    },
+    "theme": {
+      "title": "Subject and Content",
+      "items": ["Main theme of the artwork", "Specific elements to include", "Background or foreground", "Specific mood or atmosphere"]
+    },
+    "support": {
+      "title": "Medium and Frame",
+      "items": ["Canvas, wood, paper", "Type of frame you prefer", "Finish (glossy, matte)", "UV protection if needed"]
+    },
+    "reference": {
+      "title": "Reference Material",
+      "items": ["Photos of the subject", "Links to similar artworks", "Sketches or preliminary drawings", "Specific colors to incorporate"]
+    }
+  },
+  
+  "process": {
+    "title": "Creation Process",
+    "consultation": {
+      "title": "Initial Consultation",
+      "description": "We discuss your vision, tastes and artistic preferences"
+    },
+    "quote": {
+      "title": "Detailed Quote",
+      "description": "You receive a custom quote with prices and delivery details"
+    },
+    "deposit": {
+      "title": "30% Deposit",
+      "description": "Deposit required to begin the creation process and purchase materials"
+    },
+    "creation": {
+      "title": "Creation Phase",
+      "description": "The artist creates your artwork while maintaining communication about progress"
+    },
+    "approval": {
+      "title": "Final Approval",
+      "description": "You review the completed artwork and give final approval"
+    },
+    "payment": {
+      "title": "Balance Payment",
+      "description": "You pay the remaining 70% of the balance before shipping"
+    },
+    "shipping": {
+      "title": "Packaging and Shipping",
+      "description": "Your artwork is professionally packaged and carefully shipped"
+    }
+  },
+  
+  "payment": {
+    "title": "Payment Information",
+    "deposit": {
+      "title": "Deposit (30%)",
+      "description": "Deposit required for:",
+      "points": {
+        "secure": "Securing your spot in the artist's schedule",
+        "materials": "Purchase of high-quality materials",
+        "reservation": "The creation process begins immediately"
+      }
+    },
+    "final": {
+      "title": "Final Payment (70%)",
+      "description": "Balance paid when:",
+      "points": {
+        "balance": "Artwork is completed and approved",
+        "shipping": "Before shipping or delivery",
+        "secure": "Security for both parties is ensured"
+      }
+    },
+    "guarantee": {
+      "title": "Satisfaction Guarantee",
+      "description": "If you're not satisfied with the result, we offer revisions or partial refund during the creation process"
+    }
+  },
+  
+  "delivery": {
+    "title": "Delivery Options",
+    "description": "Delivery times vary depending on the artwork:",
+    "standard": {
+      "title": "International Delivery",
+      "time": "2-4 weeks depending on technique and distance"
+    },
+    "express": {
+      "title": "Express Delivery",
+      "time": "1-2 weeks (additional charges apply)"
+    }
+  },
+  
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "Can I request changes during the process?",
+      "answer": "Yes, in the early stages, you can request changes. As the work progresses, major changes may incur additional costs."
+    },
+    "q2": {
+      "question": "What happens if I don't like the final result?",
+      "answer": "We work with you throughout the process to ensure your satisfaction. If you're not satisfied at the end, we offer revision options or partial refund during the artwork development."
+    },
+    "q3": {
+      "question": "Are framing and shipping included in the price?",
+      "answer": "The base price includes the completed artwork. Framing and shipping are calculated separately based on your specific preferences."
+    }
+  },
+  
+  "cta": {
+    "title": "Ready to start your project?",
+    "description": "Contact us today to discuss your artistic vision",
+    "buttonContact": "Request a Quote",
+    "buttonGallery": "View Gallery"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "usersTitle": "Usuarios",
+    "sendEmailButton": "Enviar correo a {{count}} usuario(s)",
+    "sendToInactive": "Enviar a inactivos",
+    "selectUser": "Seleccionar usuario",
+    "userAvatar": "Avatar del usuario",
+    "tableHeaderssss": {
+      "avatar": "Avatar",
+      "email": "Correo electrónico",
+      "registration": "Registro",
+      "status": "Estado",
+      "lastActivity": "Última actividad"
+    },
+    "status": {
+      "sent": "Enviado",
+      "notSent": "No enviado",
+      "noActivity": "Sin actividad"
+    }
+  }
+  

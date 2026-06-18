@@ -1,0 +1,41 @@
+public/
+  uploads/
+    categories/
+      ├── immobilier/
+      │  
+      ├── automobiles-vehicules/
+      │ 
+      ├── pieces-detachees/
+      │ 
+      ├── telephones-accessoires/
+     
+      ├── informatique/
+      │   
+      ├── electromenager-electronique/
+      │   
+      ├── vetements-mode/
+       
+      ├── sante-beaute/
+     
+      ├── meubles-maison/
+      │  
+      ├── loisirs-divertissements/
+      │ 
+      
+      │    
+      ├── alimentaires/
+      │  
+      ├── materiaux-equipement/
+      │   
+      ├── services/
+      │   
+      └── voyages/
+          vamos aver maestro me explico bien, tengo tres archivos bien difirenciado con sus propios nombres
+categoriesData2.js es un archivo qui contiene la estructura de categoria subcategorias ah maestro ahora entiendo , te pido por favor vuelva a leer el contexto de todo esto actualizado
+como he dicho antes que el archivo categoriesData2.js se ejecuta en el cliente como un archivo base que se actualiza manualmente, me sirve para crear la carpeta client/public/categories esta ultima contiene la toda la estructura y imagenes png  
+
+el seed llamado subircategoriasmongodb.js este archivo se usa unicamente para subir las categorias a mongodb contiene jerarquias niveles y rutas y imagenes ,sin este archivo no puedo subir las categorias a mongodb al pero No actualiza las categorias esta en la raiz del proyecto , se ejecuta directamente desde la consola del servidor node subircategoriasmongodb.js
+
+subircategoriascloudinary.js archivo crea estructura de carpetas subcarpetas de las categorias y sube las imagenes a cloudinary , esta hecho solo para cloudinary 
+
+el problema como he comentado antes que el home no muestra los posts pero en categoryPage si que siguen ahi , eso es porque cada vez que intento actualizar las categorias en mongodb debo eleminar la coleccion categorie en mongodb y subir de nuevo subircategoriasmongodb.js y eso es tedioso ya que me falta un archivo que podemos llamarlo updateCategoriesMongodbCloudinary que actualiza los archivos en las dos partes mongodb y cloudinary , entonces para ejecutar el ultimo script correctamente debe consumir la ruta client/src/categories

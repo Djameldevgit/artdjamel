@@ -1,0 +1,26 @@
+{
+    "subcategories": "Sous-catégories",
+    "select_subcategory": "Sélectionnez une sous-catégorie",
+    "type_operation": "Type d'opération",
+    "type_property": "Type de bien",
+    "type_vehicle": "Type de véhicule",
+    "type_clothing": "Type d'article",
+   
+    "vehicules": {
+      "categories": {
+        "voitures": "Voitures",
+        "utilitaire": "Utilitaire",
+        "motos": "Motos & Scooters",
+        "quads": "Quads",
+        "fourgon": "Fourgon",
+        "camion": "Camion",
+        "bus": "Bus",
+        "engin": "Engin",
+        "tracteurs": "Tracteurs",
+        "remorques": "Remorques",
+        "bateaux": "Bateaux & Barques"
+      }
+    }
+    
+   
+  }

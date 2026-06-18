@@ -1,0 +1,43 @@
+{
+  "header": {
+    "title": "حظر المستخدم"
+  },
+  "userInfo": {
+    "title": "معلومات المستخدم",
+    "username": "المستخدم",
+    "email": "البريد الإلكتروني"
+  },
+  "form": {
+    "reasonLabel": "سبب الحظر",
+    "selectReason": "اختر السبب",
+    "detailsLabel": "تفاصيل إضافية",
+    "detailsPlaceholder": "قدم تفاصيل محددة حول سبب الحظر...",
+    "detailsHelp": "هذه المعلومات ستكون مرئية للمستخدم والمسؤولين",
+    "blockDuration": "مدة الحظر",
+    "dateLabel": "تاريخ الإلغاء",
+    "timeLabel": "وقت الإلغاء",
+    "durationHelp": "حدد التاريخ والوقت الذي سيتم فيه إلغاء حظر المستخدم تلقائياً"
+  },
+  "reasons": {
+    "abusiveBehavior": "سلوك مسيء",
+    "spam": "بريد عشوائي",
+    "termsViolation": "انتهاك شروط الاستخدام",
+    "offensiveLanguage": "لغة مسيئة",
+    "fraud": "احتيال",
+    "identityTheft": "انتحال الهوية",
+    "inappropriateContent": "محتوى غير لائق",
+    "privacyViolation": "انتهاك الخصوصية",
+    "serviceDisruption": "تعطيل الخدمة",
+    "suspiciousActivity": "نشاط مريب",
+    "other": "أخرى"
+  },
+  "actions": {
+    "close": "إغلاق",
+    "cancel": "إلغاء",
+    "confirmBlock": "تأكيد الحظر"
+  },
+  "errors": {
+    "missingFields": "يرجى ملء جميع الحقول الإلزامية",
+    "futureDate": "يجب أن يكون التاريخ والوقت في المستقبل"
+  }
+}

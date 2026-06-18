@@ -1,0 +1,25 @@
+ 
+  
+  {
+    "publicationOptions": "خيارات النشر",
+    "chooseAction": "اختر الإجراء الذي تريد تنفيذه",
+    "safeActions": "جميع الإجراءات آمنة وقابلة للتراجع",
+    "approvePublication": "موافقة النشر",
+    "editPublication": "تعديل المنشور",
+    "deletePublication": "حذف المنشور", 
+    "contactArtist": "الاتصال بالفنان",
+    "sharePublication": "مشاركة المنشور",
+    "savePublication": "حفظ المنشور",
+    "saved": "تم الحفظ",
+    "contactAdmin": "الاتصال بالإدارة",
+    "reportPublication": "الإبلاغ عن المنشور",
+    "cancel": "إلغاء",
+    "approveDescription": "موافقة على هذا المنشور ليصبح مرئياً",
+    "editDescription": "تعديل تفاصيل المنشور",
+    "deleteDescription": "حذف هذا المنشور بشكل دائم",
+    "contactDescription": "إرسال رسالة إلى الفنان",
+    "shareDescription": "مشاركة على وسائل التواصل",
+    "saveDescription": "حفظ للمشاهدة لاحقاً",
+    "adminChatDescription": "الاتصال بالدعم الفني",
+    "reportDescription": "الإبلاغ عن محتوى غير مناسب"
+  }

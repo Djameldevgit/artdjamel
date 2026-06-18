@@ -1,0 +1,274 @@
+/* Login.css - Estilos profesionales para la página de login */
+
+/* Contenedor principal */
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  /* Tarjeta de login */
+  .login-card {
+    border: none !important;
+    border-radius: 32px !important;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25) !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 35px 60px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  /* Header con gradiente */
+  .login-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+  
+  .login-logo {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .login-title {
+    color: white;
+    font-weight: 800;
+    font-size: 1.75rem;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  
+  /* Cuerpo del formulario */
+  .login-body {
+    padding: 2rem 1.5rem;
+  }
+  
+  /* Grupo de botones sociales */
+  .social-buttons-wrapper {
+    margin-bottom: 1.5rem;
+    pointer-events: auto;
+  }
+  
+  /* Divisor */
+  .login-divider {
+    position: relative;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  
+  .login-divider hr {
+    border-top: 1px solid #e2e8f0;
+    margin: 0;
+  }
+  
+  .login-divider span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 0 1rem;
+    color: #a0aec0;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  /* Campos de formulario */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .input-icon-wrapper {
+    display: flex;
+    align-items: stretch;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+  }
+  
+  .input-icon-wrapper:focus-within {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  }
+  
+  .input-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    color: white;
+  }
+  
+  .input-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .login-input {
+    flex: 1;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    background: white;
+  }
+  
+  /* Botón de mostrar/ocultar contraseña */
+  .password-toggle-btn {
+    border: none;
+    background: white;
+    padding: 0 1rem;
+    color: #667eea;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .password-toggle-btn:hover {
+    color: #5a67d8;
+  }
+  
+  /* Grupo de contraseña con orden RTL y LTR */
+  .password-group-ltr .input-icon {
+    border-radius: 16px 0 0 16px;
+  }
+  .password-group-ltr .password-toggle-btn {
+    border-radius: 0 16px 16px 0;
+  }
+  .password-group-rtl .input-icon {
+    border-radius: 0 16px 16px 0;
+    order: 3;
+  }
+  .password-group-rtl .password-toggle-btn {
+    border-radius: 16px 0 0 16px;
+    order: 1;
+  }
+  .password-group-rtl .login-input {
+    order: 2;
+  }
+  
+  /* Enlace "Mot de passe oublié" */
+  .forgot-link {
+    text-align: right;
+    margin-bottom: 1.5rem;
+  }
+  .forgot-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .forgot-link a:hover {
+    color: #5a67d8;
+    text-decoration: underline;
+  }
+  .rtl .forgot-link {
+    text-align: left;
+  }
+  
+  /* Botón de submit */
+  .login-submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 16px;
+    padding: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .login-submit-btn:enabled {
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  }
+  .login-submit-btn:enabled:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+  }
+  .login-submit-btn:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+  }
+  
+  /* Enlace de registro */
+  .register-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #718096;
+    font-size: 0.9rem;
+  }
+  .register-link a {
+    color: crimson;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Footer */
+  .login-footer {
+    background: #f8f9fa;
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 0.75rem;
+    color: #a0aec0;
+  }
+  
+  /* Responsive */
+  @media (max-width: 576px) {
+    .login-body {
+      padding: 1.5rem;
+    }
+    .login-title {
+      font-size: 1.4rem;
+    }
+    .login-logo {
+      width: 60px;
+      height: 60px;
+    }
+    .login-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  
+  /* RTL (árabe) ajustes */
+  .rtl .input-icon-wrapper {
+    direction: rtl;
+  }
+  .rtl .forgot-link {
+    text-align: left;
+  }

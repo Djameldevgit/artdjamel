@@ -1,0 +1,86 @@
+ /* Estilos generales */
+.info-container {
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 7px;
+  font-family: "Arial", sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Títulos principales */
+.info-title {
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #1e3a8a; /* Azul oscuro moderno */
+}
+
+/* Secciones */
+.info-section {
+  margin-bottom: 15px;
+  padding: 7px;
+  background: #f8f9fa; /* Fondo suave */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtítulos */
+.info-section h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #1e40af;
+}
+
+/* Párrafos */
+.info-section p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* Listas */
+.info-list {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.info-list li {
+  font-size: 1.1rem;
+  padding: 8px 0;
+  position: relative;
+  color: #444;
+}
+
+/* Icono decorativo en cada ítem */
+.info-list li::before {
+  content: "•";
+  color: #2563eb; /* Azul vibrante */
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  left: -20px;
+  top: 5px;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .info-title {
+    font-size: 2rem;
+  }
+
+  .info-section {
+    padding: 15px;
+  }
+
+  .info-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .info-section p,
+  .info-list li {
+    font-size: 1rem;
+  }
+}

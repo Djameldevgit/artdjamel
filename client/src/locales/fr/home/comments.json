@@ -1,0 +1,32 @@
+{
+  
+    "editCommentPlaceholder": "عدل تعليقك...",
+    "hideContent": "إخفاء المحتوى",
+    "readMore": "قراءة المزيد",
+    "like": "إعجاب",
+    "likes": "إعجابات",
+    "update": "تحديث",
+    "cancel": "إلغاء",
+    "reply": "رد",
+    "editComment": "تعديل",
+    "deleteComment": "حذف",
+    "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا التعليق؟",
+    "commentDeleted": "تم حذف التعليق بنجاح",
+    "commentUpdated": "تم تحديث التعليق بنجاح",
+    "commentAdded": "تم إضافة التعليق بنجاح",
+    "writeComment": "اكتب تعليقًا...",
+    "writeReply": "اكتب ردًا...",
+    "postComment": "نشر",
+    "replyingTo": "الرد على",
+    "noComments": "لا توجد تعليقات بعد",
+    "beFirstToComment": "كن أول من يعلق",
+    "remove": "حذف",
+    "seeMoreComments": "رؤية المزيد من التعليقات...",
+    "hideComments": "إخفاء التعليقات...",
+    "loadMoreReplies": "تحميل المزيد من الردود",
+    "viewReplies": "عرض الردود",
+    "hideReplies": "إخفاء الردود",
+    "addComment": "إضافة تعليق",
+    "addReply": "إضافة رد"
+  }
+ 

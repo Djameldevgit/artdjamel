@@ -1,0 +1,271 @@
+{
+    "title": "Galería de Inspiración",
+    "subtitle": "Encuentra la obra perfecta para tu pedido personalizado",
+    "description": "Explora nuestra colección de obras de arte para inspirarte y encontrar el estilo que más se adapte a tus gustos.",
+    "inspirationBadge": "Galería de Inspiración para Pedidos",
+    
+    "filters": {
+      "all": "🎨 Todos los Temas",
+      "retratos": "👤 Retratos",
+      "paisajes": "🏞️ Paisajes",
+      "marinas": "🌊 Marinas",
+      "bodegones": "🍎 Bodegones",
+      "animales": "🐾 Animales",
+      "flores": "🌹 Flores",
+      "naturalezaMuerta": "📚 Naturaleza Muerta",
+      "oriental": "🎎 Pintura Oriental"
+    },
+    
+    "filterByTheme": "Filtrar por tema:",
+    "searchPlaceholder": "Buscar por título, técnica o descripción...",
+    "resultsCount": "{{count}} obras encontradas",
+    "clearFilter": "Limpiar filtro",
+    
+    "howToUseTitle": "Cómo usar esta galería",
+    "howToUseDescription": "Esta galería está diseñada para ayudarte a encontrar inspiración para tu pedido personalizado.",
+    "usageSteps": {
+      "title": "Instrucciones de uso",
+      "step1": "Explora las obras por tema usando los filtros",
+      "step2": "Haz clic en 'Ver detalles' para ampliar la imagen",
+      "step3": "Cuando encuentres una obra que te guste, haz clic en 'Usar como referencia'",
+      "step4": "La referencia se copiará automáticamente para tu pedido"
+    },
+    
+    "viewDetails": "Ver detalles",
+    "useAsReference": "Usar como referencia",
+    "workDetails": "Detalles de la obra",
+    "theme": "Tema",
+    "technique": "Técnica",
+    "close": "Cerrar",
+    
+    "noResults": "No se encontraron obras",
+    "tryDifferentSearch": "Intenta con otros términos de búsqueda o cambia el filtro",
+    "showAllWorks": "Mostrar todas las obras",
+    
+    "copySuccess": "✅ Referencia copiada al portapapeles",
+    "copyError": "❌ Error al copiar la referencia",
+    
+    "referenceText": "Referencia: \"{{title}}\" - Tema: {{theme}} - Técnica: {{technique}}",
+    
+    "themes": {
+      "retratos": "Retratos",
+      "paisajes": "Paisajes",
+      "marinas": "Marinas",
+      "bodegones": "Bodegones",
+      "animales": "Animales",
+      "flores": "Flores",
+      "naturaleza-muerta": "Naturaleza Muerta",
+      "oriental": "Pintura Oriental"
+    },
+    
+    "techniques": {
+      "oil": "Óleo sobre lienzo"
+    },
+    
+    "works": {
+      "retratos": {
+        "retrato01": {
+          "title": "Retrato Clásico",
+          "description": "Retrato realista con técnica clásica de óleo",
+          "image": "/images/galeria/retratos/retrato01.jpg",
+          "videoUrl": "/videos/retratos-retrato01.mp4"
+
+        },
+        "retrato02": {
+          "title": "Retrato de una Mujer", 
+        "description": "Retrato realista con técnica óleo sobre lienzo",
+        "image": "/images/galeria/retratos/retrato02.jpg",
+        "videoUrl": "/videos/retratos-retrato02.mp4",
+        "videoDescription": "Técnicas avanzadas de retrato realista"
+        },
+        "retrato03": {
+          "title": "Retrato Feminino",
+          "description": "Retrato realista con técnica óleo sobre lienzo",
+          "image": "/images/galeria/retratos/retrato03.jpg",
+          "videoUrl": "/videos/retratos-retrato03.mp4",
+          "videoDescription": "Técnicas avanzadas de retrato realista"
+
+        },
+        "retrato04": {
+          "title": "Retrato de Bailarinas",
+          "description": "Retrato realista de bailarinas con técnica óleo sobre lienzo",
+          "image": "/images/galeria/retratos/retrato04.jpg"
+        },
+        "retrato05": {
+          "title": "Retrato Elegante",
+          "description": "Retrato realista con técnica óleo sobre lienzo",
+          "image": "/images/galeria/retratos/retrato05.jpg"
+        }
+      },
+      
+      "paisajes": {
+        "paisaje01": {
+          "title": "Paisaje Montañoso",
+          "description": "Paisaje natural con efectos de luz matutina",
+          "image": "/images/galeria/paisajes/paisaje01.jpg"
+        },
+        "paisaje02": {
+          "title": "Paisaje Marino",
+          "description": "Paisaje natural con efectos de luz matutina"
+        },
+        "paisaje03": {
+          "title": "Mercado Urbano Tradicional",
+          "description": "Paisaje urbano con escena tradicional"
+        },
+        "paisaje04": {
+          "title": "Marina Paisaje Romántico",
+          "description": "Paisaje marino con atmósfera romántica"
+        },
+        "paisaje05": {
+          "title": "Atardecer Montañoso",
+          "description": "Paisaje natural con efectos de luz matutina"
+        }
+      },
+      
+      "marinas": {
+        "marina01": {
+          "title": "Playa con Olas",
+          "description": "Escena marina con colores cálidos del atardecer",
+          "image": "/images/galeria/marinas/marina01.jpg"
+        },
+        "marina02": {
+          "title": "Delfines en el Mar",
+          "description": "Escena marina dinámica con técnica de espátula"
+        },
+        "marina03": {
+          "title": "Atardecer Marino",
+          "description": "Escena marina al atardecer"
+        },
+        "marina04": {
+          "title": "Olas del Océano",
+          "description": "Fuerza y movimiento de las olas"
+        },
+        "marina05": {
+          "title": "Calma Marina",
+          "description": "Escena marina en calma"
+        }
+      },
+      
+      "bodegones": {
+        "bodegon01": {
+          "title": "Bodegón con Frutas",
+          "description": "Composición clásica de bodegón con frutas frescas",
+          "image": "/images/galeria/bodegones/bodegon01.jpg"
+        },
+        "bodegon02": {
+          "title": "Bodegón con Uvas y Queso",
+          "description": "Composición de bodegón con elementos tradicionales"
+        },
+        "bodegon03": {
+          "title": "Bodegón de Dátiles",
+          "description": "Bodegón con frutos secos tradicionales"
+        },
+        "bodegon04": {
+          "title": "Bodegón de Uvas",
+          "description": "Composición con uvas y elementos naturales"
+        },
+        "bodegon05": {
+          "title": "Bodegón de Manzanas",
+          "description": "Composición clásica de bodegón con frutas frescas"
+        }
+      },
+      
+      "animales": {
+        "animal01": {
+          "title": "Retrato de Gato",
+          "description": "Retrato animalístico con detalles realistas",
+          "image": "/images/galeria/animales/animal01.jpg"
+        },
+        "animal02": {
+          "title": "Gato Elegante",
+          "description": "Retrato felino con expresión característica"
+        },
+        "animal03": {
+          "title": "Mirada Felina",
+          "description": "Captura de la esencia felina"
+        },
+        "animal04": {
+          "title": "Gato Descansando",
+          "description": "Escena de reposo animal"
+        },
+        "animal05": {
+          "title": "Retrato Felino",
+          "description": "Retrato animalístico con detalles realistas"
+        }
+      },
+      
+      "flores": {
+        "flor01": {
+          "title": "Rosas en la Playa",
+          "description": "Flores delicadas con técnica de acuarela transparente",
+          "image": "/images/galeria/flores/flores01.jpg"
+
+        },
+        "flor02": {
+          "title": "Rosas Rojas",
+          "description": "Flores con colores vibrantes"
+        },
+        "flor03": {
+          "title": "Ramo de Rosas",
+          "description": "Composición floral armónica"
+        },
+        "flor04": {
+          "title": "Rosas Blancas",
+          "description": "Elegancia en flores blancas"
+        },
+        "flor05": {
+          "title": "Jardín de Rosas",
+          "description": "Escena floral natural"
+        }
+      },
+      
+      "naturalezaMuerta": {
+        "nm01": {
+          "title": "Naturaleza Muerta Clásica",
+          "description": "Composición tradicional de naturaleza muerta",
+          "image": "/images/galeria/naturaleza-muerta/naturemorte.jpg"
+
+        },
+        "nm02": {
+          "title": "Composición Clásica",
+          "description": "Composición tradicional de naturaleza muerta"
+        },
+        "nm03": {
+          "title": "Elementos Naturales",
+          "description": "Composición tradicional de naturaleza muerta"
+        },
+        "nm04": {
+          "title": "Bodegón Tradicional",
+          "description": "Composición tradicional de naturaleza muerta"
+        },
+        "nm05": {
+          "title": "Naturaleza Muerta",
+          "description": "Composición tradicional de naturaleza muerta"
+        }
+      },
+      
+      "oriental": {
+        "oriental01": {
+          "title": "Danza Oriental",
+          "description": "Expresión cultural oriental",
+          "image": "/images/galeria/oriental/oriental01.jpg"
+        },
+        "oriental02": {
+          "title": "Retrato Oriental",
+          "description": "Arte tradicional oriental"
+        },
+        "oriental03": {
+          "title": "Cultura Oriental",
+          "description": "Influencias culturales orientales"
+        },
+        "oriental04": {
+          "title": "Arte Oriental",
+          "description": "Técnicas orientales tradicionales"
+        },
+        "oriental05": {
+          "title": "Expresión Oriental",
+          "description": "Fusión de estilos orientales"
+        }
+      }
+    }
+  }

@@ -1,0 +1,355 @@
+/* ============================================
+   INPUT COMMENT
+   ============================================ */
+   .comment_input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: transparent;
+    border-radius: 30px;
+    margin: 10px 0;
+}
+
+.comment_input input {
+    background: transparent;
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    padding: 8px 0;
+    color: inherit;
+}
+
+.comment_input .postBtn {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: opacity 0.2s;
+}
+
+.comment_input .postBtn:hover {
+    opacity: 0.7;
+}
+
+/* ============================================
+   COMMENT CARD
+   ============================================ */
+.comment_card {
+    margin-bottom: 16px;
+}
+
+.comment_card .d-flex {
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.comment_card .d-flex h6 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.comment_card .comment_content {
+    background: transparent;
+    padding: 8px 0;
+    border-radius: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-left: 40px;
+}
+
+/* Modo oscuro */
+.dark .comment_card .comment_content {
+    background: transparent;
+}
+
+/* Contenido del comentario */
+.comment_card .comment_content .flex-fill {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.4;
+    color: inherit;
+}
+
+/* Fecha del comentario */
+.comment_card .comment_content .text-muted {
+    background: transparent !important;
+    color: inherit !important;
+    opacity: 0.6;
+    font-size: 11px;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* Botones de acción (reply, update, cancel) */
+.comment_card .comment_content .flex-fill div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.comment_card .comment_content small {
+    font-size: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    background: transparent !important;
+    color: inherit;
+    opacity: 0.7;
+}
+
+.comment_card .comment_content small:hover {
+    opacity: 0.5;
+}
+
+.comment_card .comment_content .font-weight-bold {
+    font-weight: 500;
+    color: inherit;
+    background: transparent !important;
+    opacity: 0.7;
+}
+
+/* Read more */
+.comment_card .comment_content .readMore {
+    cursor: pointer;
+    color: inherit;
+    font-size: 12px;
+    margin-left: 4px;
+    opacity: 0.7;
+}
+
+.comment_card .comment_content .readMore:hover {
+    opacity: 0.5;
+}
+
+/* Textarea para editar */
+.comment_card .comment_content textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    outline: none;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: vertical;
+    background: transparent;
+    color: inherit;
+}
+
+.dark .comment_card .comment_content textarea {
+    border-color: #444;
+}
+
+/* ============================================
+   COMMENT MENU (Dropdown)
+   ============================================ */
+.comment_card .comment_content .menu {
+    position: relative;
+}
+
+.comment_card .comment_content .nav-item {
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.comment_card .comment_content:hover .nav-item {
+    opacity: 1;
+}
+
+.comment_card .comment_content .nav-item span {
+    font-size: 18px;
+    color: inherit;
+    opacity: 0.6;
+}
+
+.comment_card .comment_content .nav-item span:hover {
+    opacity: 0.4;
+}
+
+/* Dropdown menu */
+.comment_card .comment_content .dropdown-menu {
+    position: absolute;
+    right: 0;
+    left: auto;
+    top: 100%;
+    min-width: 140px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 8px 0;
+    z-index: 1000;
+}
+
+.dark .comment_card .comment_content .dropdown-menu {
+    background: #2d2d2d;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.comment_card .comment_content .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+    color: inherit;
+}
+
+.comment_card .comment_content .dropdown-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .comment_card .comment_content .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.comment_card .comment_content .dropdown-item span {
+    font-size: 18px;
+    color: inherit;
+}
+
+/* ============================================
+   LIKE BUTTON
+   ============================================ */
+.comment_card .comment_content .like-comment {
+    cursor: pointer;
+}
+
+.comment_card .comment_content .like-comment span {
+    font-size: 20px;
+    color: inherit;
+    opacity: 0.6;
+}
+
+.comment_card .comment_content .like-comment span:hover {
+    opacity: 0.4;
+}
+
+/* ============================================
+   REPLIES SECTION
+   ============================================ */
+.comment_display .pl-4 {
+    padding-left: 48px !important;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 8px;
+}
+
+.dark .comment_display .pl-4 {
+    border-left-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Replies internos */
+.comment_display .comment_display {
+    margin-bottom: 8px;
+}
+
+.comment_display .comment_display .comment_card .comment_content {
+    background: transparent;
+}
+
+/* Botones de "See more comments" y "Hide comments" */
+.comments > div:last-child,
+.comment_display > div:last-child {
+    text-align: center;
+    padding: 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    color: inherit;
+    opacity: 0.7;
+}
+
+.comments > div:last-child:hover,
+.comment_display > div:last-child:hover {
+    opacity: 0.5;
+}
+
+/* ============================================
+   SECCIÓN PRINCIPAL DE COMENTARIOS
+   ============================================ */
+.comments {
+    margin-top: 16px;
+}
+
+/* Separador entre comentarios */
+.comment_card:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 12px;
+}
+
+.dark .comment_card:not(:last-child) {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   BOTONES DE ACCIÓN - SIN FONDOS
+   ============================================ */
+.comment_card .comment_content .flex-fill div small {
+    padding: 0;
+    border-radius: 0;
+    background: transparent !important;
+    color: inherit;
+    opacity: 0.6;
+}
+
+.comment_card .comment_content .flex-fill div small:hover {
+    opacity: 0.4;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .comment_display .pl-4 {
+        padding-left: 24px !important;
+    }
+    
+    .comment_card .comment_content {
+        margin-left: 32px;
+        padding: 8px 0;
+    }
+    
+    .comment_card .d-flex h6 {
+        font-size: 13px;
+    }
+    
+    .comment_input {
+        padding: 8px 12px;
+    }
+    
+    .comment_input .postBtn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+.comment_card {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

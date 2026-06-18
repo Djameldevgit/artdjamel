@@ -1,0 +1,953 @@
+/* ============================================
+   TU CSS ORIGINAL + MEJORAS HORIZONTALES
+   SOLO CAMBIOS VISUALES - LA LÓGICA QUEDA IGUAL
+   ============================================ */
+
+   .become-pro-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 100px 8px 60px;  /* ← CAMBIADO: padding lateral reducido de 20px a 8px */
+  }
+  
+  /* Progress bar */
+  .progress-bar {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    background: white;
+    border-radius: 50px;
+    padding: 20px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  /* ============================================
+   MODAL CCP (INFORMATIVO)
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+.modal-container {
+  background: white;
+  border-radius: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh;
+  overflow: auto;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  background: #f8f9fa;
+  border-radius: 24px 24px 0 0;
+}
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #6c757d;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: #dc3545; }
+.modal-body { padding: 1.5rem; }
+.bank-details {
+  background: #f1f3f5;
+  border-radius: 16px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.bank-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 0.9rem;
+}
+.bank-detail-row:last-child { border-bottom: none; }
+.copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0d6efd;
+  transition: color 0.2s;
+}
+.copy-btn:hover { color: #0a58ca; }
+.ccp-notice {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e9ecef;
+  background: #f8f9fa;
+  border-radius: 0 0 24px 24px;
+}
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+}
+.btn-primary {
+  background: #0d6efd;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+/* Tarjeta de plan de prueba (informativo) */
+.free-trial-card {
+  border: 2px solid #10b981;
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  margin-bottom: 2rem;
+  cursor: default;
+}
+.trial-badge {
+  background: #10b981;
+  color: white;
+}
+.trial-info-message {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #047857;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #d1fae5;
+  border-radius: 40px;
+}
+
+/* Botones de métodos de pago */
+.payment-methods-section {
+  margin: 2rem 0;
+}
+.payment-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.payment-method-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 48px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.payment-method-btn.chargily {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+.payment-method-btn.chargily:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(102,126,234,0.4);
+}
+.payment-method-btn.ccp {
+  background: #f59e0b;
+  color: white;
+}
+.payment-method-btn.ccp:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+}
+  
+  .progress-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.5;
+  }
+  
+  .progress-step.active {
+    opacity: 1;
+  }
+  
+  .step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .progress-step.active .step-circle {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+  
+  .progress-step span {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .progress-step.active span {
+    color: #667eea;
+    font-weight: bold;
+  }
+  
+  .progress-line {
+    width: 80px;
+    height: 2px;
+    background: #e0e0e0;
+  }
+  
+  .progress-line.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+  }
+  
+  /* Step container */
+  .step-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px 12px;  /* ← CAMBIADO: padding reducido de 40px a 30px/12px */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 0 8px;  /* ← NUEVO: padding para alinear */
+  }
+  
+  .step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .step-title {
+    font-size: 28px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .step-subtitle {
+    color: #666;
+    margin-bottom: 25px;
+    padding-left: 8px;  /* ← CAMBIADO: antes 65px, ahora 8px */
+  }
+  
+  /* ========== CATEGORÍAS - HORIZONTAL ========== */
+  .categories-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px;
+  }
+  
+  .categories-slider {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 8px 4px 16px 4px;
+    flex: 1;
+    scrollbar-width: thin;
+  }
+  
+  .categories-slider::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .categories-slider::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+  
+  .categories-slider::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+  }
+  
+  .slider-arrow-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+  
+  .slider-arrow-btn:hover {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-color: #667eea;
+  }
+  
+  .categories-slider .category-card {
+    min-width: 130px;  /* ← CAMBIADO: más pequeñas para móvil */
+    flex-shrink: 0;
+    padding: 12px 8px;
+  }
+  
+  .category-card {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    position: relative;
+  }
+  
+  .category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+  
+  .category-card.selected {
+    border-width: 3px;
+    background: #f8f9fa;
+  }
+  
+  .category-icon {
+    font-size: 28px;  /* ← CAMBIADO: más pequeño */
+    margin-bottom: 6px;
+  }
+  
+  .category-name {
+    font-size: 12px;  /* ← CAMBIADO: más pequeño */
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .category-selected-check {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #28a745;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+  }
+  
+  /* ========== DURACIONES - HORIZONTAL ========== */
+  .durations-grid {
+    display: flex;  /* ← CAMBIADO: grid a flex horizontal */
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 4px 20px 4px;
+    margin-bottom: 20px;
+    scrollbar-width: thin;
+  }
+  
+  .durations-grid::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .durations-grid::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+  
+  .durations-grid::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+  }
+  
+  .duration-card {
+    min-width: 75px;  /* ← NUEVO: ancho fijo para horizontal */
+    flex-shrink: 0;
+    padding: 10px 6px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    background: white;
+  }
+  
+  .duration-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .duration-card.selected {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea10, #764ba210);
+  }
+  
+  .duration-month {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .duration-badge {
+    font-size: 9px;
+    background: #28a745;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 10px;
+    margin-top: 4px;
+    display: inline-block;
+  }
+  
+  .duration-discount {
+    font-size: 9px;
+    background: #ffc107;
+    color: #333;
+    padding: 2px 5px;
+    border-radius: 10px;
+    margin-top: 4px;
+    display: inline-block;
+  }
+  
+  .duration-info {
+    background: #e8f5e9;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  
+  .duration-info p {
+    margin: 4px 0;
+    font-size: 12px;
+    color: #2e7d32;
+  }
+  
+  /* ========== OFERTAS - HORIZONTAL ========== */
+  .offers-grid {
+    display: flex;  /* ← CAMBIADO: grid a flex horizontal */
+    gap: 16px;
+    overflow-x: auto;
+    padding: 8px 4px 20px 4px;
+    scrollbar-width: thin;
+  }
+  
+  .offers-grid::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .offers-grid::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+  
+  .offers-grid::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+  }
+  
+  .offer-card {
+    min-width: 270px;  /* ← NUEVO: ancho fijo para horizontal */
+    max-width: 290px;
+    flex-shrink: 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    background: white;
+  }
+  
+  .offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  
+  .offer-card.selected {
+    border-color: #667eea;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+  }
+  
+  .offer-card.free {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  }
+  
+  .offer-badge {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  
+  .offer-header {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  .offer-name {
+    font-size: 20px;
+    margin: 0 0 4px;
+    color: #333;
+  }
+  
+  .offer-desc {
+    font-size: 11px;
+    color: #999;
+  }
+  
+  .offer-price {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .price-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #667eea;
+  }
+  
+  .price-period {
+    font-size: 11px;
+    color: #999;
+  }
+  
+  .price-free {
+    font-size: 18px;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .offer-total {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  
+  .total-label {
+    font-size: 10px;
+    color: #666;
+    display: block;
+  }
+  
+  .total-amount {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+  }
+  
+  .total-discount, .total-free {
+    font-size: 9px;
+    color: #28a745;
+    display: inline-block;
+    margin-left: 5px;
+  }
+  
+  .offer-features {
+    margin-bottom: 12px;
+  }
+  
+  .feature-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 11px;
+    color: #555;
+  }
+  
+  .feature-row svg {
+    font-size: 12px;
+    color: #667eea;
+  }
+  
+  .check-icon {
+    color: #28a745;
+  }
+  
+  .select-offer-btn {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #667eea;
+    background: transparent;
+    color: #667eea;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .select-offer-btn.selected {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+  }
+  
+  /* Payment summary - sin cambios */
+  .payment-summary {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .summary-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .summary-card h3 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .summary-row.free {
+    color: #28a745;
+  }
+  
+  .summary-row.discount {
+    color: #dc3545;
+  }
+  
+  .summary-row.total {
+    border-bottom: none;
+    font-size: 18px;
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 2px solid #e0e0e0;
+  }
+  
+  .payment-methods {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .payment-methods h3 {
+    margin-bottom: 15px;
+  }
+  
+  .payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .payment-icon {
+    background: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  
+  .security-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  /* Navigation buttons */
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 30px auto 0;
+    padding: 0 8px;
+  }
+  
+  .btn-back, .btn-next {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-back {
+    background: white;
+    color: #666;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .btn-next {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    flex: 1;
+    margin-left: auto;
+  }
+  
+  .btn-next.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .btn-next:hover:not(.disabled), .btn-back:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+  
+  /* Step 4 - sin cambios */
+  .complete-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .summary-section {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 20px;
+  }
+  
+  .summary-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  .section-icon {
+    color: #667eea;
+  }
+  
+  .plan-detail-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+  }
+  
+  .plan-name-large .plan-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .plan-price-large {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .plan-price-large small {
+    font-size: 12px;
+    color: #666;
+    font-weight: normal;
+  }
+  
+  .subscription-details {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+  }
+  
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .detail-row:last-child {
+    border-bottom: none;
+  }
+  
+  .detail-row.free {
+    color: #28a745;
+  }
+  
+  .detail-row.discount {
+    color: #dc3545;
+  }
+  
+  .detail-row.total {
+    font-size: 18px;
+    padding-top: 15px;
+    margin-top: 10px;
+    border-top: 2px solid #e0e0e0;
+  }
+  
+  .total-amount-summary {
+    font-size: 22px;
+    color: #28a745;
+  }
+  
+  .payment-methods-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .payment-method-badge {
+    background: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .info-note {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 12px;
+    color: #2e7d32;
+  }
+  
+  .info-note svg {
+    font-size: 20px;
+  }
+  
+  .info-note p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .step4-buttons {
+    margin-top: 30px !important;
+  }
+  
+  /* ========== RESPONSIVE FINAL ========== */
+  @media (max-width: 768px) {
+    .become-pro-page {
+      padding: 80px 4px 40px;
+    }
+    
+    .step-container {
+      padding: 20px 6px;
+    }
+    
+    .step-title {
+      font-size: 20px;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+    }
+    
+    .step-subtitle {
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    
+    .categories-slider .category-card {
+      min-width: 100px;
+    }
+    
+    .category-name {
+      font-size: 10px;
+    }
+    
+    .category-icon {
+      font-size: 24px;
+    }
+    
+    .duration-card {
+      min-width: 65px;
+    }
+    
+    .duration-month {
+      font-size: 12px;
+    }
+    
+    .offer-card {
+      min-width: 250px;
+    }
+    
+    .progress-line {
+      width: 30px;
+    }
+    
+    .progress-step span {
+      display: none;
+    }
+    
+    .slider-arrow-btn {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .btn-back, .btn-next {
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+  }

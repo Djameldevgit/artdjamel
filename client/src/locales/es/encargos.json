@@ -1,0 +1,149 @@
+{
+  "title": "Encargos de Obras de Arte Personalizadas",
+  "subtitle": "Transforma tu visión en una obra de arte única creada especialmente para ti",
+  "specialOffer": "¡Presupuesto gratuito y sin compromiso!",
+  
+  "importantNote": "Información importante para tu encargo",
+  "importantDescription": "Para garantizar que recibas exactamente lo que imaginas, es fundamental que nos proporciones la mayor cantidad de detalles posible.",
+  
+  "welcome": {
+    "title": "Bienvenido al servicio de encargos personalizados",
+    "description1": "¿Tienes una idea específica en mente o te gustaría una réplica de alguna obra que has visto? Nuestro servicio de encargos te permite colaborar directamente con el artista para crear una pieza única que se adapte perfectamente a tus necesidades y preferencias.",
+    "description2": "Ya sea que desees una copia fiel de una obra existente o una creación completamente original, estamos aquí para hacer realidad tu visión artística."
+  },
+  
+  "guarantee": {
+    "title": "Garantía de satisfacción",
+    "description": "Trabajamos contigo en cada etapa del proceso para asegurar que el resultado final supere tus expectativas"
+  },
+  
+  "specificationRequirements": "Detalles requeridos para tu encargo",
+  "specificationDescription": "Por favor, proporciona la siguiente información para que podamos crear tu obra perfecta:",
+  
+  "requirements": {
+    "style": {
+      "title": "Estilo Artístico",
+      "items": ["Realista o abstracto", "Moderno o clásico", "Estilo específico (impresionismo, cubismo, etc.)", "Colorido o monocromático"]
+    },
+    "measurements": {
+      "title": "Medidas y Formato",
+      "items": ["Alto y ancho exactos", "Formato (horizontal, vertical, cuadrado)", "Espesor del bastidor si aplica", "Espacio disponible donde colgarás la obra"]
+    },
+    "technique": {
+      "title": "Técnica y Materiales",
+      "items": ["Óleo, acrílico, acuarela", "Técnicas mixtas", "Tipo de pinceladas deseado", "Texturas específicas"]
+    },
+    "theme": {
+      "title": "Tema y Contenido",
+      "items": ["Tema principal de la obra", "Elementos específicos a incluir", "Estado de ánimo o atmósfera", "Historia o significado personal"]
+    },
+    "support": {
+      "title": "Soporte y Acabado",
+      "items": ["Lienzo, madera, papel", "Tipo de marco deseado", "Acabado (brillante, mate)", "Protección UV si es necesario"]
+    },
+    "reference": {
+      "title": "Material de Referencia",
+      "items": ["Fotografías de inspiración", "Enlaces a obras similares", "Bocetos o dibujos previos", "Colores específicos a utilizar"]
+    }
+  },
+  
+  "process": {
+    "title": "Proceso de Encargo",
+    "consultation": {
+      "title": "Consulta Inicial",
+      "description": "Discutimos tu visión, requisitos y preferencias artísticas"
+    },
+    "quote": {
+      "title": "Presupuesto Detallado",
+      "description": "Recibirás un presupuesto completo con costos y plazos de entrega"
+    },
+    "deposit": {
+      "title": "Anticipo del 30%",
+      "description": "Se requiere un anticipo para iniciar el proceso creativo y comprar materiales"
+    },
+    "creation": {
+      "title": "Proceso Creativo",
+      "description": "El artista crea tu obra manteniéndote informado del progreso"
+    },
+    "approval": {
+      "title": "Aprobación Final",
+      "description": "Revisas la obra terminada y das tu aprobación final"
+    },
+    "payment": {
+      "title": "Pago del Saldo",
+      "description": "Realizas el pago del 70% restante antes del envío"
+    },
+    "shipping": {
+      "title": "Envío y Entrega",
+      "description": "Tu obra es empaquetada profesionalmente y enviada de forma segura"
+    }
+  },
+  
+  "payment": {
+    "title": "Información de Pagos",
+    "deposit": {
+      "title": "Anticipo Inicial (30%)",
+      "description": "El anticipo es necesario para:",
+      "points": {
+        "secure": "Asegurar tu lugar en la agenda del artista",
+        "materials": "Compra de materiales de alta calidad",
+        "reservation": "Iniciar el proceso creativo inmediatamente"
+      }
+    },
+    "final": {
+      "title": "Pago Final (70%)",
+      "description": "El saldo se paga cuando:",
+      "points": {
+        "balance": "La obra está terminada y aprobada",
+        "shipping": "Antes del envío o entrega",
+        "secure": "Garantiza la seguridad de ambas partes"
+      }
+    },
+    "guarantee": {
+      "title": "Garantía de Reembolso",
+      "description": "Si no estás satisfecho con el resultado, ofrecemos ajustes o reembolso parcial según el caso"
+    }
+  },
+  
+  "delivery": {
+    "title": "Tiempos de Entrega",
+    "description": "Los plazos de entrega varían según la complejidad de la obra:",
+    "standard": {
+      "title": "Entrega Estándar",
+      "time": "2-4 semanas dependiendo de la técnica y tamaño"
+    },
+    "express": {
+      "title": "Entrega Express",
+      "time": "1-2 semanas (coste adicional aplicable)"
+    }
+  },
+  
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "q1": {
+      "question": "¿Puedo solicitar modificaciones durante el proceso?",
+      "answer": "Sí, durante las primeras etapas puedes solicitar ajustes. Una vez avanzado el trabajo, las modificaciones significativas pueden generar costes adicionales."
+    },
+    "q2": {
+      "question": "¿Qué pasa si no me gusta el resultado final?",
+      "answer": "Trabajamos contigo durante todo el proceso para asegurar tu satisfacción. Si al final no estás contento, evaluamos opciones de modificación o reembolso parcial según el progreso del trabajo."
+    },
+    "q3": {
+      "question": "¿Incluye el precio el marco y el envío?",
+      "answer": "El precio base incluye la obra terminada. Marco y envío se cotizan por separado según tus preferencias específicas."
+    }
+  },
+  
+ 
+    "cta": {
+      "title": "¿Listo para comenzar tu proyecto artístico?",
+      "description": "Contáctanos hoy para obtener un presupuesto gratuito y discutir tu visión",
+      "emailButton": "Solicitar presupuesto por correo",
+      "chatButton": "Chat directo con el artista", 
+      "loginButton": "Iniciar sesión para chatear",
+      "galleryButton": "Galería de obras para inspiración",
+      "responseTime": "Respuesta en 24 horas",
+      "freeQuote": "Presupuesto gratuito"
+    }
+  
+}

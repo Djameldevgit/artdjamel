@@ -1,0 +1,115 @@
+/* Contenedor de la tabla */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  position: relative; /* Asegura que no bloquee el modal */
+ }
+
+/* Tabla */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Más bajo que el modal */
+}
+
+/* Modificar sticky para evitar interferencias */
+.user-table th {
+  position: sticky;
+  top: 0;
+  background-color: #007bff;
+  color: white;
+  z-index: 10; /* No debe ser mayor que el modal */
+}
+
+/* 💡 Estilos para el modal */
+.modal-overlay {
+  position: fixed; /* Fijo en la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Asegurar que esté sobre todo */
+}
+
+/* Contenido del modal */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.modal-overlay {
+  position:relative; /* Asegura que el modal flote sobre el resto */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Valor alto para que esté sobre todo */
+}
+
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative; /* Mantiene su posición dentro del overlay */
+  z-index: 1001; /* Mayor que el overlay para estar arriba */
+}
+
+
+/* Cabecera del modal */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+/* Botón de cerrar */
+.btn-close {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Cuerpo del modal */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Pie del modal */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+
+

@@ -1,0 +1,91 @@
+/* Alinea correctamente el avatar con el dropdown */
+.dropdown-avatar {
+    line-height: 0;
+    padding: 0;
+    display: flex;
+ 
+  }
+  
+  /* Asegúrate que el componente Avatar tenga un tamaño coherente */
+  .medium-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Opcional: oculta la flechita del dropdown si no te gusta */
+  #user-dropdown::after {
+    display: none !important;
+  }
+  /* Alinea correctamente el avatar con el dropdown */
+.dropdown-avatar {
+    line-height: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+ 
+ 
+  /* Estilos para el Navbar */
+.navbar {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-avatar {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+}
+
+.notification-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+/* Mejora los dropdowns */
+.navbar .dropdown-menu {
+  margin-top: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto hover para los íconos */
+.navbar .dropdown-toggle:hover {
+  opacity: 0.8;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 992px) {
+  .navbar-brand {
+    margin-left: 0.5rem;
+  }
+  
+  .notification-icon {
+    margin-right: 0;
+  }
+}
+
+/* Navbar principal */
+.navbar-main {
+  z-index: 1030;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Solo en móviles */
+@media (max-width: 767px) {
+  .navbar-main {
+    margin-top: 60px !important;
+  }
+}
+
+/* En desktop */
+@media (min-width: 768px) {
+  .navbar-main {
+    margin-top: 0 !important;
+  }
+}

@@ -1,0 +1,27 @@
+const cron = require('node-cron');
+const Users = require('../models/userModel');
+
+cron.schedule('* * * * *', async () => {
+  console.log('⏰ Ejecutando limpieza automática de usuarios no verificados...');
+
+  const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+
+  try {
+    const result = await Users.deleteMany({
+      isVerified: false,
+      createdAt: { $lt: fiveMinutesAgo }
+    });
+
+    if (result.deletedCount > 0) {
+      console.table([{
+        Tiempo: new Date().toLocaleString(),
+        Eliminados: result.deletedCount,
+        Condición: `No verificados antes de ${fiveMinutesAgo.toLocaleTimeString()}`
+      }]);
+    } else {
+      console.log(`⚠️ No hay usuarios pendientes de eliminar. (${new Date().toLocaleTimeString()})`);
+    }
+  } catch (err) {
+    console.error('❌ Error al eliminar usuarios no verificados:', err.message);
+  }
+});

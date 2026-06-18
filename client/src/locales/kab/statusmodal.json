@@ -1,0 +1,71 @@
+{
+  "titulostatusmoddal": "Ineɣmisen n tneẓruft",
+  "sectionTitles": {
+    "basicInfo": "Talɣut tagejdan n tneẓruft",
+    "artisticDetails": "Talqayt n tneẓruft",
+    "dimensions": "Tisekta d tmɣawsa",
+    "availabilityPrice": "Tilisa d ssuma",
+    "saleLogistics": "Azuž d usiweḍ",
+    "artistInfo": "Talɣut n umasal"
+  },
+  "button": {
+    "post": "Sifeḍ"
+  },
+  "categories": {
+    "Painting": "Tneẓruft",
+    "Sculpture": "Taseɣẓant",
+    "Photography": "Taswilt",
+    "drawing": "Tugna",
+    "Engraving": "Tineɣzi",
+    "Digital_art": "Tneẓruft tanumidit",
+    "Collage": "Collage",
+    "Textile_art": "Tneẓruft n tseṭṭa"
+  },
+  "form": {
+    "title": "Azwel n tneẓruft",
+    "description": "Aglam",
+    "category": "Tagejdit",
+    "style": "Aɣanib",
+    "theme": "Asentel",
+    "copyright": "Tira n usefru",
+    "size": "Tiddi",
+    "measurements": "Tisekta",
+    "unit": "Tafrara n usekles",
+    "support": "Tameɣrant",
+    "price": "Ssuma",
+    "currency": "Adrim",
+    "negotiable": "Yettwasneqdec",
+    "saleOptions": "Tibḍarin n uzuž",
+    "packaging": "Abeɛɛuc",
+    "location": "Adig"
+  },
+  "messages": {
+    "selectCategory": "Fren tagejdit",
+    "enterTitle": "Sekcem azwel",
+    "enterDescription": "Sekcem aglam",
+    "selectStyle": "Fren aɣanib",
+    "selectTheme": "Fren asentel",
+    "enterMeasurements": "Sekcem tisekta",
+    "selectUnit": "Fren tafrara",
+    "selectSupport": "Fren tameɣrant",
+    "enterPrice": "Sekcem ssuma",
+    "selectCurrency": "Fren adrim",
+    "selectSaleOption": "Fren tibḍarit n uzuž",
+    "selectPackaging": "Fren abeɛɛuc",
+    "selectLocation": "Fren adig"
+  },
+  "validation": {
+    "required": "Urti-a yesra",
+    "minLength": "Ugar n {{count}} n yisekkilen i yesra",
+    "maxLength": "{{count}} n yisekkilen s wazal ameqran",
+    "invalidFormat": "Amasal tarameɣtut"
+  },
+  "upload": {
+    "addImages": "Rnu tugniwin",
+    "takePhoto": "Eǧǧ tugna",
+    "deleteImage": "Kkes tugna",
+    "stopStream": "Seḥbes aɣbalu",
+    "images": "Tugniwin",
+    "videos": "Tividyutin"
+  }
+}

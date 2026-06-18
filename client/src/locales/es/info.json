@@ -1,0 +1,383 @@
+{
+  "blog portaforlo": "blog portafolio",
+  
+  "subtitulo": "Artista plástico y desarrollador MERN - Uní dos pasiones profundas",
+  "badgeArtista": "Artista plástico",
+  "badgeDesarrollador": "Desarrollador MERN",
+  "introduccionTitulo": "Mi espacio creativo",
+  "introduccionTexto": "Este espacio fue creado específicamente para mostrar mi trayectoria como artista plástico y desarrollador MERN. Dos pasiones profundas que me han acompañado durante muchos años y que no cambiaría por todos los tesoros del mundo.",
+  "tituloTrayectoria": "Mi trayectoria artística",
+  "trayectoria1": "Como muchos artistas cuyos talentos surgieron desde la infancia, me formé como artista de retratos en Barcelona donde pasé 17 años dibujando retratos y viviendo de mi arte, logré un gran éxito durante esos años.",
+  "trayectoria2": "Después de regresar a mi país, Argelia, continué mi camino artístico donde organicé exposiciones de arte y recibí varios premios incluyendo la 'Tarjeta de Artista'.",
+  "premio": "Ganador del premio 'Tarjeta de Artista' y reconocimiento en exposiciones locales",
+  "dualidadTitulo": "Uniendo dos pasiones",
+  "dualidadDescripcion": "Hasta hoy, sigo dedicando mi tiempo a dos pasiones fundamentales en mi vida: la pintura y la programación. No es fácil equilibrar dos talentos que requieren todo el tiempo y esfuerzo, pero he logrado un conocimiento profundo en ambos campos.",
+  "motivacionTitulo": "La motivación detrás de crear la plataforma",
+  "motivacion1": "Pasé años publicando mis obras en redes sociales, pero entendí que estas plataformas no están diseñadas para comprar y vender arte. Están diseñadas para el entretenimiento continuo con juegos, transmisiones en vivo y chats, no para enfocarse en la publicación artística.",
+  "motivacion2": "También noté que los grupos locales rechazaban publicar mis pinturas por razones poco claras, mientras permitían publicar obras generadas con inteligencia artificial. La mayoría del público no puede distinguir entre el trabajo de un artista real y uno generado por IA en momentos.",
+  "motivacion3": "A los administradores no les importaba proteger el arte humano auténtico, su única preocupación era aumentar el número de suscriptores. Esta situación estaba llevando mi arte a un callejón sin salida.",
+  "solucionTitulo": "La solución técnica",
+  "solucionTexto": "Decidí estudiar y explorar la programación en profundidad, utilizando inteligencia artificial, especialmente ChatGPT, trabajo días y noches entre pintura y programación. Dividí mi tiempo entre perfeccionar mi talento artístico y aprender Express, sockets, autenticación, APIs de Google, y todo lo necesario para crear una aplicación donde pueda no solo publicar mis obras, sino también brindar la oportunidad a otros artistas de diferentes categorías.",
+  "solucionTexto2": "Esta aplicación no busca competir con nadie; es un desafío personal y un proyecto en constante evolución. Cada día pinto para mejorar mi arte y programo para mejorar la experiencia de los usuarios.",
+  "visionTitulo": "Mi visión para el futuro",
+  "visionDescripcion": "Mi objetivo es desarrollar esta plataforma para que llegue a un alcance más amplio, y se convierta en un refugio para el arte auténtico y los talentos reales en un mundo donde la inteligencia artificial domina cada vez más el panorama creativo.",
+  "visionFinal": "Estoy abierto a que otros desarrolladores MERN se unan para expandir este proyecto más y más, porque no sabemos qué posibilidades puede deparar el futuro para este proyecto ambicioso.",
+  
+  "titulos.comentarios": "Comentarios para el administrador",
+  "tituloss": {
+    "intro": "Introducción",
+    "registro": "Registro",
+    "seguridad": "Seguridad",
+    "publicaciones": "Publicaciones",
+    "busqueda": "Búsqueda",
+    "contacto": "Contacto",
+    "idioma": "Idioma",
+    "administracion": "Administración",
+    "blog": "Blog",
+    "actualizaciones": "Actualizaciones",
+    "desarrollo": "Desarrollo"
+  },
+  "centroAyuda": {
+    "titulo": "Centro de ayuda",
+    "descripcion": "Elige una sección para obtener información detallada"
+  },
+ 
+  "info aplicacionnn": "información de la aplicación",
+  
+  "navegacionRapida": "Navegación rápida",
+  "introMarketplace": "Introducción al marketplace",
+  "registroo": "Registro",
+  "seguridad": "Seguridad",
+  "publicaciones": "Publicaciones",
+  "busqueda": "Búsqueda",
+  "contacto": "Contacto",
+  "idioma": "Idioma",
+  "administracion": "Administración",
+  "blogPortafolio": "Blog y portafolio",
+  "actualizaciones": "Actualizaciones",
+  "tecnologiass": "Tecnologías",
+  "tecnologiasTitulo": "Tecnologías utilizadas",
+  "tecnologiasDescripcion": "Esta aplicación fue construida con las tecnologías y técnicas más recientes:",
+  "titulos": {
+    "intro": "Introducción",
+    "registro": "Registro",
+    "seguridad": "Seguridad",
+    "publicaciones": "Publicaciones",
+    "busqueda": "Búsqueda",
+    "contacto": "Contacto",
+    "idioma": "Idioma",
+    "administracion": "Administración",
+    "blog": "Blog",
+    "actualizaciones": "Actualizaciones",
+    "desarrollo": "Desarrollo"
+  },
+  "centroAyudad": {
+    "titulo": "Centro de ayuda",
+    "descripcion": "Elige una sección para obtener información detallada"
+  },
+
+  "art_painting": "Venta de arte",
+  "registro": "registro",
+  "imagenesDeRegistro": "Imágenes de registro",
+  "cerrar": "Cerrar",
+  "pasoNumero": "Paso {{paso}}",
+  "contadorImagenes": "{{actual}} de {{total}}",
+  "comoRegistrarme": "¿Cómo me registro?",
+  "descripcionIntro": "Para aprovechar todas las funciones de la aplicación, el sistema te permite registrarte de",
+  "tresFormasDiferentes": "3 formas diferentes",
+  "crearCuentaManual": "Crear cuenta manualmente",
+  "descripcionManual": "Necesitas crear una cuenta gratuita usando tu email, nombre de usuario y contraseña.",
+  "usandoGoogle": "Usando el botón de Google",
+  "descripcionGoogle": "Si tienes una cuenta de Google, solo haz clic en el botón de Google y estarás dentro de la aplicación en un momento.",
+  "usandoFacebook": "Usando el botón de Facebook",
+  "descripcionFacebook": "Si tienes una cuenta de Facebook, solo haz clic en el botón de inicio de sesión con Facebook.",
+  "olvidasteContrasena": "¿Olvidaste tu contraseña?",
+  "recuperacionContrasena": "Recuperación de contraseña",
+  "descripcionRecuperacion": "Puedes recuperar tu contraseña siguiendo los pasos en el formulario de recuperación.",
+
+  "serarch": "búsqueda",
+  "comoFuncionaLaBusqueda": "¿Cómo funciona la búsqueda?",
+  "sistemaBusquedaPart1": "El sistema de",
+  "busquedaInteligente": "búsqueda inteligente",
+  "sistemaBusquedaPart2": "permite a los usuarios explorar obras de arte rápida y precisamente",
+  "usuariosSinAutenticacion": "Usuarios no registrados",
+  "descripcionBusquedaSimplePart1": "Pueden usar un",
+  "inputBusquedaSimple": "campo de búsqueda simple",
+  "descripcionBusquedaSimplePart2": "que, aunque limitado, es muy potente: encuentra resultados por",
+  "categoria": "categoría",
+  "tema": "tema",
+  "estilo": "estilo",
+  "o": "o",
+  "tambienAdmite": "también admite combinaciones como",
+  "combinacion1": "Categoría + Tema",
+  "combinacion2": "Categoría + Tema + Estilo",
+  "usuariosAutenticados": "Usuarios registrados",
+  "tienenAcceso": "tienen acceso a un",
+  "buscadorAvanzado": "buscador avanzado",
+  "enTiempoReal": "en tiempo real",
+  "aquiSePueden": "aquí se pueden aplicar filtros específicos por:",
+  "titulo": "título",
+  "fechaPublicacion": "fecha de publicación",
+  "facilitaEncontrar": "esto facilita encontrar exactamente lo que buscas en segundos.",
+  "verImagenes": "Ver imágenes",
+
+  "publicoaciones inforr": "información de publicaciones",
+  "tituloPublicaciones": "Publicaciones de artistas",
+  "descripcionArtistasPart1": "Los artistas",
+  "autenticadosVerificados": "autenticados y verificados",
+  "descripcionArtistasPart2": "pueden crear publicaciones fácilmente y con seguridad dentro de la plataforma",
+  "comoPublicar": "Cómo publicar",
+  "descripcionComoPublicarPart1": "Se puede crear una publicación a través del",
+  "iconoPlus": "icono de más",
+  "descripcionComoPublicarPart2": "en la barra de navegación o desde el",
+  "menuAvatar": "menú debajo del avatar",
+  "alPublicar": "Al publicar, el sistema notifica el",
+  "exitoOFracaso": "éxito o fracaso",
+  "delEnvio": "del envío de la publicación",
+  "revisionContenido": "Revisión de contenido",
+  "descripcionRevisionPart1": "Para garantizar la calidad artística, cada publicación pasa por una",
+  "revisionAdministradores": "revisión por parte de los administradores",
+  "descripcionRevisionPart2": "se revisan las imágenes, títulos y descripciones antes de que sean visibles",
+  "aprobacionVisibilidad": "Aprobación y visibilidad",
+  "descripcionAprobacionPart1": "Después de la aprobación, la publicación aparece en el",
+  "home": "inicio",
+  "descripcionAprobacionPart2": "en los resultados de búsqueda y en la sección",
+  "misPublicaciones": "mis publicaciones",
+  "descripcionAprobacionPart3": "en el perfil personal del artista",
+  "gestionPost": "Gestión de publicaciones",
+  "descripcionGestionPart1": "En la página de",
+  "detallePost": "detalles de la publicación",
+  "descripcionGestionPart2": "aparece la fecha de creación, descripción e imágenes. El artista puede",
+  "editar": "editar",
+  "eliminar": "eliminar",
+  "descripcionGestionPart3": "su publicación en cualquier momento",
+  "interaccionTiempoReal": "Interacción en tiempo real",
+  "descripcionInteraccionPart1": "Los usuarios pueden",
+  "comentar": "comentar",
+  "dar": "dar",
+  "like": "me gusta",
+  "descripcionInteraccionPart2": "y el artista recibe notificaciones instantáneas. Además, un cliente potencial puede iniciar un",
+  "chatPrivado": "chat privado en directo",
+  "descripcionInteraccionPart3": "desde la publicación",
+
+  "language inforr": "información de idioma",
+  "tituloPrincipal": "Un mundo, muchos idiomas",
+  "descripcionSistemaPart1": "Este sistema no fue creado para limitarse a un solo lugar o idioma, sino para",
+  "abrirseMundo": "abrirse al mundo entero",
+  "descripcionSistemaPart2": "El arte no entiende fronteras, por eso era esencial que mi aplicación pudiera hablar con todos",
+  "componenteLanguagePart1": "El componente de",
+  "languageComponent": "idioma",
+  "componenteLanguagePart2": "surge de esta visión global: cualquier artista o amante del arte puede interactuar en el idioma más cercano a él. Dediqué semanas y meses a estudiar el sistema de",
+  "componenteLanguagePart3": "integración de traducciones tanto en el cliente como en el servidor, para que el idioma seleccionado se guarde y sincronice automáticamente",
+  "significadoPart1": "Esto significa que no es necesario reconfigurar el idioma en cada conexión:",
+  "significadoPart2": "la aplicación lo recordará y se adaptará a las preferencias de cada persona",
+  "idiomasActuales": "Idiomas actuales",
+  "ingles": "Inglés",
+  "arabe": "Árabe",
+  "visionFutura": "Visión futura",
+  "metaAmpliar": "Mi objetivo es ampliar las traducciones para recibir usuarios de:",
+  "francia": "Francia",
+  "rusia": "Rusia",
+  "china": "China",
+  "espana": "España",
+  "kabile": "Mi patria en lengua bereber",
+  "lenguajeArtePart1": "El",
+  "lenguaje": "idioma",
+  "lenguajeArtePart2": "es la primera llave que abre la puerta al arte. Este componente garantiza que la plataforma sea inclusiva, accesible y abierta para todos, respetando la diversidad cultural y lingüística",
+
+  "intro market placeeeeeeeeeeeeeeeeeeee": "introducción al marketplace",
+  "tassili": "Tassili",
+  "tituloPrincipaleparte3": "para vender y comprar obras de arte.",
+  "subtituloo": "El arte es la creatividad que todos llevamos dentro, plasmada en forma, color y emoción; es el puente entre lo que somos y lo que soñamos ser.",
+  "tecnologias": {
+    "parte1": "Construida con tecnologías modernas",
+    "parte2": "(MERN, Redux, i18n, sockets en tiempo real)",
+    "parte3": "integra funciones sociales como me gusta, comentarios y chat privado, junto con un sistema multilingüe que rompe barreras culturales y lingüísticas."
+  },
+  "disponibilidad": {
+    "parte1": "Disponible en",
+    "parte2": "7 idiomas",
+    "parte3": "y con",
+    "parte4": "8 categorías artísticas",
+    "parte5": "Los artistas publican sus obras con un clic, mientras los compradores exploran con búsquedas avanzadas, interactúan directamente y adquieren arte con seguridad."
+  },
+  "pwa": {
+    "parte1": "Nuestra aplicación",
+    "parte2": "PWA",
+    "parte3": "funciona en móviles, tablets y ordenadores, con autenticación segura, notificaciones instantáneas y un sistema de confianza que protege tanto a creadores como compradores."
+  },
+  "cierreInspirador": "El arte no entiende fronteras. Descubre, conecta y colecciona desde cualquier lugar del mundo.",
+
+  "seguridaddddddddddddddddddddddddddddddddddddddd": "seguridad",
+  "tituloPrincipalk": "Seguridad en la aplicación",
+  "descripcionSeguridad": "La seguridad es una prioridad. Nuestro sistema protege a usuarios y plataforma para garantizar una experiencia confiable.",
+  "encriptacionDatos": "Cifrado de datos",
+  "descripcionEncriptacion": {
+    "parte1": "Toda la información enviada al registrarse se transmite",
+    "parte2": "cifrada al backend",
+    "parte3": "garantizando que los datos personales permanezcan protegidos."
+  },
+  "registroManual": "Registro manual con código de verificación",
+  "descripcionRegistro": {
+    "parte1": "Cuando un usuario se registra manualmente, el sistema crea un",
+    "parte2": "código de verificación",
+    "parte3": "después de verificar los datos, se envía directamente al",
+    "parte4": "sin necesidad de iniciar sesión nuevamente."
+  },
+  
+  "verificacionCorreo": "Verificación por correo electrónico",
+  "descripcionVerificacion": {
+    "parte1": "Para confirmar la identidad, el usuario debe verificar su cuenta a través del",
+    "parte2": "botón de verificación",
+    "parte3": "si intenta realizar cualquier acción sin verificar, se abre un",
+    "parte4": "con un botón que envía automáticamente el correo de verificación."
+  },
+  "modal": "modal",
+  "prevencionPerfiles": "Prevención de perfiles falsos",
+  "descripcionPrevencion": {
+    "parte1": "Los perfiles creados con correo electrónico falso nunca serán verificados, por lo tanto no podrán publicar, comentar, dar me gusta o realizar acciones. Además, el sistema revisa la base de datos cada",
+    "parte2": "y elimina automáticamente los correos no confirmados."
+  },
+  "24horas": "24 horas",
+
+  "contactoooooooooooooooooooooooooooooooooo": "contacto",
+  "tituloPrincipalll": "Contacto y comunicación",
+  "descripcionPlataforma": "Nuestra plataforma ofrece diferentes formas de comunicación para que los usuarios puedan resolver dudas o recibir ayuda de forma rápida y sencilla.",
+  "formularioContacto": "Formulario de contacto",
+  "autenticadoVerificado": "Autenticado y verificado",
+  "descripcionFormulario": {
+    "parte1": "Cualquier usuario",
+    "parte2": "puede enviarnos un mensaje a través del",
+    "parte3": "solo escribe el",
+    "parte4": "y al hacer clic en",
+    "parte5": "nos llegará un correo electrónico. Respondemos cuando sea apropiado para brindar el mejor servicio."
+  },
+  
+  "descripcionAsunto": "Descripción del asunto",
+  "enviar": "Enviar",
+  "chatAdministradores": "Chat privado con administradores",
+  "chatTiempoReal": "Chat privado en tiempo real",
+  "descripcionChat": {
+    "parte1": "Además del correo electrónico, el usuario puede abrir un",
+    "parte2": "con los administradores. Allí puede escribir directamente con nuestro equipo para resolver cualquier consulta al instante."
+  },
+  "atencionPersonalizada": "Atención personalizada",
+  "comunicacionCercana": "Comunicación cercana",
+  "descripcionAtencion": {
+    "parte1": "Nuestro objetivo es mantener una",
+    "parte2": "con artistas y compradores, garantizando un entorno confiable y transparente."
+  },
+
+  "adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn": "administración",
+  "tituloPrincipal0": "Administración y seguridad",
+  "descripcionPlataformaa": "Nuestra plataforma no solo conecta artistas y coleccionistas, sino que también garantiza un entorno seguro y confiable.",
+  "equipoAdmin": {
+    "parte1": "El equipo de administración",
+    "parte2": "para proteger el valor del arte y la integridad de la comunidad."
+  },
+  "evaluarPosts": "Evaluar publicaciones",
+  "moderarComentarios": "Moderar comentarios inapropiados",
+ 
+  "supervisarUsuarios": "Supervisar usuarios malintencionados",
+  "sistemaSeguridad": {
+    "parte1": "Aunque contamos con un sistema de seguridad avanzado, la administración siempre permanece atenta a",
+    "parte2": "cada situación se revisa seriamente para garantizar transparencia y confianza."
+  },
+  "correosReportes": "Correos de usuarios, reportes, quejas y denuncias",
+  "funcionalidadApp": {
+    "parte1": "Además, nuestra aplicación permite que cualquier usuario calificado como apto se convierta en",
+    "parte2": "al cambiar su rol, la interfaz se transforma y podrá colaborar en el servicio a artistas y amantes del arte en tiempo real."
+  },
+  "adminUnClic": "Administrador con un clic",
+  "garantiaFinal": "Gracias a esta combinación de tecnología y supervisión humana, garantizamos una experiencia justa, segura y de alta calidad para todos.",
+
+  "blog y portaforlio": "blog y portafolio",
+  "tituloPrincipa": "Blog y portafolio",
+  "nombreAutor": "Jamal Bouali",
+  "descripcionEspacio": {
+    "parte1": "Este espacio fue creado específicamente para mostrar mi trayectoria como",
+    "parte2": "Dos pasiones profundas que me han acompañado durante muchos años y que no cambiaría por todos los tesoros del mundo."
+  },
+  "artistaPintor": "Artista plástico",
+  "y": "y",
+  "desarrolladorMERN": "Desarrollador MERN",
+  "miniBiografia": "Mini biografía",
+  "ventaArte": "Venta y compra de arte",
+  "biografia": {
+    "parte1": "Pasé años publicando mis obras en redes sociales, pero entendí que estas plataformas no están diseñadas para",
+    "parte2": "Están diseñadas para el entretenimiento continuo con juegos, transmisiones en vivo y chats, no para enfocarse en la publicación artística."
+  },
+  "pinturaProgramacion": "Pintura y programación",
+  "decision": {
+    "parte1": "Por eso decidí estudiar y explorar la programación en profundidad, utilizando inteligencia artificial, especialmente ChatGPT, trabajo días y noches entre",
+    "parte2": "Dividí mi tiempo entre perfeccionar mi talento artístico y aprender Express, sockets, autenticación, APIs de Google, y todo lo necesario para crear una aplicación donde pueda no solo publicar mis obras, sino también brindar la oportunidad a otros artistas de diferentes categorías."
+  },
+  "retoPersonal": "Desafío personal",
+  "vision": {
+    "parte1": "Esta aplicación no busca competir con nadie; es un",
+    "parte2": "y proyecto en constante evolución. Cada día pinto para mejorar mi arte y programo para mejorar la experiencia de los usuarios. Incluso estoy abierto a que otros desarrolladores MERN se unan para expandir este proyecto más y más, porque no sabemos qué posibilidades puede deparar el futuro."
+  },
+  "enlaces": "Enlaces",
+  "descripcionEnlaces": "Aquí también puedes encontrar enlaces a mis otras aplicaciones y proyectos. (👉 Aquí puedes incluir botones o enlaces externos usando React-Bootstrap).",
+  "comentarios": "Comentarios",
+  "autenticadoVerificadoo": "Autenticado y verificado",
+  "interaccion": {
+    "parte1": "Debajo de esta sección, cualquier usuario",
+    "parte2": "puede dejar un",
+    "parte3": "comentario o",
+    "parte4": "me gusta permanente en mi blog/portafolio, como apoyo a mi trabajo como artista y desarrollador."
+  },
+
+  "actulazacionesss": "actualizaciones",
+  "tituloPrincip": "Próximas actualizaciones",
+  "descripcionMejoras": "Seguimos mejorando para ofrecer la mejor experiencia en el mundo del arte digital. Aquí algunas características que estarán disponibles pronto:",
+  "notificacionesTiempoReal": "Notificaciones en tiempo real",
+  "descNotificaciones": "Recibe alertas cuando alguien comenta, da me gusta o compra una obra de arte",
+  "favoritosColecciones": "Favoritos y colecciones",
+  "descFavoritos": "Guarda y organiza tus obras favoritas en tu propia galería",
+  "buscadorAvanza": "Motor de búsqueda avanzado",
+  "descBuscador": "Explora arte por técnica, estilo, precio, artista y más",
+  "panelArtistas": "Panel de control para artistas",
+  "descPanelArtistas": "Estadísticas y métricas para conocer el impacto de tus obras",
+  "mensajeriaMejorada": "Mensajería mejorada",
+  "descMensajeria": "Comunícate de forma privada con artistas y compradores en tiempo real",
+  "modoOscuroClaro": "Modo oscuro/claro",
+  "descModoVisual": "Elige el estilo visual que prefieras para una navegación cómoda",
+  "certificacionObras": "Certificación de obras",
+  "descCertificacion": "Mayor confianza con verificación manual de piezas únicas",
+  "compromiso": "Nuestro compromiso es hacer crecer la comunidad artística digital con herramientas seguras, modernas y útiles.",
+
+  "bloginfo  es el modal": "bloginfo es el modal",
+  "tituloCentroAyuda": "Centro de ayuda",
+  "descripcionCentroAyuda": "Encuentra guías, soluciones y detalles sobre el uso de la aplicación.",
+  "ariaIrA": "Ir a",
+  "secciones": {
+    "usoApp": {
+      "titulo": "Información y uso de la aplicación",
+      "info": "Información",
+      "registro": "Registro",
+      "login": "Inicio de sesión",
+      "recuperar": "Recuperar contraseña"
+    },
+    "seguridad": {
+      "titulo": "Seguridad en la aplicación",
+      "verificacion": "Verificación de cuenta",
+      "activacion": "Activación de cuenta",
+      "suspension": "Suspensión de cuenta",
+      "bloqueo": "Bloqueo de cuenta",
+      "eliminacion": "Eliminación de cuenta",
+      "falsosPerfiles": "Perfiles falsos"
+    },
+    "desarrollo": {
+      "titulo": "Desarrollo de la aplicación",
+      "tecnologias": "Tecnologías utilizadas",
+      "novedades": "Novedades y actualizaciones"
+    },
+    "blog": {
+      "titulo": "Portafolio y blog",
+      "sobreMi": "Descripción del desarrollador",
+      "proyectos": "Proyectos en desarrollo",
+      "comentarios": "Agregar comentario"
+    }
+  }
+}

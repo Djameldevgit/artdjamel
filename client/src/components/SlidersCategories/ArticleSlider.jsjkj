@@ -1,0 +1,486 @@
+// 📂 components/SlidersCategories/ArticleSlider.jsx - VERSIÓN QUE SIEMPRE SE MUESTRA
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
+const ArticleSlider = ({ 
+  articles = [], 
+  currentSubcategory,
+  currentArticle,
+  onArticleClick 
+}) => {
+  const history = useHistory();
+  const [imageErrors, setImageErrors] = useState({});
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [displayData, setDisplayData] = useState([]);
+
+  // ⭐⭐ Datos de ejemplo para desarrollo
+  const sampleArticles = [
+    { _id: 'art-1', name: 'Apartamento', slug: 'apartamento', icon: '🏢', iconColor: '#4ECDC4', postCount: 12 },
+    { _id: 'art-2', name: 'Casa', slug: 'casa', icon: '🏠', iconColor: '#FFD166', postCount: 8 },
+    { _id: 'art-3', name: 'Chalet', slug: 'chalet', icon: '🏡', iconColor: '#06D6A0', postCount: 5 },
+    { _id: 'art-4', name: 'Estudio', slug: 'estudio', icon: '📐', iconColor: '#118AB2', postCount: 3 },
+    { _id: 'art-5', name: 'Loft', slug: 'loft', icon: '🏭', iconColor: '#EF476F', postCount: 7 },
+    { _id: 'art-6', name: 'Piso', slug: 'piso', icon: '🏘️', iconColor: '#9B5DE5', postCount: 9 },
+    { _id: 'art-7', name: 'Mansión', slug: 'mansion', icon: '🏰', iconColor: '#00BBF9', postCount: 2 },
+    { _id: 'art-8', name: 'Villa', slug: 'villa', icon: '🌴', iconColor: '#00F5D4', postCount: 4 },
+  ];
+
+  // ⭐⭐ Inicializar con datos reales o de ejemplo
+  useEffect(() => {
+    console.log('📦 ArticleSlider recibió:', {
+      articlesCount: articles.length,
+      currentSubcategory,
+      currentArticle
+    });
+
+    if (articles && articles.length > 0) {
+      console.log('✅ Usando artículos reales');
+      setDisplayData(articles);
+    } else {
+      console.log('⚠️ No hay artículos reales, usando datos de ejemplo');
+      setDisplayData(sampleArticles);
+    }
+  }, [articles]);
+
+  // 🔄 Responsive
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth <= 767) setItemsPerPage(8);
+    else if (windowWidth <= 1023) setItemsPerPage(6);
+    else if (windowWidth <= 1439) setItemsPerPage(8);
+    else setItemsPerPage(10);
+  }, [windowWidth]);
+
+  const columnsPerRow = itemsPerPage / 2;
+
+  const createPages = () => {
+    const pages = [];
+    
+    for (let i = 0; i < displayData.length; i += itemsPerPage) {
+      const pageArticles = displayData.slice(i, i + itemsPerPage);
+      
+      const row1 = pageArticles.slice(0, columnsPerRow);
+      const row2 = pageArticles.slice(columnsPerRow, itemsPerPage);
+      
+      const filledRow2 = [...row2];
+      while (filledRow2.length < columnsPerRow) {
+        filledRow2.push(null);
+      }
+      
+      pages.push({ row1, row2: filledRow2 });
+    }
+    
+    return pages;
+  };
+
+  const pages = createPages();
+  const totalPages = pages.length;
+
+  const goToNextPage = () => setCurrentPage(prev => (prev < totalPages - 1 ? prev + 1 : 0));
+  const goToPrevPage = () => setCurrentPage(prev => (prev > 0 ? prev - 1 : totalPages - 1));
+  const goToPage = (pageIndex) => setCurrentPage(pageIndex);
+
+  const handleClick = (article) => {
+    if (!article) return;
+    
+    console.log('🖱️ Click en artículo:', article.name);
+    
+    if (onArticleClick) {
+      onArticleClick(article);
+    } else if (currentSubcategory?.slug) {
+      history.push(`/category/${currentSubcategory.slug}/${article.slug}`);
+    }
+  };
+
+  const isArticleActive = (article) => {
+    if (!article || !currentArticle) return false;
+    return article.slug === currentArticle.slug || article._id === currentArticle._id;
+  };
+
+  // ⭐⭐ RENDER SIEMPRE
+  return (
+    <div className="cs-slider-final cs-article-slider">
+
+<h1 style={{color: 'red'}}>DEBUG: SLIDER MONTADO</h1>
+
+      <div className="cs-slider-header">
+        <div>
+          <h3 className="cs-slider-title">
+            Tipos de {currentSubcategory?.name || 'Artículo'}
+            <span className="cs-count-badge">{displayData.length}</span>
+            {articles.length === 0 && (
+              <span className="cs-sample-badge">(Datos de ejemplo)</span>
+            )}
+          </h3>
+          <p className="cs-slider-description">
+            {articles.length > 0 
+              ? 'Selecciona un tipo específico para filtrar productos' 
+              : '⚠️ Configura artículos en el backend para ver datos reales'}
+          </p>
+        </div>
+        
+        {totalPages > 1 && (
+          <div className="cs-page-indicator">
+            Página {currentPage + 1} de {totalPages}
+          </div>
+        )}
+      </div>
+   
+      <div className="cs-slider-container">
+        {pages.length > 0 && (
+          <div className="cs-slider-page cs-active">
+            <div className="cs-category-row cs-first-row">
+              {pages[currentPage]?.row1.map((article, index) => (
+                <div
+                  key={article?._id || `empty-${index}`}
+                  className={`cs-category-item ${article ? '' : 'cs-empty-item'} ${article && isArticleActive(article) ? 'cs-active-item' : ''}`}
+                  onClick={() => handleClick(article)}
+                  style={{ 
+                    '--cs-item-delay': index,
+                    '--cs-icon-bg-color': article?.iconColor || '#f8f9fa'
+                  }}
+                >
+                  {article ? (
+                    <>
+                      <div className="cs-image-container">
+                        <div className="cs-emoji-icon">
+                          {article.icon || '📄'}
+                        </div>
+                        {isArticleActive(article) && (
+                          <div className="cs-active-indicator">
+                            <div className="cs-active-dot"></div>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="cs-category-name">
+                        {article.name}
+                      </div>
+                      
+                      {article.postCount > 0 && (
+                        <div className="cs-product-count">
+                          {article.postCount}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="cs-empty-space"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            <div className="cs-category-row cs-second-row">
+              {pages[currentPage]?.row2.map((article, index) => (
+                <div
+                  key={article?._id || `empty2-${index}`}
+                  className={`cs-category-item ${article ? '' : 'cs-empty-item'} ${article && isArticleActive(article) ? 'cs-active-item' : ''}`}
+                  onClick={() => handleClick(article)}
+                  style={{ 
+                    '--cs-item-delay': index + columnsPerRow,
+                    '--cs-icon-bg-color': article?.iconColor || '#f8f9fa'
+                  }}
+                >
+                  {article ? (
+                    <>
+                      <div className="cs-image-container">
+                        <div className="cs-emoji-icon">
+                          {article.icon || '📄'}
+                        </div>
+                        {isArticleActive(article) && (
+                          <div className="cs-active-indicator">
+                            <div className="cs-active-dot"></div>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="cs-category-name">
+                        {article.name}
+                      </div>
+                      
+                      {article.postCount > 0 && (
+                        <div className="cs-product-count">
+                          {article.postCount}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="cs-empty-space"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {totalPages > 1 && (
+          <div className="cs-slider-controls">
+            <button className="cs-nav-btn cs-prev-btn" onClick={goToPrevPage}>‹</button>
+            <div className="cs-page-indicators">
+              {pages.map((_, index) => (
+                <button
+                  key={index}
+                  className={`cs-page-indicator-btn ${index === currentPage ? 'cs-active' : ''}`}
+                  onClick={() => goToPage(index)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+            <button className="cs-nav-btn cs-next-btn" onClick={goToNextPage}>›</button>
+          </div>
+        )}
+      </div>
+      
+      <style jsx>{`
+        .cs-article-slider {
+          background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
+          border-radius: 16px;
+          padding: 24px;
+          margin-bottom: 30px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+          border: 1px solid rgba(255,255,255,0.5);
+        }
+        
+        .cs-slider-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 24px;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        
+        .cs-slider-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #2c3e50;
+          margin-bottom: 8px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        
+        .cs-count-badge {
+          background: #4ECDC4;
+          color: white;
+          font-size: 0.9rem;
+          padding: 4px 10px;
+          border-radius: 20px;
+          font-weight: 600;
+        }
+        
+        .cs-sample-badge {
+          background: #FFD166;
+          color: #333;
+          font-size: 0.8rem;
+          padding: 4px 8px;
+          border-radius: 12px;
+          font-weight: 500;
+        }
+        
+        .cs-slider-description {
+          color: #6c757d;
+          font-size: 0.95rem;
+          margin-bottom: 0;
+        }
+        
+        .cs-page-indicator {
+          background: white;
+          padding: 8px 16px;
+          border-radius: 50px;
+          font-size: 0.9rem;
+          color: #6c757d;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        /* Estilos del slider (igual que CategorySlider) */
+        .cs-slider-container {
+          position: relative;
+        }
+        
+        .cs-category-row {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 16px;
+          margin-bottom: 16px;
+        }
+        
+        .cs-second-row {
+          margin-bottom: 0;
+        }
+        
+        .cs-category-item {
+          background: white;
+          border-radius: 12px;
+          padding: 16px;
+          cursor: pointer;
+          text-align: center;
+          border: 2px solid #f1f5f9;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 140px;
+          position: relative;
+          transition: all 0.3s;
+        }
+        
+        .cs-category-item:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          border-color: #4ECDC4;
+        }
+        
+        .cs-active-item {
+          border-color: #4ECDC4;
+          background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+          box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+          transform: scale(1.05);
+        }
+        
+        .cs-active-item .cs-category-name {
+          color: #4ECDC4;
+          font-weight: 700;
+        }
+        
+        .cs-empty-item {
+          visibility: hidden;
+        }
+        
+        .cs-image-container {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: var(--cs-icon-bg-color);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 12px;
+          position: relative;
+          border: 3px solid white;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .cs-emoji-icon {
+          font-size: 28px;
+          line-height: 1;
+        }
+        
+        .cs-active-indicator {
+          position: absolute;
+          top: -6px;
+          right: -6px;
+          width: 20px;
+          height: 20px;
+          background: #4ECDC4;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 3px solid white;
+          box-shadow: 0 2px 8px rgba(78, 205, 196, 0.4);
+        }
+        
+        .cs-active-dot {
+          width: 6px;
+          height: 6px;
+          background: white;
+          border-radius: 50%;
+        }
+        
+        .cs-category-name {
+          font-weight: 600;
+          color: #2c3e50;
+          font-size: 0.95rem;
+          margin-bottom: 8px;
+          line-height: 1.3;
+        }
+        
+        .cs-product-count {
+          background: #4ECDC4;
+          color: white;
+          font-size: 0.8rem;
+          padding: 2px 8px;
+          border-radius: 12px;
+          font-weight: 600;
+        }
+        
+        .cs-empty-space {
+          height: 100%;
+          min-height: 140px;
+        }
+        
+        .cs-slider-controls {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-top: 24px;
+        }
+        
+        .cs-nav-btn {
+          background: white;
+          border: 2px solid #4ECDC4;
+          color: #4ECDC4;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        
+        .cs-nav-btn:hover {
+          background: #4ECDC4;
+          color: white;
+        }
+        
+        .cs-page-indicators {
+          display: flex;
+          gap: 8px;
+        }
+        
+        .cs-page-indicator-btn {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 2px solid #e9ecef;
+          background: white;
+          color: #6c757d;
+          font-weight: 600;
+          cursor: pointer;
+        }
+        
+        .cs-page-indicator-btn.cs-active {
+          background: #4ECDC4;
+          color: white;
+          border-color: #4ECDC4;
+        }
+        
+        @media (max-width: 768px) {
+          .cs-article-slider {
+            padding: 16px;
+          }
+          
+          .cs-category-row {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default ArticleSlider;

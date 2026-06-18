@@ -1,0 +1,41 @@
+{
+    "errors": {
+      "maxImages": "الحد الأقصى {{max}} صور مسموح بها. {{extra}}",
+      "superUserExtra": "يمكن للمستخدمين المميزين تحميل ما يصل إلى 4 صور.",
+      "fileNotExist": "الملف غير موجود.",
+      "invalidType": "يسمح فقط بملفات الصور (JPEG, JPG, PNG, GIF).",
+      "invalidName": "الاسم \"{{name}}\" يحتوي على أحرف غير مسموح بها.",
+      "maxSize": "لا يمكن أن يتجاوز حجم الصورة 5 ميجابايت.",
+      "minDimensions": "يجب أن تكون الصورة على الأقل {{width}}x{{height}} بكسل.",
+      "maxDimensions": "لا يمكن أن تتجاوز الصورة {{width}}x{{height}} بكسل.",
+      "duplicateImage": "الصورة \"{{name}}\" تم اختيارها مسبقًا.",
+      "imageLoad": "خطأ في تحميل الصورة.",
+      "categoryRequired": "يرجى اختيار فئة.",
+      "imageRequired": "يرجى إضافة صورة واحدة على الأقل.",
+      "invalidFiles": "يسمح فقط بملفات الصور (JPEG, JPG, PNG, GIF, WEBP)."
+    },
+    "statusModal": {
+      "title": "إنشاء منشور"
+    },
+
+
+ 
+   
+      "titulostatusmoddal": "إنشاء منشور",
+      "sectionTitles": {
+        "basicInfo": "معلومات أساسية",
+        "artisticDetails": "تفاصيل فنية",
+        "dimensions": "الأبعاد",
+        "availabilityPrice": "التوافر والسعر",
+        "saleLogistics": "لوجستيات البيع",
+        "artistInfo": "معلومات عن الفنان"
+      },
+      "button": {
+        "post": "نشر"
+      }
+    
+    
+
+ 
+  }
+  

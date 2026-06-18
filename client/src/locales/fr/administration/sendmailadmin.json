@@ -1,0 +1,25 @@
+{
+  "usersTitle": "المستخدمون",
+  "sendEmailButton": "إرسال بريد إلى {{count}} مستخدم",
+  "sendToInactive": "إرسال إلى المستخدمين غير النشطين",
+  "selectUser": "اختر المستخدم",
+  "userAvatar": "صورة المستخدم",
+  
+    "avatar": "الصورة",
+    "email": "البريد الإلكتروني",
+    "registration": "تاريخ التسجيل",
+  
+    "lastActivity": "آخر نشاط",
+ 
+  "status": {
+    "sent": "تم الإرسال",
+    "notSent": "لم يتم الإرسال",
+    "noActivity": "لا توجد نشاطات"
+  },
+  "tableHeaderss": {
+    "avatar": "الصورة",
+    "email": "البريد الإلكتروني",
+    "registration": "تاريخ التسجيل",
+    "status": "الحالة"
+  }
+}

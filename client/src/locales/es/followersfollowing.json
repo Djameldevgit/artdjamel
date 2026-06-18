@@ -1,0 +1,10 @@
+{
+    "followers": "Seguidores",
+    "following": "Siguiendo",
+    "noFollowers": "No hay seguidores",
+    "noFollowersMessage": "Este usuario aún no tiene seguidores.",
+    "noFollowing": "No sigue a nadie",
+    "noFollowingMessage": "Este usuario aún no sigue a nadie.",
+    "totalFollowers": "Total seguidores: {{count}}",
+    "totalFollowing": "Total siguiendo: {{count}}"
+  }

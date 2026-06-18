@@ -1,0 +1,17 @@
+{
+    "title": "مشاركة التطبيق",
+    "description": "شارك تطبيقنا مع أصدقائك!",
+    "appName": "رحلات ",
+    "shareText": "اكتشف تطبيق الفن الجديد عبر الإنترنت < ​DJAMEL APS > {{appName}}! {{appUrl}}",
+    "facebook": "فيسبوك",
+    "whatsapp": "واتساب",
+    "twitter": "تويتر",
+    "tiktok": "تيك توك",
+    "linkedin": "لينكد إن",
+    "telegram": "تيليجرام",
+    "copyLink": "نسخ الرابط",
+    "shareNative": "مشاركة باستخدام...",
+    "copySuccess": "تم نسخ الرابط إلى الحافظة!",
+    "copyError": "خطأ في النسخ",
+    "shareError": "خطأ في المشاركة"
+  }

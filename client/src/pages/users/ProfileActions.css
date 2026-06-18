@@ -1,0 +1,311 @@
+/* src/pages/users/ProfileActions.css */
+
+.profile-actions-page {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+    min-height: 100vh;
+    padding-bottom: 3rem;
+}
+
+.profile-actions-header {
+    text-align: center;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-btn:hover {
+    color: #764ba2;
+}
+
+.profile-actions-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+/* Tarjeta de plan */
+.plan-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-left: 4px solid;
+}
+
+.plan-header {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.plan-icon-wrapper {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.plan-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.plan-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.plan-badge.active {
+    background: #10b981;
+    color: white;
+}
+
+.plan-badge.expired {
+    background: #ef4444;
+    color: white;
+}
+
+.plan-badge.free {
+    background: #6c757d;
+    color: white;
+}
+
+.plan-body {
+    padding: 1rem 1.5rem 1.5rem;
+    text-align: center;
+}
+
+.plan-expiry {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.upgrade-btn, .renew-btn {
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+}
+
+/* Tarjeta de acciones */
+.actions-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.actions-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+.actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: #4b5563;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.action-item:hover {
+    background: #f3f4f6;
+    color: #667eea;
+}
+
+.action-item.delete:hover {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.action-item.upgrade:hover {
+    background: #fef3c7;
+    color: #f59e0b;
+}
+
+/* Tarjetas de estadísticas */
+.stats-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.stats-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.75rem;
+}
+
+.stats-icon {
+    font-size: 1.5rem;
+    color: #667eea;
+}
+
+.stats-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.stats-numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: #f9fafb;
+}
+
+.stat-item.approved {
+    background: #ecfdf5;
+    color: #10b981;
+}
+
+.stat-item.pending {
+    background: #fffbeb;
+    color: #f59e0b;
+}
+
+.stat-item.rejected {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+}
+
+/* Barra de límite */
+.plan-limit-info {
+    margin-top: 1rem;
+}
+
+.limit-bar {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.limit-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Tarjeta de información */
+.info-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.info-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.plan-features {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.plan-features li {
+    padding: 0.25rem 0;
+    font-size: 0.85rem;
+}
+
+.plan-features li.active {
+    color: #10b981;
+}
+
+.plan-features li.inactive {
+    color: #9ca3af;
+    text-decoration: line-through;
+}
+
+.plan-duration-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Loading */
+.profile-actions-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-numbers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .profile-actions-header h1 {
+        font-size: 1.5rem;
+    }
+    .back-btn {
+        position: static;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+}

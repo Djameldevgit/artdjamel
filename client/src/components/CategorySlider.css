@@ -1,0 +1,183 @@
+/* =====================================================
+   CategorySlider.css  — Stories-style circles
+   ===================================================== */
+
+/* ── Scrollable row ────────────────────────────────── */
+.catslider-row {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding: 0px 6px 4px;
+  align-items: flex-start;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* reset button group appearance */
+  background: transparent;
+  border: none;
+}
+
+.catslider-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Each item (button reset) ──────────────────────── */
+.catslider-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  min-width: 72px;
+  padding: 0 6px;
+  background: none;
+  border: none;
+  outline: none;
+  transition: opacity 0.15s;
+  user-select: none;
+}
+
+.catslider-item:active {
+  opacity: 0.7;
+}
+
+/* ── Ring (outer border on hover / active) ─────────── */
+.catslider-ring {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  padding: 2.5px;
+  /* invisible border by default */
+  border: 2px solid transparent;
+  background: var(--home-s2, #1A1A1F);
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+  box-sizing: border-box;
+}
+
+.catslider-item:hover .catslider-ring,
+.catslider-item.active .catslider-ring {
+  border-color: var(--home-accent, #FF4F1A);
+  transform: scale(1.06);
+}
+
+/* ── Inner circle ──────────────────────────────────── */
+.catslider-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--home-s3, #232329);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* "Tout" chip gets a slight accent tint */
+.catslider-inner--all {
+  background: rgba(255, 79, 26, 0.12);
+}
+
+.catslider-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fallback initial letter */
+.catslider-initial {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--home-accent, #FF4F1A);
+  line-height: 1;
+}
+
+/* ── Active indicator dot ──────────────────────────── */
+.catslider-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--home-accent, #FF4F1A);
+  position: absolute;
+  bottom: -1px;
+  right: 1px;
+  border: 1.5px solid var(--home-bg, #0D0D0F);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.18s, transform 0.18s;
+}
+
+.catslider-item.active .catslider-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Label ─────────────────────────────────────────── */
+.catslider-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--home-muted, #7A7A86);
+  text-align: center;
+  max-width: 68px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.18s;
+}
+
+.catslider-item:hover .catslider-label,
+.catslider-item.active .catslider-label {
+  color: var(--home-txt, #F0EFE8);
+}
+
+/* ── Light mode ────────────────────────────────────── */
+.home-root.light .catslider-ring {
+  background: #EBEBF0;
+}
+
+.home-root.light .catslider-inner {
+  background: #E0E0E8;
+}
+
+.home-root.light .catslider-inner--all {
+  background: rgba(255,79,26,0.1);
+}
+
+.home-root.light .catslider-label {
+  color: #6B6B78;
+}
+
+.home-root.light .catslider-item:hover .catslider-label,
+.home-root.light .catslider-item.active .catslider-label {
+  color: #1A1A1F;
+}
+
+.home-root.light .catslider-dot {
+  border-color: #F5F5F7;
+}
+
+/* ── Mobile ────────────────────────────────────────── */
+@media (max-width: 576px) {
+  .catslider-row {
+    padding: 8px 12px 12px;
+  }
+
+  .catslider-item {
+    min-width: 62px;
+    padding: 0 4px;
+  }
+
+  .catslider-ring {
+    width: 52px;
+    height: 52px;
+  }
+
+  .catslider-initial {
+    font-size: 18px;
+  }
+
+  .catslider-label {
+    font-size: 10.5px;
+    max-width: 58px;
+  }
+}

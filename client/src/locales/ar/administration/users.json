@@ -1,0 +1,53 @@
+{
+  "searchUsers": "البحث عن المستخدمين...",
+  "noUsersFound": "لم يتم العثور على مستخدمين",
+  "noUsersFoundSearch": "لا يوجد مستخدمون يطابقون بحثك",
+  "searching": "جاري البحث عن المستخدمين...",
+  
+  "user": "المستخدم",
+  "statuss": "الحالة",
+  "lastDisconnect": "آخر انقطاع",
+  "registration": "التسجيل",
+  "verification": "التحقق",
+  "accountStatus": "حالة الحساب",
+  "blockStatus": "الحظر",
+  "actions": "الإجراءات",
+
+  "status": {
+    "online": "متصل",
+    "offline": "غير متصل",
+    "offlineSince": "غير متصل منذ {{time}}",
+    "verified": "تم التحقق",
+    "notVerified": "غير موثوق",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "blocked": "محظور",
+    "notBlocked": "غير محظور"
+  },
+  "action": {
+    "edit": "تعديل",
+    "delete": "حذف",
+    "activate": "تفعيل",
+    "deactivate": "تعطيل",
+    "block": "حظر",
+    "unblock": "رفع الحظر",
+    "verify": "تحقق",
+    "unverify": "إلغاء التحقق",
+    "managePermissions": "إدارة الصلاحيات"
+  },
+  "deleteModal": {
+    "title": "تأكيد الحذف",
+    "message": "هل أنت متأكد من أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذا الإجراء.",
+    "cancel": "إلغاء",
+    "confirm": "حذف المستخدم"
+  },
+  "errors": {
+    "fetchUsers": "خطأ في تحميل المستخدمين",
+    "loadMore": "خطأ في تحميل المزيد من المستخدمين",
+    "deleteUser": "خطأ في حذف المستخدم",
+    "blockUser": "خطأ في حظر المستخدم",
+    "unblockUser": "خطأ في رفع حظر المستخدم",
+    "toggleStatus": "خطأ في تغيير الحالة",
+    "toggleVerification": "خطأ في تغيير التحقق"
+  }
+}

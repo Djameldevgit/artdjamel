@@ -1,0 +1,75 @@
+{
+    "subcategories": "Sous-catégories",
+    "select_subcategory": "Sélectionnez une sous-catégorie",
+    "type_operation": "Type d'opération",
+    "type_property": "Type de bien",
+    "type_vehicle": "Type de véhicule",
+    "type_clothing": "Type d'article",
+    
+    "immobilier": {
+      "operation": {
+        "vente": "Vente",
+        "location": "Location",
+        "location_vacances": "Location vacances",
+        "cherche_location": "Cherche location",
+        "cherche_achat": "Cherche achat"
+      },
+      "property": {
+        "appartement": "Appartement",
+        "local": "Local",
+        "villa": "Villa",
+        "terrain": "Terrain",
+        "terrain_agricole": "Terrain Agricole",
+        "immeuble": "Immeuble",
+        "bungalow": "Bungalow"
+      }
+    },
+    
+    "vehicules": {
+      "categories": {
+        "voitures": "Voitures",
+        "utilitaire": "Utilitaire",
+        "motos": "Motos & Scooters",
+        "quads": "Quads",
+        "fourgon": "Fourgon",
+        "camion": "Camion",
+        "bus": "Bus",
+        "engin": "Engin",
+        "tracteurs": "Tracteurs",
+        "remorques": "Remorques",
+        "bateaux": "Bateaux & Barques"
+      }
+    },
+    
+    "vetements": {
+      "categories": {
+        "vetements_homme": "Vêtements Homme",
+        "vetements_femme": "Vêtements Femme",
+        "chaussures_homme": "Chaussures Homme",
+        "chaussures_femme": "Chaussures Femme",
+        "garcons": "Garçons",
+        "filles": "Filles",
+        "bebe": "Bébé",
+        "tenues_pro": "Tenues professionnelles",
+        "sacs": "Sacs & Valises",
+        "montres": "Montres",
+        "lunettes": "Lunettes",
+        "bijoux": "Bijoux"
+      }
+    },
+    
+    "tips": {
+      "vente": "Achat/Vente de bien immobilier",
+      "location": "Location à long terme",
+      "location_vacances": "Location saisonnière/touristique",
+      "cherche_location": "Recherche d'un bien à louer",
+      "cherche_achat": "Recherche d'un bien à acheter",
+      "appartement": "Appartement résidentiel",
+      "local": "Local commercial/bureau",
+      "villa": "Maison individuelle",
+      "terrain": "Terrain constructible",
+      "terrain_agricole": "Terrain agricole/exploitation",
+      "immeuble": "Immeuble entier",
+      "bungalow": "Bungalow/chalet"
+    }
+  }

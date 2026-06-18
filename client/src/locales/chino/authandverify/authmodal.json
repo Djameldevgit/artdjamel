@@ -1,0 +1,23 @@
+{
+  "auth": "authhhhhhhhhhhhhhhhhhhhhhhhhhh",
+  "authenticationRequired": "需要身份验证",
+  "pleaseLoginToContinue": "请登录或注册以继续",
+  "login": "登录",
+  "register": "注册",
+  "activate": "activateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "activationRequest": "激活请求",
+  "activationMessage": "您的账户已被停用。请联系管理员重新激活您的账户。",
+  "userEmail": "用户邮箱",
+  "message": "消息",
+  "messagePlaceholder": "在此处写下您的激活请求...",
+  "messageRequired": "您必须写一条消息",
+  "messageSentSuccess": "请求发送成功",
+  "requestActivation": "请求激活",
+  "requestError": "发送请求时出错",
+  "sending": "发送中...",
+  "close": "关闭",
+  "verifyyyyy": "verifyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+  "verificationRequired": "需要验证",
+  "verificationMessage": "您的账户需要验证才能访问所有功能。请验证您的电子邮件以继续。",
+  "verificationNote": "如果您没有收到电子邮件，可以申请新的验证邮件"
+}

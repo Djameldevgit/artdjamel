@@ -1,0 +1,227 @@
+{
+
+
+ 
+    "labels": {
+      "mainCategory": "Catégorie Principale",
+      "subCategory": "Sous-catégorie",
+      "gender": "Genre",
+      "size": "Taille",
+      "color": "Couleur",
+      "brand": "Marque",
+      "condition": "État",
+      "minPrice": "Prix Min",
+      "maxPrice": "Prix Max",
+      "filtersActive": "filtres actifs",
+ 
+      "subSubCategory": "Type spécifique",
+ 
+      "material": "Matière",
+      "season": "Saison",
+      "location": "Localisation"
+ 
+
+
+    },
+   
+   
+    "results": {
+      "resultsFound": "produits trouvés"
+    },
+ 
+ 
+ 
+
+
+
+
+ 
+  "placeholders": {
+    "allSubCategories": "Toutes les sous-catégories",
+    "allTypes": "Tous les types",
+    "brand": "Rechercher par marque...",
+    "allConditions": "Tous les états",
+    "allGenders": "Tous les genres",
+    "allSizes": "Toutes les tailles",
+    "allColors": "Toutes les couleurs",
+    "allMaterials": "Toutes les matières",
+    "allSeasons": "Toutes les saisons",
+    "location": "Ville, wilaya...",
+    "minPrice": "Min",
+    "maxPrice": "Max"
+  },
+  "buttons": {
+    "showAdvanced": "Recherche avancée",
+    "hideAdvanced": "Masquer les filtres",
+    "search": "Rechercher",
+    "searching": "Recherche...",
+    "latestProducts": "Derniers produits",
+    "clearAll": "Effacer tout",
+ 
+    "filters": "Filtres",
+    "clear": "Effacer"
+  
+
+
+  },
+  "states": {
+    "searching": "Recherche en cours",
+    "pleaseWait": "Veuillez patienter...",
+    "noResults": "Aucun résultat trouvé",
+    "tryAgain": "Essayez avec d'autres critères"
+  },
+  "errors": {
+    "searchError": "Erreur lors de la recherche",
+    "networkError": "Erreur de connexion"
+  },
+  "options": {
+    "categories": {
+      "clothing": "Vêtements",
+      "man_clothing": "Vêtements Homme",
+      "woman_clothing": "Vêtements Femme",
+      "man_shoes": "Chaussures Homme",
+      "woman_shoes": "Chaussures Femme",
+      "boys": "Garçons",
+      "girls": "Filles",
+      "baby": "Bébé",
+      "professional_wear": "Tenues professionnelles",
+      "bags_luggage": "Sacs & Valises",
+      "tops_shirts": "Hauts & Chemises",
+      "jeans_pants": "Jeans & Pantalons",
+      "shorts_capris": "Shorts & Pantacourts",
+      "jackets_vests": "Vestes & Gilets",
+      "suits_blazers": "Costumes & Blazers",
+      "sportswear": "Vêtements de Sport",
+      "kamiss": "Kamiss",
+      "underwear": "Sous-vêtements",
+      "pajamas": "Pyjamas",
+      "swimwear": "Maillots de bain",
+      "caps_hats": "Casquettes & Chapeaux",
+      "socks": "Chaussettes",
+      "belts": "Ceintures",
+      "gloves": "Gants",
+      "ties": "Cravates",
+      "sets": "Ensembles",
+      "abayas_hijabs": "Abayas & Hijabs",
+      "wedding_party": "Mariages & Fêtes",
+      "maternity": "Maternité",
+      "dresses": "Robes",
+      "skirts": "Jupes",
+      "leggings": "Leggings",
+      "lingerie": "Lingerie",
+      "robes": "Peignoirs",
+      "tights": "Collants",
+      "scarves": "Foulards & Écharpes",
+      "sneakers": "Baskets",
+      "boots": "Bottes",
+      "classic": "Classiques",
+      "moccasins": "Mocassins",
+      "sandals": "Sandales",
+      "slippers": "Pantoufles",
+      "heels": "Escarpins",
+      "ballet": "Ballerines",
+      "accessories": "Accessoires",
+      "wallets": "Portefeuilles",
+      "handbags": "Sacs à main",
+      "backpacks": "Sacs à dos",
+      "professional_bags": "Sacs professionnels",
+      "suitcases": "Valises",
+      "sport_bags": "Sacs de sport"
+    },
+    "conditions": {
+      "new": "Neuf",
+      "like_new": "Comme neuf",
+      "good": "Bon état",
+      "satisfactory": "État satisfaisant"
+    },
+    "genders": {
+      "man": "Homme",
+      "woman": "Femme",
+      "unisex": "Unisexe",
+      "boy": "Garçon",
+      "girl": "Fille",
+      "baby": "Bébé"
+    },
+    "sizes": {
+      "XS": "XS",
+      "S": "S",
+      "M": "M",
+      "L": "L",
+      "XL": "XL",
+      "XXL": "XXL",
+      "XXXL": "XXXL",
+      "36": "36",
+      "38": "38",
+      "40": "40",
+      "42": "42",
+      "44": "44",
+      "46": "46",
+      "48": "48",
+      "50": "50"
+    },
+    "colors": {
+      "black": "Noir",
+      "white": "Blanc",
+      "red": "Rouge",
+      "blue": "Bleu",
+      "green": "Vert",
+      "yellow": "Jaune",
+      "pink": "Rose",
+      "purple": "Violet",
+      "orange": "Orange",
+      "brown": "Marron",
+      "gray": "Gris",
+      "beige": "Beige",
+      "multicolor": "Multicolore"
+    },
+    "materials": {
+      "cotton": "Coton",
+      "polyester": "Polyester",
+      "wool": "Laine",
+      "silk": "Soie",
+      "denim": "Jean",
+      "leather": "Cuir",
+      "synthetic": "Synthétique",
+      "linen": "Lin",
+      "cashmere": "Cachemire",
+      "velvet": "Velours"
+    },
+    "seasons": {
+      "spring": "Printemps",
+      "summer": "Été",
+      "autumn": "Automne",
+      "winter": "Hiver",
+      "all_year": "Toute l'année"
+    },
+    "wilayas": {
+      "algiers": "Alger",
+      "oran": "Oran",
+      "constantine": "Constantine",
+      "annaba": "Annaba",
+      "blida": "Blida",
+      "batna": "Batna",
+      "djelfa": "Djelfa",
+      "setif": "Sétif",
+      "sidi_bel_abbes": "Sidi Bel Abbès",
+      "biskra": "Biskra",
+      "tebessa": "Tébessa",
+      "el_oued": "El Oued",
+      "skikda": "Skikda",
+      "tiaret": "Tiaret",
+      "bejaia": "Béjaïa",
+      "tlemcen": "Tlemcen",
+      "ouargla": "Ouargla",
+      "mostaganem": "Mostaganem",
+      "bordj_bou_arreridj": "Bordj Bou Arréridj",
+      "chlef": "Chlef",
+      "souk_ahras": "Souk Ahras",
+      "medea": "Médéa",
+      "el_tarf": "El Tarf",
+      "ain_defla": "Aïn Defla",
+      "naama": "Naâma",
+      "ain_temouchent": "Aïn Témouchent",
+      "ghardaia": "Ghardaïa",
+      "relizane": "Relizane"
+    }
+  }
+}

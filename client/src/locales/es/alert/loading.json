@@ -1,0 +1,9 @@
+{
+    "error": "Error",
+    "success": "Éxito",
+    "login_failed": "Error de inicio de sesión",
+    "update_success": "Actualización exitosa",
+    "loading": "Cargando...",
+    "errorTitle": "Error",
+    "successTitle": "Éxito"
+}

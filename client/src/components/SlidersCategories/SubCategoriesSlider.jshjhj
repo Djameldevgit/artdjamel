@@ -1,0 +1,97 @@
+// 📂 components/SlidersCategories/SubCategoriesSlider.js
+import React, { useEffect, useState } from "react";
+
+const SubCategorySlider = ({ subcategories = [], onSubcategoryClick }) => {
+  const [page, setPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+
+  useEffect(() => {
+    const w = window.innerWidth;
+    if (w <= 767) setItemsPerPage(8);
+    else if (w <= 1023) setItemsPerPage(6);
+    else if (w <= 1439) setItemsPerPage(8);
+    else setItemsPerPage(10);
+  }, []);
+
+  const totalPages = Math.ceil(subcategories.length / itemsPerPage);
+
+  const pageItems = subcategories.slice(
+    page * itemsPerPage,
+    page * itemsPerPage + itemsPerPage
+  );
+
+  const firstRow = pageItems.slice(0, itemsPerPage / 2);
+  const secondRow = pageItems.slice(itemsPerPage / 2);
+
+  return (
+    <div className="cs-slider-final">
+      <div className="cs-slider-container">
+        <div className="cs-slider-page cs-active">
+          <div className="cs-category-row cs-first-row">
+            {firstRow.map((sub, i) => (
+              <div
+                key={sub._id}
+                className="cs-category-item"
+                style={{ "--cs-item-delay": i }}
+                onClick={() => onSubcategoryClick(sub)}
+              >
+                <div className="cs-image-container">
+                  {sub.icon ? (
+                    <img src={sub.icon} className="cs-category-image" />
+                  ) : (
+                    <div className="cs-image-fallback">
+                      {sub.name[0]}
+                    </div>
+                  )}
+                </div>
+                <div className="cs-category-name">{sub.name}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="cs-category-row cs-second-row">
+            {secondRow.map((sub, i) => (
+              <div
+                key={sub._id}
+                className="cs-category-item"
+                style={{ "--cs-item-delay": i }}
+                onClick={() => onSubcategoryClick(sub)}
+              >
+                <div className="cs-image-container">
+                  {sub.icon ? (
+                    <img src={sub.icon} className="cs-category-image" />
+                  ) : (
+                    <div className="cs-image-fallback">
+                      {sub.name[0]}
+                    </div>
+                  )}
+                </div>
+                <div className="cs-category-name">{sub.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {totalPages > 1 && (
+          <div className="cs-slider-controls">
+            <button className="cs-nav-btn" onClick={() => setPage(p => Math.max(p - 1, 0))}>‹</button>
+            <div className="cs-page-indicators">
+              {Array.from({ length: totalPages }).map((_, i) => (
+                <button
+                  key={i}
+                  className={`cs-page-indicator-btn ${i === page ? "cs-active" : ""}`}
+                  onClick={() => setPage(i)}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+            <button className="cs-nav-btn" onClick={() => setPage(p => Math.min(p + 1, totalPages - 1))}>›</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default SubCategorySlider;

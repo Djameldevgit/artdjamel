@@ -1,0 +1,1107 @@
+r/* ============================================
+   ESTILOS UNIFICADOS - PASO 1 (TIPO + FUENTE)
+   ============================================ */
+
+/* Contenedor principal del paso unificado */
+.unified-step-1 {
+  animation: cw-slideIn 0.3s ease-out;
+}
+
+/* PRIMERA FILA - Tipo de video (Social/Commercial) */
+.video-type-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.video-type-option {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-type-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-type-option:hover::before {
+  opacity: 1;
+}
+
+.video-type-option:hover {
+  transform: translateY(-2px);
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.video-type-option.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+}
+
+.video-type-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.video-type-icon.social-icon {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+}
+
+.video-type-icon.commercial-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.video-type-text {
+  flex: 1;
+}
+
+.video-type-text h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: white;
+}
+
+.video-type-text span {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.active-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  background: #28a745;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* SEGUNDA FILA - Fuentes de video (Galería/Cámara/Link) */
+.video-source-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.video-source-option {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.video-source-option:hover {
+  transform: translateY(-2px);
+  border-color: rgba(102, 126, 234, 0.5);
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.video-source-option.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  color: white;
+}
+
+.video-source-option svg {
+  width: 28px;
+  height: 28px;
+}
+
+.video-source-option span {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* VISTA PREVIA DEL VIDEO - Mejorada con tus estilos */
+.video-preview-container {
+  margin-top: 20px;
+  animation: cw-slideIn 0.3s ease-out;
+}
+
+.video-preview-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.video-preview-header .badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* Preview video - tamaño perfecto */
+.video-preview-element {
+  width: 100%;
+  max-height: 350px;
+  border-radius: 20px;
+  background: #000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  object-fit: contain;
+}
+
+.youtube-preview {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+}
+
+.youtube-preview img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.youtube-preview:hover img {
+  transform: scale(1.02);
+}
+
+.link-info {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.link-info small {
+  word-break: break-all;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Botón cambiar video */
+.video-preview-container .btn-outline-danger {
+  background: rgba(220, 53, 69, 0.9);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.video-preview-container .btn-outline-danger:hover {
+  background: #dc3545;
+  transform: scale(1.02);
+}
+
+/* ============================================
+   SELECTOR DE MÚSICA - Manteniendo tus estilos
+   ============================================ */
+.cw-music-list {
+  max-height: 320px;
+  overflow-y: auto;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cw-music-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cw-music-item:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.cw-music-item.selected {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  border-left: 3px solid #667eea;
+}
+
+.cw-music-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+  color: #667eea;
+}
+
+.cw-music-title {
+  font-weight: 600;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.cw-music-artist {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================
+   CATEGORÍAS - Manteniendo tus colores
+   ============================================ */
+.cw-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.cw-category-item {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cw-category-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.cw-category-item.selected {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+}
+
+.cw-category-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.cw-category-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: white;
+}
+
+/* ============================================
+   RESPONSIVE PARA MÓVILES - Ajustes finos
+   ============================================ */
+@media (max-width: 480px) {
+  .video-type-row {
+    gap: 12px;
+  }
+  
+  .video-type-option {
+    padding: 12px;
+  }
+  
+  .video-type-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .video-type-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .video-type-text h5 {
+    font-size: 0.85rem;
+  }
+  
+  .video-type-text span {
+    font-size: 0.6rem;
+  }
+  
+  .active-check {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    top: 6px;
+    right: 6px;
+  }
+  
+  .video-source-row {
+    gap: 8px;
+  }
+  
+  .video-source-option {
+    padding: 10px 6px;
+  }
+  
+  .video-source-option svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .video-source-option span {
+    font-size: 0.65rem;
+  }
+  
+  .video-preview-element,
+  .youtube-preview img {
+    max-height: 250px;
+  }
+}
+
+/* ============================================
+   OPTIMIZACIONES TÁCTILES ANDROID
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .video-type-option,
+  .video-source-option,
+  .cw-category-item,
+  .cw-music-item {
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .video-type-option:active,
+  .video-source-option:active {
+    transform: scale(0.98);
+    transition: transform 0.05s ease;
+  }
+  
+  .cw-category-item:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ============================================
+   ANIMACIONES ADICIONALES
+   ============================================ */
+@keyframes cw-slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cw-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estados de carga y skeleton */
+.cw-loading-skeleton {
+  background: linear-gradient(90deg, #1a1a2e 25%, #2a2a3e 50%, #1a1a2e 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 12px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+/* ============================================
+   ESTILOS UNIFICADOS - PASO 1 (TIPO + FUENTE)
+   ============================================ */
+
+/* Contenedor principal del paso unificado */
+.unified-step-1 {
+  animation: cw-slideIn 0.3s ease-out;
+}
+
+/* PRIMERA FILA - Tipo de video (Social/Commercial) */
+.video-type-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.video-type-option {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-type-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-type-option:hover::before {
+  opacity: 1;
+}
+
+.video-type-option:hover {
+  transform: translateY(-2px);
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.video-type-option.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+}
+
+.video-type-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.video-type-icon.social-icon {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+}
+
+.video-type-icon.commercial-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.video-type-text {
+  flex: 1;
+}
+
+.video-type-text h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: white;
+}
+
+.video-type-text span {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.active-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  background: #28a745;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* SEGUNDA FILA - Fuentes de video (Galería/Cámara/Link) */
+.video-source-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.video-source-option {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.video-source-option:hover {
+  transform: translateY(-2px);
+  border-color: rgba(102, 126, 234, 0.5);
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.video-source-option.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  color: white;
+}
+
+.video-source-option svg {
+  width: 28px;
+  height: 28px;
+}
+
+.video-source-option span {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* VISTA PREVIA DEL VIDEO - Mejorada con tus estilos */
+.video-preview-container {
+  margin-top: 20px;
+  animation: cw-slideIn 0.3s ease-out;
+}
+
+.video-preview-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.video-preview-header .badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* Preview video - tamaño perfecto */
+.video-preview-element {
+  width: 100%;
+  max-height: 350px;
+  border-radius: 20px;
+  background: #000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  object-fit: contain;
+}
+
+.youtube-preview {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+}
+
+.youtube-preview img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.youtube-preview:hover img {
+  transform: scale(1.02);
+}
+
+.link-info {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.link-info small {
+  word-break: break-all;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Botón cambiar video */
+.video-preview-container .btn-outline-danger {
+  background: rgba(220, 53, 69, 0.9);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.video-preview-container .btn-outline-danger:hover {
+  background: #dc3545;
+  transform: scale(1.02);
+}
+
+/* ============================================
+   SELECTOR DE MÚSICA - Manteniendo tus estilos
+   ============================================ */
+.cw-music-list {
+  max-height: 320px;
+  overflow-y: auto;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cw-music-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cw-music-item:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.cw-music-item.selected {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  border-left: 3px solid #667eea;
+}
+
+.cw-music-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+  color: #667eea;
+}
+
+.cw-music-title {
+  font-weight: 600;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.cw-music-artist {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================
+   CATEGORÍAS - Manteniendo tus colores
+   ============================================ */
+.cw-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.cw-category-item {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cw-category-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.cw-category-item.selected {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+}
+
+.cw-category-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.cw-category-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: white;
+}
+
+/* ============================================
+   RESPONSIVE PARA MÓVILES - Ajustes finos
+   ============================================ */
+@media (max-width: 480px) {
+  .video-type-row {
+    gap: 12px;
+  }
+  
+  .video-type-option {
+    padding: 12px;
+  }
+  
+  .video-type-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .video-type-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .video-type-text h5 {
+    font-size: 0.85rem;
+  }
+  
+  .video-type-text span {
+    font-size: 0.6rem;
+  }
+  
+  .active-check {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    top: 6px;
+    right: 6px;
+  }
+  
+  .video-source-row {
+    gap: 8px;
+  }
+  
+  .video-source-option {
+    padding: 10px 6px;
+  }
+  
+  .video-source-option svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .video-source-option span {
+    font-size: 0.65rem;
+  }
+  
+  .video-preview-element,
+  .youtube-preview img {
+    max-height: 250px;
+  }
+}
+
+/* ============================================
+   OPTIMIZACIONES TÁCTILES ANDROID
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .video-type-option,
+  .video-source-option,
+  .cw-category-item,
+  .cw-music-item {
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .video-type-option:active,
+  .video-source-option:active {
+    transform: scale(0.98);
+    transition: transform 0.05s ease;
+  }
+  
+  .cw-category-item:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ============================================
+   ANIMACIONES ADICIONALES
+   ============================================ */
+@keyframes cw-slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cw-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ============================================
+   VISTA PREVIA DEL VIDEO - TAMAÑO COMPLETO
+   ============================================ */
+
+/* Contenedor principal del preview */
+.video-preview-container {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  animation: cw-slideIn 0.3s ease-out;
+  width: 100%;
+}
+
+/* Header con badges */
+.video-preview-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.video-preview-header .badge {
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* PREVIEW VIDEO - TAMAÑO GRANDE */
+.video-preview-element {
+  width: 100%;
+  min-height: 400px;
+  max-height: 500px;
+  border-radius: 24px;
+  background: #000000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* YouTube preview */
+.youtube-preview {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000000;
+  width: 100%;
+  cursor: pointer;
+}
+
+.youtube-preview img {
+  width: 100%;
+  min-height: 400px;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 24px;
+  transition: transform 0.3s ease;
+}
+
+.youtube-preview:hover img {
+  transform: scale(1.02);
+}
+
+/* Overlay de play para YouTube */
+.youtube-preview::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.youtube-preview:hover::after {
+  opacity: 1;
+}
+
+/* Info del link */
+.link-info {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.link-info small {
+  word-break: break-all;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Botón cambiar video */
+.video-preview-container .btn-outline-danger {
+  background: rgba(220, 53, 69, 0.9);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.video-preview-container .btn-outline-danger:hover {
+  background: #dc3545;
+  transform: scale(1.02);
+}
+
+/* ============================================
+   RESPONSIVE - MÓVILES
+   ============================================ */
+@media (max-width: 768px) {
+  .video-preview-element,
+  .youtube-preview img {
+    min-height: 300px;
+    max-height: 400px;
+  }
+  
+  .youtube-preview::after {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-preview-element,
+  .youtube-preview img {
+    min-height: 250px;
+    max-height: 350px;
+  }
+  
+  .video-preview-header .badge {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+  
+  .youtube-preview::after {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+  }
+}
+
+/* ============================================
+   ESTILOS ADICIONALES PARA EL CARD PRINCIPAL
+   ============================================ */
+.create-video-wizard .card {
+  background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+  border-radius: 32px !important;
+}
+
+.cw-header-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+
+/* Mejorar el step indicator */
+.cw-step-number {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.cw-step-item.active .cw-step-number {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: white !important;
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+}
+
+.cw-step-item.completed .cw-step-number {
+  background: #28a745 !important;
+  color: white !important;
+}
+
+.cw-step-label {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.cw-step-item.active .cw-step-label {
+  color: #667eea !important;
+}
+/* Estados de carga y skeleton */
+.cw-loading-skeleton {
+  background: linear-gradient(90deg, #1a1a2e 25%, #2a2a3e 50%, #1a1a2e 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 12px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

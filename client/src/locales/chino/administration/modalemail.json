@@ -1,0 +1,20 @@
+{
+  "header": {
+    "title": "إرسال بريد إلى {{count}} مستلم"
+  },
+  "form": {
+    "subjectLabel": "الموضوع",
+    "subjectPlaceholder": "اكتب الموضوع هنا...",
+    "messageLabel": "الرسالة",
+    "messagePlaceholder": "اكتب رسالتك هنا..."
+  },
+  "actions": {
+    "close": "إغلاق",
+    "cancel": "إلغاء",
+    "send": "إرسال",
+    "sending": "جارٍ الإرسال..."
+  },
+  "errors": {
+    "requiredFields": "جميع الحقول مطلوبة"
+  }
+}

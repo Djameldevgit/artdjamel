@@ -1,0 +1,81 @@
+{
+
+ 
+    "saleInfo": "معلومات البيع",
+    "saleType": "نوع البيع",
+    "minQuantity": "الحد الأدنى للكمية",
+    "units": "وحدة",
+    "saleTypeRetailInfo": "هذا المنتج يباع بالقطعة. يمكنك شراء الكمية التي تريدها.",
+    "saleTypeWholesaleInfo": "هذا المنتج يباع حصرياً بالجملة. اتصل بالبائع لمعرفة تفاصيل اللوت.",
+    "saleTypeBothInfo": "هذا المنتج متاح لكل من التجزئة والجملة. اتصل بالبائع لمزيد من المعلومات حول الأسعار حسب الكمية.",
+    
+    
+ 
+
+
+
+
+
+  "price": "السعر",
+  "description": "الوصف",
+  "seeLess": "عرض أقل",
+  "readMore": "قراءة المزيد",
+  "productInfo": "معلومات المنتج",
+  "category": "الفئة",
+  "subCategory": "النوع المحدد",
+   
+  "season": "الموسم",
+  "material": "المادة",
+  "condition": "الحالة",
+  "features": "المواصفات",
+  "sizes": "المقاسات المتاحة",
+  "colors": "الألوان المتاحة",
+  "tags": "العلامات",
+  "pricing": "التسعير",
+  "location": "الموقع",
+  "wilaya": "الولاية",
+  "commune": "البلدية",
+  "address": "العنوان",
+  "brand": "العلامة التجارية",
+  "boutique": "المتجر",
+  "additionalInfo": "معلومات إضافية",
+  "publishedOn": "نشر في",
+  "updatedOn": "تم التحديث في",
+  "views": "المشاهدات",
+  "readyToBuy": "جاهز للشراء؟",
+  
+  "conditionNew": "جديد",
+  "conditionLikeNew": "كالجديد",
+  "conditionGood": "حالة جيدة",
+  "conditionFair": "حالة متوسطة",
+  "conditionPoor": "مستعمل",
+  
+  "seasonAllYear": "طوال السنة",
+  "seasonSpring": "الربيع",
+  "seasonSummer": "الصيف",
+  "seasonAutumn": "الخريف",
+  "seasonWinter": "الشتاء",
+  
+  "genderMen": "رجالي",
+  "genderWomen": "نسائي",
+  "genderBoys": "أولاد",
+  "genderGirls": "بنات",
+  "genderBaby": "أطفال",
+  "genderUnisex": "للجنسين",
+  
+  "loginToChat": "يرجى تسجيل الدخول لبدء محادثة",
+  "cannotContactSeller": "غير ممكن الاتصال بهذا البائع",
+  "conversationStarted": "بدأت المحادثة مع البائع",
+  "chatError": "خطأ في بدء المحادثة",
+  "phoneNotAvailable": "رقم الهاتف غير متوفر",
+  "locationNotAvailable": "لا توجد معلومات عن الموقع",
+  "confirmCall": "هل تريد الاتصال بـ {{phone}}؟",
+  
+  "call": "اتصال",
+  "message": "رسالة",
+  "map": "الخريطة",
+  "notAvailable": "غير متوفر",
+  
+  "generalProduct": "منتج أزياء",
+  "loading": "جاري التحميل..."
+}

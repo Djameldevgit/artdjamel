@@ -1,0 +1,982 @@
+/* ============================================
+   Feed.css — VideoReelItem styles (Layout Pro)
+   ============================================ */
+
+/* ─────────────────────────────────────────────
+   CONTENEDOR PRINCIPAL
+   ───────────────────────────────────────────── */
+   .video-reel-container {
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
+    background-color: rgb(8, 3, 24);
+    overflow: hidden;
+  }
+  
+  /* ─────────────────────────────────────────────
+     HEADER
+     ───────────────────────────────────────────── */
+  .vr-header {
+    position: absolute;
+    top: env(safe-area-inset-top, 44px);
+    left: 0;
+    right: 0;
+    z-index: 30;
+    padding: 10px 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+  }
+  
+  .vr-header-right {
+    display: flex;
+    gap: 8px;
+    pointer-events: auto;
+  }
+  
+  .vr-header-btn {
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    font-size: 15px;
+    pointer-events: auto;
+    transition: background 0.15s ease, transform 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .vr-header-btn:active {
+    transform: scale(0.92);
+    background: rgba(0, 0, 0, 0.65);
+  }
+  
+  /* ─────────────────────────────────────────────
+     VIDEO WRAPPER
+     ───────────────────────────────────────────── */
+  .vr-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: top center;
+    cursor: pointer;
+  }
+  
+  .vr-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  
+  /* ─────────────────────────────────────────────
+     GRADIENT OVERLAY
+     ───────────────────────────────────────────── */
+  .vr-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.52) 0%,
+      transparent 20%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
+  }
+  
+  /* ─────────────────────────────────────────────
+     PROGRESS BAR
+     ───────────────────────────────────────────── */
+  .vr-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    z-index: 20;
+  }
+  
+  .vr-progress-fill {
+    height: 100%;
+    background: #ff3b5c;
+    border-radius: 0 2px 2px 0;
+    transition: width 0.1s linear;
+  }
+  
+  /* ─────────────────────────────────────────────
+     ACTIONS SIDEBAR
+     — Anclado bottom: 110px para no solapar info
+     ───────────────────────────────────────────── */
+  .vr-actions-sidebar {
+    position: absolute;
+    right: 10px;
+    bottom: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    z-index: 20;
+  }
+  
+  .vr-action-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .vr-action-btn {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    margin-bottom: 4px;
+    transition: transform 0.15s cubic-bezier(0.34, 1.4, 0.64, 1),
+                background 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    position: relative;
+    overflow: visible;
+  }
+  
+  .vr-action-btn:active {
+    transform: scale(0.86);
+  }
+  
+  .vr-action-icon {
+    font-size: 22px;
+    display: block;
+    line-height: 1;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+  }
+  
+  .vr-action-count {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+  
+  .vr-action-btn .fa-heart {
+    color: #ff3b5c !important;
+    filter: drop-shadow(0 0 5px rgba(255, 59, 92, 0.6));
+  }
+  
+  .vr-action-btn .fa-bookmark {
+    color: #ffd700 !important;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+  }
+  
+  /* ─────────────────────────────────────────────
+     AVATAR EN SIDEBAR
+     — margin-bottom: 18px para separar del primer icono
+     ───────────────────────────────────────────── */
+  .vr-avatar-group {
+    margin-bottom: 18px;
+  }
+  
+  .vr-avatar-wrapper {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 4px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+  
+  .vr-avatar-wrapper:active {
+    transform: scale(0.9);
+  }
+  
+  .vr-sidebar-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    display: block;
+  }
+  
+  .vr-pro-badge {
+    position: absolute;
+    bottom: -3px;
+    right: -4px;
+    background: #ffd700;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+  }
+  
+  .vr-pro-badge svg {
+    font-size: 9px;
+    color: rgb(9, 7, 17);
+    display: block;
+  }
+  
+  /* ─────────────────────────────────────────────
+     BOTONES NAVEGACIÓN (FLECHAS)
+     ───────────────────────────────────────────── */
+  .vr-nav-divider {
+    width: 36px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 6px auto 10px;
+  }
+  
+  .vr-nav-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .vr-nav-btn {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 0.5px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 4px;
+    transition: background 0.15s ease, transform 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .vr-nav-btn:active {
+    transform: scale(0.9);
+    background: rgba(255, 59, 92, 0.3);
+  }
+  
+  .vr-nav-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  /* ─────────────────────────────────────────────
+     BOTÓN VOLUMEN
+     — bottom: 100px alineado con base de sidebar
+     — left: 14px siempre anclado a la izquierda
+     ───────────────────────────────────────────── */
+  .vr-volume-btn {
+    position: absolute;
+    bottom: 100px;
+    left: 14px;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .vr-volume-btn:active {
+    transform: scale(0.9);
+    background: rgba(0, 0, 0, 0.65);
+  }
+  
+  /* ─────────────────────────────────────────────
+     INFO DEL VIDEO (parte inferior izquierda)
+     — bottom: 28px (espacio limpio sobre progress bar)
+     — right: 80px (no solapa nunca la sidebar de 50px + margen)
+     ───────────────────────────────────────────── */
+  .vr-video-info {
+    position: absolute;
+    left: 14px;
+    right: 80px;
+    bottom: 28px;
+    z-index: 20;
+  }
+  
+  .vr-pending-badge {
+    display: inline-block;
+    margin-bottom: 8px;
+    background: rgba(255, 152, 0, 0.2);
+    border: 0.5px solid rgba(255, 152, 0, 0.5);
+    color: #ff9800;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.4px;
+  }
+  
+  .vr-user-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  
+  .vr-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    object-fit: cover;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+    display: block;
+  }
+  
+  .vr-user-avatar:active {
+    transform: scale(0.95);
+  }
+  
+  .vr-user-details {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .vr-username {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .vr-stats {
+    display: flex;
+    gap: 10px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 2px;
+  }
+  
+  .vr-stats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .vr-stats svg {
+    font-size: 9px;
+    opacity: 0.8;
+  }
+  
+  .vr-follow-btn {
+    background: linear-gradient(135deg, #ff3b5c, #fe2c55);
+    border: none;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    letter-spacing: 0.2px;
+  }
+  
+  .vr-follow-btn:active {
+    transform: scale(0.95);
+    opacity: 0.85;
+  }
+  
+  .vr-follow-btn.following {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  
+  .vr-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: #fff;
+    line-height: 1.4;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .vr-description {
+    font-size: 12px;
+    margin: 0 0 6px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .vr-tags {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  
+  .vr-tags svg {
+    font-size: 10px;
+  }
+  
+  /* ─────────────────────────────────────────────
+     ADMIN BANNER
+     ───────────────────────────────────────────── */
+  .vr-admin-banner {
+    position: absolute;
+    top: 90px;
+    left: 14px;
+    right: 14px;
+    z-index: 30;
+    background: rgba(255, 152, 0, 0.16);
+    border: 0.5px solid rgba(255, 152, 0, 0.45);
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .vr-admin-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff9800;
+    flex-shrink: 0;
+    animation: vr-pulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes vr-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+  
+  .vr-admin-text {
+    font-size: 11px;
+    color: #ff9800;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  
+  /* ─────────────────────────────────────────────
+     DROPDOWN MENU
+     ───────────────────────────────────────────── */
+  .vr-dropdown-menu {
+    background: #1c1c1e !important;
+    border: 0.5px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 14px !important;
+    min-width: 210px;
+    padding: 6px 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  .vr-dropdown-item {
+    padding: 11px 16px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.88);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.12s ease;
+    background: transparent;
+  }
+  
+  .vr-dropdown-item:hover,
+  .vr-dropdown-item:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #fff;
+  }
+  
+  .vr-dropdown-item svg {
+    width: 15px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  .vr-dropdown-item.approve { color: #4caf50; }
+  .vr-dropdown-item.reject  { color: #f44336; }
+  
+  .vr-dropdown-divider {
+    height: 1px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    margin: 4px 0 !important;
+    border: none !important;
+  }
+  
+  .vr-menu-toggle::after {
+    display: none !important;
+  }
+  
+  /* ─────────────────────────────────────────────
+     COMMENTS DRAWER
+     ───────────────────────────────────────────── */
+  .vr-comments-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  .vr-comments-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .vr-comments-panel {
+    position: relative;
+    z-index: 1001;
+    background: #ffffff;
+    border-radius: 20px 20px 0 0;
+    height: 62vh;
+    max-height: 72vh;
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    transition: transform 0.32s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    cursor: grab;
+    overflow: hidden;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .vr-comments-panel:active {
+    cursor: grabbing;
+  }
+  
+  .vr-comments-drag-handle {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 6px;
+    flex-shrink: 0;
+  }
+  
+  .vr-comments-drag-bar {
+    width: 40px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  
+  .vr-comments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 12px;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+    background: #ffffff;
+  }
+  
+  .vr-comments-title {
+    color: #161823;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .vr-comments-close {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #161823;
+    font-size: 13px;
+    transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .vr-comments-close:active {
+    transform: scale(0.9);
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .vr-comments-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px 14px 16px;
+    -webkit-overflow-scrolling: touch;
+    background: #ffffff;
+  }
+  
+  .vr-comments-content::-webkit-scrollbar       { width: 3px; }
+  .vr-comments-content::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 3px; }
+  .vr-comments-content::-webkit-scrollbar-thumb { background: #fe2c55; border-radius: 3px; }
+  
+  /* ─────────────────────────────────────────────
+     ANIMACIONES
+     ───────────────────────────────────────────── */
+  @keyframes vr-icon-pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.25); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes vr-float-up {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+    100% { opacity: 0; transform: translate(-50%, -180%) scale(1.5); }
+  }
+  
+  .vr-floating-heart {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    font-size: 64px;
+    animation: vr-float-up 0.65s ease-out forwards;
+    pointer-events: none;
+    z-index: 9999;
+    filter: drop-shadow(0 0 10px rgba(255, 59, 92, 0.7));
+  }
+  
+  .vr-action-btn:active .vr-action-icon {
+    animation: vr-icon-pop 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
+  }
+  
+  /* ─────────────────────────────────────────────
+     RESPONSIVE — MÓVIL  (≤ 480px)
+     ───────────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .vr-actions-sidebar {
+      right: 8px;
+      bottom: 100px;
+    }
+  
+    .vr-action-btn {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+    }
+  
+    .vr-action-icon {
+      font-size: 20px;
+    }
+  
+    .vr-action-count {
+      font-size: 10px;
+    }
+  
+    .vr-action-group {
+      margin-bottom: 12px;
+    }
+  
+    .vr-avatar-group {
+      margin-bottom: 16px;
+    }
+  
+    .vr-avatar-wrapper,
+    .vr-sidebar-avatar {
+      width: 44px;
+      height: 44px;
+    }
+  
+    .vr-nav-btn {
+      width: 38px;
+      height: 38px;
+      font-size: 13px;
+    }
+  
+    .vr-volume-btn {
+      width: 34px;
+      height: 34px;
+      font-size: 13px;
+      bottom: 92px;
+      left: 12px;
+    }
+  
+    .vr-header-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
+    }
+  
+    .vr-user-avatar {
+      width: 36px;
+      height: 36px;
+    }
+  
+    .vr-video-info {
+      left: 12px;
+      right: 72px;
+      bottom: 22px;
+    }
+  
+    .vr-username    { font-size: 13px; }
+    .vr-title       { font-size: 12px; }
+    .vr-description { font-size: 11px; }
+  
+    .vr-follow-btn {
+      padding: 5px 12px;
+      font-size: 11px;
+    }
+  
+    .vr-comments-panel {
+      height: 65vh;
+      max-height: 75vh;
+    }
+  
+    .vr-admin-banner {
+      top: 78px;
+      padding: 6px 10px;
+    }
+  
+    .vr-admin-text { font-size: 10px; }
+  }
+  
+  /* ─────────────────────────────────────────────
+     RESPONSIVE — PANTALLA MUY PEQUEÑA  (≤ 360px)
+     ───────────────────────────────────────────── */
+  @media (max-width: 360px) {
+    .vr-action-btn {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+    }
+  
+    .vr-action-icon { font-size: 18px; }
+  
+    .vr-avatar-wrapper,
+    .vr-sidebar-avatar {
+      width: 38px;
+      height: 38px;
+    }
+  
+    .vr-user-avatar {
+      width: 32px;
+      height: 32px;
+    }
+  
+    .vr-username    { font-size: 12px; }
+    .vr-title       { font-size: 11px; }
+    .vr-description { font-size: 10px; }
+  
+    .vr-follow-btn {
+      padding: 4px 10px;
+      font-size: 10px;
+    }
+  
+    .vr-nav-btn {
+      width: 34px;
+      height: 34px;
+      font-size: 12px;
+    }
+  
+    .vr-volume-btn {
+      bottom: 88px;
+      left: 10px;
+    }
+  
+    .vr-video-info {
+      left: 10px;
+      right: 68px;
+      bottom: 18px;
+    }
+  }
+  
+  /* ─────────────────────────────────────────────
+     PC / TABLET  (hover)
+     ───────────────────────────────────────────── */
+  @media (hover: hover) {
+    .vr-header-btn:hover {
+      background: rgba(0, 0, 0, 0.65);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+  
+    .vr-action-btn:hover {
+      background: rgba(0, 0, 0, 0.55);
+      transform: scale(1.06);
+    }
+  
+    .vr-action-btn:hover .vr-action-icon {
+      filter: drop-shadow(0 0 6px rgba(255, 59, 92, 0.55));
+    }
+  
+    .vr-nav-btn:hover {
+      background: rgba(255, 59, 92, 0.25);
+      border-color: rgba(255, 59, 92, 0.4);
+    }
+  
+    .vr-nav-btn:hover .fa-chevron-up   { transform: translateY(-2px); }
+    .vr-nav-btn:hover .fa-chevron-down { transform: translateY(2px); }
+  
+    .vr-volume-btn:hover {
+      background: rgba(0, 0, 0, 0.65);
+    }
+  
+    .vr-follow-btn:hover {
+      opacity: 0.9;
+    }
+  
+    .vr-dropdown-item:hover {
+      background: rgba(255, 255, 255, 0.07) !important;
+    }
+  
+    .vr-avatar-wrapper:hover .vr-sidebar-avatar {
+      border-color: #ff3b5c;
+      transform: scale(1.04);
+    }
+  }
+  
+  /* ─────────────────────────────────────────────
+     OPTIMIZACIONES TÁCTILES
+     ───────────────────────────────────────────── */
+  .vr-action-btn,
+  .vr-nav-btn,
+  .vr-header-btn,
+  .vr-volume-btn,
+  .vr-follow-btn,
+  .vr-comments-close,
+  .vr-dropdown-item {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  video {
+    touch-action: manipulation;
+  }
+  /* Botones con efecto activo */
+.vr-action-btn {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.vr-action-btn.active-like {
+  background: rgba(255, 59, 92, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 59, 92, 0.5);
+}
+
+.vr-action-btn.active-save {
+  background: rgba(255, 215, 0, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.vr-action-btn:active {
+  transform: scale(0.9);
+}
+
+/* Heart animation */
+.vr-floating-heart {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  pointer-events: none;
+  animation: floatHeart 0.8s ease-out forwards;
+  z-index: 1000;
+}
+
+@keyframes floatHeart {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -150%) scale(1.5);
+  }
+}
+
+/* Estilos para el botón Follow con dos caras */
+.vr-follow-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #fe2c55, #ff6b8b);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.vr-follow-btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.vr-follow-btn.following {
+  background: #2c2c2c;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.vr-follow-btn.following:hover:not(:disabled) {
+  background: #3a3a3a;
+}
+
+.vr-follow-btn.owner {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #888;
+  cursor: default;
+  opacity: 0.7;
+}
+
+.vr-follow-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.me-1 {
+  margin-right: 4px;
+}
+

@@ -1,0 +1,160 @@
+/* Login.css */
+
+/* Contenedor principal */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  /* Título */
+  .login-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+  
+  /* Grupos de formulario */
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  /* Etiquetas */
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+  }
+  
+  /* Campos de entrada */
+  .form-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .form-input:focus {
+    border-color: #4285f4;
+    outline: none;
+  }
+  
+  /* Botón principal */
+  .login-button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s;
+  }
+  
+  .login-button:hover {
+    background-color: #3367d6;
+  }
+  
+  .login-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  /* Enlaces */
+  .login-link {
+    color: #4285f4;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .login-link:hover {
+    color: #3367d6;
+    text-decoration: underline;
+  }
+  
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    color: #777;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .divider::before {
+    margin-right: 1rem;
+  }
+  
+  .divider::after {
+    margin-left: 1rem;
+  }
+  
+  /* Contenedor botones sociales */
+  .social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Pie de página */
+  .login-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #555;
+  }
+  
+  /* Enlace "olvidé contraseña" */
+  .forgot-password {
+    display: block;
+    text-align: right;
+    margin: 0.5rem 0 1rem;
+  }
+  
+  /* Mensajes de notificación */
+  .error-message {
+    color: #d32f2f;
+    background-color: #fde0e0;
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #d32f2f;
+  }
+  
+  .success-message {
+    color: #388e3c;
+    background-color: #ebf5eb;
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #388e3c;
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 1.5rem;
+      box-shadow: none;
+      border: 1px solid #eee;
+    }
+    
+    .login-title {
+      font-size: 1.5rem;
+    }
+  }

@@ -1,0 +1,46 @@
+  {
+  "title": "المشاركات المعلقة",
+  "subtitle": "إدارة ومراجعة المشاركات المنتظرة الموافقة",
+  "totalPending": "المشاركات المعلقة",
+  "selected": "المحددة",
+  "readyForAction": "جاهزة للإجراء",
+  "postsSelected": "مشاركات محددة",
+  "approveSelected": "الموافقة على المحدد",
+  "deleteSelected": "حذف المحدد",
+  "selectAll": "تحديد الكل",
+  "pendingList": "قائمة المشاركات المعلقة",
+  "noPostsSelected": "يرجى تحديد مشاركة واحدة على الأقل",
+  "postsApprovedSuccessfully": "تمت الموافقة على {{count}} مشاركة بنجاح",
+  "postsDeletedSuccessfully": "تم حذف {{count}} مشاركة بنجاح",
+  "noPending": "لا توجد مشاركات معلقة",
+  "loading": "جاري تحميل المزيد من المشاركات...",
+  "confirm": {
+    "approve": "هل أنت متأكد أنك تريد الموافقة على هذه المشاركة؟",
+    "approveMultiple": "هل أنت متأكد أنك تريد الموافقة على {{count}} مشاركة؟",
+    "delete": "هل أنت متأكد أنك تريد حذف هذه المشاركة؟",
+    "deleteMultiple": "هل أنت متأكد أنك تريد حذف {{count}} مشاركة؟",
+    "block": "هل أنت متأكد أنك تريد حظر المستخدم {{user}}؟"
+  },
+  "table": {
+    "image": "الصورة",
+    "content": "المحتوى",
+    "user": "المستخدم",
+    "category": "الفئة",
+    "title": "العنوان",
+    "status": "الحالة",
+    "date": "التاريخ",
+    "actions": "الإجراءات"
+  },
+  "status": {
+    "pendiente": "معلق",
+    "aprobado": "مقبول",
+    "rechazado": "مرفوض"
+  },
+  "actionss": {
+    "approve": "موافقة",
+    "sendMessage": "إرسال رسالة",
+    "delete": "حذف",
+    "blockUser": "حظر المستخدم"
+  },
+  "noImage": "لا توجد صورة"
+}

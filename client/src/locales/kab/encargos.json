@@ -1,0 +1,146 @@
+{
+ 
+    "title": "Tiwizi n Tneẓruft S wudem",
+    "subtitle": "Beddel tettawil-ik·im ɣer tneẓruft tunṣibt i d-yettwarna i kečč·kem s wudem",
+    "specialOffer": "Asemday baṭel war lqanun!",
+    
+    "importantNote": "Talɣut tameqrant i twiri-ik·im",
+    "importantDescription": "Iwakken ad nennuɣ d akken tebɣuḍ·tebɣuḍ ayen i t-tettwaliḍ s wudem, ilaq a d-tesεiḍ aṭas n telqayt i wakken ad ak·akem-nsefken.",
+    
+    "welcome": {
+      "title": "Ansuf ɣer Tawuri n Twizi S wudem",
+      "description1": "Is εuḍ-ik·ikεuḍ-kem tettawil tazɣent deg yimɛeqqran neɣ tebɣuḍ·tebɣuḍeḍ ad tesεeḍ·tesεeḍeḍ tamɣawsa n tneẓruft i t-twaliḍ? Tawuri n twizi-nneɣ ad ak·akem-yeǧǧen ad temlileḍ·temlileḍ s wudem akked umasal i wakken ad d-tesnulfuḍ·tesnulfuḍeḍ tferkit tunṣibt i d-tettwaɛeddi ɣef tlisa-ik·im d ismenyifen-ik·im s wudem ameqran.",
+      "description2": "Ma tebɣiḍ·tebɣiḍeḍ tamɣawsa tazɣent n tneẓruft yellan neɣ asnulfu aččuran, nella da i wakken ad nessken tettawil-ik·im n tneẓruft."
+    },
+    
+    "guarantee": {
+      "title": "Lqanun n Tṛebɛa",
+      "description": "Nexdem yid-k·yidkem deg yal tarrayt n waddad i wakken ad nennuɣ d akken asemday aneggaru ad yernu talɣut-ik·im"
+    },
+    
+    "specificationRequirements": "Talqayt i yesra i twiri-ik·im",
+    "specificationDescription": "Ttxil·ek·kem sεuḍ talɣut-a ddaw i wakken ad nezmir ad d-nernu tneẓruft-ik·im tufrint:",
+    
+    "requirements": {
+      "style": {
+        "title": "Aɣanib n Tneẓruft",
+        "items": ["Tidett neɣ tettawil", "Tamaynut neɣ tamatunt", "Aɣanib tazɣent (impressionniste, cubiste, atg.)", "Yessεan yini neɣ yiwet n tini"]
+      },
+      "measurements": {
+        "title": "Tisekta d Amasal",
+        "items": ["Teɣzi d taneṭla s wudem", "Amasal (agrawal, aḍebsi, amkuẓ)", "Teɣzi n uqerru ma yella yella", "Tallunt yellan anda ara tayǧeḍ·tayǧeḍeḍ tneẓruft"]
+      },
+      "technique": {
+        "title": "Tafawt d Iɣbula",
+        "items": ["Izzi, acrylique, amidad", "Tifawin temcalt", "Anaw n tmeṭṭi n tbeɣdurt i tebɣiḍ·tebɣiḍeḍ", "Tasekta tazɣent"]
+      },
+      "theme": {
+        "title": "Asentel d Agbur",
+        "items": ["Asentel agejdan n tneẓruft", "Iferdisen tizɣanin ara yettwaṛmen", "Addad neɣ aḥric", "Tamacahutt neɣ tignit usligen"]
+      },
+      "support": {
+        "title": "Tameɣrant d Asɣer",
+        "items": ["Taseṭṭa, tuzzuft, lkaɣeḍ", "Anaw n uqerru i tebɣiḍ·tebɣiḍeḍ", "Asɣer (yettban, ur yettban ara)", "Amesten UV ma yella yesra"]
+      },
+      "reference": {
+        "title": "Aɣbalu n Umsel",
+        "items": ["Tugniwin n uḥric", "Isɣwalen ɣer yineẓrufen icban", "Tidmawin neɣ tugniwin uzwir", "Iniwen tizɣanin i wakken ad ttwasqedcent"]
+      }
+    },
+    
+    "process": {
+      "title": "Abaddad n Twiri",
+      "consultation": {
+        "title": "Asteqsi Amezwaru",
+        "description": "Nmeslayen ɣef tettawil-ik·im, tlisa d ismenyifen n tneẓruft"
+      },
+      "quote": {
+        "title": "Asemday Uṭṭun",
+        "description": "Ad teṭṭfeḍ·teṭṭfeḍeḍ asemday aččuran s tiɣawsiwin d tilisa n usiweḍ"
+      },
+      "deposit": {
+        "title": "Aselkem 30%",
+       
+        "description": "Yesra aselkem i wakken ad yebdu abaddad n usnulfu d usɣer n yigbula"
+      },
+      "creation": {
+        "title": "Abaddad n Usnulfu",
+        "description": "Amasal yernu tneẓruft-ik·im s wakken ad ik·ikem-yeǧǧen ameslay ɣef usfari"
+      },
+      "approval": {
+        "title": "Asentem Aneggaru",
+        "description": "Tetteǧǧiḍ·tetteǧǧiḍeḍ tneẓruft yettwasker d asentem-ik·im aneggaru"
+      },
+      "payment": {
+        "title": "Aselleɣ n Uḍerrig",
+        "description": "Tesselleɣḍ·tesselleɣḍeḍ 70% n wuḍerrig uzwir n usiweḍ"
+      },
+      "shipping": {
+        "title": "Asiweḍ d Tuzna",
+        "description": "Tneẓruft-ik·im tettwasekles s tarrayt n umahil d tuzna s wul iwqem"
+      }
+    },
+    
+    "payment": {
+      "title": "Talɣut n Uselleɣ",
+      "deposit": {
+        "title": "Aselkem (30%)",
+        "description": "Aselkem ilaq i:",
+        "points": {
+          "secure": "Asekles n wadig-ik·im deg umasal n umasal",
+          "materials": "Asɣer n yigbula aɛlayen",
+          "reservation": "Abaddad n usnulfu ad yebdu s wudem ara yernu"
+        }
+      },
+      "final": {
+        "title": "Aselleɣ Aneggaru (70%)",
+        "description": "Aḍerrig yettwaselleɣ mi:",
+        "points": {
+          "balance": "Tneẓruft tebda tesker d tettwasentem",
+          "shipping": "Uzwir n usiweḍ neɣ n tuzna",
+          "secure": "Yettwannen laman n sin imeḍfaṛen"
+        }
+      },
+      "guarantee": {
+        "title": "Lqanun n Uɣer",
+        "description": "Ma ur teṛebɛiḍ·teṛebɛiḍeḍ ara s wasemday, neskec timerna neɣ uɣer amecṭuḥ s waddad n twiri"
+      }
+    },
+    
+    "delivery": {
+      "title": "Tilisa n Usiweḍ",
+      "description": "Tilisa n usiweḍ ttemcabin s waddad n tneẓruft:",
+      "standard": {
+        "title": "Asiweḍ Amaḍlan",
+        "time": "2-4 n dduṛat s waddad n tafawt d tiddi"
+      },
+      "express": {
+        "title": "Asiweḍ Uruy",
+        "time": "1-2 n dduṛat (ssuma timernawt tettwasirgen)"
+      }
+    },
+    
+    "faq": {
+      "title": "Isteqsiyen Yettwamnen",
+      "q1": {
+        "question": "Zgiz ad ssutreɣ timerna deg waddad?",
+        "answer": "Ih, deg tɣuṛiwin tizɣarin, tzemreḍ·tzemreḍeḍ ad tessutreḍ timerna. Mi ara yernu urar, timerna meqqren zemrent ad d-siggent tiɣawsiwin timernawt."
+      },
+      "q2": {
+        "question": "D acu ara yili ma ur εeẓbɛiɣ·εeẓbɛiḍeɣ ara wasemday aneggaru?",
+        "answer": "Nexdem yid-k·yidkem deg meṛṛa waddad i wakken ad nennuɣ d tṛebɛa-ik·im. Ma ur teṛebɛiḍ·teṛebɛiḍeḍ ara deg aneggaru, nseɣred tibḍarin n umerni neɣ uɣer amecṭuḥ s waddad n usfari n wurar."
+      },
+      "q3": {
+        "question": "Ssuma teṛṣa aqerru d asiweḍ?",
+        "answer": "Ssuma tagejdan teṛṣa tneẓruft yettwasker. Aqerru d asiweḍ ttwaseklesen s wudem-nniḍen s waddad n ismenyifen-ik·im tizɣanin."
+      }
+    },
+    
+    "cta": {
+      "title": "Theggaḍ·theggaḍeḍ ad tebduḍ·tebdeḍ twiri-ik·im?",
+      "description": "Nermeslayaḍ tura d ad nessken tettawil-ik·im n tneẓruft",
+      "buttonContact": "Suter Asemday",
+      "buttonGallery": "Agrawal n Yurar"
+    }
+  }
+ 

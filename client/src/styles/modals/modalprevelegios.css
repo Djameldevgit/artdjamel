@@ -1,0 +1,215 @@
+/* Variables de diseño */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #495057;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  /* Estructura principal del modal */
+  .modern-privileges-modal {
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  
+  .modern-privileges-modal .modal-content {
+    border: none;
+    border-radius: var(--border-radius);
+  }
+  
+  .modal-header {
+    background: linear-gradient(135deg, #4361ee, #3f37c9);
+    color: white;
+    padding: 1.5rem;
+    border-bottom: none;
+  }
+  
+  .modal-header .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .user-avatar {
+    font-size: 2rem;
+    background: white;
+    color: var(--primary-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-header h3 {
+    margin: 0;
+    font-weight: 600;
+  }
+  
+  .user-email {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  /* Grid de privilegios */
+  .privileges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .privilege-card {
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .privilege-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
+    border-color: var(--primary-color);
+  }
+  
+  .privilege-card.active {
+    border-color: var(--primary-color);
+    background-color: rgba(67, 97, 238, 0.05);
+  }
+  
+  .privilege-icon {
+    font-size: 1.75rem;
+    margin-right: 1rem;
+    color: var(--primary-color);
+  }
+  
+  .privilege-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: var(--dark-gray);
+  }
+  
+  .privilege-content p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--dark-gray);
+    opacity: 0.8;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--medium-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    transition: var(--transition);
+  }
+  
+  .privilege-card.active .checkmark {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+  }
+  
+  /* Pie del modal */
+  .modal-footer {
+    border-top: none;
+    padding: 1rem 1.5rem;
+    background-color: var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .cancel-btn {
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    border: 1px solid var(--medium-gray);
+  }
+  
+  .save-btn {
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    background-color: var(--primary-color);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .save-btn:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  .save-count {
+    background-color: white;
+    color: var(--primary-color);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Efectos para móviles */
+  @media (max-width: 768px) {
+    .privileges-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .modal-header {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.5rem 1rem;
+    }
+    
+    .modal-header .modal-title {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .user-avatar {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .privilege-card {
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  .privilege-card:nth-child(1) { animation-delay: 0.1s; }
+  .privilege-card:nth-child(2) { animation-delay: 0.2s; }
+  .privilege-card:nth-child(3) { animation-delay: 0.3s; }
+  .privilege-card:nth-child(4) { animation-delay: 0.4s; }

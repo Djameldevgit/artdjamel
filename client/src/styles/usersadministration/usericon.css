@@ -1,0 +1,68 @@
+/* Contenedor del ícono de usuario */
+.user-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center; /* Alinea verticalmente con otros elementos del navbar */
+}
+
+/* Ícono de usuario */
+.user-icon {
+    font-size: 1.2rem; /* Tamaño del ícono */
+     cursor: pointer;
+    padding: 0.5rem; /* Espaciado interno */
+    transition: color 0.3s ease; /* Transición suave para el hover */
+    margin-bottom: 7px;
+}
+
+.user-icon:hover {
+    color: #92b3d6; /* Cambia el color al hacer hover */
+}
+
+/* Menú desplegable */
+.user-dropdown {
+    position: absolute;
+    top: 100%; /* Posiciona el menú debajo del ícono */
+    right: 0; /* Alinea el menú a la derecha */
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    min-width: 1500px; /* Ancho mínimo del menú */
+    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+}
+
+/* Elementos del menú desplegable */
+.user-dropdown .dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease; /* Transición suave para el hover */
+}
+
+.user-dropdown .dropdown-item:hover {
+    background: #f8f9fa; /* Fondo al hacer hover */
+}
+
+/* Divisor del menú */
+.user-dropdown .dropdown-divider {
+    border-top: 1px solid #ddd;
+    margin: 0.5rem 0;
+}
+
+/* Estilos responsivos para dispositivos móviles */
+@media (max-width: 768px) {
+    .user-icon {
+        font-size: 1.2rem; /* Tamaño más pequeño en móviles */
+    }
+
+    .user-dropdown {
+        min-width: 120px; /* Ancho más pequeño en móviles */
+    }
+
+    .user-dropdown .dropdown-item {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}

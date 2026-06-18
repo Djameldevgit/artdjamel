@@ -1,0 +1,24 @@
+{
+  "usuariosBloqueados": "المستخدمون المحظورون",
+  "usuario": "المستخدم",
+  "email": "البريد الإلكتروني",
+  "motivoBloqueo": "سبب الحظر",
+  "fechaBloqueo": "تاريخ الحظر",
+  "fechaLimite": "تاريخ الانتهاء",
+  "administrador": "المسؤول",
+  "duracion": "المدة",
+  "tipoBloqueo": "نوع الحظر",
+  "acciones": "الإجراءات",
+  "accion": "إجراء",
+  "desbloquear": "إلغاء الحظر",
+  "noEspecificado": "غير محدد",
+  "noDisponible": "غير متوفر",
+  "desconocido": "غير معروف",
+  "motivoDesbloqueoManual": "إلغاء الحظر يدويًا",
+  "noUsuariosBloqueados": "لا يوجد مستخدمون محظورون"
+
+
+
+
+  
+}

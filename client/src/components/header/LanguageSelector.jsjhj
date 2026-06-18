@@ -1,0 +1,312 @@
+// components/LanguageSelector.jsx
+import React, { useState, useEffect } from 'react';
+import { Globe, Check, ChevronDown } from 'react-bootstrap-icons';
+
+ 
+ 
+
+export const LanguageSelector = ({ variant = 'drawer', onLanguageChange }) => {
+  const [currentLang, setCurrentLang] = useState(() => {
+    return localStorage.getItem('appLanguage') || 'fr';
+  });
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const languages = [
+    { code: 'fr', name: 'Français', flag: '🇫🇷', dir: 'ltr', label: 'FR' },
+    { code: 'en', name: 'English', flag: '🇬🇧', dir: 'ltr', label: 'EN' },
+    { code: 'ar', name: 'العربية', flag: '🇸🇦', dir: 'rtl', label: 'AR' }
+  ];
+
+  // Cargar script de Google Translate
+  useEffect(() => {
+    if (document.querySelector('#google-translate-script')) return;
+
+    let translateElement = document.getElementById('google_translate_element');
+    if (!translateElement) {
+      translateElement = document.createElement('div');
+      translateElement.id = 'google_translate_element';
+      translateElement.style.display = 'none';
+      document.body.appendChild(translateElement);
+    }
+
+    window.googleTranslateElementInit = () => {
+      try {
+        new window.google.translate.TranslateElement({
+          pageLanguage: 'fr',
+          includedLanguages: 'fr,en,ar',
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+        
+        const savedLang = localStorage.getItem('appLanguage');
+        if (savedLang && savedLang !== 'fr') {
+          setTimeout(() => translatePage(savedLang), 500);
+        }
+      } catch (error) {
+        console.error('Error inicializando Google Translate:', error);
+      }
+    };
+
+    const script = document.createElement('script');
+    script.id = 'google-translate-script';
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    document.head.appendChild(script);
+
+    // Ocultar elementos molestos
+    const hideGoogleElements = () => {
+      const elements = document.querySelectorAll('.goog-te-banner-frame, .goog-te-menu-frame, .goog-te-gadget, .goog-te-balloon-frame');
+      elements.forEach(el => {
+        if (el) el.style.display = 'none';
+      });
+      document.body.style.top = '0px';
+      document.body.style.position = 'relative';
+    };
+
+    const interval = setInterval(hideGoogleElements, 500);
+    
+    return () => {
+      clearInterval(interval);
+      if (window.googleTranslateElementInit) {
+        window.googleTranslateElementInit = null;
+      }
+    };
+  }, []);
+
+  const translatePage = (targetLang) => {
+    setIsTranslating(true);
+    
+    try {
+      const selectElement = document.querySelector('.goog-te-combo');
+      
+      if (selectElement) {
+        selectElement.value = targetLang;
+        selectElement.dispatchEvent(new Event('change'));
+        
+        setTimeout(() => {
+          setIsTranslating(false);
+          setCurrentLang(targetLang);
+          localStorage.setItem('appLanguage', targetLang);
+          
+          if (targetLang === 'ar') {
+            document.documentElement.setAttribute('dir', 'rtl');
+            document.body.style.direction = 'rtl';
+          } else {
+            document.documentElement.setAttribute('dir', 'ltr');
+            document.body.style.direction = 'ltr';
+          }
+          
+          const event = new CustomEvent('languageChanged', {
+            detail: { language: targetLang }
+          });
+          document.dispatchEvent(event);
+          
+          if (onLanguageChange) onLanguageChange(targetLang);
+          setIsOpen(false);
+        }, 800);
+      } else {
+        setTimeout(() => translatePage(targetLang), 300);
+      }
+    } catch (error) {
+      console.error('Error traduciendo:', error);
+      setIsTranslating(false);
+    }
+  };
+
+  const currentLanguage = languages.find(l => l.code === currentLang) || languages[0];
+
+  // Estilos para variant='drawer' (dentro del Drawer)
+  if (variant === 'drawer') {
+    return (
+      <div style={{
+        margin: '16px',
+        padding: '12px',
+        background: '#f8fafc',
+        borderRadius: '12px',
+        border: '1px solid #e5e7eb'
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: '12px'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontSize: '0.75rem',
+            fontWeight: '600',
+            color: '#6b7280',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px'
+          }}>
+            <Globe size={14} />
+            <span>Langue</span>
+          </div>
+          {isTranslating && (
+            <div className="spinner-border spinner-border-sm" style={{ width: '14px', height: '14px', color: '#667eea' }} />
+          )}
+        </div>
+        
+        {/* Botón selector estilo dropdown */}
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '10px 12px',
+            background: 'white',
+            border: '1px solid #e2e8f0',
+            borderRadius: '10px',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '1.2rem' }}>{currentLanguage.flag}</span>
+            <span style={{ fontSize: '0.9rem', fontWeight: '500', color: '#1f2937' }}>
+              {currentLanguage.name}
+            </span>
+          </div>
+          <ChevronDown size={14} style={{ color: '#9ca3af', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+        </div>
+        
+        {/* Dropdown de idiomas */}
+        {isOpen && (
+          <div style={{
+            marginTop: '8px',
+            background: 'white',
+            border: '1px solid #e2e8f0',
+            borderRadius: '10px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+          }}>
+            {languages.map(lang => {
+              const isActive = currentLang === lang.code;
+              return (
+                <div
+                  key={lang.code}
+                  onClick={() => translatePage(lang.code)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '10px 12px',
+                    cursor: 'pointer',
+                    background: isActive ? '#667eea10' : 'transparent',
+                    transition: 'background 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) e.currentTarget.style.background = '#f3f4f6';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span style={{ fontSize: '1.2rem' }}>{lang.flag}</span>
+                    <span style={{
+                      fontSize: '0.85rem',
+                      fontWeight: isActive ? '600' : '400',
+                      color: isActive ? '#667eea' : '#374151'
+                    }}>
+                      {lang.name}
+                    </span>
+                  </div>
+                  {isActive && <Check size={14} color="#10b981" />}
+                </div>
+              );
+            })}
+          </div>
+        )}
+        
+        {/* Indicador de idioma actual */}
+        <div style={{
+          marginTop: '10px',
+          fontSize: '0.65rem',
+          color: '#9ca3af',
+          textAlign: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px'
+        }}>
+          <span>🇫🇷</span>
+          <span>🇬🇧</span>
+          <span>🇸🇦</span>
+          <span style={{ marginLeft: '4px' }}>→ {currentLanguage.name}</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Versión compacta para Navbar (variant='compact')
+  return (
+    <div style={{ position: 'relative' }}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          background: 'rgba(255,255,255,0.1)',
+          border: 'none',
+          borderRadius: '20px',
+          padding: '6px 12px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+          cursor: 'pointer',
+          color: 'white'
+        }}
+      >
+        <Globe size={14} />
+        <span style={{ fontSize: '0.75rem', fontWeight: '500' }}>
+          {currentLanguage.label}
+        </span>
+        <ChevronDown size={10} style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }} />
+      </button>
+      
+      {isOpen && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '100%',
+            right: 0,
+            marginTop: '8px',
+            background: 'white',
+            borderRadius: '12px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+            overflow: 'hidden',
+            zIndex: 1000,
+            minWidth: '140px'
+          }}
+        >
+          {languages.map(lang => (
+            <div
+              key={lang.code}
+              onClick={() => translatePage(lang.code)}
+              style={{
+                padding: '10px 16px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                transition: 'background 0.2s',
+                background: currentLang === lang.code ? '#667eea15' : 'transparent'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = '#f3f4f6'}
+              onMouseLeave={(e) => e.currentTarget.style.background = currentLang === lang.code ? '#667eea15' : 'transparent'}
+            >
+              <span>{lang.flag}</span>
+              <span style={{ fontSize: '0.85rem', fontWeight: currentLang === lang.code ? '600' : '400' }}>
+                {lang.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+

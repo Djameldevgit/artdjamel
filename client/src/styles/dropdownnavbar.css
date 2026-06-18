@@ -1,0 +1,25 @@
+ 
+  .custom-dropdown .dropdown-scroll-wrapper {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 4px; /* evita cortar scroll */
+    margin-bottom: 5px;
+  }
+  
+  /* Opcional: scrollbar bonito */
+  .custom-dropdown .dropdown-scroll-wrapper::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-dropdown .dropdown-scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+  
+  /* Opcional: mejora visual en móviles */
+  @media (max-width: 576px) {
+    .dropdown-menu-end {
+      max-height: 60vh;
+      margin-bottom: 5px;
+    }
+  }
+  

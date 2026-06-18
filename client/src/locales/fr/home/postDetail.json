@@ -1,0 +1,13 @@
+{
+  "views": "Vues",
+  "likes": "J'aime", 
+  "comments": "Commentaires",
+  "published": "Publié",
+  "updated": "Mis à jour",
+  "basic_info": "Informations de base",
+  "technical_details": "Détails techniques",
+  "commercial_info": "Informations commerciales", 
+  "location_rights": "Localisation et droits",
+  "read_more": "Lire plus",
+  "read_less": "Lire moins"
+}

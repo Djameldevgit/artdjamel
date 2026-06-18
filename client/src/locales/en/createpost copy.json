@@ -1,0 +1,31 @@
+  {
+    "price_type_label": "Price Type",
+  "features_selected_count": "Selected: {{count}} features",
+ 
+
+    "post_title_placeholder": "Title of your post",
+    "post_content_placeholder": "What's on your mind, {{username}}?",
+    "price_label": "Price",
+    "select_price_type": "Select price type",
+    "offer_label": "Offer",
+    "offer_placeholder": "Special offer",
+    "features_label": "Features",
+    "price_per_hour": "Per Hour",
+    "price_per_day": "Per Day",
+    "price_per_week": "Per Week",
+    "price_per_month": "Per Month",
+    "price_fixed": "Fixed Price",
+    "feature_comments": "Comments System",
+    "feature_live_chat": "Live Chat",
+    "feature_notifications": "Notifications",
+    "validation_no_images": "Please add your photo.",
+    "validation_no_title": "Please add a title.",
+    "add_more_photos": "Add more photos",
+    "add_photos_to_post": "Add photos to your post",
+    "cancel_button": "Cancel",
+    "create_post_button": "🚀 Create Post",
+    "update_post_button": "✨ Update Post",
+    "edit_post": "Edit Post",
+    "create_post": "Create Post",
+    "share_your_moment": "Share your moment"
+  }

@@ -1,0 +1,270 @@
+/* StepMusicSelection - Estilos con textos claros */
+
+.step-music-selection {
+  color: #ffffff !important;
+}
+
+/* Buscador */
+.music-search-input {
+  border-radius: 30px !important;
+  border: none !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  padding: 12px 20px !important;
+  font-size: 0.95rem !important;
+}
+
+.music-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.music-search-input:focus {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+}
+
+.music-search-btn {
+  border-radius: 30px !important;
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  border: none !important;
+  padding: 0 28px !important;
+  color: #ffffff !important;
+}
+
+/* Lista de música */
+.music-list {
+  max-height: 450px;
+  overflow-y: auto;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ítem de música */
+.music-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.music-item:hover {
+  background: rgba(102, 126, 234, 0.2);
+}
+
+.music-item.selected {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+  border-left: 3px solid #ffd700;
+}
+
+/* ✅ TÍTULO - BLANCO Y CLARO */
+.music-item-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff !important;
+  margin-bottom: 4px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ✅ ARTISTA - GRIS CLARO */
+.music-item-artist {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: 500;
+}
+
+/* Info de la música */
+.music-item-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+  min-width: 0;
+}
+
+.music-item-icon {
+  color: #667eea;
+  flex-shrink: 0;
+  font-size: 1.4rem;
+}
+
+/* Contenedor de texto */
+.music-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.music-item-title,
+.music-item-artist {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Acciones */
+.music-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+/* Badge de género */
+.music-item-genre {
+  background: rgba(102, 126, 234, 0.4) !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  padding: 4px 10px !important;
+  border-radius: 20px !important;
+  font-size: 0.7rem !important;
+}
+
+/* Botón de preview */
+.preview-btn {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 50% !important;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s !important;
+  border: none !important;
+}
+
+.preview-btn:hover {
+  background: #667eea !important;
+  transform: scale(1.1);
+}
+
+/* Botón de seleccionar */
+.select-music-btn {
+  border-radius: 30px !important;
+  padding: 6px 18px !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+  border: none !important;
+  color: #ffffff !important;
+  transition: transform 0.2s !important;
+}
+
+.select-music-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.select-music-btn:disabled {
+  background: #28a745 !important;
+  opacity: 0.7;
+  color: #ffffff !important;
+}
+
+/* Tarjeta de música seleccionada */
+.selected-music-card {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3)) !important;
+  border: 1px solid rgba(102, 126, 234, 0.5) !important;
+  border-radius: 20px !important;
+}
+
+.selected-music-card .card-body {
+  padding: 18px !important;
+}
+
+.selected-music-card strong,
+.selected-music-card small {
+  color: #ffffff !important;
+}
+
+/* Barra de volumen */
+.selected-music-card input[type="range"] {
+  background: rgba(255, 255, 255, 0.3);
+  height: 4px;
+  border-radius: 4px;
+}
+
+.selected-music-card input[type="range"]::-webkit-slider-thumb {
+  background: #ffd700;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Etiquetas */
+.selected-music-card .form-label,
+.selected-music-card small {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Scroll personalizado */
+.music-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.music-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.music-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 10px;
+}
+
+/* Badge de selección */
+.music-item .badge {
+  background: linear-gradient(135deg, #ffd700, #ffb347) !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  margin-left: 8px;
+}
+
+/* Mensajes de vacío y carga */
+.music-loading,
+.music-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .music-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .music-item-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .music-item-title {
+    font-size: 0.9rem;
+  }
+}
+
+/* Animación */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.music-item {
+  animation: fadeInUp 0.3s ease forwards;
+}

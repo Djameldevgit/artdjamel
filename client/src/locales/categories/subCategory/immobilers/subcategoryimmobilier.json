@@ -1,0 +1,29 @@
+{
+    "subcategories": "Sous-catégories",
+    "select_subcategory": "Sélectionnez une sous-catégorie",
+    "type_operation": "Type d'opération",
+    "type_property": "Type de bien",
+    "type_vehicle": "Type de véhicule",
+    "type_clothing": "Type d'article",
+    
+    "immobilier": {
+      "operation": {
+        "vente": "Vente",
+        "location": "Location",
+        "location_vacances": "Location vacances",
+        "cherche_location": "Cherche location",
+        "cherche_achat": "Cherche achat"
+      },
+      "property": {
+        "appartement": "Appartement",
+        "local": "Local",
+        "villa": "Villa",
+        "terrain": "Terrain",
+        "terrain_agricole": "Terrain Agricole",
+        "immeuble": "Immeuble",
+        "bungalow": "Bungalow"
+      }
+    }
+    
+    
+  }

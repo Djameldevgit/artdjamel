@@ -1,0 +1,19 @@
+{
+    "headers": {
+      "title": "Gestión de roles de usuario",
+      "totalUsers": "Total de usuarios: {{count}}"
+    },
+    "tableHeadersss": {
+      "user": "Usuario",
+      "currentRole": "Rol actual",
+      "changeRole": "Cambiar rol"
+    },
+    "roles": {
+      "user": "Usuario",
+      "Super-utilisateur": "Superusuario",
+      "Moderateur": "Moderador",
+      "admin": "Administrador"
+    },
+    "noUsersAvailable": "No hay usuarios disponibles en este momento."
+  }
+  

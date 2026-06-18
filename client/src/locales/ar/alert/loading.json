@@ -1,0 +1,13 @@
+{
+
+    "error": "خطأ",
+    "success": "نجاح",
+    "login_failed": "فشل تسجيل الدخول",
+    "update_success": "تم التحديث بنجاح",
+   
+    "loading": "...تحميل",
+   
+    "errorTitle": "خطأ",
+    "successTitle": "نجاح"
+
+}

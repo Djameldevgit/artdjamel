@@ -1,0 +1,94 @@
+node scripts/diagnoseAndRepair.js diagnose
+Esto analizará:
+
+Categorías sin slug, duplicadas, jerarquía rota
+
+Posts sin título, sin categoría, con category ID incorrecto
+
+Posts sin usuario, precios negativos, sin ubicación
+
+Boutiques huérfanas
+
+2. Reparación automática (simulación)
+bash
+node scripts/diagnoseAndRepair.js repair
+Muestra qué se va a reparar sin hacer cambios
+
+3. Reparación real
+bash
+node scripts/diagnoseAndRepair.js fix
+Corrige:
+
+Posts con category faltante
+
+Posts sin título
+
+Precios negativos
+
+Posts huérfanos (asigna admin)
+
+4. Buscar IDs específicos
+bash
+# Buscar por categoría
+node scripts/diagnoseAndRepair.js find category=telephone
+
+# Buscar por título
+node scripts/diagnoseAndRepair.js find title="iPhone"
+
+# Buscar posts de boutique
+node scripts/diagnoseAndRepair.js find boutique=true
+5. Validar documento específico
+bash
+node scripts/diagnoseAndRepair.js validate collection=posts id=69cad6c19ae0f6003226c3c8
+6. Todo en uno
+bash
+# Diagnosticar y reparar
+node scripts/diagnoseAndRepair.js all autoFix=true
+🎯 Qué detecta el script
+Categorías:
+
+Sin slug
+
+Slugs duplicados
+
+Jerarquía rota (parent inválido)
+
+Nivel 1 faltantes
+
+Posts:
+
+Sin título
+
+Sin categoría
+
+Category ID inválido
+
+Category ID incorrecto (no coincide con categorie)
+
+Sin usuario válido
+
+Precios negativos
+
+Precio cero (posible error)
+
+Sin ubicación
+
+Boutiques:
+
+Sin nombre
+
+Sin usuario válido
+
+🚀 Características especiales
+Modo Dry Run: Simula sin hacer cambios
+
+Reporte detallado: Lista todos los problemas encontrados
+
+Soluciones sugeridas: Proporciona soluciones para cada problema
+
+Reparación automática: Corrige problemas comunes
+
+Búsqueda flexible: Encuentra IDs por múltiples criterios
+
+¡Con este script puedes diagnosticar y reparar cualquier problema en tu base de datos MongoDB de forma inteligente!
+

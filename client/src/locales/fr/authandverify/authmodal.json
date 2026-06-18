@@ -1,0 +1,23 @@
+{
+  "auth": "authhhhhhhhhhhhhhhhhhhhhhhhhhh",
+  "authenticationRequired": "Authentification Requise",
+  "pleaseLoginToContinue": "Veuillez vous connecter ou vous inscrire pour continuer",
+  "login": "Se Connecter",
+  "register": "S'Inscrire",
+  "activate": "activateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "activationRequest": "Demande d'Activation",
+  "activationMessage": "Votre compte est désactivé. Veuillez contacter l'administrateur pour réactiver votre compte.",
+  "userEmail": "Email de l'utilisateur",
+  "message": "Message",
+  "messagePlaceholder": "Écrivez votre demande d'activation ici...",
+  "messageRequired": "Vous devez écrire un message",
+  "messageSentSuccess": "Demande envoyée avec succès",
+  "requestActivation": "Demander l'activation",
+  "requestError": "Erreur lors de l'envoi de la demande",
+  "sending": "Envoi en cours...",
+  "close": "Fermer",
+  "verifyyyyy": "verifyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+  "verificationRequired": "Vérification Requise",
+  "verificationMessage": "Votre compte doit être vérifié pour accéder à toutes les fonctionnalités. Veuillez vérifier votre email pour continuer.",
+  "verificationNote": "Si vous n'avez pas reçu l'email, vous pouvez en demander un nouveau"
+}

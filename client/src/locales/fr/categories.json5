@@ -1,0 +1,569 @@
+{
+  "equipements": {
+    "wifi_gratuit": "WiFi Gratuito",
+    "climatisation": "Climatización",
+    "cuisine_equipee": "Cocina Equipada", 
+    "television": "Televisión",
+    "piscine": "Piscina",
+    "parking": "Estacionamiento",
+    "animaux_acceptes": "Animales Aceptados",
+    "menage_inclus": "Limpieza Incluida"
+  },
+    "tiposTransporte": {
+      "avion": "Avión",
+      "bus": "Autobús",
+      "tren": "Tren",
+      "coche": "Coche", 
+      "barco": "Barco",
+      "minibus": "Minibús",
+      "taxi": "Taxi",
+      "avion_bus": "Avión + Bus",
+      "tren_bus": "Tren + Bus",
+      "privado": "Vehículo Privado"
+    },
+    "clasesTransporte": {
+      "economica": "Económica",
+      "premium_economica": "Premium Económica",
+      "negocios": "Negocios",
+      "primera_clase": "Primera Clase",
+      "estandar": "Estándar",
+      "premium": "Premium"
+    },
+    "serviciosDisponibles": {
+      "comida_incluida": "Comida Incluida",
+      "bebidas_gratis": "Bebidas Gratis",
+      "entretenimiento": "Entretenimiento",
+      "wifi": "WiFi",
+      "asientos_reclinables": "Asientos Reclinables",
+      "espacio_extra": "Espacio Extra",
+      "maletas_incluidas": "Maletas Incluidas"
+    },
+  
+    
+    "serviciosHotel": {
+      "wifi": "WiFi",
+      "piscina": "Piscina",
+      "spa": "Spa",
+      "gimnasio": "Gimnasio",
+      "restaurante": "Restaurante",
+      "room_service": "Servicio a la habitación",
+      "estacionamiento": "Estacionamiento",
+      "lavanderia": "Lavandería",
+      "business_center": "Centro de negocios",
+      "pets_allowed": "Mascotas permitidas"
+    },
+    "serviciosAdicionales": {
+      "desayuno_incluido": "Desayuno incluido",
+      "vista_al_mar": "Vista al mar",
+      "terraza": "Terraza",
+      "minibar": "Minibar",
+      "caja_fuerte": "Caja fuerte"
+    
+  },
+
+
+
+
+
+  "tiposHabitaciones": {
+    "individual": "Individuelle",
+    "doble": "Double", 
+    "triple": "Triple",
+    "suite": "Suite",
+    "familiar": "Familiale",
+    "presidencial": "Présidentielle"
+  },
+ 
+      "transporteViaje": "Transport du Voyage",
+      "tipoTransporte": "Type de Transport",
+      "seleccionarTransporte": "Sélectionner le type de transport",
+      "claseTransporte": "Classe de Transport",
+      "seleccionarClase": "Sélectionner la classe",
+      "aerolineaCompania": "Compagnie Aérienne/Transport",
+      "placeholderCompania": "Ex: Air Algérie, Turkish Airlines...",
+      "numeroVueloBus": "Numéro de Vol/Bus",
+      "placeholderNumero": "Ex: AH2060, TR456...",
+      "itinerarioTransporte": "Itinéraire du Transport",
+      "seleccionarItinerario": "Sélectionner l'itinéraire",
+      "tiempoEstimado": "Temps Estimé",
+      "placeholderTiempo": "Ex: 2h 30min, 45 minutes...",
+      "serviciosIncluidosTransporte": "Services Inclus dans le Transport",
+      "comentariosTransporte": "Commentaires sur le Transport",
+      "placeholderComentarios": "Informations supplémentaires sur le transport...",
+  
+      "soloIda": "Aller simple",
+      "idaVuelta": "Aller-retour",
+      "multipleDestinos": "Destinations multiples",
+      "rutaCircular": "Circuit circulaire",
+  
+      "transportes": {
+        "avion": "Avion",
+        "bus": "Autobus",
+        "tren": "Train",
+        "coche": "Voiture",
+        "barco": "Bateau",
+        "minibus": "Minibus",
+        "taxi": "Taxi",
+        "avion_bus": "Avion + Bus",
+        "tren_bus": "Train + Bus",
+        "privado": "Véhicule Privé"
+      },
+  
+      "clases": {
+        "economica": "Économique",
+        "premium_economica": "Économique Premium",
+        "negocios": "Affaires",
+        "primera_clase": "Première Classe",
+        "estandar": "Standard",
+        "premium": "Premium"
+      },
+  
+      "serviciosTransporte": {
+        "comida_incluida": "Repas inclus",
+        "bebidas_gratis": "Boissons gratuites",
+        "entretenimiento": "Divertissement à bord",
+        "wifi": "WiFi gratuit",
+        "asientos_reclinables": "Sièges inclinables",
+        "espacio_extra": "Espace supplémentaire",
+        "maletas_incluidas": "Bagages inclus"
+      },
+  
+ 
+
+
+
+
+
+
+  "titreAnnonce": "Titre de l'Annonce",
+  "titre": "Titre",
+  "placeholderTitre": "Ex: Voyage organisé à Istanbul - Tout inclus",
+  "conseilTitre": "Créez un titre attractif et descriptif pour votre annonce",
+ 
+  "titreTropLong": "Titre trop long, essayez de le raccourcir",
+  "dateRetour": "Date de Retour",
+      "periodoViaje": "Période de Voyage",
+      "mesInicio": "Mois de début",
+      "mesFin": "Mois de fin",
+      "seleccionarMes": "Sélectionner le mois",
+      "temporada": "Saison",
+      "seleccionarTemporada": "Sélectionner la saison",
+      "temporadaAlta": "Haute saison",
+      "temporadaMedia": "Moyenne saison",
+      "temporadaBaja": "Basse saison",
+      "anyo": "Année",
+      "seleccionarAnyo": "Sélectionner l'année",
+  
+      "meses": {
+        "enero": "Janvier",
+        "febrero": "Février",
+        "marzo": "Mars",
+        "abril": "Avril",
+        "mayo": "Mai",
+        "junio": "Juin",
+        "julio": "Juillet",
+        "agosto": "Août",
+        "septiembre": "Septembre",
+        "octubre": "Octobre",
+        "noviembre": "Novembre",
+        "diciembre": "Décembre"
+      },
+  
+
+     
+        "edit_title": "Modifier la publication",
+        "create_title": "Créer une nouvelle publication",
+        "modification": "Modification en cours",
+        "button_update": "Mettre à jour",
+        "button_publish": "Publier",
+        "success_update": "Publication mise à jour avec succès",
+        "success_create": "Publication créée avec succès",
+        "error_publication": "Erreur de publication",
+        
+        "validation_title_required": "Le titre est requis",
+        "validation_description_required": "La description est requise",
+        "validation_wilaya_required": "La wilaya est requise",
+        "validation_commune_required": "La commune est requise",
+        "validation_category_required": "La catégorie est requise",
+        "validation_images_required": "Les images sont requises",
+        "validation_images_size": "Image trop volumineuse (max 5MB)",
+        "validation_fix_errors": "Veuillez corriger les erreurs dans le formulaire",
+        "validation_required_fields": "Champs obligatoires incomplets",
+        "validation_scroll_to_errors": "Faites défiler vers le haut pour compléter les champs marqués",
+        "validation_destination_required": "La destination est requise",
+        "validation_departure_date_required": "La date de départ est requise",
+        "validation_price_required": "Le prix est requis",
+        "validation_surface_required": "La superficie est requise",
+        "validation_capacity_required": "La capacité est requise",
+        "validation_night_price_required": "Le prix par nuit est requis",
+        "validation_hadj_destination_required": "La destination du pèlerinage est requise",
+        "validation_pilgrimage_type_required": "Le type de pèlerinage est requis",
+      
+        "common": {
+          "titre": "Titre",
+          "titre_placeholder": "Entrez le titre de la publication",
+          "superficie": "Superficie",
+          "superficie_placeholder": "Entrez la superficie en m²",
+          "etage": "Étage",
+          "etage_placeholder": "Entrez le numéro d'étage",
+          "capacite_personnes": "Capacité",
+          "capacite_placeholder": "Nombre de personnes",
+          "nombre_chambres": "Nombre de chambres",
+          "nombre_chambres_placeholder": "Entrez le nombre de chambres",
+          "nombre_salles_bain": "Nombre de salles de bain",
+          "nombre_salles_bain_placeholder": "Entrez le nombre de salles de bain",
+          "check_in": "Heure d'arrivée",
+          "check_out": "Heure de départ",
+          "tarif_nuit": "Prix par nuit",
+          "tarif_nuit_placeholder": "Prix par nuit en dinar",
+          "prix_adulte": "Prix adulte",
+          "prix_adulte_placeholder": "Prix pour adulte",
+          "prix_enfant": "Prix enfant",
+          "prix_enfant_placeholder": "Prix pour enfant",
+          "prix_bebe": "Prix bébé",
+          "prix_bebe_placeholder": "Prix pour bébé",
+          "select_option": "Sélectionner une option"
+        },
+      
+        "voyage": {
+          "destinations_internationales": "Destinations internationales",
+          "dates_duree": "Dates et durée",
+          "transport_deplacements": "Transport et déplacements",
+          "hebergement_pension": "Hébergement et pension",
+          "activites_services": "Activités et services",
+          "tarifs_conditions": "Tarifs et conditions",
+          "services_inclus": "Services inclus",
+          "activites_proposees": "Activités proposées"
+        },
+      
+        "location": {
+          "informations_logement": "Informations du logement",
+          "equipements_services": "Équipements et services",
+          "chambres_salles_bain": "Chambres et salles de bain",
+          "disponibilite_tarifs": "Disponibilité et tarifs"
+        },
+      
+        "hadj": {
+          "destination_peletinage": "Destination du pèlerinage",
+          "dates_peletinage": "Dates du pèlerinage",
+          "transport_hebergement": "Transport et hébergement",
+          "documents_requis": "Documents requis",
+          "tarifs_conditions": "Tarifs et conditions",
+          "type_peletinage": "Type de pèlerinage",
+          "niveau_confort": "Niveau de confort",
+          "documents_necessaires": "Documents nécessaires"
+        },
+      
+        "services": {
+          "visite_guidee": "Visite guidée",
+          "repas": "Repas",
+          "transfert": "Transferts",
+          "assistance": "Assistance",
+          "assurance": "Assurance"
+        },
+      
+      
+        "types_voyage": {
+          "hadj": "Hadj",
+          "omra": "Omra",
+          "hadj_omra": "Hadj et Omra"
+        },
+      
+        "niveaux_confort": {
+          "economique": "Économique",
+          "standard": "Standard",
+          "confort": "Confort",
+          "luxe": "Luxe"
+        },
+      
+        "documents": {
+          "passeport": "Passeport",
+          "photos_identite": "Photos d'identité",
+          "certificat_vaccination": "Certificat de vaccination",
+          "reservation_hotel": "Réservation d'hôtel",
+          "billet_avion": "Billet d'avion"
+        },
+      
+       
+      
+
+
+
+
+
+  "typePension": "Type de Pension",
+  "selectionnezPension": "Sélectionnez le type de pension...",
+  "pensionComplete": "Pension Complète",
+  "demiPension": "Demi-pension",
+  "petitDejeuner": "Petit déjeuner uniquement",
+  "sansRepas": "Sans repas",
+  "mediasAnnonce": "Médias de l'Annonce",
+  "mediasSelectionnes": "Médias sélectionnés",
+  "ajouterMedias": "Ajouter des Photos",
+  "aucunMedia": "Aucun média sélectionné",
+  "preview": "Aperçu",
+  "navigateurNonSupport": "Votre navigateur ne supporte pas la lecture de vidéos",
+  
+  "formatsAcceptes": "Formats acceptés: JPG, PNG, MP4, MOV (max. 10MB par fichier)",
+  "cliquezSupprimer": "Cliquez sur × pour supprimer",
+  "conseilMedias": "Ajoutez des photos ou vidéos pour rendre votre annonce plus attractive",
+  
+  "conseils": "Conseils pour vos médias",
+  "conseil1": "Utilisez des images de haute qualité et bien éclairées",
+  "conseil2": "Montrez différents angles et aspects de votre offre",
+  "conseil3": "Les vidéos courtes (30-60s) augmentent l'engagement",
+
+
+
+
+
+
+
+  "local": "Local",
+  "destinosNacionales": "Destinations Nationales",
+  "destinosSaharianos": "Destinations Sahariennes", 
+  "destinosCosteros": "Destinations Côtières",
+  "dias": "Jours",
+    "noches": "Nuits", 
+    "placeholderDias": "Nombre de jours",
+    "placeholderNoches": "Nombre de nuits",
+  "peregrinacion": "Pèlerinage",
+    "ciudadDestinoPeregrinacion": "Ville de destination du pèlerinage",
+    "elegirDestinoPeregrinacion": "Choisir la destination du pèlerinage",
+    "ciudadesSantas": "Villes Saintes",
+    "ciudadesSantasArabia": "Villes d'Arabie Saoudite",
+    "fechaSalida": "Date de départ",
+    "horaSalida": "Heure de départ",
+    "seleccionarFechaSalida": "Sélectionner la date de départ",
+    "seleccionarHoraSalida": "Sélectionner l'heure de départ",
+    "destination": "Destination",
+    "villeDestination": "Ville Destination",
+    "choisirDestination": "Choisir une destination...",
+    "typeHebergement": "Type d'Hébergement",
+    "nomEtablissement": "Nom de l'Établissement",
+    "placeholderTypeHebergement": "Hôtel, Appartement, Riad...",
+    "placeholderNomHotel": "Nom de l'hôtel ou appartement",
+    "destinationsNationales": "Destinations Nationales",
+    "destinationsInternationales": "Destinations Internationales",
+
+  "destino": "Destination",
+    "internacional": "Internationale",
+    "ciudadDestino": "Ville de destination",
+    "elegirDestino": "Choisir une destination",
+    "tipoAlojamiento": "Type d'hébergement",
+    "nombreEstablecimiento": "Nom de l'établissement",
+    "placeholderTipoAlojamiento": "Hôtel, Riad, Villa, Appartement...",
+    "placeholderNombreHotel": "Nom de l'hôtel ou établissement",
+    
+    "destinosArabes": "Destinations Arabes",
+    "destinosTurquia": "Destinations Turquie",
+    "destinosAsia": "Destinations Asie",
+    "destinosEuropa": "Destinations Europe", 
+    "destinosAmerica": "Destinations Amérique",
+    "destinosAfrica": "Destinations Afrique",
+  
+  "villeDepart": "Ville de départ",
+  "placeholderAdresse": "Adresse détaillée",
+  "wilaya": "Wilaya",
+  "commune": "Commune",
+  "selectionnezWilaya": "Sélectionnez une wilaya",
+  "selectionnezCommune": "Sélectionnez la commune",
+
+
+
+
+
+  "description": "Description",
+  "placeholderDescription": "Description détaillée...",
+ 
+      "contactReservation": "Contact pour Réservation",
+      "placeholderContact": "Téléphone, email, site web, réseaux sociaux, adresse...",
+      "conseilSaisie": "Séparez les différentes informations par des virgules ou sauts de ligne",
+      "exemplesFormat": "Exemples de format",
+      "typesDetectes": "Types détectés",
+      "caracteres": "caractères",
+      
+      "type_phone": "Téléphone",
+      "type_email": "Email", 
+      "type_website": "Site web",
+      "type_social": "Réseaux sociaux",
+      "type_address": "Adresse",
+      
+      "informationsAcceptees": "Informations acceptées",
+      "phones": "Numéros de téléphone",
+      "emails": "Adresses email",
+      "websites": "Sites web",
+      "reseauxSociaux": "Réseaux sociaux",
+      "adresses": "Adresses physiques",
+      
+      "validationReussie": "Format de contact valide",
+      "validationEchec": "Veuillez entrer au moins une information de contact valide",
+      
+      "exempleTelephone": "Ex: +213-555-123-456, WhatsApp: +213-555-789-012",
+      "exempleEmail": "Ex: contact@agence.dz, reservation@voyage.dz",
+      "exempleWeb": "Ex: https://www.agence-voyage.djamel",
+      "exempleSocial": "Ex: Facebook: /agence.voyage, Instagram: @agence_voyage",
+   
+ 
+      "categoriaPublicacion": "Catégorie de Publication",
+      "seleccionarCategoria": "Sélectionner une catégorie",
+      "campoRequerido": "Ce champ est requis",
+      "descripcionCategorias": "Description des Catégories",
+  
+      "categoriass": {
+        "Voyage Organise": "Voyage Organisé",
+        "Location_Vacances": "Location Vacances", 
+        "hadj_Omra": "Hadj & Omra",
+        "Reservations_Visa": "Réservations & Visa",
+        "Sejour": "Séjour Hôtelier",
+        "Croisiere": "Croisière",
+        "Autre": "Autre Service"
+      },
+  
+      "descripciones": {
+        "Voyage Organise": "Voyages tout compris avec transport, hébergement et activités organisées",
+        "Location_Vacances": "Location de maisons, appartements ou villas pour vacances",
+        "hadj_Omra": "Pèlerinages religieux vers La Mecque et Médine",
+        "Reservations_Visa": "Services de réservation et assistance pour visas de voyage",
+        "Sejour": "Séjours hôteliers et packages vacances en hôtel",
+        "Croisiere": "Croisières maritimes et voyages en bateau de luxe",
+        "Autre": "Autres services de voyage non catégorisés"
+      },
+  
+      "categorias": {
+        "Voyage Organise": "Voyage Organisé",
+        "location_vacances": "Location Vacances",
+        "hadj_omra": "Hadj & Omra", 
+        "reservations_visa": "Réservations & Visa",
+        "sejour": "Séjour Hôtelier",
+        "croisiere": "Croisière",
+        "autre": "Autre Service"
+      },
+   
+  
+
+
+    "apercu_politiques": "Aperçu des politiques disponibles",
+ 
+   
+      "politique_annulation": "Politique d'Annulation",
+      "selectionnez_politique": "Sélectionnez une politique...",
+      
+      "politique_flexible": "Flexible (annulation gratuite jusqu'à 24h avant)",
+      "politique_moderee": "Modérée (50% de remboursement jusqu'à 7 jours avant)",
+      "politique_stricte": "Stricte (non remboursable)",
+      
+      "description_flexible": "✅ Annulation gratuite jusqu'à 24 heures avant le début du séjour. Remboursement intégral.",
+      "description_moderee": "⚠️ Annulation possible jusqu'à 7 jours avant avec 50% de remboursement. Après ce délai, non remboursable.",
+      "description_strict": "❌ Politique stricte - Aucun remboursement en cas d'annulation. Recommandé pour les réservations non modifiables.",
+      
+      "titre_flexible": "Politique Flexible",
+      "titre_moderee": "Politique Modérée", 
+      "titre_stricte": "Politique Stricte",
+      
+      "details_flexible": "Idéal pour les voyageurs qui souhaitent de la flexibilité",
+      "details_moderee": "Un équilibre entre flexibilité et engagement",
+      "details_stricte": "Pour les offres à tarif réduit non modifiables",
+  
+
+ 
+      "precioPorPersona": "Prix par personne",
+      "moneda": "DA",
+      "precioPersonalizado": "Prix personnalisé",
+      "ingresePrecio": "Entrez le prix",
+      "economico": "Économique",
+      "medio": "Moyen",
+      "premium": "Premium",
+     
+      "rangoEconomico": "500 - 50,000 DA",
+      "rangoMedio": "50,000 - 500,000 DA", 
+      "rangoPremium": "500,000 - 2,000,000 DA",
+      
+    
+      "deslizarParaAjustar": "Glisser pour ajuster le prix",
+      "precioMinimo": "Prix minimum: 500 DA",
+      "precioMaximo": "Prix maximum: 2,000,000 DA",
+   
+ 
+
+
+
+
+
+
+
+   
+      "clasificacion_hotel": "Classification Hôtel",
+  
+      "placeholder_nombre_hotel": "Entrez le nom de l'hôtel",
+      "direccion_hotel": "Adresse de l'hôtel",
+      "placeholder_direccion_hotel": "Entrez l'adresse complète",
+      "categoria_estrellas": "Catégorie d'étoiles",
+      "seleccionar_estrellas": "Sélectionner le nombre d'étoiles",
+      "total_habitaciones": "Total des chambres",
+      "placeholder_total_habitaciones": "Nombre total de chambres",
+      "sitio_web_hotel": "Site web de l'hôtel",
+      "placeholder_sitio_web": "https://www.example.com",
+      "tipos_habitaciones": "Types de chambres",
+      "servicios_hotel": "Services de l'hôtel",
+      "servicios_basicos": "Services de base",
+      "servicios_adicionales": "Services supplémentaires",
+      "servicios_wifi": "Services WiFi",
+  
+      "tipo_habitacion_individual": "Chambre individuelle",
+      "tipo_habitacion_doble": "Chambre double",
+      "tipo_habitacion_triple": "Chambre triple",
+      "tipo_habitacion_suite": "Suite",
+      "tipo_habitacion_familiar": "Chambre familiale",
+      "tipo_habitacion_presidencial": "Suite présidentielle",
+     
+     
+     
+          "servicesInclus": "Servicios Incluidos",
+          "activites": "Actividades",
+          "language": "Idioma",
+          "servicios": "Servicios",
+          "serviciosTr": "Servicios de Transporte",
+          "specifications": "Especificaciones",
+          "wifi": "WiFi",
+          "optionsPaiement": "Opciones de Pago",
+          "documentsRequises": "Documentos Requeridos",
+          "excursions": "Excursiones",
+          "tipodehabutaciones": "Tipos de Habitaciones",
+      
+          "promoteurimmobilier": "Promotor Inmobiliario",
+          "wifiGratuit": "WiFi Gratuito",
+          "climatisation": "Climatización",
+          "cuisineEquipee": "Cocina Equipada",
+          "television": "Televisión",
+          "piscine": "Piscina",
+          "parking": "Estacionamiento",
+          "animauxAcceptes": "Animales Aceptados",
+          "menageInclus": "Limpieza Incluida",
+          "assurancesIncluses": "Seguros Incluidos",
+          "guideLocal": "Guía Local",
+          "repasInclus": "Comidas Incluidas",
+          "transfertAeroport": "Traslado Aeropuerto",
+          "acompteRequise": "Anticipo Requerido",
+      
+      "servicio_wifi": "WiFi",
+      "servicio_piscina": "Piscine",
+      "servicio_spa": "Spa",
+      "servicio_gimnasio": "Salle de sport",
+      "servicio_restaurante": "Restaurant",
+      "servicio_room_service": "Service en chambre",
+      "servicio_estacionamiento": "Parking",
+      "servicio_lavanderia": "Service de blanchisserie",
+      "servicio_business_center": "Centre d'affaires",
+      "servicio_pets_allowed": "Animaux acceptés",
+      "servicio_desayuno_incluido": "Petit déjeuner inclus",
+      "servicio_vista_al_mar": "Vue sur la mer",
+      "servicio_terraza": "Terrasse",
+      "servicio_minibar": "Minibar",
+      "servicio_caja_fuerte": "Coffre-fort",
+  
+      "wifi_wifi_gratuito": "WiFi gratuit",
+      "wifi_wifi_premium": "WiFi premium",
+      "wifi_wifi_business": "WiFi affaires"
+    }
+ 

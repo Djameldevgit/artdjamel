@@ -1,0 +1,28 @@
+{
+  "gridView": "شبكة",
+  "listView": "قائمة", 
+  "NoPost": "لا توجد منشورات",
+ 
+  "appName": "بيع الملابس",
+  "loading": "جاري التحميل...",
+  "loadingSettings": "جاري تحميل الإعدادات...",
+  "search": "بحث",
+  "addPost": "إضافة منشور",
+  "verified": "حساب موثق",
+  "changeLanguage": "تغيير اللغة",
+  "selectLanguage": "اختر اللغة",
+  "appInfo": "معلومات التطبيق",
+  "profile": "الملف الشخصي",
+  "shareApp": "مشاركة التطبيق",
+  "roles": "الأدوار والصلاحيات",
+  "adminPanel": "لوحة الإدارة",
+  "users": "إدارة المستخدمين",
+  "userActions": "إجراءات المستخدم",
+  "logout": "تسجيل الخروج",
+  "login": "تسجيل الدخول",
+  "register": "إنشاء حساب",
+  "admin": "مدير",
+  "moderator": "مشرف",
+  "superUser": "مستخدم مميز",
+  "user": "مستخدم"
+}

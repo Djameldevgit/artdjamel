@@ -1,0 +1,20 @@
+{
+    "usuariosBloqueados": "Usuarios bloqueados",
+    "usuario": "Usuario",
+    "email": "Correo electrónico",
+    "motivoBloqueo": "Motivo del bloqueo",
+    "fechaBloqueo": "Fecha de bloqueo",
+    "fechaLimite": "Fecha límite",
+    "administrador": "Administrador",
+    "duracion": "Duración",
+    "tipoBloqueo": "Tipo de bloqueo",
+    "acciones": "Acciones",
+    "accion": "Acción",
+    "desbloquear": "Desbloquear",
+    "noEspecificado": "No especificado",
+    "noDisponible": "No disponible",
+    "desconocido": "Desconocido",
+    "motivoDesbloqueoManual": "Desbloqueo manual",
+    "noUsuariosBloqueados": "No hay usuarios bloqueados"
+  }
+  

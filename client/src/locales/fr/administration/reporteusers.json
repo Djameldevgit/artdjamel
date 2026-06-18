@@ -1,0 +1,33 @@
+{
+    "reporteusers": {
+      "headerrr": {
+        "title": "المستخدمين المبلغ عنهم"
+      },
+      "errors": {
+        "fetchError": "خطأ في تحميل التقارير",
+        "invalidData": "بيانات التقارير غير صالحة"
+      },
+      "loading": "جاري تحميل التقارير...",
+      "noReports": "لا توجد تقارير متاحة",
+      "tableHeadersss": {
+        "reporter": "المبلغ",
+        "reportedUser": "المستخدم المبلغ عنه",
+        "postTitle": "عنوان المنشور",
+        "reason": "السبب",
+        "date": "التاريخ",
+        "status": "الحالة",
+        "actionss": "الإجراءات"
+      },
+      "notAvailable": "غير متاح",
+      "notSpecified": "غير محدد",
+      "actions": {
+        "view": "عرض التفاصيل",
+        "edit": "تعديل",
+        "deactivate": "إلغاء التفعيل",
+        "delete": "حذف"
+      },
+      "unknownUser": "مستخدم غير معروف",
+      "reportDetails": "تفاصيل التقرير",
+      "close": "إغلاق"
+    }
+  }

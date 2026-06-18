@@ -1,0 +1,57 @@
+{
+  "accountStatus": "حالة الحساب",
+  "activeAccount": "حساب نشط",
+  "noRestrictions": "حسابك لا يحتوي على أي قيود حالياً.",
+  "backToHome": "العودة إلى الصفحة الرئيسية",
+  "blockedAccount": "حساب محظور",
+  "blockSystem": "نظام الحظر",
+  "accountSuspended": "تم تعليق حسابك مؤقتاً. يرجى مراجعة المعلومات أدناه.",
+  "username": "اسم المستخدم",
+  "blockReason": "سبب الحظر",
+  "notSpecified": "غير محدد",
+  "details": "تفاصيل",
+  "noAdditionalDetails": "لم يتم تقديم تفاصيل إضافية",
+  "blockDate": "تاريخ الحظر",
+  "expectedUnblock": "تاريخ فك الحظر المتوقع",
+  "indeterminate": "غير محدد",
+  "requestUnblock": "طلب فك الحظر",
+  "contactSupport": "الاتصال بالإدارة",
+  "blockSystemReghaia": "نظام حظر تاسيلي للفنون",
+  
+  "contactSupportMessage": "يرجى الاتصال بنا إذا كنت تعتقد أن حظرك كان خطأ. سنراجع حالتك بسرعة.",
+  "yourEmail": "بريدنا الإلكتروني",
+  "ourPhone": "هاتفنا",
+  "yourMessage": "رسالتك",
+  "messagePlaceholder": "اشرح لماذا تعتقد أنه يجب فك حظر حسابك...",
+  "cancel": "إلغاء",
+  "sendMessage": "إرسال الرسالة",
+  "adminEmail":"البريد الإلكتروني للإدارة",
+  "subject": "طلب دعم لحظر الحساب - المستخدم: %s",
+  "title": "طلب مراجعة الحظر",
+  "userInfo": "معلومات المستخدم",
+  "userMessage": "رسالة المستخدم",
+  "reviewAccount": "مراجعة هذا الحساب",
+  "footer": "هذا بريد إلكتروني تلقائي. يرجى عدم الرد مباشرة على هذه الرسالة",
+  
+  "blockSupport": {
+    "subject": "طلب دعم لحظر الحساب - المستخدم: %s",
+    "title": "طلب مراجعة الحظر",
+    "userInfo": "معلومات المستخدم",
+    "blockDate": "تاريخ الحظر",
+    "userMessage": "رسالة المستخدم",
+    "reviewAccount": "مراجعة هذا الحساب",
+    "footer": "هذا بريد إلكتروني تلقائي. يرجى عدم الرد مباشرة على هذه الرسالة."
+  },
+  
+  "ourContactInfo": "يمكنك الاتصال بنا عبر:",
+  "messageRequired": "يرجى كتابة رسالتك قبل الإرسال",
+  "messageSentSuccess": "تم إرسال رسالتك بنجاح",
+  "messageSentError": "خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى",
+  
+  "support": {
+    "subject": "رسالة اتصال جديدة من مستخدم محظور",
+    "title": "تم استلام رسالة اتصال",
+    "from": "بريد المستخدم",
+    "message": "الرسالة"
+  }
+}

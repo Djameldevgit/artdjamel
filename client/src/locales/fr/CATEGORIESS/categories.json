@@ -1,0 +1,21 @@
+{
+   
+    "immobilier": "Immobilier",
+    "automobiles": "Automobiles & Véhicules",
+    "telephones": "Téléphones & Accessoires",
+    "informatique": "Informatique",
+    "electromenager": "Électroménager & Électronique",
+    "piecesDetachees": "Pièces Détachées",
+    "vetements": "Vêtements & Mode",
+    "Alimentaires": "Alimentaires",
+    "sante_beaute": "Santé & Beauté",
+    "meubles": "Meubles & Maison",
+    "Services": "Services",
+    "Materiaux": "Matériaux",
+    "loisirs": "Loisirs & Divertissements",
+    "emploi": "Offres & Demandes d'emploi",
+    "Sport": "Sport",
+    "Voyage": "Voyages",
+    "select_category": "Choisissez une catégorie"
+ 
+}

@@ -1,0 +1,122 @@
+const cron = require('node-cron');
+const Users = require('../models/userModel');
+const Posts = require('../models/postModel');
+const Comments = require('../models/commentModel');
+const Report = require('../models/reportModel');
+const Notify = require('../models/notifyModel');
+const Message = require('../models/messageModel'); // 👈 nuevo
+const UNVERIFIED_HOURS = process.env.CLEANUP_UNVERIFIED_HOURS || 24;
+const INACTIVE_DAYS = process.env.CLEANUP_INACTIVE_DAYS || 7;
+
+      // 7 días
+
+cron.schedule('0 0 * * *', async () => {
+  console.log('🧹 Iniciando limpieza profunda...');
+
+  const unverifiedLimit = new Date(Date.now() - UNVERIFIED_HOURS * 60 * 60 * 1000);
+  const inactiveLimit = new Date(Date.now() - INACTIVE_DAYS * 24 * 60 * 60 * 1000);
+
+  try {
+    // 🔹 1. Eliminar usuarios NO verificados (ej: 24h)
+    const usersToDelete = await Users.find({
+      isVerified: false,
+      createdAt: { $lt: unverifiedLimit }
+    }).select('_id username email');
+
+    const userIds = usersToDelete.map(u => u._id);
+
+    if (userIds.length > 0) {
+      await Users.deleteMany({ _id: { $in: userIds } });
+      await Posts.deleteMany({ user: { $in: userIds } });
+      await Comments.deleteMany({ user: { $in: userIds } });
+      await Notify.deleteMany({
+        $or: [{ user: { $in: userIds } }, { recipients: { $in: userIds } }]
+      });
+      await Message.deleteMany({
+        $or: [{ sender: { $in: userIds } }, { recipient: { $in: userIds } }]
+      });
+      await Users.updateMany({}, { $pull: { followers: { $in: userIds }, following: { $in: userIds } } });
+
+      usersToDelete.forEach(u => console.log(`🗑️ Usuario no verificado eliminado: ${u.username} (${u.email})`));
+      console.log(`✅ Eliminados ${userIds.length} usuarios no verificados`);
+    } else {
+      console.log('✅ No hay usuarios no verificados antiguos');
+    }
+
+    // 🔹 2. Obtener IDs válidos actuales
+    const existingUserIds = new Set((await Users.find({}).select('_id')).map(u => u._id.toString()));
+    const existingPostIds = new Set((await Posts.find({}).select('_id')).map(p => p._id.toString()));
+
+    // 🔹 3. Eliminar posts huérfanos
+    await Posts.deleteMany({ user: { $nin: Array.from(existingUserIds) } });
+
+    // 🔹 4. Eliminar comentarios huérfanos
+    await Comments.deleteMany({ user: { $nin: Array.from(existingUserIds) } });
+
+    // 🔹 5. Eliminar usuarios verificados pero INACTIVOS (ej: 7 días sin posts ni comentarios)
+    const inactiveUsers = await Users.find({
+      isVerified: true,
+      createdAt: { $lt: inactiveLimit }
+    }).select('_id username email');
+
+    const trulyInactive = [];
+    for (const user of inactiveUsers) {
+      const hasPosts = await Posts.exists({ user: user._id });
+      const hasComments = await Comments.exists({ user: user._id });
+      if (!hasPosts && !hasComments) trulyInactive.push(user);
+    }
+
+    if (trulyInactive.length > 0) {
+      const inactiveIds = trulyInactive.map(u => u._id);
+
+      await Users.deleteMany({ _id: { $in: inactiveIds } });
+      await Notify.deleteMany({
+        $or: [{ user: { $in: inactiveIds } }, { recipients: { $in: inactiveIds } }]
+      });
+      await Message.deleteMany({
+        $or: [{ sender: { $in: inactiveIds } }, { recipient: { $in: inactiveIds } }]
+      });
+      await Users.updateMany({}, { $pull: { followers: { $in: inactiveIds }, following: { $in: inactiveIds } } });
+
+      trulyInactive.forEach(u => console.log(`😴 Usuario inactivo eliminado: ${u.username} (${u.email})`));
+      console.log(`✅ Eliminados ${inactiveIds.length} usuarios verificados inactivos`);
+    } else {
+      console.log('✅ No hay usuarios verificados inactivos para eliminar');
+    }
+
+    // 🔹 6. Eliminar reportes huérfanos
+    await Report.deleteMany({
+      $or: [
+        { postId: { $nin: Array.from(existingPostIds) } },
+        { userId: { $nin: Array.from(existingUserIds) } },
+        { reportedBy: { $nin: Array.from(existingUserIds) } }
+      ]
+    });
+
+    // 🔹 7. Eliminar notificaciones huérfanas
+    await Notify.deleteMany({
+      $or: [
+        { user: { $nin: Array.from(existingUserIds) } },
+        { recipients: { $nin: Array.from(existingUserIds) } },
+        { postId: { $nin: Array.from(existingPostIds) } }
+      ]
+    });
+
+    // 🔹 8. Eliminar mensajes huérfanos
+    await Message.deleteMany({
+      $or: [
+        { sender: { $nin: Array.from(existingUserIds) } },
+        { recipient: { $nin: Array.from(existingUserIds) } }
+      ]
+    });
+
+    // 🔹 9. Limpiar likes huérfanos
+    await Posts.updateMany({}, { $pull: { likes: { $nin: Array.from(existingUserIds) } } });
+    await Comments.updateMany({}, { $pull: { likes: { $nin: Array.from(existingUserIds) } } });
+
+    console.log('✅ Likes, reportes, notificaciones y mensajes huérfanos eliminados');
+    console.log('🧼 Limpieza completa realizada');
+  } catch (err) {
+    console.error('❌ Error en limpieza profunda:', err.message);
+  }
+});

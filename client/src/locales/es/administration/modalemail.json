@@ -1,0 +1,21 @@
+{
+    "header": {
+      "title": "Enviar correo a {{count}} destinatario(s)"
+    },
+    "form": {
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "Escribe el asunto aquí...",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Escribe tu mensaje aquí..."
+    },
+    "actions": {
+      "close": "Cerrar",
+      "cancel": "Cancelar",
+      "send": "Enviar",
+      "sending": "Enviando..."
+    },
+    "errors": {
+      "requiredFields": "Todos los campos son obligatorios"
+    }
+  }
+  

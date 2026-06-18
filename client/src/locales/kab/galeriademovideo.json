@@ -1,0 +1,44 @@
+{
+ 
+  "videoDemo": "عرض فيديو",
+  "backToGallery": "العودة إلى المعرض",
+  "loadingVideo": "جاري تحميل الفيديو...",
+  "workNotFound": "اللوحة غير موجودة",
+  "workNotFoundTitle": "اللوحة غير موجودة",
+  "workNotFoundDescription": "اللوحة التي تبحث عنها غير موجودة أو تم إزالتها.",
+  "videoDescriptionDefault": "فيديو توضيحي للعملية الإبداعية لهذه اللوحة.",
+  "language": "العربية",
+  "browserNotSupported": "متصفحك لا يدعم عنصر الفيديو.",
+  "chatWithArtist": "الدردشة مع الفنان",
+  "requestOrder": "طلب عمل فني",
+  "shareVideo": "مشاركة الفيديو",
+  "videoDemoTitle": "عرض توضيحي بالفيديو",
+  "technicalDetails": "التفاصيل التقنية",
+  "duration": "المدة",
+  "seconds": "ثانية",
+  "format": "الصيغة",
+  "category": "الفئة",
+  "technique": "التقنية",
+  "followArtist": "تابع الفنان على وسائل التواصل الاجتماعي",
+  "shareDescription": "اختر كيف تريد مشاركة هذا الفيديو:",
+  "copyLink": "نسخ الرابط",
+  "linkCopied": "تم نسخ الرابط إلى الحافظة",
+  "chatDescription": "يمكنك التواصل مباشرة مع الفنان عبر:",
+  "whatsappDirect": "واتساب مباشر",
+  "contactForm": "نموذج الاتصال",
+  "whatsappMessage": "مرحباً، أنا مهتم باللوحة: \"{{title}}\"",
+  "socialLinks": {
+    "tiktok": "https://tiktok.com/@artista",
+    "instagram": "https://instagram.com/artista", 
+    "facebook": "https://facebook.com/artista",
+    "twitter": "https://twitter.com/artista"
+  },
+  "themes": {
+    "abstract": "فن تجريدي",
+    "portrait": "بورتريه",
+    "landscape": "مناظر طبيعية"
+  },
+  "techniques": {
+    "oil": "زيت على قماش"
+  }
+}

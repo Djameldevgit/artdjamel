@@ -1,0 +1,106 @@
+/* Estilos generales del contenedor */
+.modalcontentrole {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 100%;
+    width: 800px;
+    margin: 20px auto;
+  }
+  
+  /* Estilos del encabezado */
+  .modalheaderrole {
+    margin-bottom: 20px;
+  }
+  
+  .modaltitlerole {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+  }
+  
+  /* Estilos de la tabla */
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Estilos para el select de cambio de rol */
+  .form-control-role {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-control-role:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .modalcontentrole {
+      padding: 15px;
+    }
+  
+    .modaltitlerole {
+      font-size: 1.25rem;
+    }
+  
+    .table th,
+    .table td {
+      padding: 8px;
+    }
+  
+    .form-control-role {
+      padding: 6px;
+      font-size: 0.875rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modalcontentrole {
+      padding: 10px;
+    }
+  
+    .modaltitlerole {
+      font-size: 1rem;
+    }
+  
+    .table th,
+    .table td {
+      padding: 6px;
+    }
+  
+    .form-control-role {
+      padding: 4px;
+      font-size: 0.75rem;
+    }
+  }

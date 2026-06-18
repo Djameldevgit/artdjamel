@@ -1,0 +1,19 @@
+.pwa-background {
+    background-image: url('/images/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+
+
+
+
+
+@media all and (display-mode: standalone) {
+    .pwa-background {
+      background-image: url('/images/fondo.png');
+    }
+  }

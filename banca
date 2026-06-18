@@ -1,0 +1,219 @@
+
+
+. Chargily (LA MEJOR OPCIÓN LOCAL)
+
+👉 Es lo más parecido a Stripe en Argelia
+
+🔥 Qué hace:
+Acepta pagos con:
+💳 EDAHABIA (Algérie Poste)
+💳 CIB (tarjetas bancarias)
+Tiene API para desarrolladores
+Plugins (Node, PHP, etc.)
+
+👉 Básicamente: Stripe versión Argelia
+
+📌 Confirmado: ofrece API directa para integrar pagos en apps/webs
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
+
+const PaymentMethods = () => {
+  const [method, setMethod] = useState("");
+  const [file, setFile] = useState(null);
+  const [transactionId, setTransactionId] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!method) return setMessage("Selecciona un método de pago");
+    if (method !== "cash" && !file)
+      return setMessage("Sube un comprobante");
+
+    try {
+      setLoading(true);
+      setMessage("");
+
+      const formData = new FormData();
+      formData.append("method", method);
+      formData.append("transactionId", transactionId);
+      if (file) formData.append("proof", file);
+
+      const res = await fetch("/api/payments", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMessage("✅ Pago enviado correctamente. En revisión.");
+        setFile(null);
+        setTransactionId("");
+        setMethod("");
+      } else {
+        setMessage(data.message || "Error al enviar");
+      }
+    } catch (err) {
+      setMessage("Error del servidor");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      <h2>💳 Hazte PRO</h2>
+
+      {/* BOTONES */}
+      <div style={styles.buttons}>
+        <button onClick={() => setMethod("ccp")} style={styles.btn}>
+          💳 CCP
+        </button>
+        <button onClick={() => setMethod("baridimob")} style={styles.btn}>
+          📱 BaridiMob
+        </button>
+        <button onClick={() => setMethod("cash")} style={styles.btn}>
+          💵 Cash
+        </button>
+      </div>
+
+      {/* INSTRUCCIONES */}
+      <div style={styles.box}>
+        {!method && <p>👆 Selecciona un método</p>}
+
+        {method === "ccp" && (
+          <>
+            <h3>💳 CCP</h3>
+            <p>📌 Número: <strong>123456789</strong></p>
+            <p>🏤 Transferencia en la posta</p>
+          </>
+        )}
+
+        {method === "baridimob" && (
+          <>
+            <h3>📱 BaridiMob</h3>
+            <p>📌 Número: <strong>07XXXXXXXX</strong></p>
+            <p>⚡ Pago desde la app</p>
+          </>
+        )}
+
+        {method === "cash" && (
+          <>
+            <h3>💵 Cash</h3>
+            <p>🤝 Coordina por WhatsApp</p>
+            <a
+              href="https://wa.me/213XXXXXXXX"
+              target="_blank"
+              rel="noreferrer"
+            >
+              📲 Contactar
+            </a>
+          </>
+        )}
+      </div>
+
+      {/* FORMULARIO */}
+      {method && method !== "cash" && (
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <input
+            type="text"
+            placeholder="ID de transacción (opcional)"
+            value={transactionId}
+            onChange={(e) => setTransactionId(e.target.value)}
+            style={styles.input}
+          />
+
+          <input
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+            style={styles.input}
+          />
+
+          <button type="submit" style={styles.submitBtn} disabled={loading}>
+            {loading ? "Enviando..." : "📤 Enviar comprobante"}
+          </button>
+        </form>
+      )}
+
+      {/* MENSAJE */}
+      {message && <p style={styles.message}>{message}</p>}
+
+      {/* INFO */}
+      <div style={styles.footer}>
+        <p>⏳ Activación: 1 - 12 horas</p>
+        <p>🔒 Verificación manual</p>
+      </div>
+    </div>
+  );
+};
+
+export default PaymentMethods;
+
+const styles = {
+  container: {
+    maxWidth: "500px",
+    margin: "40px auto",
+    padding: "20px",
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    textAlign: "center",
+    fontFamily: "Arial",
+  },
+  buttons: {
+    display: "flex",
+    justifyContent: "space-around",
+    marginBottom: "20px",
+  },
+  btn: {
+    padding: "10px",
+    border: "none",
+    borderRadius: "5px",
+    background: "#007bff",
+    color: "#fff",
+    cursor: "pointer",
+  },
+  box: {
+    padding: "15px",
+    border: "1px solid #eee",
+    borderRadius: "8px",
+    marginBottom: "15px",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  },
+  input: {
+    padding: "10px",
+  },
+  submitBtn: {
+    padding: "10px",
+    background: "green",
+    color: "#fff",
+    border: "none",
+    cursor: "pointer",
+  },
+  message: {
+    marginTop: "10px",
+    color: "green",
+  },
+  footer: {
+    marginTop: "20px",
+    fontSize: "14px",
+    color: "#555",
+  },
+};

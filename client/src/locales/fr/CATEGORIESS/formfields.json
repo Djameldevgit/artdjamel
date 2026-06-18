@@ -1,0 +1,13 @@
+ {
+
+    "selectWilaya": "Sélectionnez la wilaya",
+    "wilayaHelp": "Sélectionnez votre province",
+    "communePlaceholder": "Ex: Bab El Oued, Sidi Mhamed...",
+    "communeHelp": "Nom de votre ville/quartier",
+    "wilayaLabel": "Wilaya",
+    "communeLabel": "Commune",
+    "telephone": "Téléphone",
+    "preview": "Aperçu"
+
+
+ }

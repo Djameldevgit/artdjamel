@@ -1,0 +1,125 @@
+/* Estilos para el fondo oscuro del modal */
+.auth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Animación de entrada del fondo */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Estilos para el contenido del modal */
+.auth-modal-content {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+/* Animación de entrada del contenido */
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Estilos para el botón de cierre (X) */
+.auth-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-modal-close:hover {
+    color: #000;
+    background-color: #f5f5f5;
+}
+
+/* Estilos para el título y la descripción */
+.auth-modal-content h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.auth-modal-content p {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+/* Estilos para los botones de acción */
+.auth-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espacio entre botones */
+}
+
+.auth-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-button.login {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.auth-button.login:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.auth-button.register {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.auth-button.register:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}

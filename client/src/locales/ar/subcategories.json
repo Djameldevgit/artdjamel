@@ -1,0 +1,300 @@
+{
+    "subcategories": "الفئات الفرعية",
+    "select_subcategory": "اختر فئة فرعية",
+    "type_operation": "نوع العملية",
+    "type_property": "نوع العقار",
+    "type_vehicle": "نوع المركبة",
+    "type_clothing": "نوع الملابس",
+    "type_phone": "نوع الهاتف/الملحقات",
+    "type_computer": "نوع المعدات المعلوماتية",
+    "type_appliance": "نوع الجهاز الكهربائي",
+    
+    "immobilier": {
+      "operation": {
+        "vente": "بيع",
+        "location": "إيجار",
+        "location_vacances": "إيجار العطلات",
+        "cherche_location": "بحث عن إيجار",
+        "cherche_achat": "بحث عن شراء"
+      },
+      "property": {
+        "appartement": "شقة",
+        "local": "محل تجاري",
+        "villa": "فيلا",
+        "terrain": "أرض",
+        "terrain_agricole": "أرض زراعية",
+        "immeuble": "عمارة",
+        "bungalow": "بنغل"
+      }
+    },
+    
+    "vehicules": {
+      "categories": {
+        "voitures": "سيارات",
+        "utilitaire": "مركبات تجارية",
+        "motos": "دراجات نارية وسكوتر",
+        "quads": "مركبات رباعية",
+        "fourgon": "شاحنة صغيرة",
+        "camion": "شاحنة",
+        "bus": "حافلة",
+        "engin": "آلات ومعدات",
+        "tracteurs": "جرارات",
+        "remorques": "مقطورات",
+        "bateaux": "قوارب ومراكب"
+      }
+    },
+    
+    "vetements": {
+      "categories": {
+        "vetements_homme": "ملابس رجالية",
+        "vetements_femme": "ملابس نسائية",
+        "chaussures_homme": "أحذية رجالية",
+        "chaussures_femme": "أحذية نسائية",
+        "garcons": "أولاد",
+        "filles": "بنات",
+        "bebe": "رضع",
+        "tenues_pro": "ملابس مهنية",
+        "sacs": "حقائب ومحافظ",
+        "montres": "ساعات",
+        "lunettes": "نظارات",
+        "bijoux": "مجوهرات"
+      }
+    },
+    
+    "telephones": {
+      "categories": {
+        "smartphones": "هواتف ذكية",
+        "telephones_cellulaires": "هواتف خلوية",
+        "tablettes": "أجهزة لوحية",
+        "fixes_fax": "هواتف ثابتة وفاكس",
+        "smartwatchs": "ساعات ذكية",
+        "protection_antichoc": "حماية ومقاومة الصدمات",
+        "ecouteurs_son": "سماعات وصوت",
+        "chargeurs_cables": "شواحن وكابلات",
+        "supports_stabilisateurs": "حوامل ومثبتات",
+        "manettes": "أجهزة تحكم",
+        "vr": "واقع افتراضي",
+        "power_banks": "بنوك طاقة",
+        "stylets": "أقلام رقمية",
+        "cartes_memoire": "بطاقات الذاكرة",
+        "accessoires": "ملحقات",
+        "pieces_rechange": "قطع غيار",
+        "offres_abonnements": "عروض واشتراكات"
+      }
+    },
+    
+    "informatique": {
+      "categories": {
+        "ordinateurs_portables": "حواسيب محمولة",
+        "ordinateurs_bureau": "حواسيب مكتبية",
+        "serveurs": "خوادم",
+        "ecrans": "شاشات",
+        "composants_pc_fixe": "مكونات حاسوب ثابت",
+        "composants_pc_portable": "مكونات حاسوب محمول",
+        "composants_serveur": "مكونات خادم",
+        "imprimantes_cartouches": "طابعات وخراطيش",
+        "reseau_connexion": "شبكة واتصال",
+        "stockage_externe_racks": "تخزين خارجي وأرفف",
+        "onduleurs_stabilisateurs": "منظمات ومثبتات تيار",
+        "compteuses_billets": "عدادات أوراق نقدية",
+        "claviers_souris": "لوحات مفاتيح وفأرات",
+        "casques_son": "سماعات رأس وصوت",
+        "webcam_videoconference": "كاميرات ويب ومؤتمرات فيديو",
+        "data_shows": "عرض بيانات",
+        "cables_adaptateurs": "كابلات ومحولات",
+        "stylets_tablettes": "أقلام رقمية وألواح",
+        "cartables_sacoches": "حافظات وحقائب",
+        "manettes_simulateurs": "أجهزة تحكم ومحاكاة",
+        "vr": "واقع افتراضي"
+      }
+    },
+    
+    "electromenager": {
+      "categories": {
+        "televiseurs": "تلفزيونات",
+        "demodulateurs_box_tv": "فك تشفير وصناديق تلفزيون",
+        "paraboles_switch_tv": "أطباق ومفاتيح تلفزيون",
+        "abonnements_iptv": "اشتراكات IPTV",
+        "cameras_accessories": "كاميرات وملحقات",
+        "audio": "صوتيات",
+        "refrigerateurs_congelateurs": "ثلاجات ومجمدات",
+        "machines_laver": "غسالات",
+        "lave_vaisselles": "غسالات صحون",
+        "fours_cuisson": "أفران وطهي",
+        "chauffage_climatisation": "تدفئة وتكييف",
+        "appareils_cuisine": "أجهزة مطبخ",
+        "aspirateurs_nettoyeurs": "مكنسات ومنظفات",
+        "repassage": "كوي",
+        "beaute_hygiene": "جمال ونظافة",
+        "machines_coudre": "ماكينات خياطة",
+        "telecommandes": "أجهزة تحكم عن بعد",
+        "securite_gps": "أمن وملاحة",
+        "composants_electroniques": "مكونات إلكترونية",
+        "pieces_rechange": "قطع غيار",
+        "autre": "أخرى"
+      }
+    },
+    
+    "tips": {
+      "vente": "بيع/شراء عقار",
+      "location": "إيجار طويل الأجل",
+      "location_vacances": "إيجار موسمي/سياحي",
+      "cherche_location": "البحث عن عقار للإيجار",
+      "cherche_achat": "البحث عن عقار للشراء",
+      "appartement": "شقة سكنية",
+      "local": "محل تجاري/مكتب",
+      "villa": "منزل فردي",
+      "terrain": "أرض قابلة للبناء",
+      "terrain_agricole": "أرض زراعية",
+      "immeuble": "عمارة كاملة",
+      "bungalow": "بنغل/شاليه"
+    },
+
+
+    "santebeaute": {
+      "categories": {
+        "cosmetiques_beaute": "مستحضرات تجميل وجمال",
+        "parfums_deodorants_femme": "عطور ومزيلات عرق نسائية",
+        "parfums_deodorants_homme": "عطور ومزيلات عرق رجالية",
+        "parapharmacie_sante": "صيدلية وصحة"
+      }
+    },
+    "meubles": {
+      "categories": {
+        "meubles_maison": "أثاث المنزل",
+        "decoration": "ديكور",
+        "vaisselle": "أواني",
+        "meubles_bureau": "أثاث مكتب",
+        "rideaux": "ستائر",
+        "literie_linge": "فراش وملاءات",
+        "puericulture": "مستلزمات الأطفال",
+        "tapis_moquettes": "سجاد وموكيت",
+        "meubles_exterieur": "أثاث خارجي",
+        "fournitures_scolaires": "مستلزمات ومواد مدرسية",
+        "luminaire": "إضاءة",
+        "autre": "أخرى"
+      }
+    },
+    "loisirs": {
+      "categories": {
+        "animalerie": "محلات الحيوانات الأليفة",
+        "consoles_jeux_videos": "أجهزة وألعاب فيديو",
+        "livres_magazines": "كتب ومجلات",
+        "instruments_musique": "آلات موسيقية",
+        "jeux_loisirs": "ألعاب ترفيهية",
+        "jouets": "ألعاب",
+        "chasse_peche": "صيد وسمك",
+        "jardinage": "بستنة",
+        "antiquites_collections": "تحف ومجموعات",
+        "barbecue_grillades": "شواء ومشاوي",
+        "vapes_chichas": "سيجارات إلكترونية ومعسل",
+        "produits_accesoires_ete": "منتجات وملحقات صيفية",
+        "autre": "أخرى"
+      }
+    },
+
+    "emploi": {
+      "categories": {
+        "offres_emploi": "عروض العمل",
+        "demandes_emploi": "طلبات العمل"
+      }
+    },
+    "sport": {
+      "categories": {
+        "football": "كرة القدم",
+        "hand_voley_basket": "كرة اليد/الكرة الطائرة/كرة السلة",
+        "sport_combat": "رياضات قتالية",
+        "fitness_musculation": "لياقة بدنية وكمال أجسام",
+        "natation": "سباحة",
+        "velos_trotinettes": "دراجات ودراجات هوائية",
+        "sports_raquette": "رياضات المضرب",
+        "sport_aquatiques": "رياضات مائية"
+      }
+    },
+    "alimentaires": {
+      "categories": {
+        "produits_laitiers": "منتجات الألبان",
+        "fruits_secs": "فواكه مجففة",
+        "graines_riz_cereales": "حبوب - أرز - حبوب",
+        "sucres_produits_sucres": "سكريات ومنتجات سكرية",
+        "boissons": "مشروبات",
+        "viandes_poissons": "لحوم وأسماك",
+        "cafe_the_infusion": "قهوة - شاي - أعشاب",
+        "complements_alimentaires": "مكملات غذائية",
+        "miel_derives": "عسل ومشتقاته",
+        "fruits_legumes": "فواكه وخضروات",
+        "ble_farine": "قمح ودقيق",
+        "bonbons_chocolat": "حلويات وشوكولاتة",
+        "boulangerie_viennoiserie": "مخبوزات وحلويات",
+        "ingredients_cuisine_patisserie": "مكونات الطبخ والحلويات",
+        "noix_graines": "مكسرات وحبوب",
+        "plats_cuisines": "أطباق جاهزة",
+        "sauces_epices_condiments": "صلصات - بهارات - توابل",
+        "oeufs": "بيض",
+        "huiles": "زيوت",
+        "pates": "معكرونة",
+        "gateaux": "كعك",
+        "emballage": "تغليف",
+        "aliments_bebe": "أطعمة الأطفال",
+        "aliments_dietetiques": "أطعمة غذائية"
+      }
+    },
+    "materiaux": {
+      "categories": {
+        "materiel_professionnel": "معدات مهنية",
+        "outillage_professionnel": "أدوات مهنية",
+        "materiaux_construction": "مواد بناء",
+        "matieres_premieres": "مواد أولية",
+        "produits_hygiene": "منتجات نظافة",
+        "materiel_agricole": "معدات زراعية",
+        "autre": "أخرى"
+      }
+    },
+    "services": {
+      "categories": {
+        "construction_travaux": "بناء وأشغال",
+        "ecoles_formations": "مدارس وتدريب",
+        "industrie_fabrication": "صناعة وتصنيع",
+        "transport_demenagement": "نقل وتغيير محل الإقامة",
+        "decoration_amenagement": "ديكور وتأثيث",
+        "publicite_communication": "إعلان وتواصل",
+        "nettoyage_jardinage": "تنظيف وزراعة حدائق",
+        "froid_climatisation": "تبريد وتكييف",
+        "traiteurs_gateaux": "مطاعم وكعك",
+        "medecine_sante": "طب وصحة",
+        "reparation_auto_diagnostic": "إصلاح سيارات وتشخيص",
+        "securite_alarme": "أمان وإنذار",
+        "projets_etudes": "مشاريع ودراسات",
+        "bureautique_internet": "مكتبية وإنترنت",
+        "location_vehicules": "تأجير مركبات",
+        "menuiserie_meubles": "نجارة وأثاث",
+        "impression_edition": "طباعة ونشر",
+        "hotellerie_restauration_salles": "فنادق ومطاعم وقاعات",
+        "esthetique_beaute": "جمال وتجميل",
+        "image_son": "صورة وصوت",
+        "comptabilite_economie": "محاسبة واقتصاد",
+        "couture_confection": "خياطة وتفصيل",
+        "maintenance_informatique": "صيانة حاسوب",
+        "reparation_electromenager": "إصلاح أجهزة كهربائية",
+        "evenements_divertissement": "مناسبات وترفيه",
+        "paraboles_demos": "أطباق وأجهزة استقبال",
+        "reparation_electronique": "إصلاح إلكترونيات",
+        "services_etranger": "خدمات في الخارج",
+        "flashage_reparation_telephones": "تفليش وإصلاح هواتف",
+        "flashage_installation_jeux": "تفليش وتثبيت ألعاب",
+        "juridique": "قانوني"
+      }
+    },
+    "voyages": {
+      "categories": {
+        "voyage_organise": "رحلة منظمة",
+        "location_vacances": "إيجار عطلات",
+        "hajj_omra": "حج وعمرة",
+        "reservations_visa": "حجوزات وتأشيرات",
+        "sejour": "إقامة",
+        "croisiere": "رحلة بحرية",
+        "autre": "أخرى"
+      }
+    }
+
+  }

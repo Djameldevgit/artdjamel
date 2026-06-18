@@ -1,0 +1,479 @@
+/* ============================================
+   TRENDING VIDEOS PAGE - ESTILOS TIKTOK
+   ============================================ */
+
+/* ──────────────────────────────────────────────
+   ANIMACIONES
+   ────────────────────────────────────────────── */
+   @keyframes trending-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes trending-fire-pulse {
+    0%, 100% {
+      transform: scale(1);
+      text-shadow: 0 0 0 rgba(254, 44, 85, 0);
+    }
+    50% {
+      transform: scale(1.1);
+      text-shadow: 0 0 10px rgba(254, 44, 85, 0.5);
+    }
+  }
+  
+  @keyframes trending-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* ──────────────────────────────────────────────
+     PÁGINA PRINCIPAL
+     ────────────────────────────────────────────── */
+  .trending-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: white;
+    padding-bottom: 80px;
+  }
+  
+  /* ──────────────────────────────────────────────
+     HEADER
+     ────────────────────────────────────────────── */
+  .trending-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .trending-back-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.2s ease;
+  }
+  
+  .trending-back-btn:active {
+    transform: scale(0.9);
+    background: rgba(254, 44, 85, 0.3);
+  }
+  
+  .trending-title-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .trending-fire-icon {
+    font-size: 28px;
+    color: #fe2c55;
+    animation: trending-fire-pulse 2s infinite;
+  }
+  
+  .trending-main-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(135deg, #fe2c55, #ff6b6b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* ──────────────────────────────────────────────
+     TIME FILTER
+     ────────────────────────────────────────────── */
+  .trending-time-filter {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .trending-time-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+  
+  .trending-time-btn.active {
+    background: linear-gradient(135deg, #fe2c55, #ff6b6b);
+    border-color: transparent;
+  }
+  
+  .trending-time-btn:active {
+    transform: scale(0.95);
+  }
+  
+  /* ──────────────────────────────────────────────
+     STATS SUMMARY
+     ────────────────────────────────────────────── */
+  .trending-stats-summary {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .trending-stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: trending-slide-in 0.3s ease;
+  }
+  
+  .trending-stat-icon {
+    font-size: 32px;
+    color: #fe2c55;
+  }
+  
+  .trending-stat-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .trending-stat-value {
+    font-size: 24px;
+    font-weight: 800;
+  }
+  
+  .trending-stat-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  /* ──────────────────────────────────────────────
+     GRID DE VIDEOS
+     ────────────────────────────────────────────── */
+  .trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* ──────────────────────────────────────────────
+     TARJETA DE VIDEO TRENDING
+     ────────────────────────────────────────────── */
+  .trending-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+    animation: trending-fade-in 0.3s ease;
+    position: relative;
+  }
+  
+  .trending-card:active {
+    transform: scale(0.98);
+  }
+  
+  .trending-rank {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  
+  .trending-medal {
+    font-size: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  
+  .trending-rank-number {
+    color: white;
+  }
+  
+  .trending-thumbnail-container {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    background: #1a1a2e;
+  }
+  
+  .trending-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .trending-card:hover .trending-thumbnail {
+    transform: scale(1.05);
+  }
+  
+  /* Overlay */
+  .trending-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 12px;
+  }
+  
+  .trending-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+  }
+  
+  .trending-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: white;
+  }
+  
+  /* Score badge */
+  .trending-score-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #fe2c55, #ff6b6b);
+    border-radius: 20px;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .trending-score-badge svg {
+    font-size: 10px;
+  }
+  
+  /* Duración */
+  .trending-duration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+  }
+  
+  /* Información del video */
+  .trending-info {
+    padding: 12px;
+  }
+  
+  .trending-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .trending-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  
+  .trending-user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .trending-user-icon {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .trending-username {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .trending-meta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .trending-meta-item {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  /* Indicador de tendencia */
+  .trending-trend-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .trending-emoji {
+    font-size: 14px;
+  }
+  
+  .trending-progress-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .trending-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #fe2c55, #ff6b6b);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  
+  .trending-percent {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fe2c55;
+  }
+  
+  /* Loading */
+  .trending-loading {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .trending-loading-spinner {
+    font-size: 48px;
+    color: #fe2c55;
+  }
+  
+  .trending-loading-more {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  /* Empty state */
+  .trending-empty {
+    text-align: center;
+    padding: 80px 20px;
+  }
+  
+  .trending-empty-icon {
+    font-size: 64px;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+  }
+  
+  .trending-empty h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .trending-empty p {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .trending-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 12px;
+    }
+    
+    .trending-time-btn span {
+      display: none;
+    }
+    
+    .trending-time-btn {
+      padding: 8px 12px;
+    }
+    
+    .trending-stat-card {
+      padding: 12px 16px;
+    }
+    
+    .trending-stat-icon {
+      font-size: 24px;
+    }
+    
+    .trending-stat-value {
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .trending-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .trending-stats-summary {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .trending-stat-card {
+      width: 100%;
+      justify-content: center;
+    }
+  }

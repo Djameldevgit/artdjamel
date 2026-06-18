@@ -1,0 +1,17 @@
+{
+  "title": "Compartir Aplicación",
+  "description": "¡Comparte nuestra aplicación con tus amigos!",
+  "appName": "Vêtements Djamel",
+  "shareText": "Descubre esta increíble aplicación para el arte en linea {{appName}}! {{appUrl}}",
+  "facebook": "Facebook",
+  "whatsapp": "WhatsApp",
+  "twitter": "Twitter",
+  "tiktok": "TikTok",
+  "linkedin": "LinkedIn",
+  "telegram": "Telegram",
+  "copyLink": "Copiar enlace",
+  "shareNative": "Compartir usando...",
+  "copySuccess": "¡Enlace copiado al portapapeles!",
+  "copyError": "Error al copiar",
+  "shareError": "Error al compartir"
+}

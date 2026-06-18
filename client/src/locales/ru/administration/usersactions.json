@@ -1,0 +1,45 @@
+{
+    "userManagement": "إدارة المستخدمين",
+    "searchUsers": "البحث عن المستخدمين...",
+    "filterUsers": "تصفية المستخدمين",
+    "filter": {
+      "latestRegistered": "أحدث المسجلين",
+      "lastLogin": "آخر تسجيل دخول",
+      "mostLikes": "الأكثر إعجابات",
+      "mostComments": "الأكثر تعليقات",
+      "mostFollowers": "الأكثر متابعين",
+      "mostPosts": "الأكثر منشورات",
+      "mostReports": "الأكثر تقارير"
+    },
+    "tableHeadd": {
+      "user": "المستخدم",
+      "registration": "تاريخ التسجيل",
+      "login": "آخر تسجيل دخول",
+      "posts": "المنشورات",
+      "reports": "التقارير المرسلة",
+      "reportsReceived": "التقارير المستلمة",
+      "likesGiven": "الإعجابات المرسلة",
+      "likesReceived": "الإعجابات المستلمة",
+      "commentsMade": "التعليقات المرسلة",
+      "commentsReceived": "التعليقات المستلمة",
+      "following": "يتابع",
+      "followers": "المتابعين",
+      "actions": "الإجراءات"
+    },
+    "actio": {
+      "title": "الإجراءات",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "block": "حظر",
+      "mute": "كتم",
+      "sendMessage": "إرسال رسالة",
+      "viewProfile": "عرض الملف الشخصي",
+      "viewReports": "عرض التقارير",
+      "loginAsUser": "تسجيل الدخول كمستخدم"
+    },
+    "noUsersFound": "لم يتم العثور على مستخدمين",
+    "neverLoggedIn": "لم يقم بتسجيل الدخول أبداً",
+    "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟"
+ 
+  }
+  

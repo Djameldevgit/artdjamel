@@ -1,0 +1,61 @@
+@keyframes slideInFromRight {
+  0% {
+      transform: translateX(100%);
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+
+.toast {
+  animation: slideInFromRight 0.5s ease-out;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 250px;
+  z-index: 50;
+  background-color: #333;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.5s ease-out;
+}
+
+.toast.fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+.toast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.toast-header strong {
+  font-size: 16px;
+}
+
+.toast-body {
+  font-size: 14px;
+}
+
+.close {
+  color: white;
+  font-size: 0.4rem;
+  cursor: pointer;
+}

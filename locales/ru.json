@@ -1,0 +1,199 @@
+{
+	 
+		"emailActivation": {
+		  "subject": "Активируйте свой аккаунт в Tassili Art",
+		  "body": "Добро пожаловать в Tassili Art! Чтобы присоединиться к нашему художественному сообществу и использовать все функции платформы, пожалуйста, подтвердите свой аккаунт. Нажмите кнопку ниже, чтобы завершить проверку:",
+		  "button": "Подтвердить аккаунт",
+		  "alt": "Если кнопка не работает, скопируйте и вставьте ссылку ниже в свой браузер, чтобы активировать аккаунт Tassili Art."
+		},
+		"emailReset": {
+		  "subject": "Сброс пароля Tassili Art",
+		  "body": "Вы запросили сброс пароля на Tassili Art. Нажмите кнопку ниже, чтобы продолжить процесс восстановления:",
+		  "button": "Сбросить пароль",
+		  "alt": "Если вы не запрашивали этот сброс, просто проигнорируйте это сообщение."
+		},
+		"emailInformativo": {
+		  "subject": "Новости Tassili Art",
+		  "body": "Узнайте о последних новостях и обновлениях Tassili Art. Откройте для себя новые произведения искусства, художников и функции платформы.",
+		  "button": "Исследовать",
+		  "alt": "Если кнопка не работает, посетите наш веб-сайт для получения дополнительной информации."
+		},
+	 
+	  
+
+
+
+	"auth": {
+		"username_exists": "Имя пользователя уже существует.",
+		"email_exists": "Email уже зарегистрирован.",
+		"password_too_short": "Пароль должен содержать не менее 6 символов.",
+		"register_success": "Регистрация прошла успешно!",
+		"email_not_exist": "Такой email не существует.",
+		"incorrect_password": "Неверный пароль.",
+		"login_success": "Вход выполнен успешно!",
+		"logout_success": "Выход выполнен успешно!",
+		"login_required": "Пожалуйста, войдите в систему.",
+		"user_not_found": "Пользователь не найден.",
+		"server_error": "Ошибка сервера.",
+		"activation_email_sent": "auth.activation_email_sent",
+		"forgot_email_sent": "auth.forgot_email_sent",
+		"account_activated": "✅ Аккаунт успешно активирован.",
+		"reset_email_sent": "Ссылка для сброса пароля отправлена.",
+		"password_changed": "Пароль успешно изменен."
+	},
+	"post": {
+		"POST": "POST",
+		"created_post": "Мы получили ваше сообщение, наша команда проверяет его. Мы уведомим вас после одобрения.",
+		"updated_post": "Публикация обновлена!",
+		"deleted_post": "Публикация удалена!",
+		"liked_post": "Вам понравилась публикация!",
+		"unliked_post": "Лайк убран с публикации!",
+		"saved_post": "Публикация сохранена!",
+		"unsaved_post": "Публикация удалена из сохраненных!",
+		"post_not_exist": "Этой публикации не существует.",
+		"user_not_exist": "Этого пользователя не существует.",
+		"already_liked": "Вы уже лайкали эту публикацию.",
+		"already_saved": "Вы уже сохраняли эту публикацию.",
+		"please_add_photo": "Пожалуйста, добавьте фото.",
+		"post_approved": "Публикация одобрена!",
+		"post_not_found": "Публикация не найдена.",
+		"success": "Успешно!",
+		"USER": "USER",
+		"user_not_found": "Пользователь не найден.",
+		"please_add_username": "Пожалуйста, добавьте имя пользователя.",
+		"update_success": "Обновление прошло успешно!",
+		"already_followed": "Вы уже подписаны на этого пользователя.",
+		"follow_success": "Подписка оформлена успешно!",
+		"unfollow_success": "Отписка выполнена успешно!",
+		"search_failed": "Ошибка поиска пользователей.",
+		"suggestions_loaded": "Рекомендации пользователей загружены.",
+		"error": "Произошла ошибка.",
+		"no_users_found": "Пользователи не найдены.",
+		"invalid_user_id": "Неверный ID пользователя.",
+		"updated_arabic": "language.updated_arabic",
+		"updated_french": "language.updated_french",
+		"updated_spanish": "language.updated_spanish"
+	},
+	"comment": {
+		"error_post_not_exist": "Этой публикации не существует.",
+		"error_comment_not_exist": "Этого комментария не существует.",
+		"success": "Комментарий успешно создан!"
+	},
+	"lang": {
+		"langUpdatedToSpanish": "Язык изменен на испанский",
+		"langUpdatedToRussian": "Язык изменен на русский",
+		"langUpdatedToKabyle": "Язык изменен на кабильский",
+		"langUpdatedToChinese": "Язык изменен на китайский",
+		"langUpdatedToEnglish": "Язык изменен на английский",
+		"langUpdatedToFrench": "Язык изменен на французский",
+		"langUpdatedToArabic": "Язык изменен на арабский",
+		"langUpdated": "Язык обновлен",
+		"languageNotSpecified": "Язык не указан",
+		"userNotFoundOrAlreadyUpdated": "Пользователь не найден или язык уже обновлен",
+		"errorUpdatingLanguage": "Ошибка при обновлении языка",
+		"languageSavedForVisitor": "Язык сохранен для посетителя",
+		"errorSavingLanguageForVisitor": "Ошибка сохранения языка для посетителя"
+	},
+	"cart": {
+		"postNotFoundOrNoPrice": "Публикация не найдена или без цены",
+		"postAddedToCart": "Публикация добавлена в корзину",
+		"priceMustBeNumber": "Цена должна быть числом",
+		"priceMustBePositive": "Цена должна быть положительной",
+		"quantityAtLeastOne": "Количество должно быть не менее 1",
+		"productRemoved": "Товар удален",
+		"serverError": "Ошибка сервера",
+		"invalidQuantity": "Недопустимое количество",
+		"productNotFoundInCart": "Товар не найден в корзине",
+		"quantityUpdated": "Количество обновлено"
+	},
+	"language": {
+		"updated_arabic": "language.updated_arabic",
+		"updated_spanish": "language.updated_spanish",
+		"updated_english": "language.updated_english",
+		"updated_french": "language.updated_french"
+	},
+	"email": {
+		"subject": "Джамал Арт",
+		"title": "Добро пожаловать в искусство Тассили",
+		"body": "Поздравляем! Вы почти используете приложение. Нажмите кнопку или ссылку ниже, чтобы подтвердить email.",
+		"button": "Подтвердить Email",
+		"alt": "Если кнопка не работает, вы можете перейти по ссылке:",
+		"reset_button": "email.reset_button"
+	},
+	"user_not_found": "Пользователь не найден.",
+	"already_verified": "Аккаунт уже подтвержден.",
+	"activation_email_sent": "Письмо активации отправлено на ваш адрес.",
+	"server_error": "Внутренняя ошибка сервера.",
+	"order": {
+		"cart_empty": "Корзина пуста",
+		"created_success": "✅ Заказ успешно создан",
+		"not_found": "Заказ не найден",
+		"status_updated": "Статус заказа обновлен",
+		"deleted_success": "Заказ успешно удален"
+	},
+	"role": {
+		"user_not_found": "Пользователь не найден",
+		"role_assigned": "Роль пользователя успешно назначена",
+		"Super-utilisateur": "Роль суперпользователя назначена",
+		"moderator_assigned": "Роль модератора назначена",
+		"admin_assigned": "Роль администратора назначена",
+		"update_error": "Ошибка обновления роли пользователя"
+	},
+	"message": {
+		"create_success": "Сообщение успешно создано!",
+		"delete_success": "Успешно удалено!",
+		"invalid_data": "Неверные данные: требуется получатель и содержание сообщения",
+		"server_error": "Ошибка сервера сообщений",
+		"createMessage.empty": "Сообщение не может быть пустым.",
+		"createMessage.success": "Сообщение успешно создано!",
+		"deleteMessage.success": "Сообщение успешно удалено!",
+		"deleteConversation.success": "Диалог успешно удален!"
+	},
+	"report": {
+		"missing_fields": "Все поля обязательны",
+		"create_success": "Жалоба успешно создана",
+		"server_error": "Ошибка сервера жалоб",
+		"report_not_found": "Жалоба не найдена",
+		"update_success": "Статус жалобы обновлен",
+		"delete_success": "Жалоба успешно удалена"
+	},
+	"block": {
+		"user_not_found": "Пользователь не найден",
+		"already_blocked": "Этот пользователь уже заблокирован",
+		"default_reason": "Причина не указана",
+		"default_content": "Нет дополнительного содержания",
+		"default_date": "Дата начала не указана",
+		"block_success": "Пользователь успешно заблокирован",
+		"not_blocked": "Этот пользователь не заблокирован",
+		"unblock_success": "Пользователь разблокирован",
+		"server_error": "Ошибка сервера блокировок"
+	},
+	"user": {
+		"activation_message_required": "Требуется сообщение для активации аккаунта",
+		"activation_request_sent": "✅ Запрос активации отправлен администратору",
+		"server_error": "Ошибка сервера пользователей",
+		"unauthenticated": "Пользователь не аутентифицирован",
+		"contact_title_message_required": "Требуется заголовок и сообщение",
+		"contact_message_sent": "Сообщение поддержки успешно отправлено",
+		"contact_send_error": "Ошибка отправки сообщения поддержки",
+		"blocked_message_required": "Требуется сообщение для запроса пересмотра",
+		"blocked_request_sent": "✅ Запрос пересмотра блокировки отправлен",
+		"blocked_send_error": "Ошибка отправки запроса пересмотра",
+		"not_found": "Пользователь не найден",
+		"account_deleted_unverified": "Ваш аккаунт удален из-за неподтверждения в течение 3 дней. Зарегистрируйтесь снова",
+		"status_updated": "Статус пользователя обновлен",
+		"not_exist": "Пользователь не существует",
+		"success": "Успешно",
+		"username_required": "Требуется полное имя",
+		"update_success": "Пользователь успешно обновлен!",
+		"already_followed": "Вы уже подписаны на этого пользователя",
+		"delete_denied_admin": "Отказано: требуются права администратора",
+		"invalid_id": "Неверный ID пользователя",
+		"delete_self_denied": "Вы не можете удалить свой аккаунт",
+		"delete_success": "Пользователь и связанный контент успешно удалены",
+		"delete_error": "Ошибка удаления пользователя",
+		"cleanup_denied_admin": "Отказано: для очистки требуются права администратора",
+		"cleanup_success": "Очищено: {{posts}} публикаций и {{comments}} комментариев",
+		"cleanup_error": "Ошибка очистки оставшегося контента"
+	}
+}

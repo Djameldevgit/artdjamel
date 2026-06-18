@@ -1,0 +1,44 @@
+{
+    
+      "videoDemo": "Video Demo",
+      "backToGallery": "Volver a la Galería",
+      "loadingVideo": "Cargando video...",
+      "workNotFound": "Obra no encontrada",
+      "workNotFoundTitle": "Obra no encontrada",
+      "workNotFoundDescription": "La obra que buscas no existe o ha sido removida.",
+      "videoDescriptionDefault": "Video demostrativo del proceso creativo de esta obra.",
+      "language": "Español",
+      "browserNotSupported": "Tu navegador no soporta el elemento video.",
+      
+      "chatWithArtist": "Chat con el Artista",
+      "requestOrder": "Solicitar Pedido",
+      "shareVideo": "Compartir Video",
+      
+      "videoDemoTitle": "Demostración en Video (30 segundos)",
+      "technicalDetails": "Detalles Técnicos",
+      "duration": "Duración",
+      "seconds": "segundos",
+      "format": "Formato",
+      "category": "Categoría",
+      "technique": "Técnica",
+      
+      "followArtist": "Sígue al Artista en Redes Sociales",
+      
+      "shareDescription": "Elige cómo quieres compartir este video:",
+      "copyLink": "Copiar Enlace",
+      "linkCopied": "Enlace copiado al portapapeles",
+      
+      "chatDescription": "Puedes contactar directamente al artista a través de:",
+      "whatsappDirect": "WhatsApp Directo",
+      "contactForm": "Formulario de Contacto",
+      
+      "whatsappMessage": "Hola, me interesa la obra: \"{{title}}\"",
+      
+      "socialLinks": {
+        "tiktok": "https://tiktok.com/@artista",
+        "instagram": "https://instagram.com/artista",
+        "facebook": "https://facebook.com/artista",
+        "twitter": "https://twitter.com/artista"
+      }
+    }
+ 

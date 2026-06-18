@@ -1,0 +1,49 @@
+ 
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1px;
+    padding-left: 0; /* Asegura que no haya padding a la izquierda */
+}
+
+.title-post {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-left: 10px; /* Asegura que no haya margen a la izquierda */
+    padding-left: 0; /* Asegura que no haya padding a la izquierda */
+}
+.title0    {
+    margin: 0; /* Elimina el margen para que estén pegados */
+    font-size: 18px; /* Tamaño de fuente */
+    color: rgb(10, 9, 9); /* Color de texto */
+}
+ .title2, .title3 {
+    margin: 0; /* Elimina el margen para que estén pegados */
+    font-size: 17px; /* Tamaño de fuente */
+    color: rgb(10, 9, 9); /* Color de texto */
+}
+.title0 {
+    font-weight:500 /* Negrita para el título principal */
+}
+
+.titlelocation {
+    display: flex;
+    gap: 7px; /* Espacio entre los elementos de ubicación */
+    font-size: 17px;
+    color: rgb(56, 56, 56); /* Color de texto más suave */
+    margin-left: 12px; /* Asegura que no haya margen a la izquierda */
+    margin-bottom: 2px;
+}
+
+.icon-edit {
+    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+    color: #666; /* Color del ícono */
+    font-size: 10px; /* Tamaño del ícono */
+}
+
+.icon-edit:hover {
+    color: #333; /* Cambia el color al pasar el mouse */
+}

@@ -1,0 +1,118 @@
+{
+  "hero": {
+    "title": "Plateforme MERN Complète",
+    "subtitle": "Réseau social moderne avec e-commerce, chat en temps réel et support multi-langues"
+  },
+  "about": {
+    "name": "Artiste Développeur",
+    "title": "Peintre & Développeur Full Stack",
+    "greeting": "À propos du Créateur",
+    "description": "Je suis un peintre passionné et développeur full stack d'Alger, Algérie. Mon parcours combine créativité artistique et précision technique, créant des expériences digitales à la fois belles et fonctionnelles.",
+    "journey": "Ma philosophie de développement est ancrée dans des bases CRUD solides, renforcées par des technologies IA de pointe comme DeepSeek, Claude et ChatGPT. À travers des années de recherche dédiée et de codage pratique, j'ai transformé des idées complexes en applications entièrement réalisées. Chaque projet représente d'innombrables heures de résolution de problèmes et d'apprentissage continu.",
+    "philosophy": "Malgré les défis du débogage et de la perfection de l'architecture du code, ma détermination et mon optimisme me poussent à terminer chaque application. Je crois en la transformation des obstacles en opportunités de croissance."
+  },
+  "apps": {
+    "title": "Mes Applications en Production",
+    "subtitle": "Découvrez mes plateformes marketplace où les utilisateurs peuvent publier et échanger indépendamment",
+    "marketplace": "Marketplace",
+    "art_marketplace": "Marché d'Art",
+    "art_marketplace_desc": "Plateforme d'achat et vente d'œuvres d'art - Les utilisateurs publient leurs créations",
+    "real_estate": "Immobilier",
+    "real_estate_desc": "Marché de propriétés - Les utilisateurs listent et découvrent des opportunités immobilières",
+    "automobiles": "Marché des Véhicules",
+    "automobiles_desc": "Plateforme d'échange de voitures et véhicules - Annonces et ventes gérées par les utilisateurs",
+    "smartphones": "Marché des Smartphones", 
+    "smartphones_desc": "Marché d'appareils mobiles - Les utilisateurs achètent et vendent des smartphones librement",
+    "travel_agency": "vêtements en ligne",
+    "travel_agency_desc": "Plateforme de services de voyage - Les utilisateurs partagent et réservent des expériences de voyage"
+  },
+  "sections": {
+    "features": "Fonctionnalités Principales",
+    "architecture": "Architecture Technique", 
+    "faq": "Questions Fréquentes",
+    "statistics": "Statistiques du Système"
+  },
+  "features": {
+    "multi_language": {
+      "title": "Système Multi-Langues",
+      "description": "Changement instantané entre 6+ langues incluant Amazigh, Arabe, Français, Anglais, Espagnol et plus avec un seul clic."
+    },
+    "authentication": {
+      "title": "Sécurité Avancée",
+      "description": "Méthodes d'authentification multiples: inscription manuelle, connexion en un clic Google/Facebook, vérification email et récupération de mot de passe."
+    },
+    "real_time_chat": {
+      "title": "Chat en Temps Réel",
+      "description": "Messagerie privée avec partage d'images, indicateurs en ligne et communication instantanée directement depuis les publications."
+    },
+    "ecommerce": {
+      "title": "Système E-Commerce",
+      "description": "Panier d'achat complet, paiement sécurisé avec intégration bancaire locale et historique d'achats personnalisé."
+    },
+    "responsive": {
+      "title": "Complètement Responsive",
+      "description": "Expérience parfaite sur tous appareils: mobiles, tablettes et ordinateurs avec design moderne."
+    },
+    "performance": {
+      "title": "Haute Performance",
+      "description": "Architecture MERN optimisée avec nettoyage automatique, mises à jour temps réel et gestion efficace des données."
+    }
+  },
+  
+  
+  "faq": {
+    "how_register": {
+      "question": "Comment m'inscrire sur la plateforme?",
+      "answer": "Vous pouvez vous inscrire de trois façons: 1) Inscription manuelle avec email et mot de passe, 2) Un clic avec compte Google, 3) Un clic avec compte Facebook. Tous requièrent une vérification par email."
+    },
+    "language_change": {
+      "question": "Comment changer la langue?",
+      "answer": "Cliquez sur le sélecteur de langue dans la barre de navigation et choisissez votre langue préférée. Le changement est instantané et s'applique à toute la plateforme."
+    },
+    "post_validation": {
+      "question": "Combien de temps prend la validation des publications?",
+      "answer": "Les publications sont validées par les administrateurs en secondes ou minutes. Vous recevrez une notification une fois votre publication approuvée et visible par la communauté."
+    },
+    "security": {
+      "question": "Quelles mesures de sécurité sont en place?",
+      "answer": "Nous utilisons l'authentification JWT, la vérification par email, le système de blocage automatique, le nettoyage quotidien des utilisateurs non vérifiés et la surveillance en temps réel de l'activité."
+    }
+  },
+  "stats": {
+    "validation_time": "Validation Publications",
+    "validation_time_desc": "Secondes - Minutes",
+    "languages": "Langues Supportées",
+    "languages_desc": "6+ Langues",
+    "verification_rate": "Vérification Email",
+    "verification_rate_desc": "> 95% Taux de Réussite",
+    "chat_response": "Réponse Chat",
+    "chat_response_desc": "< 30 secondes"
+  },
+  "cta": {
+    "title": "Prêt à rejoindre notre communauté?",
+    "description": "Inscrivez-vous maintenant et commencez à profiter de toutes les fonctionnalités de notre plateforme sociale avancée.",
+    "button": "Commencer"
+  },
+
+ 
+    "architecture": {
+      "frontend": "Technologies Frontend",
+      "backend": "Technologies Backend",
+      "frontend_points": {
+        "react": "Composants modernes et hooks",
+        "redux": "Gestion d'état global",
+        "bootstrap": "Framework UI responsive",
+        "i18n": "Système d'internationalisation"
+      },
+      "backend_points": {
+        "express": "Serveur API REST",
+        "mongodb": "Base de données NoSQL",
+        "jwt": "Authentification sécurisée",
+        "socket": "Communication temps réel"
+      }
+    }
+ 
+
+
+
+}

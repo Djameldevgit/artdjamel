@@ -1,0 +1,33 @@
+{
+  "headers": {
+    "title": "Gestion des Rôles Utilisateurs",
+    "resultado": "Resulte",
+    "usuarios": "Utilisateurs"
+  },
+
+  "resultsCount": "résultats",
+  "usersCount": "utilisateurs",
+  "searchUsers": "Rechercher des utilisateurs...",
+  "searching": "Recherche en cours...",
+  "tableHeadersss": {
+    "user": "Utilisateur",
+    "currentRole": "Rôle Actuel",
+    "changeRole": "Changer le Rôle"
+  },
+  "roles": {
+    "user": "Utilisateur",
+    "Super-utilisateur": "Super Utilisateur",
+    "Moderateur": "Modérateur",
+    "admin": "Administrateur"
+  },
+  "noUsersFoundSearch": "Aucun utilisateur trouvé pour cette recherche",
+  "noUsersAvailable": "Aucun utilisateur disponible",
+  "protectedUser": "Protégé",
+  "protectedUserMessage": "Cet utilisateur ne peut pas être modifié",
+  "protectedUserError": "Vous ne pouvez pas modifier le rôle de cet utilisateur protégé",
+  "loadingUsers": "Chargement des utilisateurs...",
+  "loadMore": "Charger plus d'utilisateurs",
+  
+  "changeRoleSuccess": "Rôle modifié avec succès",
+  "changeRoleError": "Erreur lors du changement de rôle"
+}

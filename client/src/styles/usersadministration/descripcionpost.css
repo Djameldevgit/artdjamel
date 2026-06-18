@@ -1,0 +1,77 @@
+.artwork-details-container {
+  padding: 1rem;
+  margin: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Ancho máximo para PC */
+  max-width: 800px;
+  width: 90%; /* Se adapta en pantallas medianas */
+}
+
+.artwork-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.metadata-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.metadata-item:hover {
+  background-color: #f0f0f0;
+}
+
+.metadata-item i {
+  margin-right: 12px;
+  color: #5c6bc0;
+  font-size: 1.2rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.metadata-label {
+  font-weight: 600;
+  color: #333;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.metadata-value {
+  color: #444;
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .artwork-details-container {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .metadata-item {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0.75rem;
+  }
+
+  .metadata-label {
+    min-width: 120px;
+  }
+
+  .metadata-value {
+    flex: 1;
+  }
+}

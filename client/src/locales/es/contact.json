@@ -1,0 +1,38 @@
+{
+    "contact_form": "Formulario de Contacto",
+    "subjectt": "Asunto",
+    "messagee": "Mensaje",
+    "write_subject": "Escribe el asunto de tu mensaje",
+    "write_message": "Escribe tu mensaje aquí...",
+    "sendingg": "Enviando...",
+    "send_message": "Enviar Mensaje",
+    "mensajeenviadoconexito": "✅ Mensaje enviado con éxito. Te responderemos pronto.",
+    "erroralenviarmensaje": "❌ Error al enviar el mensaje. Por favor, intenta nuevamente.",
+    "commissionRequestSent": "✅ Solicitud de presupuesto enviada con éxito. Te contactaremos en 24h con los detalles de tu obra personalizada.",
+    
+    "commissionHeader": "Solicitud de Presupuesto para Obra Personalizada",
+    "commissionSubheader": "Hemos pre-llenado el formulario con información básica. Por favor, revisa y completa los detalles específicos de tu obra.",
+    "commissionTitle": "Solicitud de Presupuesto",
+    "commissionDefaultTitle": "Solicitud de Presupuesto para Obra Personalizada",
+    "commissionDefaultMessage": "Hola, estoy interesado/a en solicitar un presupuesto para una obra personalizada. He revisado la página de encargos y me gustaría discutir los siguientes detalles:\n\n• Tipo de obra que deseo:\n• Medidas aproximadas: \n• Estilo artístico preferido:\n• Tema o idea principal:\n• Presupuesto estimado que tengo en mente:\n• Plazo de entrega deseado:\n\n¿Podrían ayudarme con más información y un presupuesto detallado?",
+    
+    "emailLabel": "Tu Email",
+    "guestUser": "Invitado (serás contactado por email)",
+    "commissionEmailHelp": "Te contactaremos a este email con el presupuesto detallado de tu obra",
+    "regularEmailHelp": "Usaremos este email para responderte",
+    
+    "commissionPlaceholder": "Describe en detalle tu obra ideal...",
+    "commissionHelpText": "Incluye: tipo de obra, medidas, estilo, colores, tema, plazo deseado y cualquier detalle importante.",
+    
+    "sendingCommission": "Enviando solicitud...",
+    "sendCommissionButton": "📨 Enviar Solicitud de Presupuesto",
+    
+    "commissionIncludesTitle": "¿Qué incluye el presupuesto?",
+    "commissionIncludes": {
+      "price": "Precio detallado de la obra",
+      "materials": "Coste de materiales",
+      "delivery": "Plazo de entrega estimado",
+      "shipping": "Opciones de envío y marco",
+      "modifications": "Posibilidad de modificaciones"
+    }
+  }

@@ -1,0 +1,21 @@
+{
+ 
+    "immobilier": "العقارات",
+    "automobiles": "السيارات والمركبات",
+    "telephones": "الهواتف والملحقات",
+    "informatique": "المعلوماتية",
+    "electromenager": "الأجهزة الكهربائية والإلكترونية",
+    "piecesDetachees": "قطع الغيار",
+    "vetements": "الملابس والأزياء",
+    "Alimentaires": "المواد الغذائية",
+    "santebeaute": "الصحة والجمال",
+    "meubles": "الأثاث والمنزل",
+    "Services": "الخدمات",
+    "Materiaux": "المواد",
+    "loisirs": "الترفيه والترفيه",
+    "emploi": "عروض وطلبات العمل",
+    "Sport": "الرياضة",
+    "Voyage": "السفر",
+    "select_category": "اختر فئة"
+  
+}

@@ -1,0 +1,514 @@
+/* ============================================
+   VideoComments.css - Versión Funcional
+   ============================================ */
+
+   .video-comments-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #0f0f0f;
+    height: 100%;
+  }
+  
+  /* Header */
+  .comments-header {
+    padding: 16px 20px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .comments-header h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+  }
+  
+  /* Formulario principal */
+  .comment-form-main {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .comment-main-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .comment-main-input-wrapper {
+    flex: 1;
+    position: relative;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 10px 44px 10px 16px;
+  }
+  
+  .comment-main-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 0.85rem;
+    resize: none;
+    font-family: inherit;
+  }
+  
+  .comment-main-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .comment-main-send {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    background: none;
+    border: none;
+    color: #667eea;
+    cursor: pointer;
+    padding: 4px;
+  }
+  
+  .comment-main-send:disabled {
+    color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Lista de comentarios */
+  .comments-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+  }
+  
+  .comments-list::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .comments-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+  
+  /* Item de comentario */
+  .comment-item {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .comment-body {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  /* Header del comentario */
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  
+  .comment-user {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .comment-user strong {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  .comment-time {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .pro-badge {
+    font-size: 0.6rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    color: white;
+  }
+  
+  .edited-badge {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+  }
+  
+  /* Menú */
+  .comment-menu {
+    position: relative;
+  }
+  
+  .comment-menu button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+  }
+  
+  .comment-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: #1e1e2a;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 6px 0;
+    min-width: 140px;
+    z-index: 100;
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .comment-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 16px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.75rem;
+    border-radius: 0;
+  }
+  
+  .comment-dropdown button:first-child {
+    color: #667eea;
+  }
+  
+  .comment-dropdown button:last-child {
+    color: #ef4444;
+  }
+  
+  /* Texto */
+  .comment-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.45;
+    margin: 0 0 12px 0;
+  }
+  
+  /* Acciones */
+  .comment-actions {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .like-btn, .reply-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.7rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 20px;
+  }
+  
+  .like-btn.active {
+    color: #ef4444;
+  }
+  
+  /* Respuestas */
+  .replies-list {
+    margin-top: 12px;
+    padding-left: 20px;
+    border-left: 2px solid rgba(102, 126, 234, 0.25);
+  }
+  
+  .reply-item {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  
+  .reply-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .reply-body {
+    flex: 1;
+  }
+  
+  .reply-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  
+  .reply-header strong {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  .reply-time {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .reply-text {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  /* Menú de respuesta */
+  .reply-menu {
+    position: relative;
+    margin-left: auto;
+  }
+  
+  .reply-menu button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 50%;
+  }
+  
+  .reply-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: #1e1e2a;
+    border-radius: 10px;
+    padding: 4px 0;
+    min-width: 110px;
+    z-index: 100;
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .reply-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.65rem;
+  }
+  
+  .reply-dropdown button:first-child {
+    color: #667eea;
+  }
+  
+  .reply-dropdown button:last-child {
+    color: #ef4444;
+  }
+  
+  /* Formulario de respuesta */
+  .reply-form-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  .reply-form-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .reply-form-wrapper {
+    flex: 1;
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 8px 44px 8px 14px;
+  }
+  
+  .reply-form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 0.8rem;
+    resize: none;
+    font-family: inherit;
+  }
+  
+  .reply-form-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .reply-form-send {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    background: none;
+    border: none;
+    color: #667eea;
+    cursor: pointer;
+    padding: 4px;
+  }
+  
+  .reply-form-send:disabled {
+    color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Área de edición */
+  .edit-area {
+    margin: 8px 0 12px;
+  }
+  
+  .edit-area textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 12px;
+    padding: 10px;
+    color: white;
+    font-size: 0.85rem;
+    resize: vertical;
+    font-family: inherit;
+    outline: none;
+  }
+  
+  .edit-area.inline textarea {
+    font-size: 0.75rem;
+    padding: 6px 8px;
+  }
+  
+  .edit-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .save-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .cancel-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  /* Estado vacío */
+  .no-comments {
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .no-comments-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+  
+  .no-comments p {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+  }
+  
+  .no-comments span {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.75rem;
+  }
+  
+  /* Loading */
+  .loading-more {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .comment-form-main, .comment-item {
+      padding: 12px 16px;
+    }
+    
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .reply-form-container {
+      margin-top: 10px;
+    }
+    
+    .reply-form-avatar {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .replies-list {
+      padding-left: 12px;
+    }
+  }
+  
+  /* Touch optimizations */
+  button, .comment-main-send, .reply-form-send {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }

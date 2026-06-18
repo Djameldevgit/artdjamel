@@ -1,0 +1,259 @@
+import React, { useState,useRef,useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Card, Button, Form,  Stack, OverlayTrigger, Tooltip  } from 'react-bootstrap';
+ // Iconos de Font Awesome (como los que usé en el ejemplo)
+import {  FaHeart, FaRegHeart, FaReply, FaEdit, FaTrash, FaEllipsisV } from 'react-icons/fa';
+ 
+import {  useLocation } from 'react-router-dom';
+import {
+  replyComment,
+  updateComment,
+  deleteComment,
+  likeComment,
+  dislikeComment
+} from '../../../redux/actions/blogAction';
+import Avatar from '../../Avatar';
+ 
+
+const Commentsss = ({comment}) => {
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth) || {};
+  const socket = useSelector(state => state.socket) || null;
+  const user = auth.user || null;
+
+  const [replyText, setReplyText] = useState('');
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [editText, setEditText] = useState(comment.text);
+  const [showOptions, setShowOptions] = useState(false);
+  
+  const canEditOrDelete = user && (user._id === comment.user.id || user.role === 'admin');
+  const hasLiked = user && Array.isArray(comment.likes)
+    ? comment.likes.some(u => (typeof u === 'string' ? u === user._id : u._id === user._id))
+    : false;
+   
+    const handleLike = () => {
+    if (!user) return;
+    if (hasLiked) dispatch(dislikeComment(comment._id, socket));
+    else dispatch(likeComment(comment._id, socket));
+  };
+  const location = useLocation()
+  const commentref = useRef(null);
+
+  useEffect(() => {
+    const target = location.state && location.state.scrollTo;
+    if (!target) return;
+    const map = {
+     
+      comment:commentref
+    };
+    const ref = map[target];
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [location]);
+  const handleReply = (e) => {
+    e.preventDefault();
+    if (!replyText.trim()) return;
+    dispatch(replyComment(comment._id, { text: replyText }, socket));
+    setReplyText('');
+    setShowReplyForm(false);
+  };
+
+  const handleUpdate = () => {
+    dispatch(updateComment(comment._id, { text: editText }, socket));
+    setEditing(false);
+  };
+
+  const handleDelete = () => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar este comentario?')) {
+      dispatch(deleteComment(comment._id, socket));
+    }
+  };
+
+ 
+
+  return (
+<div>
+ 
+    <Card className="mb-3 border-0 comment-card"ref={commentref} >
+      <Card.Body className="p-3">
+        {/* Cabecera del comentario */}
+        <div className="d-flex align-items-start">
+          {/* Avatar - Alineado perfectamente con el texto */}
+          <div className="avatar-container me-3 mt-1">
+            <Avatar src={comment.user.avatar} size="medium" />
+          </div>
+          
+          {/* Contenido principal */}
+          <div className="flex-grow-1">
+            <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-2">
+              {/* Nombre y fecha - ahora mejor alineados */}
+              <div className="d-flex flex-column">
+                <strong className="user-name">{comment.user.name}</strong>
+                 </div>
+              
+              {/* Acciones */}
+              <div className="d-flex align-items-center mt-2 mt-md-0">
+                {/* Like button */}
+                <OverlayTrigger placement="top" overlay={<Tooltip>{hasLiked ? 'Quitar me gusta' : 'Me gusta'}</Tooltip>}>
+                  <Button 
+                    variant="link" 
+                    className="p-0 me-2 text-decoration-none like-button"
+                    onClick={handleLike} 
+                    disabled={!user}
+                  >
+                    <div className="d-flex align-items-center">
+                      {hasLiked ? (
+                        <FaHeart color="#ff6b6b" className="me-1" />
+                      ) : (
+                        <FaRegHeart color="#adb5bd" className="me-1" />
+                      )}
+                      <span className={`like-count ${hasLiked ? 'text-danger' : 'text-muted'}`}>
+                        {Array.isArray(comment.likes) ? comment.likes.length : comment.likes || 0}
+                      </span>
+                    </div>
+                  </Button>
+                </OverlayTrigger>
+                
+                {/* Reply button */}
+                {user && !editing && (
+                  <OverlayTrigger placement="top" overlay={<Tooltip>Responder</Tooltip>}>
+                    <Button 
+                      variant="link" 
+                      className="p-0 me-2 text-decoration-none reply-button"
+                      onClick={() => setShowReplyForm(!showReplyForm)}
+                    >
+                      <FaReply color="#6c757d" />
+                    </Button>
+                  </OverlayTrigger>
+                )}
+                
+                {/* Menu de opciones */}
+                {canEditOrDelete && (
+                  <div className="position-relative options-container">
+                    <OverlayTrigger placement="top" overlay={<Tooltip>Opciones</Tooltip>}>
+                      <Button 
+                        variant="link" 
+                        className="p-0 text-decoration-none options-button"
+                        onClick={() => setShowOptions(!showOptions)}
+                      >
+                        <FaEllipsisV color="#6c757d" />
+                      </Button>
+                    </OverlayTrigger>
+                    
+                    {showOptions && (
+                      <div className="options-dropdown shadow-sm">
+                        <Button 
+                          variant="link" 
+                          className="d-flex align-items-center w-100 text-start text-decoration-none"
+                          onClick={() => {
+                            setEditing(!editing);
+                            setShowOptions(false);
+                          }}
+                        >
+                          <FaEdit className="me-2" /> {editing ? 'Cancelar' : 'Editar'}
+                        </Button>
+                        <Button 
+                          variant="link" 
+                          className="d-flex align-items-center w-100 text-start text-danger text-decoration-none"
+                          onClick={() => {
+                            handleDelete();
+                            setShowOptions(false);
+                          }}
+                        >
+                          <FaTrash className="me-2" /> Eliminar
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Contenido del comentario */}
+            {editing ? (
+              <div className="editing-container mb-3">
+                <Form.Control 
+                  as="textarea" 
+                  rows={3} 
+                  value={editText} 
+                  onChange={(e) => setEditText(e.target.value)} 
+                  className="mb-2 edit-textarea"
+                />
+                <Stack direction="horizontal" gap={2} className="edit-buttons">
+                  <Button variant="primary" size="sm" onClick={handleUpdate}>
+                    Guardar
+                  </Button>
+                  <Button 
+                    variant="outline-secondary" 
+                    size="sm" 
+                    onClick={() => {
+                      setEditing(false);
+                      setEditText(comment.text);
+                    }}
+                  >
+                    Cancelar
+                  </Button>
+                </Stack>
+              </div>
+            ) : (
+              <div className="comment-content mb-2">
+                {comment.text}
+              </div>
+            )}
+            
+            {/* Respuestas */}
+            {comment.replies && comment.replies.length > 0 && (
+              <div className="replies-container mt-3">
+                {comment.replies.map((r, i) => (
+                  <div key={i} className="reply-item mb-2 p-2 rounded">
+                    <div className="d-flex align-items-start">
+                      <div className="avatar-container me-2">
+                        <Avatar src={r.user.avatar} size="small" />
+                      </div>
+                      <div className="flex-grow-1">
+                        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-1">
+                          <strong className="small reply-user">{r.user.name}</strong>
+                          <small className="text-muted reply-date">{formatDate(r.createdAt)}</small>
+                        </div>
+                        <div className="small reply-text">{r.text}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            
+            {/* Formulario de respuesta */}
+            {user && showReplyForm && (
+              <Form onSubmit={handleReply} className="mt-3 reply-form">
+                <Form.Control 
+                  as="textarea" 
+                  rows={2} 
+                  value={replyText} 
+                  onChange={(e) => setReplyText(e.target.value)} 
+                  placeholder="Escribe tu respuesta..."
+                  className="mb-2 reply-textarea"
+                />
+                <Stack direction="horizontal" gap={2} className="reply-buttons">
+                  <Button type="submit" variant="primary" size="sm">
+                    Enviar respuesta
+                  </Button>
+                  <Button 
+                    variant="outline-secondary" 
+                    size="sm" 
+                    onClick={() => setShowReplyForm(false)}
+                  >
+                    Cancelar
+                  </Button>
+                </Stack>
+              </Form>
+            )}
+          </div>
+        </div>
+      </Card.Body>
+    </Card></div>
+  );
+};
+export default Commentsss

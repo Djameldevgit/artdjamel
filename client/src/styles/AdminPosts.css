@@ -1,0 +1,385 @@
+/* 📂 pages/admin/AdminPosts.css */
+
+.adm-posts-container {
+  min-height: 100vh;
+  background: #f5f7fb;
+  position: relative;
+}
+
+/* Overlay */
+.adm-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  animation: admFadeIn 0.3s ease;
+}
+
+@keyframes admFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Contenido principal */
+.adm-main-content {
+  flex: 1;
+  padding: 16px 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 767px) {
+  .adm-main-content {
+    padding: 8px 12px;
+  }
+}
+
+/* Header */
+.adm-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .adm-content-header {
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+}
+
+.adm-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.adm-title {
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+@media (max-width: 640px) {
+  .adm-title {
+    font-size: 0.95rem;
+  }
+}
+
+.adm-subtitle {
+  color: #6c757d;
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .adm-subtitle {
+    font-size: 0.65rem;
+  }
+}
+
+/* Botón refresh */
+.adm-refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.adm-refresh-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+@media (max-width: 640px) {
+  .adm-refresh-btn {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .adm-refresh-btn span {
+    display: none;
+  }
+}
+
+.adm-spin {
+  animation: admSpin 1s linear infinite;
+}
+
+@keyframes admSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   CONTENEDOR DE TABS CON BOTÓN DE MENÚ
+   ============================================ */
+
+.adm-tabs-container-with-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .adm-tabs-container-with-menu {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+}
+
+/* Wrapper de tabs (ocupa todo el espacio disponible) */
+.adm-tabs-wrapper {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  background: white;
+  padding: 4px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 640px) {
+  .adm-tabs-wrapper {
+    gap: 3px;
+    padding: 3px;
+    border-radius: 10px;
+  }
+}
+
+/* Tabs individuales */
+.adm-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+@media (max-width: 640px) {
+  .adm-tab {
+    padding: 6px 8px;
+    font-size: 0.7rem;
+    gap: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .adm-tab {
+    padding: 5px 6px;
+    font-size: 0.65rem;
+    gap: 2px;
+  }
+}
+
+.adm-tab:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.adm-tab-active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.adm-tab-count {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 1px 5px;
+  border-radius: 16px;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .adm-tab-count {
+    padding: 1px 4px;
+    font-size: 0.55rem;
+  }
+}
+
+.adm-tab-active .adm-tab-count {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ============================================
+   BOTÓN DE MENÚ INTEGRADO (ESTILO DRAWER)
+   ============================================ */
+
+.adm-menu-integrated-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 640px) {
+  .adm-menu-integrated-btn {
+    padding: 6px 10px;
+    gap: 4px;
+    font-size: 0.7rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .adm-menu-integrated-btn {
+    padding: 5px 8px;
+    gap: 3px;
+  }
+  
+  .adm-menu-integrated-btn span {
+    display: none;
+  }
+}
+
+.adm-menu-integrated-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.adm-menu-integrated-btn svg {
+  font-size: 0.9rem;
+  color: #667eea;
+}
+
+@media (max-width: 640px) {
+  .adm-menu-integrated-btn svg {
+    font-size: 0.85rem;
+  }
+}
+
+.adm-menu-integrated-btn:active {
+  transform: translateY(0);
+  background: #f1f5f9;
+}
+
+/* Tabla contenedor */
+.adm-tables-container {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 640px) {
+  .adm-tables-container {
+    padding: 12px;
+    border-radius: 12px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - UNA SOLA FILA EN MÓVIL
+   ============================================ */
+
+/* Para tablets pequeñas y móviles grandes */
+@media (max-width: 768px) {
+  .adm-tabs-container-with-menu {
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .adm-tabs-wrapper {
+    width: auto;
+    flex: 1;
+  }
+  
+  .adm-menu-integrated-btn {
+    flex-shrink: 0;
+    width: auto;
+  }
+}
+
+/* Para móviles pequeños (Android) */
+@media (max-width: 550px) {
+  .adm-tabs-container-with-menu {
+    gap: 5px;
+  }
+  
+  .adm-tabs-wrapper {
+    gap: 2px;
+    padding: 2px;
+  }
+  
+  .adm-tab {
+    padding: 4px 6px;
+    font-size: 0.6rem;
+  }
+  
+  .adm-tab span:first-child {
+    font-size: 0.9rem;
+  }
+  
+  .adm-tab span:nth-child(2) {
+    display: none;
+  }
+  
+  .adm-menu-integrated-btn {
+    padding: 4px 8px;
+  }
+  
+  .adm-menu-integrated-btn svg {
+    font-size: 0.8rem;
+  }
+}
+
+/* Para móviles muy pequeños */
+@media (max-width: 400px) {
+  .adm-tabs-container-with-menu {
+    gap: 4px;
+  }
+  
+  .adm-tab {
+    padding: 3px 4px;
+  }
+  
+  .adm-tab span:first-child {
+    font-size: 0.85rem;
+  }
+  
+  .adm-menu-integrated-btn {
+    padding: 3px 6px;
+  }
+  
+  .adm-tables-container {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "errors": {
+    "maxImages": "Máximo {{max}} imágenes permitidas. {{extra}}",
+    "superUserExtra": "Los usuarios premium pueden subir hasta 4 imágenes.",
+    "fileNotExist": "El archivo no existe.",
+    "invalidType": "Solo se permiten archivos de imagen (JPEG, JPG, PNG, GIF).",
+    "invalidName": "El nombre \"{{name}}\" contiene caracteres no permitidos.",
+    "maxSize": "La imagen no puede superar los 5 MB.",
+    "minDimensions": "La imagen debe tener al menos {{width}}x{{height}} píxeles.",
+    "maxDimensions": "La imagen no puede exceder {{width}}x{{height}} píxeles.",
+    "duplicateImage": "La imagen \"{{name}}\" ya fue seleccionada.",
+    "imageLoad": "Error al cargar la imagen.",
+    "categoryRequired": "Por favor selecciona una categoría.",
+    "imageRequired": "Por favor agrega al menos una imagen.",
+    "invalidFiles": "Solo se permiten archivos de imagen (JPEG, JPG, PNG, GIF, WEBP)."
+  },
+  "statusModal": {
+    "title": "Crear publicación"
+  },
+  "titulostatusmoddal": "Crear publicación",
+  "sectionTitles": {
+    "basicInfo": "Información básica",
+    "artisticDetails": "Detalles artísticos",
+    "dimensions": "Dimensiones",
+    "availabilityPrice": "Disponibilidad y precio",
+    "saleLogistics": "Logística de venta",
+    "artistInfo": "Información del artista"
+  },
+  "button": {
+    "post": "Publicar"
+  }
+}
+

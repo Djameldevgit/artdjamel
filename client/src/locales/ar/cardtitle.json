@@ -1,0 +1,55 @@
+{
+   
+    "moreOptions": "المزيد من الخيارات",
+    "viewDestinationOnMap": "عرض الوجهة على الخريطة",
+    "departure": "مغادرة",
+    
+    "days": {
+      "monday": "الإثنين",
+      "tuesday": "الثلاثاء",
+      "wednesday": "الأربعاء", 
+      "thursday": "الخميس",
+      "friday": "الجمعة",
+      "saturday": "السبت",
+      "sunday": "الأحد"
+    },
+    
+    "categories": {
+      "locationVacances": "إيجار عطلات",
+      "hajjUmrah": "حج وعمرة",
+      "voyageOrganise": "رحلة منظمة",
+      "businessTrip": "رحلة عمل",
+      "tourism": "سياحة",
+      "adventure": "مغامرة",
+      "cultural": "ثقافي",
+      "beach": "شاطئي",
+      "mountain": "جبل",
+      "desert": "صحراء"
+    },
+    
+    "noCategory": "بدون فئة",
+    
+    "agency": {
+      "contactError": "لا يمكن الاتصال بهذه الوكالة",
+      "profileError": "لا يمكن عرض ملف هذه الوكالة"
+    },
+    
+    "post": {
+      "deleteConfirmation": "هل أنت متأكد من أنك تريد حذف هذا المنشور؟"
+    },
+    
+    "editPost": "تعديل المنشور",
+    "deletePost": "حذف المنشور",
+    "writeToAgency": "الكتابة إلى الوكالة",
+    "followAgency": "متابعة الوكالة", 
+    "sharePost": "مشاركة",
+    "viewDetails": "عرض التفاصيل",
+    
+    "auth": {
+      "required": "مصادقة مطلوبة",
+      "loginToContinue": "يرجى تسجيل الدخول للمتابعة",
+      "login": "تسجيل الدخول",
+      "register": "تسجيل"
+    }
+  }
+ 

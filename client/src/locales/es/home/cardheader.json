@@ -1,0 +1,25 @@
+{
+  
+    "publicationOptions": "Opciones de Publicación",
+    "chooseAction": "Elige la acción que deseas realizar",
+    "safeActions": "Todas las acciones son seguras y reversibles",
+    "approvePublication": "Aprobar Publicación",
+    "editPublication": "Editar Publicación", 
+    "deletePublication": "Eliminar Publicación",
+    "contactArtist": "Contactar Artista",
+    "sharePublication": "Compartir Publicación",
+    "savePublication": "Guardar Publicación",
+    "saved": "Guardado",
+    "contactAdmin": "Contactar Administrador",
+    "reportPublication": "Reportar Publicación",
+    "cancel": "Cancelar",
+    "approveDescription": "Aprobar esta publicación para que sea visible",
+    "editDescription": "Modificar los detalles de la publicación",
+    "deleteDescription": "Eliminar permanentemente esta publicación",
+    "contactDescription": "Enviar mensaje al artista",
+    "shareDescription": "Compartir en redes sociales",
+    "saveDescription": "Guardar para ver más tarde",
+    "adminChatDescription": "Contactar con soporte técnico",
+    "reportDescription": "Reportar contenido inapropiado"
+ 
+}

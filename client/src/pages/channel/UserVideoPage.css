@@ -1,0 +1,1316 @@
+/* ============================================
+   UserVideoPage.css — Estilo TikTok Blanco
+   Manteniendo toda tu estructura original
+   ============================================ */
+
+   * { margin: 0; padding: 0; box-sizing: border-box; }
+
+   /* ─────────────────────────────────────────────
+      PAGE WRAPPER - AHORA BLANCO
+      ───────────────────────────────────────────── */
+   .user-video-page {
+     min-height: 100vh;
+     background: #ffffff;  /* ← CAMBIADO: antes #0a0a0a */
+     color: #161823;       /* ← CAMBIADO: texto oscuro */
+     padding-bottom: 80px;
+     position: relative;
+     overflow-x: hidden;
+   }
+   
+   /* ─────────────────────────────────────────────
+      LOADING
+      ───────────────────────────────────────────── */
+   .user-video-loading {
+     position: fixed;
+     inset: 0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background: #ffffff;  /* ← CAMBIADO: blanco */
+     z-index: 9999;
+     gap: 16px;
+   }
+   
+   .user-video-loading .loading-spinner {
+     width: 64px;
+     height: 64px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+     background: rgba(254, 44, 85, 0.1);
+     border: 1.5px solid rgba(254, 44, 85, 0.3);
+   }
+   
+   .user-video-loading .loading-spinner svg {
+     font-size: 28px;
+     color: #fe2c55;
+     animation: uvSpin 0.9s linear infinite;
+   }
+   
+   @keyframes uvSpin {
+     to { transform: rotate(360deg); }
+   }
+   
+   .user-video-loading p {
+     font-size: 14px;
+     color: rgba(0, 0, 0, 0.5);  /* ← CAMBIADO: texto gris oscuro */
+     letter-spacing: 0.5px;
+   }
+   
+   /* ─────────────────────────────────────────────
+      ERROR
+      ───────────────────────────────────────────── */
+   .user-video-error {
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background: #ffffff;  /* ← CAMBIADO: blanco */
+     color: #161823;       /* ← CAMBIADO: oscuro */
+     gap: 20px;
+     text-align: center;
+     padding: 20px;
+   }
+   
+   .user-video-error h2 {
+     font-size: 20px;
+     font-weight: 600;
+   }
+   
+   .user-video-error button {
+     padding: 12px 32px;
+     background: #fe2c55;
+     border: none;
+     border-radius: 40px;
+     color: #fff;
+     font-size: 14px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: opacity 0.2s;
+   }
+   
+   .user-video-error button:active { opacity: 0.8; }
+   
+   /* ─────────────────────────────────────────────
+      COVER / HERO BACKGROUND - MODIFICADO PARA BLANCO
+      ───────────────────────────────────────────── */
+   .uv-cover {
+     position: relative;
+     height: 200px;
+     background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 40%, #fafafa 100%);  /* ← CAMBIADO: tonos grises claros */
+     overflow: hidden;
+   }
+   
+   .uv-cover::after {
+     content: '';
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(to bottom, transparent 40%, #ffffff 100%);  /* ← CAMBIADO: blanco */
+   }
+   
+   /* ─────────────────────────────────────────────
+      HEADER (sticky) - ESTILO BLANCO
+      ───────────────────────────────────────────── */
+   .uv-header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 12px 16px;
+     position: sticky;
+     top: 0;
+     z-index: 100;
+     background: rgba(255, 255, 255, 0.95);  /* ← CAMBIADO: blanco semi-transparente */
+     backdrop-filter: blur(14px);
+     -webkit-backdrop-filter: blur(14px);
+     border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);  /* ← CAMBIADO: borde gris claro */
+   }
+   
+   .uv-back-btn,
+   .uv-share-btn,
+   .uv-messages-btn {
+     background: rgba(0, 0, 0, 0.05);  /* ← CAMBIADO: fondo gris claro */
+     border: 0.5px solid rgba(0, 0, 0, 0.1);  /* ← CAMBIADO */
+     width: 38px;
+     height: 38px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     color: #161823;  /* ← CAMBIADO: oscuro */
+     font-size: 16px;
+     transition: background 0.15s ease, transform 0.15s ease;
+     -webkit-tap-highlight-color: transparent;
+   }
+   
+   .uv-back-btn:active,
+   .uv-share-btn:active,
+   .uv-messages-btn:active {
+     transform: scale(0.9);
+     background: rgba(254, 44, 85, 0.15);
+   }
+   
+   .uv-header-title {
+     font-size: 16px;
+     font-weight: 700;
+     letter-spacing: 0.2px;
+     color: #161823;  /* ← CAMBIADO: oscuro */
+   }
+   
+   .uv-header-actions {
+     display: flex;
+     gap: 10px;
+     align-items: center;
+   }
+   
+   /* ─────────────────────────────────────────────
+      AVATAR - MANTENIDO CON PEQUEÑOS AJUSTES
+      ───────────────────────────────────────────── */
+   .uv-avatar-container {
+     position: relative;
+     display: flex;
+     justify-content: center;
+     margin-top: 28px;
+     margin-bottom: 14px;
+   }
+   
+   .uv-avatar {
+     width: 100px;
+     height: 100px;
+     border-radius: 50%;
+     object-fit: cover;
+     border: 3px solid #fe2c55;
+     box-shadow: 0 0 0 4px rgba(254, 44, 85, 0.1), 0 8px 28px rgba(0, 0, 0, 0.15);  /* ← AJUSTADO */
+     display: block;
+     transition: transform 0.2s ease;
+   }
+   
+   .uv-avatar:active { transform: scale(0.96); }
+   
+   .uv-edit-avatar-btn {
+     position: absolute;
+     bottom: 2px;
+     right: calc(50% - 58px);
+     background: #fe2c55;
+     border: 2px solid #ffffff;  /* ← CAMBIADO: borde blanco */
+     width: 32px;
+     height: 32px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     color: #fff;
+     font-size: 13px;
+     transition: transform 0.15s ease, background 0.15s ease;
+     -webkit-tap-highlight-color: transparent;
+   }
+   
+   .uv-edit-avatar-btn:active {
+     transform: scale(0.9);
+     background: #c4213e;
+   }
+   
+   /* ─────────────────────────────────────────────
+      USERNAME & BIO - COLORES OSCUROS
+      ───────────────────────────────────────────── */
+   .uv-username {
+     text-align: center;
+     font-size: 20px;
+     font-weight: 800;
+     margin: 0 20px 6px;
+     letter-spacing: -0.3px;
+     color: #161823;  /* ← CAMBIADO */
+   }
+   
+   .uv-bio {
+     text-align: center;
+     font-size: 13px;
+     color: rgba(0, 0, 0, 0.6);  /* ← CAMBIADO: gris oscuro */
+     margin: 0 30px 20px;
+     line-height: 1.5;
+   }
+   
+   /* ─────────────────────────────────────────────
+      STATS ROW - ESTILO BLANCO
+      ───────────────────────────────────────────── */
+   .uv-stats-row {
+     display: flex;
+     justify-content: center;
+     gap: 0;
+     margin: 0 20px 24px;
+     background: rgba(0, 0, 0, 0.03);  /* ← CAMBIADO */
+     border: 0.5px solid rgba(0, 0, 0, 0.08);  /* ← CAMBIADO */
+     border-radius: 16px;
+     overflow: hidden;
+   }
+   
+   .uv-stat {
+     flex: 1;
+     text-align: center;
+     padding: 14px 8px;
+     position: relative;
+   }
+   
+   /* divisor entre stats */
+   .uv-stat + .uv-stat::before {
+     content: '';
+     position: absolute;
+     left: 0;
+     top: 20%;
+     height: 60%;
+     width: 0.5px;
+     background: rgba(0, 0, 0, 0.1);  /* ← CAMBIADO */
+   }
+   
+   .uv-stat-clickable {
+     cursor: pointer;
+     transition: background 0.15s ease;
+     -webkit-tap-highlight-color: transparent;
+   }
+   
+   .uv-stat-clickable:active {
+     background: rgba(254, 44, 85, 0.08);
+   }
+   
+   .uv-stat-number {
+     font-size: 20px;
+     font-weight: 800;
+     color: #161823;  /* ← CAMBIADO */
+     line-height: 1;
+     margin-bottom: 5px;
+     letter-spacing: -0.5px;
+   }
+   
+   .uv-stat-label {
+     font-size: 11px;
+     color: rgba(0, 0, 0, 0.5);  /* ← CAMBIADO */
+     text-transform: uppercase;
+     letter-spacing: 0.5px;
+     font-weight: 500;
+   }
+   
+   /* ─────────────────────────────────────────────
+      ACTION BUTTONS - ESTILO BLANCO
+      ───────────────────────────────────────────── */
+   .uv-action-buttons {
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+     margin: 0 20px 24px;
+   }
+   
+   .uv-follow-btn,
+   .uv-message-btn,
+   .uv-more-btn {
+     border-radius: 10px;
+     font-size: 14px;
+     font-weight: 700;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 8px;
+     padding: 11px 20px;
+     transition: transform 0.15s ease, opacity 0.15s ease;
+     -webkit-tap-highlight-color: transparent;
+     touch-action: manipulation;
+   }
+   
+   .uv-follow-btn {
+     background: #fe2c55;
+     border: none;
+     color: #fff;
+     flex: 1;
+     min-height: 44px;
+   }
+   
+   .uv-follow-btn:active { transform: scale(0.96); opacity: 0.88; }
+   
+   .uv-follow-btn.following {
+     background: rgba(0, 0, 0, 0.05);  /* ← CAMBIADO */
+     border: 1px solid rgba(0, 0, 0, 0.15);  /* ← CAMBIADO */
+     color: #161823;  /* ← CAMBIADO */
+   }
+   
+   .uv-message-btn {
+     background: rgba(0, 0, 0, 0.05);  /* ← CAMBIADO */
+     border: 1px solid rgba(0, 0, 0, 0.12);  /* ← CAMBIADO */
+     color: #161823;  /* ← CAMBIADO */
+     flex: 1;
+     min-height: 44px;
+   }
+   
+   .uv-message-btn:active { transform: scale(0.96); background: rgba(0, 0, 0, 0.1); }
+   
+   .uv-more-btn {
+     background: rgba(0, 0, 0, 0.05);  /* ← CAMBIADO */
+     border: 1px solid rgba(0, 0, 0, 0.12);  /* ← CAMBIADO */
+     color: #161823;  /* ← CAMBIADO */
+     width: 44px;
+     min-width: 44px;
+     min-height: 44px;
+     padding: 0;
+     border-radius: 10px;
+   }
+   
+   .uv-more-btn:active { transform: scale(0.9); }
+   
+   /* ─────────────────────────────────────────────
+      SEPARATOR
+      ───────────────────────────────────────────── */
+   .uv-separator {
+     height: 0.5px;
+     background: rgba(0, 0, 0, 0.08);  /* ← CAMBIADO */
+     margin: 0;
+   }
+   
+   /* ─────────────────────────────────────────────
+      TABS - ESTILO BLANCO TIKTOK
+      ───────────────────────────────────────────── */
+   .uv-tabs {
+     display: flex;
+     justify-content: stretch;
+     border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);  /* ← CAMBIADO */
+     background: #ffffff;  /* ← CAMBIADO */
+     position: sticky;
+     top: 62px;
+     z-index: 90;
+   }
+   
+   .uv-tab {
+     flex: 1;
+     background: none;
+     border: none;
+     padding: 14px 8px;
+     color: rgba(0, 0, 0, 0.45);  /* ← CAMBIADO: gris */
+     font-size: 13px;
+     font-weight: 600;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 6px;
+     position: relative;
+     transition: color 0.2s ease;
+     -webkit-tap-highlight-color: transparent;
+     touch-action: manipulation;
+   }
+   
+   .uv-tab svg {
+     font-size: 16px;
+     transition: transform 0.2s ease;
+   }
+   
+   .uv-tab.active {
+     color: #161823;  /* ← CAMBIADO: negro */
+   }
+   
+   .uv-tab.active svg {
+     color: #fe2c55;
+     transform: scale(1.1);
+   }
+   
+   /* línea indicadora */
+   .uv-tab.active::after {
+     content: '';
+     position: absolute;
+     bottom: -0.5px;
+     left: 15%;
+     right: 15%;
+     height: 2.5px;
+     background: #fe2c55;
+     border-radius: 2px;
+   }
+   
+   .uv-tab:active { transform: scale(0.95); }
+   
+   .uv-tab-count {
+     background: rgba(0, 0, 0, 0.08);  /* ← CAMBIADO */
+     border-radius: 20px;
+     padding: 1px 7px;
+     font-size: 10px;
+     font-weight: 700;
+     min-width: 22px;
+     text-align: center;
+     color: #161823;  /* ← CAMBIADO */
+   }
+   
+   .uv-tab.active .uv-tab-count {
+     background: #fe2c55;
+     color: #fff;
+   }
+   
+   /* ─────────────────────────────────────────────
+      VIDEO GRID
+      ───────────────────────────────────────────── */
+   .uv-videos-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 2px;
+     padding: 2px;
+     margin-top: 2px;
+   }
+   
+   /* ─────────────────────────────────────────────
+      MINI VIDEO CARD
+      ───────────────────────────────────────────── */
+   .uv-mini-video-card {
+     position: relative;
+     cursor: pointer;
+     background: #f5f5f5;  /* ← CAMBIADO: gris clarísimo */
+     border-radius: 4px;
+     overflow: hidden;
+     transition: transform 0.15s ease;
+     -webkit-tap-highlight-color: transparent;
+   }
+   
+   .uv-mini-video-card:active { transform: scale(0.97); }
+   
+   .uv-mini-thumbnail-container {
+     position: relative;
+     aspect-ratio: 9 / 16;
+     overflow: hidden;
+     background: #f0f0f0;  /* ← CAMBIADO */
+   }
+   
+   .uv-mini-thumbnail {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: block;
+     transition: transform 0.3s ease;
+   }
+   
+   .uv-mini-video-card:active .uv-mini-thumbnail {
+     transform: scale(1.03);
+   }
+   
+   /* overlay gradiente */
+   .uv-mini-overlay {
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+     padding: 20px 6px 6px;
+   }
+   
+   /* stats en la miniatura */
+   .uv-mini-stats {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     font-size: 10px;
+     color: rgba(255, 255, 255, 0.95);
+     font-weight: 600;
+   }
+   
+   .uv-mini-stats span {
+     display: flex;
+     align-items: center;
+     gap: 3px;
+   }
+   
+   .uv-stat-icon {
+     font-size: 9px;
+     opacity: 0.85;
+   }
+   
+   .uv-stat-heart .uv-stat-icon { color: #fe2c55; }
+   .uv-stat-play .uv-stat-icon  { color: #4ecdc4; }
+   .uv-stat-comment .uv-stat-icon { color: rgba(255,255,255,0.7); }
+   
+   /* duración badge */
+   .uv-mini-duration {
+     position: absolute;
+     bottom: 30px;
+     right: 5px;
+     background: rgba(0, 0, 0, 0.7);
+     backdrop-filter: blur(4px);
+     padding: 2px 5px;
+     border-radius: 4px;
+     font-size: 9px;
+     color: #fff;
+     font-weight: 600;
+     letter-spacing: 0.3px;
+   }
+   
+   /* botón guardar */
+   .uv-mini-save-btn {
+     position: absolute;
+     top: 6px;
+     right: 6px;
+     z-index: 10;
+     width: 30px;
+     height: 30px;
+     border-radius: 50%;
+     background: rgba(0, 0, 0, 0.55);
+     backdrop-filter: blur(4px);
+     border: none;
+     color: #fff;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     font-size: 13px;
+     opacity: 0;
+     transition: opacity 0.2s ease, background 0.15s ease, transform 0.15s ease;
+     -webkit-tap-highlight-color: transparent;
+   }
+   
+   .uv-mini-thumbnail-container:hover .uv-mini-save-btn,
+   .uv-mini-save-btn.saved {
+     opacity: 1;
+   }
+   
+   .uv-mini-save-btn.saved {
+     background: #fe2c55;
+   }
+   
+   .uv-mini-save-btn:active { transform: scale(0.88); }
+   .uv-mini-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+   
+   /* título debajo del thumbnail */
+   .uv-mini-title {
+     font-size: 11px;
+     margin: 6px 6px 5px;
+     color: rgba(0, 0, 0, 0.75);  /* ← CAMBIADO: texto oscuro */
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     line-height: 1.3;
+   }
+   
+   /* ─────────────────────────────────────────────
+      EMPTY STATE - ESTILO BLANCO
+      ───────────────────────────────────────────── */
+   .uv-empty-state {
+     text-align: center;
+     padding: 60px 28px 80px;
+   }
+   
+   .uv-empty-icon-container {
+     width: 80px;
+     height: 80px;
+     margin: 0 auto 20px;
+     background: rgba(254, 44, 85, 0.08);
+     border: 1px solid rgba(254, 44, 85, 0.2);
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   
+   .uv-empty-icon {
+     font-size: 34px;
+     color: #fe2c55;
+     opacity: 0.7;
+   }
+   
+   .uv-empty-title {
+     font-size: 18px;
+     font-weight: 700;
+     margin: 0 0 10px;
+     color: #161823;  /* ← CAMBIADO */
+   }
+   
+   .uv-empty-description {
+     font-size: 13px;
+     margin: 0 0 28px;
+     color: rgba(0, 0, 0, 0.5);  /* ← CAMBIADO */
+     line-height: 1.6;
+   }
+   
+   .uv-upload-btn {
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     padding: 13px 32px;
+     background: #fe2c55;
+     border: none;
+     border-radius: 40px;
+     color: #fff;
+     font-size: 14px;
+     font-weight: 700;
+     cursor: pointer;
+     transition: opacity 0.15s ease, transform 0.15s ease;
+     -webkit-tap-highlight-color: transparent;
+   }
+   
+   .uv-upload-btn:active { transform: scale(0.96); opacity: 0.88; }
+   
+   /* ─────────────────────────────────────────────
+      ANIMACIONES
+      ───────────────────────────────────────────── */
+   @keyframes uvSlideUp {
+     from { opacity: 0; transform: translateY(16px); }
+     to   { opacity: 1; transform: translateY(0); }
+   }
+   
+   .uv-mini-video-card {
+     animation: uvSlideUp 0.25s ease both;
+   }
+   
+   /* ─────────────────────────────────────────────
+      HOVER (solo dispositivos con puntero) - AJUSTADO
+      ───────────────────────────────────────────── */
+   @media (hover: hover) {
+   
+     .uv-back-btn:hover,
+     .uv-share-btn:hover,
+     .uv-messages-btn:hover {
+       background: rgba(254, 44, 85, 0.12);
+       border-color: rgba(254, 44, 85, 0.25);
+     }
+   
+     .uv-follow-btn:hover {
+       opacity: 0.9;
+     }
+   
+     .uv-message-btn:hover {
+       background: rgba(0, 0, 0, 0.1);
+       border-color: rgba(0, 0, 0, 0.2);
+     }
+   
+     .uv-stat-clickable:hover .uv-stat-number {
+       color: #fe2c55;
+     }
+   
+     .uv-mini-video-card:hover .uv-mini-thumbnail {
+       transform: scale(1.04);
+     }
+   
+     .uv-mini-video-card:hover .uv-mini-title {
+       color: #fe2c55;
+     }
+   
+     .uv-mini-save-btn:hover {
+       background: #fe2c55;
+       transform: scale(1.08);
+     }
+   
+     .uv-tab:hover {
+       color: rgba(0, 0, 0, 0.7);
+     }
+   }
+   
+   /* ─────────────────────────────────────────────
+      TÁCTIL
+      ───────────────────────────────────────────── */
+   @media (hover: none) and (pointer: coarse) {
+     .uv-mini-save-btn { opacity: 0.75; }
+     .uv-mini-save-btn.saved { opacity: 1; }
+   }
+   
+   /* ─────────────────────────────────────────────
+      RESPONSIVE — tablet/PC
+      ───────────────────────────────────────────── */
+   @media (min-width: 640px) {
+     .uv-videos-grid {
+       grid-template-columns: repeat(4, 1fr);
+       gap: 3px;
+       padding: 3px;
+     }
+   }
+   
+   @media (min-width: 1024px) {
+     .user-video-page {
+       max-width: 480px;
+       margin: 0 auto;
+       border-left: 0.5px solid rgba(0, 0, 0, 0.07);  /* ← CAMBIADO */
+       border-right: 0.5px solid rgba(0, 0, 0, 0.07);
+     }
+   
+     .uv-videos-grid {
+       grid-template-columns: repeat(3, 1fr);
+     }
+   }
+   
+   /* ─────────────────────────────────────────────
+      RESPONSIVE — teléfono pequeño
+      ───────────────────────────────────────────── */
+   @media (max-width: 480px) {
+   
+     .uv-stats-row { margin: 0 12px 20px; }
+     .uv-stat-number { font-size: 17px; }
+     .uv-stat-label  { font-size: 10px; }
+   
+     .uv-username { font-size: 18px; }
+     .uv-bio { font-size: 12px; margin: 0 20px 16px; }
+   
+     .uv-action-buttons { margin: 0 12px 20px; gap: 8px; }
+   
+     .uv-follow-btn,
+     .uv-message-btn { font-size: 13px; padding: 10px 14px; }
+   
+     /* tabs: ocultar texto, solo iconos */
+     .uv-tab span { display: none; }
+     .uv-tab svg  { font-size: 20px; }
+     .uv-tab      { padding: 13px 8px; }
+   
+     /* botones: ocultar texto */
+     .uv-follow-btn span,
+     .uv-message-btn span { display: none; }
+   
+     .uv-follow-btn,
+     .uv-message-btn {
+       padding: 0;
+       min-height: 44px;
+       min-width: 44px;
+       width: 44px;
+       flex: 0 0 44px;
+       border-radius: 50%;
+       font-size: 17px;
+     }
+   
+     .uv-follow-btn svg,
+     .uv-message-btn svg { margin: 0; }
+   
+     .uv-avatar { width: 84px; height: 84px; }
+   
+     .uv-videos-grid { gap: 1.5px; padding: 1.5px; }
+   
+     .uv-mini-stats .uv-stat-heart,
+     .uv-mini-stats .uv-stat-comment { display: none; }
+   
+     .uv-mini-stats .uv-stat-play {
+       justify-content: center;
+       width: 100%;
+     }
+   
+     .uv-empty-state { padding: 50px 20px 60px; }
+     .uv-empty-title { font-size: 16px; }
+     .uv-empty-description { font-size: 12px; }
+   }
+   
+   @media (max-width: 360px) {
+     .uv-stat-number { font-size: 15px; }
+     .uv-avatar { width: 76px; height: 76px; }
+     .uv-username { font-size: 16px; }
+   }
+   
+   /* ─────────────────────────────────────────────
+      TAP HIGHLIGHT GLOBAL
+      ───────────────────────────────────────────── */
+   .uv-follow-btn,
+   .uv-message-btn,
+   .uv-more-btn,
+   .uv-back-btn,
+   .uv-share-btn,
+   .uv-messages-btn,
+   .uv-mini-video-card,
+   .uv-tab,
+   .uv-stat-clickable,
+   .uv-upload-btn,
+   .uv-mini-save-btn {
+     -webkit-tap-highlight-color: transparent;
+     touch-action: manipulation;
+   }
+   /* ─────────────────────────────────────────────
+   BOTÓN DE 3 PUNTOS Y MENÚ PARA DUEÑO DEL PERFIL
+   ───────────────────────────────────────────── */
+.uv-three-dots-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 4px;
+}
+
+.uv-three-dots-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #161823;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.uv-three-dots-btn:active {
+  transform: scale(0.95);
+  background: rgba(254, 44, 85, 0.1);
+}
+
+.uv-profile-menu {
+  position: absolute;
+  top: 45px;
+  right: 50%;
+  transform: translateX(50%);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  min-width: 180px;
+  overflow: hidden;
+  animation: uvMenuFadeIn 0.2s ease;
+}
+
+@keyframes uvMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(50%) translateY(0);
+  }
+}
+
+.uv-profile-menu button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  color: #161823;
+  transition: background 0.15s ease;
+}
+
+.uv-profile-menu button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.uv-profile-menu button:active {
+  background: rgba(254, 44, 85, 0.08);
+}
+
+.uv-profile-menu button svg {
+  width: 18px;
+  color: #fe2c55;
+}
+
+/* ─────────────────────────────────────────────
+   MINI VIDEO CARD - MENOS ALTURA
+   ───────────────────────────────────────────── */
+.uv-mini-thumbnail-container {
+  position: relative;
+  aspect-ratio: 4 / 5;  /* ← CAMBIADO: antes era 9/16, ahora más bajo */
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+/* Ajustar overlay para la nueva altura */
+.uv-mini-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  padding: 12px 6px 6px;
+}
+
+/* Stats simplificados - solo play */
+.uv-mini-stats {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+
+.uv-stat-play {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 3px 8px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.uv-stat-icon {
+  font-size: 10px;
+}
+
+/* Ajustar duración para nueva altura */
+.uv-mini-duration {
+  position: absolute;
+  bottom: 8px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 9px;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Ajustar título */
+.uv-mini-title {
+  font-size: 11px;
+  margin: 6px 6px 5px;
+  color: rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* ─────────────────────────────────────────────
+   NUEVA FILA DE BOTONES DE ACCIÓN (estilo TikTok)
+   ───────────────────────────────────────────── */
+   .uv-action-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 0 20px 24px;
+  }
+  
+  .uv-action-follow-btn,
+  .uv-action-message-btn,
+  .uv-action-profile-btn,
+  .uv-action-suggestions-btn {
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Botón Seguir - ROJO */
+  .uv-action-follow-btn {
+    background: #fe2c55;
+    border: none;
+    color: #fff;
+    padding: 11px 24px;
+    flex: 1;
+    min-height: 44px;
+  }
+  
+  .uv-action-follow-btn:active {
+    transform: scale(0.96);
+    opacity: 0.88;
+  }
+  
+  .uv-action-follow-btn.following {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: #161823;
+  }
+  
+  /* Botón Mensaje */
+  .uv-action-message-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    color: #161823;
+    padding: 11px 24px;
+    flex: 1;
+    min-height: 44px;
+  }
+  
+  .uv-action-message-btn:active {
+    transform: scale(0.96);
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Botón Perfil (icono usuario) */
+  .uv-action-profile-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    color: #161823;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 10px;
+  }
+  
+  .uv-action-profile-btn:active {
+    transform: scale(0.96);
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Botón Flecha Sugerencias */
+  .uv-action-suggestions-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    color: #161823;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+  
+  .uv-action-suggestions-btn.active {
+    background: #fe2c55;
+    border-color: #fe2c55;
+    color: white;
+  }
+  
+  .uv-action-suggestions-btn:active {
+    transform: scale(0.96);
+  }
+  
+  /* ─────────────────────────────────────────────
+     PANEL DE SUGERENCIAS HORIZONTAL
+     ───────────────────────────────────────────── */
+  .uv-suggestions-wrapper {
+    position: relative;
+  }
+  
+  .uv-suggestions-panel {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    z-index: 100;
+    min-width: 320px;
+    max-width: 380px;
+    overflow: hidden;
+    animation: uvSlideDown 0.25s ease;
+  }
+  
+  @keyframes uvSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .uv-suggestions-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #f8f8f8;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+    font-size: 13px;
+    font-weight: 600;
+    color: #161823;
+  }
+  
+  .uv-suggestions-header svg {
+    color: #fe2c55;
+    font-size: 14px;
+  }
+  
+  .uv-suggestions-horizontal {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 16px;
+    scrollbar-width: thin;
+  }
+  
+  .uv-suggestions-horizontal::-webkit-scrollbar {
+    height: 3px;
+  }
+  
+  .uv-suggestions-horizontal::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 3px;
+  }
+  
+  .uv-suggestions-horizontal::-webkit-scrollbar-thumb {
+    background: #fe2c55;
+    border-radius: 3px;
+  }
+  
+  .uv-suggestion-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+    padding: 12px 8px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    transition: all 0.15s ease;
+    cursor: pointer;
+  }
+  
+  .uv-suggestion-card:active {
+    transform: scale(0.96);
+    background: #f0f0f0;
+  }
+  
+  .uv-suggestion-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .uv-suggestion-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .uv-suggestion-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fe2c55, #ff6b8a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .uv-suggestion-username {
+    font-size: 11px;
+    font-weight: 600;
+    color: #161823;
+    text-align: center;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .uv-suggestion-follow-btn {
+    background: #fe2c55;
+    border: none;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  
+  .uv-suggestion-follow-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .uv-suggestion-follow-btn.following {
+    background: rgba(0, 0, 0, 0.05);
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    color: #161823;
+  }
+  
+  /* Responsive para móvil */
+  @media (max-width: 480px) {
+    .uv-action-row {
+      margin: 0 12px 20px;
+      gap: 8px;
+    }
+  
+    .uv-action-follow-btn,
+    .uv-action-message-btn {
+      padding: 0;
+      min-height: 44px;
+      min-width: 44px;
+      width: 44px;
+      flex: 0 0 44px;
+      border-radius: 50%;
+    }
+  
+    .uv-action-follow-btn span,
+    .uv-action-message-btn span {
+      display: none;
+    }
+  
+    .uv-action-follow-btn svg,
+    .uv-action-message-btn svg {
+      margin: 0;
+      font-size: 16px;
+    }
+  
+    .uv-suggestions-panel {
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: none;
+      border-radius: 20px 20px 0 0;
+      animation: uvSlideUp 0.25s ease;
+    }
+  
+    @keyframes uvSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .uv-suggestions-horizontal {
+      padding: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex-direction: column;
+    }
+  
+    .uv-suggestion-card {
+      flex-direction: row;
+      min-width: auto;
+      padding: 10px 12px;
+      justify-content: space-between;
+    }
+  
+    .uv-suggestion-avatar {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .uv-suggestion-username {
+      flex: 1;
+      text-align: left;
+      font-size: 13px;
+    }
+  }
+/* Responsive para móvil */
+@media (max-width: 480px) {
+  .uv-mini-stats .uv-stat-play {
+    padding: 2px 6px;
+    font-size: 9px;
+  }
+  
+  .uv-stat-icon {
+    font-size: 8px;
+  }
+  
+  .uv-mini-title {
+    font-size: 9px;
+  }
+}
+   /* ─────────────────────────────────────────────
+      SCROLLBAR discreta - AJUSTADA
+      ───────────────────────────────────────────── */
+   ::-webkit-scrollbar { width: 3px; }
+   ::-webkit-scrollbar-track { background: transparent; }
+   ::-webkit-scrollbar-thumb {
+     background: rgba(254, 44, 85, 0.35);
+     border-radius: 3px;
+   }

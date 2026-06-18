@@ -1,0 +1,134 @@
+/* 📂 components/CATEGORIES/CategoryAccordion.css */
+
+/* Estilos básicos (mantén los anteriores) */
+.category-accordion-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* NIVEL 1 - articleTypes */
+  .level1-container {
+    padding: 20px;
+  }
+  
+  .level1-wrapper {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .level1-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .level1-card {
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+  }
+  
+  .level1-card:hover {
+    border-color: #667eea;
+    background: linear-gradient(to right, rgba(102, 126, 234, 0.02), rgba(118, 75, 162, 0.02));
+  }
+  
+  .level1-card.selected {
+    border-color: #28a745;
+    background: linear-gradient(to right, rgba(40, 167, 69, 0.05), rgba(40, 167, 69, 0.1));
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
+  }
+  
+  .level1-card.expandable {
+    border-left: 4px solid #ffc107;
+  }
+  
+  .level1-emoji {
+    font-size: 1.8rem;
+    min-width: 40px;
+  }
+  
+  /* NIVEL 2 - subcategories */
+  .level2-container {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 0 0 10px 10px;
+    padding: 25px;
+    margin-top: -5px;
+    border-top: none;
+    animation: slideDown 0.3s ease;
+  }
+  
+  .level2-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #dee2e6;
+  }
+  
+  .level2-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  
+  .level2-card {
+    padding: 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    position: relative;
+    background: white;
+  }
+  
+  .level2-card:hover {
+    border-color: #667eea;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.15);
+  }
+  
+  .level2-card.selected {
+    border-color: #28a745;
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(40, 167, 69, 0.1));
+  }
+  
+  .level2-emoji {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .level2-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #495057;
+  }
+  
+  .selected-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  /* Animaciones */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .level2-grid {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+  }

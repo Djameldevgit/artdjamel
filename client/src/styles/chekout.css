@@ -1,0 +1,211 @@
+/* Estilos Base */
+.checkout-container {
+    max-width: 100%;
+    padding: 15px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .checkout-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  /* Resumen del Pedido */
+  .order-summary {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .artwork-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .artwork-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .total-section {
+    display: flex;
+    justify-content: space-between;
+ 
+    font-size: 1.2rem;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+  }
+  
+  /* Selectores de Pago */
+  .payment-section {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Instrucciones de Pago */
+  .payment-instructions {
+    background: #e8f4fd;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .payment-instructions ol {
+    padding-left: 20px;
+  }
+  
+  /* Botones y Feedback */
+  .confirm-button {
+    width: 100%;
+    padding: 12px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .confirm-button:hover {
+    background: #2980b9;
+  }
+  
+  .upload-receipt {
+    margin: 20px 0;
+  }
+  
+  .upload-receipt input {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .success-message {
+    color: #27ae60;
+    margin-top: 10px;
+  }
+  
+  .contact-message {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+  }
+  
+  /* Estilos para los bloques de información bancaria */
+.bank-info-box {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .bank-info-box p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+  }
+  
+  /* Estilos específicos para CCP */
+  .ccp-details {
+    background: #e8f4fd;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .payment-instructions {
+    background: #fff;
+    padding: 12px;
+    border-left: 4px solid #3498db;
+    margin-top: 15px;
+  }
+  
+  /* Estilos para internacional */
+  .payment-method-international {
+    border-top: 2px dashed #3498db;
+    padding-top: 20px;
+  }
+  
+  .payment-notice {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin: 15px 0;
+  }
+  
+  /* Botones */
+  .d17pay-button {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .confirm-button {
+    background: #3498db;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .bank-info-box {
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+    
+    .ccp-details, .payment-method-international {
+      padding: 10px;
+    }
+  }
+  @media (max-width: 480px) {
+    .checkout-title {
+      font-size: 1.3rem;
+    }
+  
+    .artwork-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .artwork-image {
+      width: 100%;
+      height: auto;
+      max-height: 150px;
+    }
+  
+    .payment-section, .payment-instructions {
+      padding: 10px;
+    }
+  }

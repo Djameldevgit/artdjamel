@@ -1,0 +1,155 @@
+🧠 🔥 1. FRONTEND (React) — “Inicio del pago”
+COMPONENTE: DonatePage
+
+ESTADO:
+  loading = false
+  error = ""
+
+FUNCIÓN: handleDonate
+
+  ACTIVAR loading = true
+  LIMPIAR error
+
+  INTENTAR:
+    ENVIAR petición a "/api/checkout" con:
+      amount = 1000
+      currency = "dzd"
+
+    RECIBIR respuesta del backend
+
+    SI existe checkout_url:
+        REDIRIGIR navegador a checkout_url
+    SI NO existe:
+        LANZAR error "No se recibió la URL de pago"
+
+  CAPTURAR ERROR:
+    MOSTRAR mensaje de error
+
+  FINALMENTE:
+    loading = false
+
+
+
+
+
+    
+⚙️ 2. BACKEND (Express) — “Puente entre React y Chargily”
+RUTA: POST /api/checkout
+
+RECIBE:
+  amount
+  currency
+
+LLAMA al controlador: createCheckout
+🧠 CONTROLADOR: createCheckout
+FUNCIÓN createCheckout:
+
+  OBTENER del cuerpo de la petición:
+    amount
+    currency
+
+  INTENTAR:
+
+    ENVIAR petición POST a Chargily:
+      URL: https://pay.chargily.net/test/api/v2/checkouts
+
+      CABECERAS:
+        Authorization: Bearer CLAVE_SECRETA
+        Content-Type: application/json
+
+      CUERPO:
+        amount
+        currency
+        success_url = página de éxito del frontend
+        webhook_url = endpoint del backend
+
+    RECIBIR respuesta de Chargily
+
+    DEVOLVER respuesta al frontend
+
+  SI OCURRE ERROR:
+    MOSTRAR error en consola
+    RESPONDER con error 500 "Error en checkout"
+🔐 3. WEBHOOK (Express) — “Confirmación real del pago”
+RUTA: POST /webhook
+
+FUNCIÓN handleWebhook:
+
+  RECIBIR:
+    evento de Chargily
+    firma (signature) del encabezado
+
+  VERIFICAR seguridad:
+
+    GENERAR firma con HMAC SHA256 usando la clave secreta
+
+    SI la firma no coincide:
+        RESPONDER 403 "Firma inválida"
+
+  SEGÚN el tipo de evento:
+
+    SI evento = "checkout.paid":
+        MOSTRAR "Pago exitoso"
+        GUARDAR pago en base de datos (MongoDB)
+
+    SI evento = "checkout.failed":
+        MOSTRAR "Pago fallido"
+
+    SI otro caso:
+        MOSTRAR "Evento no reconocido"
+
+  RESPONDER:
+    { recibido: true }
+🌐 4. CHARGILY (servicio externo)
+RECIBE del backend:
+
+  amount
+  currency
+  success_url
+  webhook_url
+
+PROCESA el pago
+
+DEVUELVE:
+
+  checkout_url
+  estado del pago
+  id de transacción
+🔥 FLUJO COMPLETO (MERN explicado simple)
+USUARIO hace clic en "Donar"
+
+↓
+React (inicia pago)
+↓
+Express (recibe solicitud)
+↓
+Chargily (crea sesión de pago)
+↓
+Chargily devuelve checkout_url
+↓
+React redirige al usuario al pago
+↓
+Usuario paga
+↓
+Chargily envía webhook al backend
+↓
+Backend verifica y confirma pago
+↓
+(Opcional) guardar en MongoDB
+🧠 RESUMEN MUY SIMPLE
+
+👉 React = inicia el pago
+👉 Express = controla la seguridad
+👉 Chargily = procesa el dinero
+👉 Webhook = confirma si el pago fue real
+
+Si quieres, el siguiente paso te puedo hacer:
+
+🔥 
+diagrama visual tipo arquitectura profesional (Stripe style)
+🔥 o 
+versión con MongoDB guardando usuarios y pagos
+🔥 o 
+explicación de seguridad real de webhooks (nivel empresa)
+
+Solo dime 👍

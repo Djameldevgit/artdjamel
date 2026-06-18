@@ -1,0 +1,201 @@
+{
+
+	 
+		"emailActivation": {
+		  "subject": "激活您的 DJAMEL APS 帐户",
+		  "body": "欢迎加入 Tassili Art！为了成为我们艺术社区的一员并使用所有功能，请验证您的帐户。点击下方按钮完成验证：",
+		  "button": "验证帐户",
+		  "alt": "如果按钮无法使用，请将以下链接复制并粘贴到浏览器中以激活您的 Tassili Art 帐户。"
+		},
+		"emailReset": {
+		  "subject": "重置您的 Tassili Art 密码",
+		  "body": "您请求重置 Tassili Art 的密码。请点击下方按钮继续密码恢复过程：",
+		  "button": "重置密码",
+		  "alt": "如果您未发出此请求，请忽略此邮件。"
+		},
+		"emailInformativo": {
+		  "subject": "Tassili Art 最新资讯",
+		  "body": "了解 Tassili Art 的最新动态与更新。探索新的艺术作品、艺术家以及平台功能。",
+		  "button": "立即探索",
+		  "alt": "如果按钮无法使用，请访问我们的网站了解更多信息。"
+		},
+	 
+	  
+
+
+
+
+	"auth": {
+		"username_exists": "用户名已存在",
+		"email_exists": "电子邮件已存在",
+		"password_too_short": "密码至少需要6个字符",
+		"register_success": "注册成功！",
+		"email_not_exist": "该电子邮件不存在",
+		"incorrect_password": "密码不正确",
+		"login_success": "登录成功！",
+		"logout_success": "登出成功！",
+		"login_required": "请立即登录",
+		"user_not_found": "用户不存在",
+		"server_error": "服务器错误",
+		"activation_email_sent": "auth.activation_email_sent",
+		"forgot_email_sent": "auth.forgot_email_sent",
+		"account_activated": "✅ 账户激活成功",
+		"reset_email_sent": "密码重置链接已发送",
+		"password_changed": "密码修改成功"
+	},
+	"post": {
+		"POST": "POST",
+		"created_post": "我们已收到您的消息，团队正在审核。审核通过后将通知您",
+		"updated_post": "帖子已更新！",
+		"deleted_post": "帖子已删除！",
+		"liked_post": "已点赞帖子！",
+		"unliked_post": "已取消点赞！",
+		"saved_post": "帖子已保存！",
+		"unsaved_post": "帖子已取消保存！",
+		"post_not_exist": "该帖子不存在",
+		"user_not_exist": "该用户不存在",
+		"already_liked": "您已点赞过该帖子",
+		"already_saved": "您已保存过该帖子",
+		"please_add_photo": "请添加照片",
+		"post_approved": "帖子已获批准！",
+		"post_not_found": "未找到帖子",
+		"success": "成功！",
+		"USER": "USER",
+		"user_not_found": "用户未找到",
+		"please_add_username": "请添加用户名",
+		"update_success": "更新成功！",
+		"already_followed": "您已关注该用户",
+		"follow_success": "关注成功！",
+		"unfollow_success": "取消关注成功！",
+		"search_failed": "用户搜索失败",
+		"suggestions_loaded": "用户建议已加载",
+		"error": "发生错误",
+		"no_users_found": "未找到用户",
+		"invalid_user_id": "用户ID无效",
+		"updated_arabic": "language.updated_arabic",
+		"updated_french": "language.updated_french",
+		"updated_spanish": "language.updated_spanish"
+	},
+	"comment": {
+		"error_post_not_exist": "该帖子不存在",
+		"error_comment_not_exist": "该评论不存在",
+		"success": "评论创建成功！"
+	},
+	"lang": {
+		"langUpdatedToSpanish": "语言已更新为西班牙语",
+		"langUpdatedToRussian": "语言已更新为俄语",
+		"langUpdatedToKabyle": "语言已更新为卡拜尔语",
+		"langUpdatedToChinese": "语言已更新为中文",
+		"langUpdatedToEnglish": "语言已更新为英语",
+		"langUpdatedToFrench": "语言已更新为法语",
+		"langUpdatedToArabic": "语言已更新为阿拉伯语",
+		"langUpdated": "语言已更新",
+		"languageNotSpecified": "未指定语言",
+		"userNotFoundOrAlreadyUpdated": "用户未找到或语言已更新",
+		"errorUpdatingLanguage": "更新语言时出错",
+		"languageSavedForVisitor": "访客语言设置已保存",
+		"errorSavingLanguageForVisitor": "保存访客语言设置时出错"
+	},
+	"cart": {
+		"postNotFoundOrNoPrice": "帖子未找到或无价格",
+		"postAddedToCart": "帖子已添加到购物车",
+		"priceMustBeNumber": "价格必须为数字",
+		"priceMustBePositive": "价格必须为正数",
+		"quantityAtLeastOne": "数量至少为1",
+		"productRemoved": "商品已移除",
+		"serverError": "服务器错误",
+		"invalidQuantity": "数量无效",
+		"productNotFoundInCart": "购物车中未找到商品",
+		"quantityUpdated": "数量已更新"
+	},
+	"language": {
+		"updated_arabic": "language.updated_arabic",
+		"updated_spanish": "language.updated_spanish",
+		"updated_english": "language.updated_english",
+		"updated_french": "language.updated_french"
+	},
+	"email": {
+		"subject": "贾马尔艺术",
+		"title": "欢迎来到塔西里艺术",
+		"body": "恭喜！您即将使用本应用。请点击下方按钮或链接确认您的电子邮件",
+		"button": "确认电子邮件",
+		"alt": "如果按钮无效，您也可以点击以下链接：",
+		"reset_button": "email.reset_button"
+	},
+	"user_not_found": "用户未找到",
+	"already_verified": "账户已验证",
+	"activation_email_sent": "激活邮件已发送至您的邮箱",
+	"server_error": "内部服务器错误",
+	"order": {
+		"cart_empty": "购物车为空",
+		"created_success": "✅ 订单创建成功",
+		"not_found": "订单未找到",
+		"status_updated": "订单状态已更新",
+		"deleted_success": "订单删除成功"
+	},
+	"role": {
+		"user_not_found": "用户未找到",
+		"role_assigned": "用户角色分配成功",
+		"Super-utilisateur": "超级用户角色分配成功",
+		"moderator_assigned": "版主角色分配成功",
+		"admin_assigned": "管理员角色分配成功",
+		"update_error": "更新用户角色时出错"
+	},
+	"message": {
+		"create_success": "消息创建成功！",
+		"delete_success": "删除成功！",
+		"invalid_data": "无效数据：必须提供收件人和消息内容",
+		"server_error": "消息服务器错误",
+		"createMessage.empty": "消息不能为空",
+		"createMessage.success": "消息创建成功！",
+		"deleteMessage.success": "消息删除成功！",
+		"deleteConversation.success": "对话删除成功！"
+	},
+	"report": {
+		"missing_fields": "所有字段均为必填项",
+		"create_success": "报告创建成功",
+		"server_error": "报告服务器错误",
+		"report_not_found": "报告未找到",
+		"update_success": "报告状态已更新",
+		"delete_success": "报告删除成功"
+	},
+	"block": {
+		"user_not_found": "用户未找到",
+		"already_blocked": "该用户已被屏蔽",
+		"default_reason": "未指定原因",
+		"default_content": "无附加内容",
+		"default_date": "未指定开始日期",
+		"block_success": "用户屏蔽成功",
+		"not_blocked": "该用户未被屏蔽",
+		"unblock_success": "用户解除屏蔽成功",
+		"server_error": "屏蔽服务器错误"
+	},
+	"user": {
+		"activation_message_required": "账户激活需要消息",
+		"activation_request_sent": "✅ 激活请求已发送至管理员",
+		"server_error": "用户服务器错误",
+		"unauthenticated": "用户未认证",
+		"contact_title_message_required": "标题和消息均为必填项",
+		"contact_message_sent": "支持消息发送成功",
+		"contact_send_error": "发送支持消息时出错",
+		"blocked_message_required": "解封请求需要消息",
+		"blocked_request_sent": "✅ 屏蔽复审请求已发送",
+		"blocked_send_error": "发送复审请求时出错",
+		"not_found": "用户未找到",
+		"account_deleted_unverified": "账户因3天内未验证已被删除。请重新登录访问",
+		"status_updated": "用户状态已更新",
+		"not_exist": "用户不存在",
+		"success": "成功",
+		"username_required": "需要填写全名",
+		"update_success": "用户更新成功！",
+		"already_followed": "您已关注该用户",
+		"delete_denied_admin": "拒绝：需要管理员权限",
+		"invalid_id": "用户ID无效",
+		"delete_self_denied": "不能删除自己的账户",
+		"delete_success": "用户及相关内容删除成功",
+		"delete_error": "删除用户时出错",
+		"cleanup_denied_admin": "拒绝：清理需要管理员权限",
+		"cleanup_success": "已清理：{{posts}}个帖子和{{comments}}条评论",
+		"cleanup_error": "清理剩余内容时出错"
+	}
+}

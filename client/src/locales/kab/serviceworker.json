@@ -1,0 +1,11 @@
+{
+ 
+  "installing": "Service Worker: Tasiregt teddum...",
+  "caching": "Service Worker: Asekles n yiberdan",
+  "installation_complete": "Service Worker: Tasiregt tkemmled",
+  "activating": "Service Worker: Armid...",
+  "deleting_old_cache": "Service Worker: Tukksa n usekles aqbuṛ",
+  "activated": "Service Worker: Yermed tura!",
+  "fetch_failed": "Awi ur yeddi ara; tuɣalin ɣer usebter war unekcum:"
+    }
+ 

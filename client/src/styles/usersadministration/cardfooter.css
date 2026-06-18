@@ -1,0 +1,87 @@
+.cardfooterpost {
+    padding: 10px 15px; /* Espaciado interno */
+    background-color: #f8f9fa; /* Fondo claro */
+    border-top: 1px solid #e9ecef; /* Borde superior sutil */
+    border-radius: 0 0 15px 15px; /* Bordes redondeados solo en la parte inferior */
+    display: flex;
+    justify-content: space-between; /* Espacio entre el tiempo y los comentarios */
+    align-items: center; /* Alinear verticalmente */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía moderna */
+     
+}
+
+.cardcommentmoment {
+    display: flex;
+    align-items: center; /* Alinear verticalmente */
+}
+
+.textmuted {
+    font-size: 18px; /* Tamaño de fuente pequeño */
+    color: #6c757d; /* Color gris suave */
+    font-weight: 500; /* Peso de la fuente */
+}
+
+.cardcommentmoment h5 {
+    margin: 0; /* Eliminar margen predeterminado */
+    font-size: 16px; /* Tamaño de fuente */
+    color: #2f3542; /* Color oscuro moderno */
+    font-weight: 600; /* Peso de la fuente */
+    display: flex;
+    align-items: center; /* Alinear ícono con texto */
+    gap: 5px; /* Espacio entre ícono y texto */
+}
+
+/* Ícono de comentarios (opcional) */
+.cardcommentmoment h5::before {
+    content: '💬'; /* Ícono de comentario */
+    font-size: 14px;
+}
+
+.card_footer {
+    padding: 10px 15px;
+}
+
+.card_icon_menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.left_icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.right_icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card_icon_menu i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.card_icon_menu i:hover {
+    transform: scale(1.1);
+}
+
+.fa-bookmark, .fa-bookmark.text-info {
+    color: inherit;
+}
+
+.fa-bookmark.text-info {
+    color: #17a2b8 !important; /* Color azul info */
+}
+
+.fa-shopping-cart.text-danger {
+    color: #dc3545 !important; /* Color rojo */
+}
+
+.fa-cart-plus {
+    color: #28a745; /* Color verde */
+}

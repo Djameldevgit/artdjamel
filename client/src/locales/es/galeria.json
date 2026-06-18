@@ -1,0 +1,252 @@
+{
+  "inspirationGallery": {
+    "title": "Galerie d'Inspiration",
+    "subtitle": "Trouvez l'œuvre parfaite pour votre commande personnalisée",
+    "description": "Explorez notre collection d'œuvres d'art pour l'inspiration et trouvez le style qui correspond à votre goût.",
+    "inspirationBadge": "Galerie d'inspiration pour commandes",
+ 
+    "filters": {
+      "all": "🎨 Tous les thèmes",
+      "retratos": "👤 Portraits",
+      "paisajes": "🏞️ Paysages",
+      "marinas": "🌊 Marines",
+      "bodegones": "🍎 Natures mortes",
+      "animales": "🐾 Animaux",
+      "flores": "🌹 Fleurs",
+      "naturalezaMuerta": "📚 Natures mortes classiques",
+      "oriental": "🎎 Art oriental"
+    },
+    
+    "filterByTheme": "Filtrer par thème :",
+    "searchPlaceholder": "Rechercher par titre, technique ou description...",
+    "resultsCount": "{{count}} œuvres trouvées",
+    "clearFilter": "Effacer le filtre",
+    
+    "howToUseTitle": "Comment utiliser cette galerie",
+    "howToUseDescription": "Cette galerie est conçue pour vous aider à trouver l'inspiration pour votre commande personnalisée.",
+    "usageSteps": {
+      "title": "Instructions d'utilisation",
+      "step1": "Explorez les œuvres par thème en utilisant les filtres",
+      "step2": "Cliquez sur 'Voir les détails' pour agrandir l'image",
+      "step3": "Quand vous trouvez une œuvre que vous aimez, cliquez sur 'Utiliser comme référence'",
+      "step4": "La référence sera automatiquement copiée pour votre commande"
+    },
+    
+    "viewDetails": "Voir les détails",
+    "useAsReference": "Utiliser comme référence",
+    "workDetails": "Détails de l'œuvre",
+    "theme": "Thème",
+    "technique": "Technique",
+    "close": "Fermer",
+    
+    "noResults": "Aucune œuvre trouvée",
+    "tryDifferentSearch": "Essayez d'autres termes de recherche ou changez le filtre",
+    "showAllWorks": "Afficher toutes les œuvres",
+    
+    "copySuccess": "✅ Référence copiée dans le presse-papiers",
+    "copyError": "❌ Erreur de copie de la référence",
+    
+    "referenceText": "Référence : \"{{title}}\" - Thème : {{theme}} - Technique : {{technique}}",
+    
+    "themes": {
+      "retratos": "Portraits",
+      "paisajes": "Paysages",
+      "marinas": "Marines",
+      "bodegones": "Natures mortes",
+      "animales": "Animaux",
+      "flores": "Fleurs",
+      "naturaleza-muerta": "Natures mortes classiques",
+      "oriental": "Art oriental"
+    },
+    
+    "techniques": {
+      "oil": "Huile sur toile"
+    },
+    
+    "works": {
+      "retratos": {
+        "retrato01": {
+          "title": "Portrait classique",
+          "description": "Portrait réaliste avec technique d'huile classique"
+        },
+        "retrato02": {
+          "title": "Portrait de femme",
+          "description": "Portrait réaliste à l'huile sur toile"
+        },
+        "retrato03": {
+          "title": "Portrait féminin",
+          "description": "Portrait réaliste à l'huile sur toile"
+        },
+        "retrato04": {
+          "title": "Portrait de danseuses",
+          "description": "Portrait réaliste de danseuses à l'huile sur toile"
+        },
+        "retrato05": {
+          "title": "Portrait élégant",
+          "description": "Portrait réaliste à l'huile sur toile"
+        }
+      },
+      
+      "paisajes": {
+        "paisaje01": {
+          "title": "Paysage montagneux",
+          "description": "Paysage naturel avec effets de lumière matinale"
+        },
+        "paisaje02": {
+          "title": "Paysage marin",
+          "description": "Paysage naturel avec effets de lumière matinale"
+        },
+        "paisaje03": {
+          "title": "Marché traditionnel urbain",
+          "description": "Paysage urbain avec scène traditionnelle"
+        },
+        "paisaje04": {
+          "title": "Marine romantique",
+          "description": "Paysage marin avec atmosphère romantique"
+        },
+        "paisaje05": {
+          "title": "Coucher de soleil montagneux",
+          "description": "Paysage naturel avec effets de lumière matinale"
+        }
+      },
+      
+      "marinas": {
+        "marina01": {
+          "title": "Plage avec vagues",
+          "description": "Scène marine avec couleurs chaudes du coucher de soleil"
+        },
+        "marina02": {
+          "title": "Dauphins en mer",
+          "description": "Scène marine dynamique avec technique au couteau"
+        },
+        "marina03": {
+          "title": "Coucher de soleil marin",
+          "description": "Scène marine au coucher du soleil"
+        },
+        "marina04": {
+          "title": "Vagues de l'océan",
+          "description": "Puissance et mouvement des vagues"
+        },
+        "marina05": {
+          "title": "Calme marin",
+          "description": "Scène marine dans le calme"
+        }
+      },
+      
+      "bodegones": {
+        "bodegon01": {
+          "title": "Nature morte avec fruits",
+          "description": "Composition classique de nature morte avec fruits frais"
+        },
+        "bodegon02": {
+          "title": "Nature morte avec raisin et fromage",
+          "description": "Composition de nature morte avec éléments traditionnels"
+        },
+        "bodegon03": {
+          "title": "Nature morte avec dattes",
+          "description": "Nature morte avec fruits secs traditionnels"
+        },
+        "bodegon04": {
+          "title": "Nature morte avec raisin",
+          "description": "Composition avec raisin et éléments naturels"
+        },
+        "bodegon05": {
+          "title": "Nature morte avec pommes",
+          "description": "Composition classique de nature morte avec fruits frais"
+        }
+      },
+      
+      "animales": {
+        "animal01": {
+          "title": "Portrait de chat",
+          "description": "Portrait animalier avec détails réalistes"
+        },
+        "animal02": {
+          "title": "Chat élégant",
+          "description": "Portrait félin avec expression distinctive"
+        },
+        "animal03": {
+          "title": "Regard félin",
+          "description": "Capture de l'essence féline"
+        },
+        "animal04": {
+          "title": "Chat reposé",
+          "description": "Scène de repos animalier"
+        },
+        "animal05": {
+          "title": "Portrait félin",
+          "description": "Portrait animalier avec détails réalistes"
+        }
+      },
+      
+      "flores": {
+        "flor01": {
+          "title": "Roses sur la plage",
+          "description": "Fleurs délicates avec technique d'aquarelle transparente"
+        },
+        "flor02": {
+          "title": "Roses rouges",
+          "description": "Fleurs aux couleurs vibrantes"
+        },
+        "flor03": {
+          "title": "Bouquet de roses",
+          "description": "Composition florale harmonieuse"
+        },
+        "flor04": {
+          "title": "Roses blanches",
+          "description": "Élégance dans les fleurs blanches"
+        },
+        "flor05": {
+          "title": "Jardin de roses",
+          "description": "Scène florale naturelle"
+        }
+      },
+      
+      "naturalezaMuerta": {
+        "nm01": {
+          "title": "Nature morte classique",
+          "description": "Composition traditionnelle de nature morte"
+        },
+        "nm02": {
+          "title": "Composition classique",
+          "description": "Composition traditionnelle de nature morte"
+        },
+        "nm03": {
+          "title": "Éléments naturels",
+          "description": "Composition traditionnelle de nature morte"
+        },
+        "nm04": {
+          "title": "Nature morte traditionnelle",
+          "description": "Composition traditionnelle de nature morte"
+        },
+        "nm05": {
+          "title": "Nature morte",
+          "description": "Composition traditionnelle de nature morte"
+        }
+      },
+      
+      "oriental": {
+        "oriental01": {
+          "title": "Danse orientale",
+          "description": "Expression culturelle orientale"
+        },
+        "oriental02": {
+          "title": "Portrait oriental",
+          "description": "Art traditionnel oriental"
+        },
+        "oriental03": {
+          "title": "Culture orientale",
+          "description": "Influences culturelles orientales"
+        },
+        "oriental04": {
+          "title": "Art oriental",
+          "description": "Techniques orientales traditionnelles"
+        },
+        "oriental05": {
+          "title": "Expression orientale",
+          "description": "Fusion de styles orientaux"
+        }
+      }
+    }
+  }
+}

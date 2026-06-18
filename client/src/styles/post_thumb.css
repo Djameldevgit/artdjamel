@@ -1,0 +1,187 @@
+/* 🎯 ESTILOS BASE - VISTA GRID (2 columnas por defecto en móvil) */
+.post_thumb{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    gap: 12px;
+    overflow: hidden;
+    margin: 15px 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.post_thumb_display{
+    min-width: 0;
+    height: 320px; /* Altura fija para el card */
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post_thumb_display:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Contenedor interno del PostCard */
+.post_thumb_display > div {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Asegurar que el Card ocupe todo el espacio */
+.post_thumb_display .card {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    margin: 0 !important;
+}
+
+/* Controlar la imagen dentro del PostCard */
+.post_thumb_display .card-img-top,
+.post_thumb_display img {
+    width: 100% !important;
+    height: 180px !important; /* Altura fija para imagen */
+    object-fit: cover !important;
+    flex-shrink: 0 !important;
+}
+
+/* Contenido del card */
+.post_thumb_display .card-body {
+    flex: 1 !important;
+    padding: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+/* Título */
+.post_thumb_display .card-title {
+    font-size: 0.95rem !important;
+    margin-bottom: 8px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+/* Descripción */
+.post_thumb_display .card-text {
+    font-size: 0.85rem !important;
+    flex: 1 !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    margin-bottom: 10px !important;
+    color: #666 !important;
+}
+
+/* Precio y ubicación */
+.post_thumb_display .card-footer {
+    background: transparent !important;
+    border-top: 1px solid #eee !important;
+    padding: 8px 12px !important;
+    font-size: 0.9rem !important;
+}
+
+/* 🎯 CATEGORY PAGE - MODO LISTA (1 columna en móvil) */
+@media (max-width: 767px) {
+    .category-posts-page .post_thumb {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+    
+    .category-posts-page .post_thumb_display {
+        height: auto !important;
+        min-height: 400px;
+    }
+    
+    .category-posts-page .post_thumb_display .card-img-top,
+    .category-posts-page .post_thumb_display img {
+        height: 200px !important;
+    }
+}
+
+/* 🎯 HOME PAGE - MODO GRID (2 columnas en móvil) */
+@media (max-width: 767px) {
+    .marketplace-home .post_thumb {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px;
+    }
+    
+    .marketplace-home .post_thumb_display {
+        height: 280px !important;
+    }
+    
+    .marketplace-home .post_thumb_display .card-img-top,
+    .marketplace-home .post_thumb_display img {
+        height: 140px !important;
+    }
+}
+
+/* 🎯 TABLET - 3 posts por fila (solo en home) */
+@media (min-width: 768px) {
+    .marketplace-home .post_thumb{
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .marketplace-home .post_thumb_display{
+        height: 300px;
+    }
+    
+    .marketplace-home .post_thumb_display .card-img-top,
+    .marketplace-home .post_thumb_display img {
+        height: 160px !important;
+    }
+    
+    /* CategoryPage mantiene 2 columnas en tablet */
+    .category-posts-page .post_thumb {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* 🎯 DESKTOP - 4 posts por fila (solo en home) */
+@media (min-width: 1024px) {
+    .marketplace-home .post_thumb{
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+        margin: 20px auto;
+    }
+    
+    .marketplace-home .post_thumb_display{
+        height: 320px;
+    }
+    
+    .marketplace-home .post_thumb_display .card-img-top,
+    .marketplace-home .post_thumb_display img {
+        height: 180px !important;
+    }
+    
+    /* CategoryPage mantiene 3 columnas en desktop */
+    .category-posts-page .post_thumb {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+/* 🎯 PANTALLAS MUY GRANDES */
+@media (min-width: 1400px) {
+    .marketplace-home .post_thumb{
+        max-width: 1300px;
+    }
+    
+    .marketplace-home .post_thumb_display{
+        height: 340px;
+    }
+}

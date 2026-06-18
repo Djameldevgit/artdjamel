@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Iconos - Categorías Marketplace</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        .filter-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #ecf0f1;
+            color: #2c3e50;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover {
+            background: #bdc3c7;
+        }
+        .filter-btn.active {
+            background: #3498db;
+            color: white;
+        }
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .icon-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .icon-preview {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            font-size: 32px;
+        }
+        .icon-preview img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .icon-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            word-break: break-word;
+            font-size: 14px;
+        }
+        .icon-level {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        .icon-path {
+            font-size: 10px;
+            color: #95a5a6;
+            word-break: break-all;
+            margin-bottom: 5px;
+        }
+        .icon-status {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .summary {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 Test de Iconos - Categorías Marketplace</h1>
+    <p>Ruta base: <strong>/icons/</strong> (coincide con el seed)</p>
+    
+    <div class="stats-container" id="stats">
+        <div class="stat-card">
+            <div class="stat-value" id="totalIcons">0</div>
+            <div class="stat-label">Total Iconos</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="level1Count">0</div>
+            <div class="stat-label">Nivel 1</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="level2Count">0</div>
+            <div class="stat-label">Nivel 2</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="level3Count">0</div>
+            <div class="stat-label">Nivel 3</div>
+        </div>
+    </div>
+
+    <div class="summary" id="statusSummary">
+        <strong>📊 Resumen de estado:</strong> Cargando...
+    </div>
+
+    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Buscar icono...">
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterIcons('all')">Todos</button>
+        <button class="filter-btn" onclick="filterIcons('level1')">Nivel 1</button>
+        <button class="filter-btn" onclick="filterIcons('level2')">Nivel 2</button>
+        <button class="filter-btn" onclick="filterIcons('level3')">Nivel 3</button>
+        <button class="filter-btn" onclick="filterIcons('success')">Solo existentes</button>
+        <button class="filter-btn" onclick="filterIcons('warning')">Solo placeholders</button>
+    </div>
+
+    <div class="icons-grid" id="iconsGrid"></div>
+
+    <script>
+        // Lista completa de iconos (generada del seed)
+        const iconList = [
+            { name: 'vehicules.png', level: 1 },
+            { name: 'vetements.png', level: 1 },
+            { name: 'electromenager.png', level: 1 },
+            { name: 'immobilier.png', level: 1 },
+            { name: 'alimentaires.png', level: 1 },
+            { name: 'emploi.png', level: 1 },
+            { name: 'informatique.png', level: 1 },
+            { name: 'loisirs.png', level: 1 },
+            { name: 'materiaux.png', level: 1 },
+            { name: 'meubles.png', level: 1 },
+            { name: 'pieces-detachees.png', level: 1 },
+            { name: 'sante-beaute.png', level: 1 },
+            { name: 'services.png', level: 1 },
+            { name: 'sport.png', level: 1 },
+            { name: 'voyages.png', level: 1 },
+            { name: 'boutiques.png', level: 1 },
+            { name: 'telephone.png', level: 1 },
+            { name: 'voitures.png', level: 2 },
+            { name: 'utilitaire.png', level: 2 },
+            { name: 'motos-scooters.png', level: 2 },
+            { name: 'quads.png', level: 2 },
+            { name: 'fourgon.png', level: 2 },
+            { name: 'camion.png', level: 2 },
+            { name: 'bus.png', level: 2 },
+            { name: 'engin.png', level: 2 },
+            { name: 'tracteurs.png', level: 2 },
+            { name: 'remorques.png', level: 2 },
+            { name: 'bateaux-barques.png', level: 2 },
+            { name: 'vetements-homme.png', level: 2 },
+            { name: 'vetements-femme.png', level: 2 },
+            { name: 'chaussures-homme.png', level: 2 },
+            { name: 'chaussures-femme.png', level: 2 },
+            { name: 'garcons.png', level: 2 },
+            { name: 'filles.png', level: 2 },
+            { name: 'bebe.png', level: 2 },
+            { name: 'sacs-valises.png', level: 2 },
+            { name: 'montres.png', level: 2 },
+            { name: 'lunettes.png', level: 2 },
+            { name: 'bijoux.png', level: 2 },
+            { name: 'tenues-professionnelles.png', level: 2 },
+            { name: 'hauts-chemises.png', level: 2 },
+            { name: 'jeans-pantalons.png', level: 2 },
+            { name: 'shorts-pantacourts.png', level: 2 },
+            { name: 'vestes-gilets.png', level: 2 },
+            { name: 'costumes-blazers.png', level: 2 },
+            { name: 'survetements.png', level: 2 },
+            { name: 'kamiss.png', level: 2 },
+            { name: 'sous-vetements.png', level: 2 },
+            { name: 'pyjamas.png', level: 2 },
+            { name: 'maillots-bain.png', level: 2 },
+            { name: 'casquettes-chapeaux.png', level: 2 },
+            { name: 'chaussettes.png', level: 2 },
+            { name: 'ceintures.png', level: 2 },
+            { name: 'gants.png', level: 2 },
+            { name: 'cravates.png', level: 2 },
+            { name: 'autre-homme.png', level: 2 },
+            { name: 'hauts-chemises-femme.png', level: 3 },
+            { name: 'jeans-pantalons-femme.png', level: 3 },
+            { name: 'shorts-pantacourts-femme.png', level: 3 },
+            { name: 'vestes-gilets-femme.png', level: 3 },
+            { name: 'ensembles.png', level: 2 },
+            { name: 'abayas-hijabs.png', level: 2 },
+            { name: 'mariages-fetes.png', level: 2 },
+            { name: 'maternite.png', level: 2 },
+            { name: 'robes.png', level: 2 },
+            { name: 'jupes.png', level: 2 },
+            { name: 'joggings-survetements-femme.png', level: 3 },
+            { name: 'leggings.png', level: 2 },
+            { name: 'sous-vetements-lingerie.png', level: 3 },
+            { name: 'pyjamas-femme.png', level: 2 },
+            { name: 'peignoirs.png', level: 2 },
+            { name: 'maillots-bain-femme.png', level: 3 },
+            { name: 'casquettes-chapeaux-femme.png', level: 3 },
+            { name: 'chaussettes-collants.png', level: 2 },
+            { name: 'foulards-echarpes.png', level: 2 },
+            { name: 'ceintures-femme.png', level: 2 },
+            { name: 'gants-femme.png', level: 2 },
+            { name: 'autre-femme.png', level: 2 },
+            { name: 'basquettes.png', level: 2 },
+            { name: 'bottes.png', level: 2 },
+            { name: 'classiques.png', level: 2 },
+            { name: 'mocassins.png', level: 2 },
+            { name: 'sandales.png', level: 2 },
+            { name: 'tangues-pantoufles.png', level: 2 },
+            { name: 'autre-chaussures-homme.png', level: 3 },
+            { name: 'basquettes-femme.png', level: 2 },
+            { name: 'sandales-femme.png', level: 2 },
+            { name: 'bottes-femme.png', level: 2 },
+            { name: 'escarpins.png', level: 2 },
+            { name: 'ballerines.png', level: 2 },
+            { name: 'tangues-pantoufles-femme.png', level: 3 },
+            { name: 'autre-chaussures-femme.png', level: 3 },
+            { name: 'chaussures-garcons.png', level: 2 },
+            { name: 'hauts-chemises-garcons.png', level: 3 },
+            { name: 'pantalons-shorts-garcons.png', level: 3 },
+            { name: 'vestes-gilets-garcons.png', level: 3 },
+            { name: 'costumes-garcons.png', level: 2 },
+            { name: 'survetements-joggings-garcons.png', level: 3 },
+            { name: 'pyjamas-garcons.png', level: 2 },
+            { name: 'sous-vetements-garcons.png', level: 3 },
+            { name: 'maillots-bain-garcons.png', level: 3 },
+            { name: 'kamiss-garcons.png', level: 2 },
+            { name: 'casquettes-chapeaux-garcons.png', level: 3 },
+            { name: 'autre-garcons.png', level: 2 },
+            { name: 'chaussures-filles.png', level: 2 },
+            { name: 'hauts-chemises-filles.png', level: 3 },
+            { name: 'pantalons-shorts-filles.png', level: 3 },
+            { name: 'vestes-gilets-filles.png', level: 3 },
+            { name: 'robes-filles.png', level: 2 },
+            { name: 'jupes-filles.png', level: 2 },
+            { name: 'ensembles-filles.png', level: 2 },
+            { name: 'joggings-survetements-filles.png', level: 3 },
+            { name: 'pyjamas-filles.png', level: 2 },
+            { name: 'sous-vetements-filles.png', level: 3 },
+            { name: 'leggings-collants.png', level: 2 },
+            { name: 'maillots-bain-filles.png', level: 3 },
+            { name: 'casquettes-chapeaux-filles.png', level: 3 },
+            { name: 'autre-filles.png', level: 2 },
+            { name: 'vetements-bebe.png', level: 2 },
+            { name: 'chaussures-bebe.png', level: 2 },
+            { name: 'accessoires-bebe.png', level: 2 },
+            { name: 'pochettes-portefeuilles.png', level: 2 },
+            { name: 'sacs-main.png', level: 2 },
+            { name: 'sacs-dos.png', level: 2 },
+            { name: 'sacs-professionnels.png', level: 2 },
+            { name: 'valises.png', level: 2 },
+            { name: 'cabas-sport.png', level: 2 },
+            { name: 'autre-sacs.png', level: 2 },
+            { name: 'montres-hommes.png', level: 2 },
+            { name: 'montres-femmes.png', level: 2 },
+            { name: 'lunettes-vue-hommes.png', level: 3 },
+            { name: 'lunettes-vue-femmes.png', level: 3 },
+            { name: 'lunettes-soleil-hommes.png', level: 3 },
+            { name: 'lunettes-soleil-femmes.png', level: 3 },
+            { name: 'lunettes-vue-enfants.png', level: 3 },
+            { name: 'lunettes-soleil-enfants.png', level: 3 },
+            { name: 'accessoires-lunettes.png', level: 2 },
+            { name: 'parures.png', level: 2 },
+            { name: 'colliers-pendentifs.png', level: 2 },
+            { name: 'bracelets.png', level: 2 },
+            { name: 'bagues.png', level: 2 },
+            { name: 'boucles.png', level: 2 },
+            { name: 'chevilleres.png', level: 2 },
+            { name: 'piercings.png', level: 2 },
+            { name: 'accessoires-cheveux.png', level: 2 },
+            { name: 'broches.png', level: 2 },
+            { name: 'autre-bijoux.png', level: 2 },
+            { name: 'televiseurs.png', level: 2 },
+            { name: 'demodulateurs-box-tv.png', level: 3 },
+            { name: 'paraboles-switch-tv.png', level: 3 },
+            { name: 'abonnements-iptv.png', level: 2 },
+            { name: 'cameras-accessories.png', level: 2 },
+            { name: 'audio.png', level: 2 },
+            { name: 'aspirateurs-nettoyeurs.png', level: 2 },
+            { name: 'repassage.png', level: 2 },
+            { name: 'beaute-hygiene.png', level: 2 },
+            { name: 'machines-coudre.png', level: 2 },
+            { name: 'telecommandes.png', level: 2 },
+            { name: 'securite-gps.png', level: 2 },
+            { name: 'composants-electroniques.png', level: 2 },
+            { name: 'pieces-rechange.png', level: 2 },
+            { name: 'autre-electromenager.png', level: 2 },
+            { name: 'refrigerateurs-congelateurs.png', level: 2 },
+            { name: 'machines-laver.png', level: 2 },
+            { name: 'lave-vaisselles.png', level: 2 },
+            { name: 'fours-cuisson.png', level: 2 },
+            { name: 'chauffage-climatisation.png', level: 2 },
+            { name: 'appareils-cuisine.png', level: 2 },
+            { name: 'refrigerateur.png', level: 2 },
+            { name: 'congelateur.png', level: 2 },
+            { name: 'refrigerateur-congelateur.png', level: 2 },
+            { name: 'cave-vin.png', level: 2 },
+            { name: 'lave-linge.png', level: 2 },
+            { name: 'seche-linge.png', level: 2 },
+            { name: 'lave-linge-seche-linge.png', level: 3 },
+            { name: 'lave-linge-essorage.png', level: 3 },
+            { name: 'lave-vaisselle-encastrable.png', level: 3 },
+            { name: 'lave-vaisselle-poselibre.png', level: 3 },
+            { name: 'lave-vaisselle-compact.png', level: 3 },
+            { name: 'four-electrique.png', level: 2 },
+            { name: 'four-gaz.png', level: 2 },
+            { name: 'four-micro-ondes.png', level: 3 },
+            { name: 'plaque-cuisson.png', level: 2 },
+            { name: 'cuisiniere.png', level: 2 },
+            { name: 'climatiseur.png', level: 2 },
+            { name: 'ventilateur.png', level: 2 },
+            { name: 'radiateur.png', level: 2 },
+            { name: 'chauffe-eau.png', level: 2 },
+            { name: 'pompe-chaleur.png', level: 2 },
+            { name: 'robot-cuisine.png', level: 2 },
+            { name: 'mixeur.png', level: 2 },
+            { name: 'bouilloire.png', level: 2 },
+            { name: 'cafetiere.png', level: 2 },
+            { name: 'grille-pain.png', level: 2 },
+            { name: 'vente.png', level: 2 },
+            { name: 'location.png', level: 2 },
+            { name: 'location-vacances.png', level: 2 },
+            { name: 'cherche-location.png', level: 2 },
+            { name: 'cherche-achat.png', level: 2 },
+            { name: 'appartement.png', level: 2 },
+            { name: 'local.png', level: 2 },
+            { name: 'villa.png', level: 2 },
+            { name: 'terrain.png', level: 2 },
+            { name: 'terrain-agricole.png', level: 2 },
+            { name: 'immeuble.png', level: 2 },
+            { name: 'bungalow.png', level: 2 },
+            { name: 'hangar-usine.png', level: 2 },
+            { name: 'autre-vente.png', level: 2 },
+            { name: 'appartement-location.png', level: 2 },
+            { name: 'local-location.png', level: 2 },
+            { name: 'villa-location.png', level: 2 },
+            { name: 'immeuble-location.png', level: 2 },
+            { name: 'bungalow-location.png', level: 2 },
+            { name: 'autre-location.png', level: 2 },
+            { name: 'appartement-vacances.png', level: 2 },
+            { name: 'villa-vacances.png', level: 2 },
+            { name: 'bungalow-vacances.png', level: 2 },
+            { name: 'autre-vacances.png', level: 2 },
+            { name: 'appartement-cherche-location.png', level: 3 },
+            { name: 'local-cherche-location.png', level: 3 },
+            { name: 'villa-cherche-location.png', level: 3 },
+            { name: 'immeuble-cherche-location.png', level: 3 },
+            { name: 'bungalow-cherche-location.png', level: 3 },
+            { name: 'autre-cherche-location.png', level: 3 },
+            { name: 'appartement-cherche-achat.png', level: 3 },
+            { name: 'local-cherche-achat.png', level: 3 },
+            { name: 'villa-cherche-achat.png', level: 3 },
+            { name: 'terrain-cherche-achat.png', level: 3 },
+            { name: 'terrain-agricole-cherche-achat.png', level: 3 },
+            { name: 'immeuble-cherche-achat.png', level: 3 },
+            { name: 'bungalow-cherche-achat.png', level: 3 },
+            { name: 'hangar-usine-cherche-achat.png', level: 3 },
+            { name: 'autre-cherche-achat.png', level: 3 },
+            { name: 'produits-laitiers.png', level: 2 },
+            { name: 'fruits-secs.png', level: 2 },
+            { name: 'graines-riz-cereales.png', level: 3 },
+            { name: 'sucres-produits-sucres.png', level: 3 },
+            { name: 'boissons.png', level: 2 },
+            { name: 'viandes-poissons.png', level: 2 },
+            { name: 'cafe-the-infusion.png', level: 3 },
+            { name: 'complements-alimentaires.png', level: 2 },
+            { name: 'miel-derives.png', level: 2 },
+            { name: 'fruits-legumes.png', level: 2 },
+            { name: 'ble-farine.png', level: 2 },
+            { name: 'bonbons-chocolat.png', level: 2 },
+            { name: 'boulangerie-viennoiserie.png', level: 2 },
+            { name: 'ingredients-cuisine-patisserie.png', level: 3 },
+            { name: 'noix-graines.png', level: 2 },
+            { name: 'plats-cuisines.png', level: 2 },
+            { name: 'sauces-epices-condiments.png', level: 3 },
+            { name: 'oeufs.png', level: 2 },
+            { name: 'huiles.png', level: 2 },
+            { name: 'pates.png', level: 2 },
+            { name: 'gateaux.png', level: 2 },
+            { name: 'emballage.png', level: 2 },
+            { name: 'aliments-bebe.png', level: 2 },
+            { name: 'aliments-dietetiques.png', level: 2 },
+            { name: 'autre-alimentaires.png', level: 2 },
+            { name: 'offres-emploi.png', level: 2 },
+            { name: 'demandes-emploi.png', level: 2 },
+            { name: 'autres-services-emploi.png', level: 3 },
+            { name: 'ordinateurs-portables.png', level: 2 },
+            { name: 'ordinateurs-bureau.png', level: 2 },
+            { name: 'composants-pc-fixe.png', level: 3 },
+            { name: 'composants-pc-portable.png', level: 3 },
+            { name: 'composants-serveur.png', level: 2 },
+            { name: 'imprimantes-cartouches.png', level: 2 },
+            { name: 'reseau-connexion.png', level: 2 },
+            { name: 'stockage-externe-racks.png', level: 3 },
+            { name: 'serveurs.png', level: 2 },
+            { name: 'ecrans.png', level: 2 },
+            { name: 'onduleurs-stabilisateurs.png', level: 2 },
+            { name: 'compteuses-billets.png', level: 2 },
+            { name: 'claviers-souris.png', level: 2 },
+            { name: 'casques-son.png', level: 2 },
+            { name: 'webcam-videoconference.png', level: 2 },
+            { name: 'data-shows.png', level: 2 },
+            { name: 'cables-adaptateurs.png', level: 2 },
+            { name: 'stylers-tablettes.png', level: 2 },
+            { name: 'cartables-sacoches.png', level: 2 },
+            { name: 'manettes-simulateurs.png', level: 2 },
+            { name: 'vr.png', level: 2 },
+            { name: 'logiciels-abonnements.png', level: 2 },
+            { name: 'bureautique.png', level: 2 },
+            { name: 'autre-informatique.png', level: 2 },
+            { name: 'pc-portable.png', level: 2 },
+            { name: 'macbooks.png', level: 2 },
+            { name: 'pc-bureau.png', level: 2 },
+            { name: 'unites-centrales.png', level: 2 },
+            { name: 'all-in-one.png', level: 3 },
+            { name: 'cartes-mere.png', level: 2 },
+            { name: 'processeurs.png', level: 2 },
+            { name: 'ram.png', level: 2 },
+            { name: 'disques-dur.png', level: 2 },
+            { name: 'cartes-graphique.png', level: 2 },
+            { name: 'alimentations-boitiers.png', level: 2 },
+            { name: 'refroidissement.png', level: 2 },
+            { name: 'lecteurs-graveurs-cd.png', level: 3 },
+            { name: 'autres-composants-fixe.png', level: 3 },
+            { name: 'chargeurs.png', level: 2 },
+            { name: 'batteries.png', level: 2 },
+            { name: 'ecrans-portable.png', level: 2 },
+            { name: 'claviers-touchpads.png', level: 2 },
+            { name: 'disques-dur-portable.png', level: 3 },
+            { name: 'ram-portable.png', level: 2 },
+            { name: 'refroidissement-portable.png', level: 2 },
+            { name: 'cartes-mere-portable.png', level: 3 },
+            { name: 'processeurs-portable.png', level: 2 },
+            { name: 'cartes-graphique-portable.png', level: 3 },
+            { name: 'lecteurs-graveurs-portable.png', level: 3 },
+            { name: 'baffles-webcams.png', level: 2 },
+            { name: 'autres-composants-portable.png', level: 3 },
+            { name: 'cartes-mere-serveur.png', level: 3 },
+            { name: 'processeurs-serveur.png', level: 2 },
+            { name: 'ram-serveur.png', level: 2 },
+            { name: 'disques-dur-serveur.png', level: 3 },
+            { name: 'cartes-reseau-serveur.png', level: 3 },
+            { name: 'alimentations-serveur.png', level: 2 },
+            { name: 'refroidissement-serveur.png', level: 2 },
+            { name: 'cartes-graphique-serveur.png', level: 3 },
+            { name: 'autres-composants-serveur.png', level: 3 },
+            { name: 'imprimantes-jet-encre.png', level: 3 },
+            { name: 'imprimantes-laser.png', level: 2 },
+            { name: 'imprimantes-matricielles.png', level: 2 },
+            { name: 'codes-barre-etiqueteuses.png', level: 3 },
+            { name: 'imprimantes-photo-badges.png', level: 3 },
+            { name: 'photocopieuses-professionnelles.png', level: 2 },
+            { name: 'imprimantes-3d.png', level: 2 },
+            { name: 'cartouches-toners.png', level: 2 },
+            { name: 'autre-imprimantes.png', level: 2 },
+            { name: 'modems-routeurs.png', level: 2 },
+            { name: 'switchs.png', level: 2 },
+            { name: 'point-acces-wifi.png', level: 3 },
+            { name: 'repeater-wifi.png', level: 2 },
+            { name: 'cartes-reseau.png', level: 2 },
+            { name: 'autre-reseau.png', level: 2 },
+            { name: 'disques-durs.png', level: 2 },
+            { name: 'flash-disque.png', level: 2 },
+            { name: 'carte-memoire.png', level: 2 },
+            { name: 'rack.png', level: 2 },
+            { name: 'animalerie.png', level: 2 },
+            { name: 'consoles-jeux-videos.png', level: 3 },
+            { name: 'livres-magazines.png', level: 2 },
+            { name: 'instruments-musique.png', level: 2 },
+            { name: 'jouets.png', level: 2 },
+            { name: 'chasse-peche.png', level: 2 },
+            { name: 'jardinage.png', level: 2 },
+            { name: 'jeux-loisirs.png', level: 2 },
+            { name: 'barbecue-grillades.png', level: 2 },
+            { name: 'vapes-chichas.png', level: 2 },
+            { name: 'produits-accessoires-ete.png', level: 3 },
+            { name: 'antiquites-collections.png', level: 2 },
+            { name: 'autre-loisirs.png', level: 2 },
+            { name: 'produits-soin-animal.png', level: 3 },
+            { name: 'chien.png', level: 2 },
+            { name: 'oiseau.png', level: 2 },
+            { name: 'animaux-ferme.png', level: 2 },
+            { name: 'chat.png', level: 2 },
+            { name: 'cheval.png', level: 2 },
+            { name: 'poisson.png', level: 2 },
+            { name: 'accessoire-animaux.png', level: 2 },
+            { name: 'nourriture-animaux.png', level: 2 },
+            { name: 'autres-animaux.png', level: 2 },
+            { name: 'consoles.png', level: 2 },
+            { name: 'jeux-videos.png', level: 2 },
+            { name: 'accessoires-consoles.png', level: 2 },
+            { name: 'litterature-philosophie.png', level: 2 },
+            { name: 'romans.png', level: 2 },
+            { name: 'scolaire-parascolaire.png', level: 2 },
+            { name: 'sciences-techniques-medecine.png', level: 3 },
+            { name: 'traduction.png', level: 2 },
+            { name: 'religion-spiritualites.png', level: 2 },
+            { name: 'historique.png', level: 2 },
+            { name: 'cuisine-livres.png', level: 2 },
+            { name: 'essais-documents.png', level: 2 },
+            { name: 'fiction.png', level: 2 },
+            { name: 'enfants-livres.png', level: 2 },
+            { name: 'mangas-bande-dessinee.png', level: 3 },
+            { name: 'instruments-electriques.png', level: 2 },
+            { name: 'instruments-percussion.png', level: 2 },
+            { name: 'instruments-vent.png', level: 2 },
+            { name: 'instruments-cordes.png', level: 2 },
+            { name: 'autre-instruments.png', level: 2 },
+            { name: 'jeux-eveil.png', level: 2 },
+            { name: 'poupees-peluches.png', level: 2 },
+            { name: 'personnages-deguisements.png', level: 2 },
+            { name: 'jeux-educatifs-puzzle.png', level: 3 },
+            { name: 'vehicules-circuits.png', level: 2 },
+            { name: 'jeux-electroniques.png', level: 2 },
+            { name: 'construction-outils.png', level: 2 },
+            { name: 'jeux-plein-air.png', level: 3 },
+            { name: 'animaux-jouets.png', level: 2 },
+            { name: 'canne-peche.png', level: 2 },
+            { name: 'moulinets.png', level: 2 },
+            { name: 'sondeurs-gps.png', level: 2 },
+            { name: 'vetements-chasse-peche.png', level: 3 },
+            { name: 'accessoires-peche.png', level: 2 },
+            { name: 'materiel-plongee.png', level: 2 },
+            { name: 'equipements-chasse.png', level: 2 },
+            { name: 'mobilier-jardin.png', level: 2 },
+            { name: 'semence.png', level: 2 },
+            { name: 'outillage-arrosage.png', level: 2 },
+            { name: 'plantes-fleurs.png', level: 2 },
+            { name: 'equipements-materiels-jardin.png', level: 3 },
+            { name: 'insecticide.png', level: 2 },
+            { name: 'decoration-jardin.png', level: 2 },
+            { name: 'livres-agriculture-jardin.png', level: 3 },
+            { name: 'babyfoot.png', level: 2 },
+            { name: 'billiard.png', level: 2 },
+            { name: 'ping-pong.png', level: 2 },
+            { name: 'echecs.png', level: 2 },
+            { name: 'jeux-societe.png', level: 2 },
+            { name: 'autres-jeux-loisirs.png', level: 3 },
+            { name: 'barbecue.png', level: 2 },
+            { name: 'charbon.png', level: 2 },
+            { name: 'accessoires-barbecue.png', level: 2 },
+            { name: 'vapes-cigarettes-electroniques.png', level: 3 },
+            { name: 'chichas.png', level: 2 },
+            { name: 'consommables.png', level: 2 },
+            { name: 'accessoires-chichas.png', level: 2 },
+            { name: 'piscines.png', level: 2 },
+            { name: 'matelas-gonflables.png', level: 2 },
+            { name: 'parasols.png', level: 2 },
+            { name: 'transats-chaises-pliables.png', level: 3 },
+            { name: 'tables-ete.png', level: 2 },
+            { name: 'autres-ete.png', level: 2 },
+            { name: 'materiel-professionnel.png', level: 2 },
+            { name: 'outillage-professionnel.png', level: 2 },
+            { name: 'materiel-agricole.png', level: 2 },
+            { name: 'materiaux-construction.png', level: 2 },
+            { name: 'matieres-premieres.png', level: 2 },
+            { name: 'produits-hygiene.png', level: 2 },
+            { name: 'autre-materiaux.png', level: 2 },
+            { name: 'industrie-fabrication.png', level: 2 },
+            { name: 'alimentaire-restauration.png', level: 2 },
+            { name: 'medical.png', level: 2 },
+            { name: 'batiment-construction.png', level: 2 },
+            { name: 'materiel-electrique.png', level: 2 },
+            { name: 'ateliers.png', level: 2 },
+            { name: 'stockage-magasinage.png', level: 2 },
+            { name: 'equipement-protection.png', level: 2 },
+            { name: 'agriculture.png', level: 2 },
+            { name: 'reparation-diagnostic.png', level: 2 },
+            { name: 'commerce-detail.png', level: 2 },
+            { name: 'coiffure-cosmetologie.png', level: 2 },
+            { name: 'autres-materiel-pro.png', level: 3 },
+            { name: 'perceuse.png', level: 2 },
+            { name: 'meuleuse.png', level: 2 },
+            { name: 'outillage-main.png', level: 2 },
+            { name: 'scie.png', level: 2 },
+            { name: 'autres-outillage.png', level: 2 },
+            { name: 'equipement-agricole.png', level: 2 },
+            { name: 'arbres.png', level: 2 },
+            { name: 'terrain-agricole-materiaux.png', level: 3 },
+            { name: 'autre-agricole.png', level: 2 },
+            { name: 'salon.png', level: 2 },
+            { name: 'chambres-coucher.png', level: 2 },
+            { name: 'tables.png', level: 2 },
+            { name: 'armoires-commodes.png', level: 2 },
+            { name: 'lits.png', level: 2 },
+            { name: 'meubles-cuisine.png', level: 2 },
+            { name: 'bibliotheques-etageres.png', level: 2 },
+            { name: 'chaises-fauteuils.png', level: 2 },
+            { name: 'dressings.png', level: 2 },
+            { name: 'meubles-salle-bain.png', level: 3 },
+            { name: 'buffet.png', level: 2 },
+            { name: 'tables-tv.png', level: 2 },
+            { name: 'table-pliante.png', level: 2 },
+            { name: 'tables-manger.png', level: 2 },
+            { name: 'tables-pc-bureaux.png', level: 3 },
+            { name: 'canape.png', level: 2 },
+            { name: 'table-basse.png', level: 2 },
+            { name: 'rangement-organisation.png', level: 2 },
+            { name: 'accessoires-cuisine.png', level: 2 },
+            { name: 'meuble-entree.png', level: 2 },
+            { name: 'decoration.png', level: 2 },
+            { name: 'vaisselle.png', level: 2 },
+            { name: 'meubles-bureau.png', level: 2 },
+            { name: 'puericulture.png', level: 2 },
+            { name: 'luminaire.png', level: 2 },
+            { name: 'rideaux.png', level: 2 },
+            { name: 'literie-linge.png', level: 2 },
+            { name: 'tapis-moquettes.png', level: 2 },
+            { name: 'meubles-exterieur.png', level: 2 },
+            { name: 'fournitures-scolaires.png', level: 2 },
+            { name: 'autre-meubles.png', level: 2 },
+            { name: 'peinture-calligraphie.png', level: 2 },
+            { name: 'decoration-cuisine.png', level: 2 },
+            { name: 'coussins-housses.png', level: 2 },
+            { name: 'deco-bain.png', level: 2 },
+            { name: 'art-revetement-mural.png', level: 3 },
+            { name: 'figurines-miniatures.png', level: 2 },
+            { name: 'cadres.png', level: 2 },
+            { name: 'horloges.png', level: 2 },
+            { name: 'autres-decoration.png', level: 2 },
+            { name: 'poeles-casseroles-marmites.png', level: 3 },
+            { name: 'cocottes.png', level: 2 },
+            { name: 'plats-four-plateaux.png', level: 3 },
+            { name: 'assiettes-bols.png', level: 2 },
+            { name: 'couverts-ustensiles.png', level: 2 },
+            { name: 'services-boissons.png', level: 2 },
+            { name: 'boites-bocaux.png', level: 2 },
+            { name: 'accessoires-patisserie.png', level: 2 },
+            { name: 'vaisselles-artisanales.png', level: 2 },
+            { name: 'gadget-cuisine.png', level: 2 },
+            { name: 'vaisselle-enfants.png', level: 2 },
+            { name: 'bureaux-caissons.png', level: 2 },
+            { name: 'chaises-bureau.png', level: 2 },
+            { name: 'armoires-rangements-bureau.png', level: 3 },
+            { name: 'accessoires-bureaux.png', level: 2 },
+            { name: 'tables-reunion.png', level: 2 },
+            { name: 'poussette.png', level: 2 },
+            { name: 'siege-auto.png', level: 2 },
+            { name: 'meubles-bebe.png', level: 2 },
+            { name: 'lit-bebe.png', level: 2 },
+            { name: 'chaise-bebe.png', level: 2 },
+            { name: 'autres-puericulture.png', level: 2 },
+            { name: 'lustre.png', level: 2 },
+            { name: 'lampadaire.png', level: 2 },
+            { name: 'eclairage-exterieur.png', level: 2 },
+            { name: 'autres-luminaire.png', level: 2 },
+            { name: 'pieces-automobiles.png', level: 2 },
+            { name: 'pieces-moto.png', level: 2 },
+            { name: 'pieces-bateaux.png', level: 2 },
+            { name: 'alarme-securite.png', level: 2 },
+            { name: 'nettoyage-entretien.png', level: 2 },
+            { name: 'outils-diagnostics.png', level: 2 },
+            { name: 'lubrifiants.png', level: 2 },
+            { name: 'pieces-vehicules.png', level: 2 },
+            { name: 'autres-pieces.png', level: 2 },
+            { name: 'moteur-transmission.png', level: 2 },
+            { name: 'suspension-direction.png', level: 2 },
+            { name: 'pieces-interieur.png', level: 2 },
+            { name: 'carrosserie.png', level: 2 },
+            { name: 'optiques-eclairage.png', level: 2 },
+            { name: 'vitres-pare-brise.png', level: 3 },
+            { name: 'pneus-jantes.png', level: 2 },
+            { name: 'housses-tapis.png', level: 2 },
+            { name: 'batteries-auto.png', level: 2 },
+            { name: 'sono-multimedia.png', level: 2 },
+            { name: 'sieges-auto.png', level: 2 },
+            { name: 'autres-pieces-auto.png', level: 3 },
+            { name: 'casques-protections.png', level: 2 },
+            { name: 'pneus-jantes-moto.png', level: 3 },
+            { name: 'optiques-eclairage-moto.png', level: 3 },
+            { name: 'accessoires-moto.png', level: 2 },
+            { name: 'autres-pieces-moto.png', level: 3 },
+            { name: 'moteurs-bateau.png', level: 2 },
+            { name: 'pieces-bateau.png', level: 2 },
+            { name: 'accessoires-bateau.png', level: 2 },
+            { name: 'autres-pieces-bateaux.png', level: 3 },
+            { name: 'cosmetiques-beaute.png', level: 2 },
+            { name: 'parapharmacie-sante.png', level: 2 },
+            { name: 'parfums-deodorants-femme.png', level: 3 },
+            { name: 'parfums-deodorants-homme.png', level: 3 },
+            { name: 'accessoires-beaute.png', level: 2 },
+            { name: 'soins-cheveux.png', level: 2 },
+            { name: 'autre-sante-beaute.png', level: 3 },
+            { name: 'soins-corps.png', level: 2 },
+            { name: 'savons-gels-douche.png', level: 3 },
+            { name: 'soins-visage.png', level: 2 },
+            { name: 'maquillage.png', level: 2 },
+            { name: 'produits-solaires-bronzage.png', level: 3 },
+            { name: 'instruments-outils-beaute.png', level: 3 },
+            { name: 'manucure-pedicure.png', level: 2 },
+            { name: 'rasage-epilation.png', level: 2 },
+            { name: 'hygiene.png', level: 2 },
+            { name: 'coiffure.png', level: 2 },
+            { name: 'soins-bebe.png', level: 2 },
+            { name: 'autres-produits-beaute.png', level: 3 },
+            { name: 'dispositifs-medicaux.png', level: 2 },
+            { name: 'complement-alimentaire.png', level: 2 },
+            { name: 'materiel-medical.png', level: 2 },
+            { name: 'aliments-dietetiques-sante.png', level: 3 },
+            { name: 'construction-travaux.png', level: 2 },
+            { name: 'ecoles-formations.png', level: 2 },
+            { name: 'industrie-fabrication-services.png', level: 3 },
+            { name: 'transport-demenagement.png', level: 2 },
+            { name: 'decoration-amenagement.png', level: 2 },
+            { name: 'publicite-communication.png', level: 2 },
+            { name: 'nettoyage-jardinage.png', level: 2 },
+            { name: 'froid-climatisation.png', level: 2 },
+            { name: 'traiteurs-gateaux.png', level: 2 },
+            { name: 'medecine-sante.png', level: 2 },
+            { name: 'reparation-auto-diagnostic.png', level: 3 },
+            { name: 'securite-alarme.png', level: 2 },
+            { name: 'projets-etudes.png', level: 2 },
+            { name: 'bureautique-internet.png', level: 2 },
+            { name: 'location-vehicules.png', level: 2 },
+            { name: 'menuiserie-meubles.png', level: 2 },
+            { name: 'impression-edition.png', level: 2 },
+            { name: 'hotellerie-restauration-salles.png', level: 3 },
+            { name: 'esthetique-beaute.png', level: 2 },
+            { name: 'image-son.png', level: 2 },
+            { name: 'comptabilite-economie.png', level: 2 },
+            { name: 'couture-confection.png', level: 2 },
+            { name: 'maintenance-informatique.png', level: 2 },
+            { name: 'reparation-electromenager.png', level: 2 },
+            { name: 'evenements-divertissement.png', level: 2 },
+            { name: 'paraboles-demos.png', level: 2 },
+            { name: 'reparation-electronique.png', level: 2 },
+            { name: 'services-etranger.png', level: 2 },
+            { name: 'flashage-reparation-telephones.png', level: 3 },
+            { name: 'flashage-installation-jeux.png', level: 3 },
+            { name: 'juridique.png', level: 2 },
+            { name: 'autres-services.png', level: 2 },
+            { name: 'football.png', level: 2 },
+            { name: 'hand-voley-basket.png', level: 3 },
+            { name: 'sport-combat.png', level: 2 },
+            { name: 'fitness-musculation.png', level: 2 },
+            { name: 'natation.png', level: 2 },
+            { name: 'velos-trotinettes.png', level: 2 },
+            { name: 'sports-raquette.png', level: 2 },
+            { name: 'sport-aquatiques.png', level: 2 },
+            { name: 'equitation.png', level: 2 },
+            { name: 'petanque.png', level: 2 },
+            { name: 'autres-sports.png', level: 2 },
+            { name: 'ballons-buts.png', level: 2 },
+            { name: 'equipements-accessoires-foot.png', level: 3 },
+            { name: 'chaussures-football.png', level: 2 },
+            { name: 'vetements-football.png', level: 2 },
+            { name: 'equipements-accessoires-basket.png', level: 3 },
+            { name: 'ballons-buts-filets.png', level: 3 },
+            { name: 'chaussures-basket.png', level: 2 },
+            { name: 'vetements-basket.png', level: 2 },
+            { name: 'tenue-combat.png', level: 2 },
+            { name: 'gants-casques.png', level: 2 },
+            { name: 'autres-accessoires-combat.png', level: 3 },
+            { name: 'bancs-presses.png', level: 2 },
+            { name: 'poids-halteres.png', level: 2 },
+            { name: 'tapis-roulants.png', level: 2 },
+            { name: 'velos-rameurs.png', level: 2 },
+            { name: 'autres-equipements-fitness.png', level: 3 },
+            { name: 'lunettes-natation.png', level: 2 },
+            { name: 'bonnets.png', level: 2 },
+            { name: 'palmes.png', level: 2 },
+            { name: 'planches-flotteurs.png', level: 2 },
+            { name: 'maillots-combinaisons.png', level: 2 },
+            { name: 'autres-accessoires-natation.png', level: 3 },
+            { name: 'vetements-chaussures-velo.png', level: 3 },
+            { name: 'velos.png', level: 2 },
+            { name: 'trotinettes.png', level: 2 },
+            { name: 'equipements-accessoires-velo.png', level: 3 },
+            { name: 'tennis.png', level: 2 },
+            { name: 'tennis-table.png', level: 2 },
+            { name: 'autre-raquette.png', level: 2 },
+            { name: 'voyage-organise.png', level: 2 },
+            { name: 'location-vacances-voyages.png', level: 3 },
+            { name: 'hajj-omra.png', level: 2 },
+            { name: 'reservations-visa.png', level: 2 },
+            { name: 'sejour.png', level: 2 },
+            { name: 'croisiere.png', level: 2 },
+            { name: 'autre-voyages.png', level: 2 },
+            { name: 'boutique-vehicules.png', level: 2 },
+            { name: 'boutique-vetements.png', level: 2 },
+            { name: 'boutique-electromenager.png', level: 2 },
+            { name: 'boutique-immobilier.png', level: 2 },
+            { name: 'boutique-alimentaire.png', level: 2 },
+            { name: 'boutique-emploi.png', level: 2 },
+            { name: 'boutique-informatique.png', level: 2 },
+            { name: 'boutique-loisirs.png', level: 2 },
+            { name: 'boutique-materiaux.png', level: 2 },
+            { name: 'boutique-meubles.png', level: 2 },
+            { name: 'boutique-pieces-detachees.png', level: 3 },
+            { name: 'boutique-sante-beaute.png', level: 3 },
+            { name: 'boutique-services.png', level: 2 },
+            { name: 'boutique-sport.png', level: 2 },
+            { name: 'boutique-voyages.png', level: 2 },
+            { name: 'boutique-telephone.png', level: 2 },
+            { name: 'smartphones.png', level: 2 },
+            { name: 'telephones-cellulaires.png', level: 2 },
+            { name: 'tablettes.png', level: 2 },
+            { name: 'fixes-fax.png', level: 2 },
+            { name: 'smartwatchs.png', level: 2 },
+            { name: 'accessoires-telephone.png', level: 2 },
+            { name: 'pieces-rechange-telephone.png', level: 3 },
+            { name: 'offres-abonnements.png', level: 2 },
+            { name: 'protection-antichoc.png', level: 2 },
+            { name: 'ecouteurs-son.png', level: 2 },
+            { name: 'chargeurs-cables.png', level: 2 },
+            { name: 'supports-stabilisateurs.png', level: 2 },
+            { name: 'manettes-telephone.png', level: 2 },
+            { name: 'vr-telephone.png', level: 2 },
+            { name: 'power-banks.png', level: 2 },
+            { name: 'stylets.png', level: 2 },
+            { name: 'cartes-memoire.png', level: 2 },
+            { name: 'etuis.png', level: 2 },
+            { name: 'films-protection.png', level: 2 },
+            { name: 'protections-ecran.png', level: 2 },
+            { name: 'coques-antichoc.png', level: 2 },
+            { name: 'protections-camera.png', level: 2 },
+            { name: 'protections-ecran-renforcees.png', level: 3 },
+            { name: 'coques-antichoc-pro.png', level: 3 },
+            { name: 'films-protection-antichoc.png', level: 3 },
+            { name: 'etuis-renforces.png', level: 2 },
+            { name: 'protections-camera-antichoc.png', level: 3 },
+            { name: 'ecouteurs-filaires.png', level: 2 },
+            { name: 'ecouteurs-bluetooth.png', level: 2 },
+            { name: 'casques-audio.png', level: 2 },
+            { name: 'hauts-parleurs-portables.png', level: 3 },
+            { name: 'adaptateurs-audio.png', level: 2 },
+            { name: 'chargeurs-mural.png', level: 2 },
+            { name: 'chargeurs-voiture.png', level: 2 },
+            { name: 'chargeurs-sans-fil.png', level: 3 },
+            { name: 'cables-usb.png', level: 2 },
+            { name: 'cables-lightning.png', level: 2 },
+            { name: 'cables-type-c.png', level: 3 },
+            { name: 'hubs-chargeurs.png', level: 2 },
+            { name: 'supports-telephone.png', level: 2 },
+            { name: 'stabilisateurs.png', level: 2 },
+            { name: 'barres-selfies.png', level: 2 },
+            { name: 'pieds-telephone.png', level: 2 },
+            { name: 'ventouses-voiture.png', level: 2 },
+            { name: 'manettes-bluetooth.png', level: 2 },
+            { name: 'manettes-filaires.png', level: 2 },
+            { name: 'manettes-pour-telephone.png', level: 3 },
+            { name: 'manettes-pour-tablette.png', level: 3 },
+            { name: 'accessoires-manettes.png', level: 2 },
+            { name: 'casques-vr.png', level: 2 },
+            { name: 'lunettes-vr.png', level: 2 },
+            { name: 'accessoires-vr.png', level: 2 },
+            { name: 'controleurs-vr.png', level: 2 },
+            { name: 'jeux-vr.png', level: 2 },
+            { name: 'power-bank-10000mah.png', level: 3 },
+            { name: 'power-bank-20000mah.png', level: 3 },
+            { name: 'power-bank-solaire.png', level: 3 },
+            { name: 'power-bank-rapide.png', level: 3 },
+            { name: 'power-bank-compact.png', level: 3 },
+            { name: 'stylets-actifs.png', level: 2 },
+            { name: 'stylets-passifs.png', level: 2 },
+            { name: 'stylets-bluetooth.png', level: 2 },
+            { name: 'stylets-tablette.png', level: 2 },
+            { name: 'recharges-stylet.png', level: 2 },
+            { name: 'cartes-sd.png', level: 2 },
+            { name: 'cartes-micro-sd.png', level: 3 },
+            { name: 'cartes-sdhc.png', level: 2 },
+            { name: 'cartes-sdxc.png', level: 2 },
+            { name: 'adaptateurs-carte.png', level: 2 },
+            { name: 'lecteurs-carte.png', level: 2 }
+        ];
+
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        async function checkIconExists(iconName) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = '/icons/' + iconName + '?t=' + Date.now();
+            });
+        }
+
+        function filterIcons(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderIcons();
+        }
+
+        function updateStatusSummary(stats) {
+            const summary = document.getElementById('statusSummary');
+            const success = stats.filter(s => s.exists).length;
+            const warning = stats.filter(s => !s.exists).length;
+            summary.innerHTML = `
+                <strong>📊 Resumen de estado:</strong> 
+                <span style="color: #155724; background: #d4edda; padding: 3px 8px; border-radius: 3px;">✅ ${success} iconos existentes</span>
+                <span style="color: #856404; background: #fff3cd; padding: 3px 8px; border-radius: 3px; margin-left: 10px;">⚠️ ${warning} placeholders (reemplazar)</span>
+            `;
+        }
+
+        async function renderIcons() {
+            const grid = document.getElementById('iconsGrid');
+            const searchInput = document.getElementById('searchInput');
+            searchTerm = searchInput.value.toLowerCase();
+            
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">Cargando iconos...</div>';
+            
+            // Verificar cada icono
+            const iconStatus = await Promise.all(
+                iconList.map(async icon => ({
+                    ...icon,
+                    exists: await checkIconExists(icon.name)
+                }))
+            );
+
+            // Actualizar estadísticas
+            const totalIcons = iconStatus.length;
+            const level1Count = iconStatus.filter(i => i.level === 1).length;
+            const level2Count = iconStatus.filter(i => i.level === 2).length;
+            const level3Count = iconStatus.filter(i => i.level === 3).length;
+            
+            document.getElementById('totalIcons').textContent = totalIcons;
+            document.getElementById('level1Count').textContent = level1Count;
+            document.getElementById('level2Count').textContent = level2Count;
+            document.getElementById('level3Count').textContent = level3Count;
+            
+            updateStatusSummary(iconStatus);
+
+            // Filtrar
+            const filtered = iconStatus.filter(icon => {
+                // Filtro por nivel
+                if (currentFilter === 'level1' && icon.level !== 1) return false;
+                if (currentFilter === 'level2' && icon.level !== 2) return false;
+                if (currentFilter === 'level3' && icon.level !== 3) return false;
+                if (currentFilter === 'success' && !icon.exists) return false;
+                if (currentFilter === 'warning' && icon.exists) return false;
+                
+                // Búsqueda por nombre
+                if (searchTerm && !icon.name.toLowerCase().includes(searchTerm)) return false;
+                
+                return true;
+            });
+
+            // Renderizar
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px;">No se encontraron iconos</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(icon => {
+                const levelText = icon.level === 1 ? 'Principal' : icon.level === 2 ? 'Subcategoría' : 'Artículo';
+                const statusClass = icon.exists ? 'status-success' : 'status-warning';
+                const statusText = icon.exists ? '✅ Icono real' : '⚠️ Placeholder';
+                const iconDisplay = icon.exists ? 
+                    `<img src="/icons/${icon.name}" alt="${icon.name}" onerror="this.onerror=null; this.parentElement.innerHTML='🖼️';">` : 
+                    '📁';
+                
+                return `
+                    <div class="icon-card" data-level="${icon.level}">
+                        <div class="icon-preview">${iconDisplay}</div>
+                        <div class="icon-name">${icon.name.replace('.png', '')}</div>
+                        <div class="icon-level">Nivel ${icon.level} - ${levelText}</div>
+                        <div class="icon-path">/icons/${icon.name}</div>
+                        <div class="icon-status ${statusClass}">${statusText}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Búsqueda en tiempo real
+        document.getElementById('searchInput').addEventListener('input', () => {
+            renderIcons();
+        });
+
+        // Cargar al inicio
+        renderIcons();
+    </script>
+</body>
+</html>

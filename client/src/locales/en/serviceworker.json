@@ -1,0 +1,11 @@
+{
+ 
+  "installing": "Service Worker: Installing...",
+  "caching": "Service Worker: Caching resources",
+  "installation_complete": "Service Worker: Installation completed",
+  "activating": "Service Worker: Activating...",
+  "deleting_old_cache": "Service Worker: Deleting old cache",
+  "activated": "Service Worker: Now active!",
+  "fetch_failed": "Fetch failed; returning offline page:"
+    }
+ 

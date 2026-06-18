@@ -1,0 +1,61 @@
+/* frontend/src/components/carousel/CarouselHome.css */
+.carousel-item {
+    position: relative;
+  }
+  
+  .admin-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+  }
+  
+  .admin-menu .dropdown-toggle::after {
+    display: none;
+  }
+  
+  .admin-menu .btn-dark {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .admin-menu .btn-dark:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  /* Asegurar que el menú sea visible en todas las pantallas */
+  @media (max-width: 768px) {
+    .admin-menu .btn-dark {
+      padding: 6px 10px;
+    }
+    
+    .admin-menu .dropdown-menu {
+      min-width: 120px;
+    }
+  }
+  
+  /* Botón "Voir la page" */
+  .voir-page-btn {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    z-index: 1000;
+  }
+  
+  .voir-page-btn .btn {
+    background-color: rgba(0, 123, 255, 0.9);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .voir-page-btn .btn:hover {
+    background-color: rgba(0, 123, 255, 1);
+    transform: translateY(-2px);
+  }

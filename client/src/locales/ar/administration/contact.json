@@ -1,0 +1,12 @@
+{
+   "contact_form": "نموذج الاتصال",
+   "subjectt": "الموضوع",
+   "messagee": "الرسالة",
+   "write_subject": "اكتب الموضوع",
+   "write_message": "اكتب رسالتك هنا",
+   "send_message": "إرسال الرسالة",
+   "sendingg": "جارٍ الإرسال",
+   "mensajeenviadoconexito": "تم إرسال الرسالة بنجاح.",
+   "erroralenviarmensaje": "حدث خطأ أثناء إرسال الرسالة."
+ }
+ 

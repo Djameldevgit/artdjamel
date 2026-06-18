@@ -1,0 +1,48 @@
+{
+  
+    "slides": {
+      "spring_collection": {
+        "title": "مجموعة الربيع الجديدة",
+        "description": "اكتشف أحدث صيحات الموسم"
+      },
+      "summer_sales": {
+        "title": "تخفيضات الصيف",
+        "description": "حتى -50٪ على مجموعة الصيف بالكامل"
+      },
+      "men_collection": {
+        "title": "مجموعة الرجال",
+        "description": "أناقة وروعة لكل مناسبة"
+      },
+      "women_collection": {
+        "title": "مجموعة النساء",
+        "description": "أناقة وراحة ليومك"
+      }
+    },
+ 
+
+
+
+
+
+  "buttons": {
+    "save": "حفظ",
+    "unsave": "إزالة الحفظ",
+    "like": "إعجاب",
+    "unlike": "إلغاء الإعجاب"
+  },
+  "modal": {
+    "auth_required": "مطلوب مصادقة",
+    "login_to_continue": "يرجى تسجيل الدخول للمتابعة",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "cancel": "إلغاء"
+  },
+  "currencies": {
+    "DZD": "دينار جزائري",
+    "EUR": "يورو",
+    "USD": "دولار أمريكي",
+    "CAD": "دولار كندي"
+  },
+  "no_images": "لا توجد صور متاحة",
+  "no_title": "بدون عنوان"
+}

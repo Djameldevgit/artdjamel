@@ -1,0 +1,383 @@
+{
+  "blog portaforlo": "Blog portfolio",
+  
+  "subtitulo": "Artiste plasticien et développeur MERN - J'ai uni deux passions profondes",
+  "badgeArtista": "Artiste plasticien",
+  "badgeDesarrollador": "Développeur MERN",
+  "introduccionTitulo": "Mon espace créatif",
+  "introduccionTexto": "Cet espace a été créé spécifiquement pour montrer mon parcours en tant qu'artiste plasticien et développeur MERN. Deux passions profondes qui m'ont accompagné pendant de nombreuses années et que je ne changerais pas contre tous les trésors du monde.",
+  "tituloTrayectoria": "Mon parcours artistique",
+  "trayectoria1": "Comme beaucoup d'artistes dont les talents sont apparus dès l'enfance, je me suis formé comme artiste portraitiste à Barcelone où j'ai passé 17 ans à dessiner des portraits et à vivre de mon art, j'ai connu un grand succès pendant ces années.",
+  "trayectoria2": "Après être retourné dans mon pays, l'Algérie, j'ai poursuivi mon chemin artistique où j'ai organisé des expositions d'art et reçu plusieurs prix incluant la 'Carte d'Artiste'.",
+  "premio": "Lauréat du prix 'Carte d'Artiste' et reconnaissance dans des expositions locales",
+  "dualidadTitulo": "Unir deux passions",
+  "dualidadDescripcion": "Jusqu'à aujourd'hui, je continue à consacrer mon temps à deux passions fondamentales dans ma vie : la peinture et la programmation. Ce n'est pas facile d'équilibrer deux talents qui requièrent tout le temps et l'effort, mais j'ai acquis une connaissance profonde dans les deux domaines.",
+  "motivacionTitulo": "La motivation derrière la création de la plateforme",
+  "motivacion1": "J'ai passé des années à publier mes œuvres sur les réseaux sociaux, mais j'ai compris que ces plateformes ne sont pas conçues pour acheter et vendre de l'art. Elles sont conçues pour le divertissement continu avec des jeux, des streams en direct et des chats, pas pour se concentrer sur la publication artistique.",
+  "motivacion2": "J'ai aussi remarqué que les groupes locaux refusaient de publier mes peintures pour des raisons peu claires, tout en permettant de publier des œuvres générées par intelligence artificielle. La plupart du public ne peut pas distinguer entre le travail d'un artiste réel et celui généré par IA à certains moments.",
+  "motivacion3": "Les administrateurs ne se souciaient pas de protéger l'art humain authentique, leur seule préoccupation était d'augmenter le nombre d'abonnés. Cette situation conduisait mon art dans une impasse.",
+  "solucionTitulo": "La solution technique",
+  "solucionTexto": "J'ai décidé d'étudier et d'explorer la programmation en profondeur, en utilisant l'intelligence artificielle, surtout ChatGPT, je travaille jours et nuits entre peinture et programmation. J'ai divisé mon temps entre perfectionner mon talent artistique et apprendre Express, les sockets, l'authentification, les APIs Google, et tout le nécessaire pour créer une application où je peux non seulement publier mes œuvres, mais aussi donner l'opportunité à d'autres artistes de différentes catégories.",
+  "solucionTexto2": "Cette application ne cherche pas à rivaliser avec qui que ce soit ; c'est un défi personnel et un projet en constante évolution. Chaque jour je peins pour améliorer mon art et je programme pour améliorer l'expérience des utilisateurs.",
+  "visionTitulo": "Ma vision pour l'avenir",
+  "visionDescripcion": "Mon objectif est de développer cette plateforme pour qu'elle atteigne une portée plus large, et devienne un refuge pour l'art authentique et les talents réels dans un monde où l'intelligence artificielle domine de plus en plus le paysage créatif.",
+  "visionFinal": "Je suis ouvert à ce que d'autres développeurs MERN se joignent pour étendre ce projet de plus en plus, parce que nous ne savons pas quelles possibilités l'avenir peut réserver à ce projet ambitieux.",
+  
+  "titulos.comentarios": "Commentaires pour l'administrateur",
+  "tituloss": {
+    "intro": "Introduction",
+    "registro": "Inscription",
+    "seguridad": "Sécurité",
+    "publicaciones": "Publications",
+    "busqueda": "Recherche",
+    "contacto": "Contact",
+    "idioma": "Langue",
+    "administracion": "Administration",
+    "blog": "Blog",
+    "actualizaciones": "Mises à jour",
+    "desarrollo": "Développement"
+  },
+  "centroAyuda": {
+    "titulo": "Centre d'aide",
+    "descripcion": "Choisissez une section pour obtenir des informations détaillées"
+  },
+ 
+  "info aplicacionnn": "Informations de l'application",
+  
+  "navegacionRapida": "Navigation rapide",
+  "introMarketplace": "Introduction au marketplace",
+  "registroo": "Inscription",
+  "seguridad": "Sécurité",
+  "publicaciones": "Publications",
+  "busqueda": "Recherche",
+  "contacto": "Contact",
+  "idioma": "Langue",
+  "administracion": "Administration",
+  "blogPortafolio": "Blog et portfolio",
+  "actualizaciones": "Mises à jour",
+  "tecnologiass": "Technologies",
+  "tecnologiasTitulo": "Technologies utilisées",
+  "tecnologiasDescripcion": "Cette application a été construite avec les technologies et techniques les plus récentes :",
+  "titulos": {
+    "intro": "Introduction",
+    "registro": "Inscription",
+    "seguridad": "Sécurité",
+    "publicaciones": "Publications",
+    "busqueda": "Recherche",
+    "contacto": "Contact",
+    "idioma": "Langue",
+    "administracion": "Administration",
+    "blog": "Blog",
+    "actualizaciones": "Mises à jour",
+    "desarrollo": "Développement"
+  },
+  "centroAyudad": {
+    "titulo": "Centre d'aide",
+    "descripcion": "Choisissez une section pour obtenir des informations détaillées"
+  },
+
+  "art_painting": "Vente d'art",
+  "registro": "inscription",
+  "imagenesDeRegistro": "Images d'inscription",
+  "cerrar": "Fermer",
+  "pasoNumero": "Étape {{paso}}",
+  "contadorImagenes": "{{actual}} sur {{total}}",
+  "comoRegistrarme": "Comment m'inscrire ?",
+  "descripcionIntro": "Pour profiter de toutes les fonctions de l'application, le système vous permet de vous inscrire de",
+  "tresFormasDiferentes": "3 manières différentes",
+  "crearCuentaManual": "Créer un compte manuellement",
+  "descripcionManual": "Vous devez créer un compte gratuit en utilisant votre email, nom d'utilisateur et mot de passe.",
+  "usandoGoogle": "En utilisant le bouton Google",
+  "descripcionGoogle": "Si vous avez un compte Google, cliquez simplement sur le bouton Google et vous serez dans l'application en un instant.",
+  "usandoFacebook": "En utilisant le bouton Facebook",
+  "descripcionFacebook": "Si vous avez un compte Facebook, cliquez simplement sur le bouton de connexion avec Facebook.",
+  "olvidasteContrasena": "Mot de passe oublié ?",
+  "recuperacionContrasena": "Récupération de mot de passe",
+  "descripcionRecuperacion": "Vous pouvez récupérer votre mot de passe en suivant les étapes dans le formulaire de récupération.",
+
+  "serarch": "recherche",
+  "comoFuncionaLaBusqueda": "Comment fonctionne la recherche ?",
+  "sistemaBusquedaPart1": "Le système de",
+  "busquedaInteligente": "recherche intelligente",
+  "sistemaBusquedaPart2": "permet aux utilisateurs d'explorer des œuvres d'art rapidement et précisément",
+  "usuariosSinAutenticacion": "Utilisateurs non inscrits",
+  "descripcionBusquedaSimplePart1": "Peuvent utiliser un",
+  "inputBusquedaSimple": "champ de recherche simple",
+  "descripcionBusquedaSimplePart2": "qui, bien que limité, est très puissant : trouve des résultats par",
+  "categoria": "catégorie",
+  "tema": "thème",
+  "estilo": "style",
+  "o": "ou",
+  "tambienAdmite": "supporte aussi des combinaisons comme",
+  "combinacion1": "Catégorie + Thème",
+  "combinacion2": "Catégorie + Thème + Style",
+  "usuariosAutenticados": "Utilisateurs inscrits",
+  "tienenAcceso": "ont accès à un",
+  "buscadorAvanzado": "moteur de recherche avancé",
+  "enTiempoReal": "en temps réel",
+  "aquiSePueden": "ici on peut appliquer des filtres spécifiques par :",
+  "titulo": "titre",
+  "fechaPublicacion": "date de publication",
+  "facilitaEncontrar": "ceci facilite la recherche exacte de ce que vous cherchez en quelques secondes.",
+  "verImagenes": "Voir les images",
+
+  "publicoaciones inforr": "informations sur les publications",
+  "tituloPublicaciones": "Publications des artistes",
+  "descripcionArtistasPart1": "Les artistes",
+  "autenticadosVerificados": "authentifiés et vérifiés",
+  "descripcionArtistasPart2": "peuvent créer des publications facilement et en sécurité dans la plateforme",
+  "comoPublicar": "Comment publier",
+  "descripcionComoPublicarPart1": "On peut créer une publication via l'",
+  "iconoPlus": "icône plus",
+  "descripcionComoPublicarPart2": "dans la barre de navigation ou depuis le",
+  "menuAvatar": "menu sous l'avatar",
+  "alPublicar": "En publiant, le système notifie le",
+  "exitoOFracaso": "succès ou échec",
+  "delEnvio": "de l'envoi de la publication",
+  "revisionContenido": "Révision du contenu",
+  "descripcionRevisionPart1": "Pour garantir la qualité artistique, chaque publication passe par une",
+  "revisionAdministradores": "révision par les administrateurs",
+  "descripcionRevisionPart2": "les images, titres et descriptions sont vérifiés avant d'être visibles",
+  "aprobacionVisibilidad": "Approbation et visibilité",
+  "descripcionAprobacionPart1": "Après l'approbation, la publication apparaît dans l'",
+  "home": "accueil",
+  "descripcionAprobacionPart2": "dans les résultats de recherche et dans la section",
+  "misPublicaciones": "mes publications",
+  "descripcionAprobacionPart3": "dans le profil personnel de l'artiste",
+  "gestionPost": "Gestion des publications",
+  "descripcionGestionPart1": "Dans la page de",
+  "detallePost": "détails de la publication",
+  "descripcionGestionPart2": "apparaît la date de création, description et images. L'artiste peut",
+  "editar": "éditer",
+  "eliminar": "supprimer",
+  "descripcionGestionPart3": "sa publication à tout moment",
+  "interaccionTiempoReal": "Interaction en temps réel",
+  "descripcionInteraccionPart1": "Les utilisateurs peuvent",
+  "comentar": "commenter",
+  "dar": "donner",
+  "like": "j'aime",
+  "descripcionInteraccionPart2": "et l'artiste reçoit des notifications instantanées. De plus, un client potentiel peut initier un",
+  "chatPrivado": "chat privé en direct",
+  "descripcionInteraccionPart3": "depuis la publication",
+
+  "language inforr": "informations sur la langue",
+  "tituloPrincipal": "Un monde, plusieurs langues",
+  "descripcionSistemaPart1": "Ce système n'a pas été créé pour se limiter à un seul lieu ou langue, mais pour",
+  "abrirseMundo": "s'ouvrir au monde entier",
+  "descripcionSistemaPart2": "L'art ne comprend pas les frontières, c'est pourquoi il était essentiel que mon application puisse parler avec tous",
+  "componenteLanguagePart1": "Le composant de",
+  "languageComponent": "langue",
+  "componenteLanguagePart2": "émerge de cette vision globale : tout artiste ou amateur d'art peut interagir dans la langue la plus proche de lui. J'ai consacré des semaines et des mois à étudier le système de",
+  "componenteLanguagePart3": "intégration des traductions à la fois dans le client et le serveur, pour que la langue sélectionnée soit sauvegardée et synchronisée automatiquement",
+  "significadoPart1": "Cela signifie qu'il n'est pas nécessaire de reconfigurer la langue à chaque connexion :",
+  "significadoPart2": "l'application s'en souviendra et s'adaptera aux préférences de chaque personne",
+  "idiomasActuales": "Langues actuelles",
+  "ingles": "Anglais",
+  "arabe": "Arabe",
+  "visionFutura": "Vision future",
+  "metaAmpliar": "Mon objectif est d'élargir les traductions pour accueillir des utilisateurs de :",
+  "francia": "France",
+  "rusia": "Russie",
+  "china": "Chine",
+  "espana": "Espagne",
+  "kabile": "Ma patrie en langue berbère",
+  "lenguajeArtePart1": "La",
+  "lenguaje": "langue",
+  "lenguajeArtePart2": "est la première clé qui ouvre la porte à l'art. Ce composant garantit que la plateforme soit inclusive, accessible et ouverte à tous, en respectant la diversité culturelle et linguistique",
+
+  "intro market placeeeeeeeeeeeeeeeeeeee": "introduction au marketplace",
+  "agence": "Vêtements Djamel",
+  "tituloPrincipaleparte3": "pour vendre et acheter des œuvres d'art.",
+  "subtituloo": "L'art est la créativité que nous portons tous en nous, matérialisée en forme, couleur et émotion ; c'est le pont entre ce que nous sommes et ce que nous rêvons d'être.",
+  "tecnologias": {
+    "parte1": "Construite avec des technologies modernes",
+    "parte2": "(MERN, Redux, i18n, sockets en temps réel)",
+    "parte3": "intègre des fonctions sociales comme j'aime, commentaires et chat privé, avec un système multilingue qui brise les barrières culturelles et linguistiques."
+  },
+  "disponibilidad": {
+    "parte1": "Disponible en",
+    "parte2": "7 langues",
+    "parte3": "et avec",
+    "parte4": "8 catégories artistiques",
+    "parte5": "Les artistes publient leurs œuvres en un clic, tandis que les acheteurs explorent avec des recherches avancées, interagissent directement et acquièrent de l'art en sécurité."
+  },
+  "pwa": {
+    "parte1": "Notre application",
+    "parte2": "PWA",
+    "parte3": "fonctionne sur mobiles, tablettes et ordinateurs, avec authentification sécurisée, notifications instantanées et un système de confiance qui protège créateurs et acheteurs."
+  },
+  "cierreInspirador": "L'art ne comprend pas les frontières. Découvrez, connectez et collectionnez depuis n'importe où dans le monde.",
+
+  "seguridaddddddddddddddddddddddddddddddddddddddd": "sécurité",
+  "tituloPrincipalk": "Sécurité dans l'application",
+  "descripcionSeguridad": "La sécurité est une priorité. Notre système protège les utilisateurs et la plateforme pour garantir une expérience fiable.",
+  "encriptacionDatos": "Chiffrement des données",
+  "descripcionEncriptacion": {
+    "parte1": "Toutes les informations envoyées lors de l'inscription sont transmises",
+    "parte2": "chiffrées au backend",
+    "parte3": "garantissant que les données personnelles restent protégées."
+  },
+  "registroManual": "Inscription manuelle avec code de vérification",
+  "descripcionRegistro": {
+    "parte1": "Quand un utilisateur s'inscrit manuellement, le système crée un",
+    "parte2": "code de vérification",
+    "parte3": "après vérification des données, il est envoyé directement au",
+    "parte4": "sans besoin de se reconnecter."
+  },
+  
+  "verificacionCorreo": "Vérification par email",
+  "descripcionVerificacion": {
+    "parte1": "Pour confirmer l'identité, l'utilisateur doit vérifier son compte via le",
+    "parte2": "bouton de vérification",
+    "parte3": "s'il tente d'effectuer une action sans vérifier, s'ouvre un",
+    "parte4": "avec un bouton qui envoie automatiquement l'email de vérification."
+  },
+  "modal": "modal",
+  "prevencionPerfiles": "Prévention des profils faux",
+  "descripcionPrevencion": {
+    "parte1": "Les profils créés avec email faux ne seront jamais vérifiés, donc ne pourront pas publier, commenter, donner j'aime ou effectuer des actions. De plus, le système vérifie la base de données toutes les",
+    "parte2": "et supprime automatiquement les emails non confirmés."
+  },
+  "24horas": "24 heures",
+
+  "contactoooooooooooooooooooooooooooooooooo": "contact",
+  "tituloPrincipalll": "Contact et communication",
+  "descripcionPlataforma": "Notre plateforme offre différentes formes de communication pour que les utilisateurs puissent résoudre des doutes ou recevoir de l'aide rapidement et simplement.",
+  "formularioContacto": "Formulaire de contact",
+  "autenticadoVerificado": "Authentifié et vérifié",
+  "descripcionFormulario": {
+    "parte1": "Tout utilisateur",
+    "parte2": "peut nous envoyer un message via le",
+    "parte3": "il suffit d'écrire le",
+    "parte4": "et en cliquant sur",
+    "parte5": "nous recevrons un email. Nous répondons quand c'est approprié pour fournir le meilleur service."
+  },
+  
+  "descripcionAsunto": "Description du sujet",
+  "enviar": "Envoyer",
+  "chatAdministradores": "Chat privé avec administrateurs",
+  "chatTiempoReal": "Chat privé en temps réel",
+  "descripcionChat": {
+    "parte1": "En plus de l'email, l'utilisateur peut ouvrir un",
+    "parte2": "avec les administrateurs. Là il peut écrire directement avec notre équipe pour résoudre toute question instantanément."
+  },
+  "atencionPersonalizada": "Attention personnalisée",
+  "comunicacionCercana": "Communication proche",
+  "descripcionAtencion": {
+    "parte1": "Notre objectif est de maintenir une",
+    "parte2": "avec artistes et acheteurs, garantissant un environnement fiable et transparent."
+  },
+
+  "adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn": "administration",
+  "tituloPrincipal0": "Administration et sécurité",
+  "descripcionPlataformaa": "Notre plateforme ne connecte pas seulement artistes et collectionneurs, mais garantit aussi un environnement sûr et fiable.",
+  "equipoAdmin": {
+    "parte1": "L'équipe d'administration",
+    "parte2": "pour protéger la valeur de l'art et l'intégrité de la communauté."
+  },
+  "evaluarPosts": "Évaluer les publications",
+  "moderarComentarios": "Modérer les commentaires inappropriés",
+ 
+  "supervisarUsuarios": "Superviser les utilisateurs malveillants",
+  "sistemaSeguridad": {
+    "parte1": "Bien que nous ayons un système de sécurité avancé, l'administration reste toujours attentive à",
+    "parte2": "chaque situation est examinée sérieusement pour garantir transparence et confiance."
+  },
+  "correosReportes": "Emails des utilisateurs, rapports, plaintes et dénonciations",
+  "funcionalidadApp": {
+    "parte1": "De plus, notre application permet à tout utilisateur qualifié d'apte de devenir",
+    "parte2": "en changeant son rôle, l'interface se transforme et il pourra collaborer au service des artistes et amateurs d'art en temps réel."
+  },
+  "adminUnClic": "Administrateur en un clic",
+  "garantiaFinal": "Grâce à cette combinaison de technologie et supervision humaine, nous garantissons une expérience juste, sûre et de haute qualité pour tous.",
+
+  "blog y portaforlio": "blog et portfolio",
+  "tituloPrincipa": "Blog et portfolio",
+  "nombreAutor": "Djamel Bouali",
+  "descripcionEspacio": {
+    "parte1": "Cet espace a été créé spécifiquement pour montrer mon parcours en tant qu'",
+    "parte2": "Deux passions profondes qui m'ont accompagné pendant de nombreuses années et que je ne changerais pas contre tous les trésors du monde."
+  },
+  "artistaPintor": "Artiste plasticien",
+  "y": "et",
+  "desarrolladorMERN": "Développeur MERN",
+  "miniBiografia": "Mini biographie",
+  "ventaArte": "Vente et achat d'art",
+  "biografia": {
+    "parte1": "J'ai passé des années à publier mes œuvres sur les réseaux sociaux, mais j'ai compris que ces plateformes ne sont pas conçues pour",
+    "parte2": "Elles sont conçues pour le divertissement continu avec des jeux, des streams en direct et des chats, pas pour se concentrer sur la publication artistique."
+  },
+  "pinturaProgramacion": "Peinture et programmation",
+  "decision": {
+    "parte1": "C'est pourquoi j'ai décidé d'étudier et d'explorer la programmation en profondeur, en utilisant l'intelligence artificielle, surtout ChatGPT, je travaille jours et nuits entre",
+    "parte2": "J'ai divisé mon temps entre perfectionner mon talent artistique et apprendre Express, les sockets, l'authentification, les APIs Google, et tout le nécessaire pour créer une application où je peux non seulement publier mes œuvres, mais aussi donner l'opportunité à d'autres artistes de différentes catégories."
+  },
+  "retoPersonal": "Défi personnel",
+  "vision": {
+    "parte1": "Cette application ne cherche pas à rivaliser avec qui que ce soit ; c'est un",
+    "parte2": "et projet en constante évolution. Chaque jour je peins pour améliorer mon art et je programme pour améliorer l'expérience des utilisateurs. Je suis même ouvert à ce que d'autres développeurs MERN se joignent pour étendre ce projet de plus en plus, parce que nous ne savons pas quelles possibilités l'avenir peut réserver."
+  },
+  "enlaces": "Liens",
+  "descripcionEnlaces": "Ici vous pouvez aussi trouver des liens vers mes autres applications et projets. (👉 Ici vous pouvez inclure des boutons ou liens externes en utilisant React-Bootstrap).",
+  "comentarios": "Commentaires",
+  "autenticadoVerificadoo": "Authentifié et vérifié",
+  "interaccion": {
+    "parte1": "En dessous de cette section, tout utilisateur",
+    "parte2": "peut laisser un",
+    "parte3": "commentaire ou",
+    "parte4": "j'aime permanent sur mon blog/portfolio, comme soutien à mon travail d'artiste et développeur."
+  },
+
+  "actulazacionesss": "mises à jour",
+  "tituloPrincip": "Prochaines mises à jour",
+  "descripcionMejoras": "Nous continuons à améliorer pour offrir la meilleure expérience dans le monde de l'art digital. Voici quelques caractéristiques qui seront bientôt disponibles :",
+  "notificacionesTiempoReal": "Notifications en temps réel",
+  "descNotificaciones": "Recevez des alertes quand quelqu'un commente, donne j'aime ou achète une œuvre d'art",
+  "favoritosColecciones": "Favoris et collections",
+  "descFavoritos": "Sauvegardez et organisez vos œuvres favorites dans votre propre galerie",
+  "buscadorAvanza": "Moteur de recherche avancé",
+  "descBuscador": "Explorez l'art par technique, style, prix, artiste et plus",
+  "panelArtistas": "Tableau de bord pour artistes",
+  "descPanelArtistas": "Statistiques et métriques pour connaître l'impact de vos œuvres",
+  "mensajeriaMejorada": "Messagerie améliorée",
+  "descMensajeria": "Communiquez de façon privée avec artistes et acheteurs en temps réel",
+  "modoOscuroClaro": "Mode sombre/clair",
+  "descModoVisual": "Choisissez le style visuel que vous préférez pour une navigation confortable",
+  "certificacionObras": "Certification des œuvres",
+  "descCertificacion": "Plus de confiance avec vérification manuelle des pièces uniques",
+  "compromiso": "Notre engagement est de faire grandir la communauté artistique digitale avec des outils sûrs, modernes et utiles.",
+
+  "bloginfo  es el modal": "bloginfo est le modal",
+  "tituloCentroAyuda": "Centre d'aide",
+  "descripcionCentroAyuda": "Trouvez des guides, solutions et détails sur l'utilisation de l'application.",
+  "ariaIrA": "Aller à",
+  "secciones": {
+    "usoApp": {
+      "titulo": "Informations et utilisation de l'application",
+      "info": "Informations",
+      "registro": "Inscription",
+      "login": "Connexion",
+      "recuperar": "Récupérer mot de passe"
+    },
+    "seguridad": {
+      "titulo": "Sécurité dans l'application",
+      "verificacion": "Vérification de compte",
+      "activacion": "Activation de compte",
+      "suspension": "Suspension de compte",
+      "bloqueo": "Blocage de compte",
+      "eliminacion": "Suppression de compte",
+      "falsosPerfiles": "Profils faux"
+    },
+    "desarrollo": {
+      "titulo": "Développement de l'application",
+      "tecnologias": "Technologies utilisées",
+      "novedades": "Nouveautés et mises à jour"
+    },
+    "blog": {
+      "titulo": "Portfolio et blog",
+      "sobreMi": "Description du développeur",
+      "proyectos": "Projets en développement",
+      "comentarios": "Ajouter un commentaire"
+    }
+  }
+}

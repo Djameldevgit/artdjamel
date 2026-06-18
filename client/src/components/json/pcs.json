@@ -1,0 +1,606 @@
+[
+    {
+      "marca": "Acer",
+      "modelo": [
+        "Aspire 3",
+        "Aspire 5",
+        "Aspire 7",
+        "Aspire Vero",
+        "Swift 1",
+        "Swift 3",
+        "Swift 5",
+        "Predator Helios 300",
+        "Predator Triton 500",
+        "Nitro 5",
+        "Nitro 7",
+        "Spin 3",
+        "Spin 5",
+        "ConceptD 3",
+        "ConceptD 5",
+        "TravelMate P2",
+        "TravelMate P4",
+        "Extensa 15",
+        "Chromebook 314",
+        "Chromebook 315",
+        "Veriton",
+        "Altos",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Apple",
+      "modelo": [
+        "MacBook Air 13\"",
+        "MacBook Air 15\"",
+        "MacBook Pro 13\"",
+        "MacBook Pro 14\"",
+        "MacBook Pro 16\"",
+        "Mac mini",
+        "iMac 24\"",
+        "Mac Studio",
+        "Mac Pro",
+        "MacBook",
+        "iMac Pro",
+        "PowerBook",
+        "eMac",
+        "iMac G3",
+        "iMac G4",
+        "iMac G5",
+        "MacBook (Retina)",
+        "MacBook Air 11\"",
+        "Power Mac",
+        "autre"
+      ]
+    },
+    {
+      "marca": "ASUS",
+      "modelo": [
+        "ZenBook 13",
+        "ZenBook 14",
+        "ZenBook 15",
+        "ZenBook Flip",
+        "ZenBook Pro Duo",
+        "VivoBook 14",
+        "VivoBook 15",
+        "VivoBook 16",
+        "VivoBook Flip",
+        "ROG Zephyrus G14",
+        "ROG Zephyrus G15",
+        "ROG Strix G15",
+        "ROG Strix G16",
+        "ROG Flow X13",
+        "TUF Gaming F15",
+        "TUF Gaming F17",
+        "TUF Gaming A15",
+        "ExpertBook B9",
+        "ExpertBook B5",
+        "ProArt Studiobook",
+        "Chromebook Flip",
+        "Chromebook CX9",
+        "X515",
+        "X415",
+        "M415",
+        "E410",
+        "E510",
+        "BR1100",
+        "CR1100",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Dell",
+      "modelo": [
+        "XPS 13",
+        "XPS 15",
+        "XPS 17",
+        "XPS 13 Plus",
+        "Latitude 3420",
+        "Latitude 5430",
+        "Latitude 7430",
+        "Latitude 9430",
+        "Inspiron 14",
+        "Inspiron 15",
+        "Inspiron 16",
+        "Inspiron Plus",
+        "Precision 3560",
+        "Precision 5570",
+        "Precision 7670",
+        "Alienware x14",
+        "Alienware x17",
+        "Alienware m15",
+        "Alienware m18",
+        "G15 5520",
+        "G16 7620",
+        "Vostro 14",
+        "Vostro 15",
+        "Chromebook 3100",
+        "Chromebook 3400",
+        "OptiPlex",
+        "PowerEdge",
+        "Precision Tower",
+        "Latitude E5450",
+        "Latitude E5470",
+        "Inspiron 3000",
+        "Inspiron 5000",
+        "Inspiron 7000",
+        "autre"
+      ]
+    },
+    {
+      "marca": "HP",
+      "modelo": [
+        "Spectre x360 13",
+        "Spectre x360 14",
+        "Spectre x360 16",
+        "Envy 13",
+        "Envy 15",
+        "Envy 17",
+        "Envy x360",
+        "Pavilion 14",
+        "Pavilion 15",
+        "Pavilion 16",
+        "Pavilion Plus",
+        "Pavilion Gaming",
+        "Victus 15",
+        "Victus 16",
+        "OMEN 15",
+        "OMEN 16",
+        "OMEN 17",
+        "EliteBook 840 G9",
+        "EliteBook 1040 G9",
+        "Elite Dragonfly",
+        "ZBook Firefly",
+        "ZBook Studio",
+        "Chromebook x360",
+        "Chromebook 14",
+        "Stream 11",
+        "Stream 14",
+        "ProBook 440",
+        "ProBook 450",
+        "ProDesk",
+        "EliteDesk",
+        "Pavilion x360",
+        "250 G8",
+        "255 G8",
+        "15s",
+        "14s",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Lenovo",
+      "modelo": [
+        "ThinkPad X1 Carbon",
+        "ThinkPad X1 Yoga",
+        "ThinkPad X1 Nano",
+        "ThinkPad T14",
+        "ThinkPad T14s",
+        "ThinkPad T16",
+        "ThinkPad X13",
+        "ThinkPad E14",
+        "ThinkPad E15",
+        "ThinkPad L14",
+        "ThinkPad P14s",
+        "ThinkPad P15",
+        "ThinkPad P16",
+        "ThinkBook 14",
+        "ThinkBook 15",
+        "ThinkBook 16",
+        "IdeaPad 3",
+        "IdeaPad 5",
+        "IdeaPad Slim 3",
+        "IdeaPad Slim 5",
+        "IdeaPad Flex 5",
+        "Legion 5",
+        "Legion 5 Pro",
+        "Legion 7",
+        "Legion 7i",
+        "Legion Slim 7",
+        "Yoga Slim 7",
+        "Yoga 6",
+        "Yoga 7",
+        "Yoga 9i",
+        "Yoga Duet 7",
+        "Chromebook Duet",
+        "Chromebook Flex 5",
+        "IdeaCentre",
+        "ThinkCentre",
+        "ThinkStation",
+        "Legion Tower",
+        "IdeaPad Gaming 3",
+        "IdeaPad 1",
+        "V15",
+        "V14",
+        "autre"
+      ]
+    },
+    {
+      "marca": "MSI",
+      "modelo": [
+        "Stealth 14",
+        "Stealth 15",
+        "Stealth 16",
+        "GS66 Stealth",
+        "GE66 Raider",
+        "GE76 Raider",
+        "GP66 Leopard",
+        "GP76 Leopard",
+        "GF63 Thin",
+        "GF65 Thin",
+        "Katana 15",
+        "Katana 17",
+        "Sword 15",
+        "Sword 17",
+        "Pulse 15",
+        "Pulse 17",
+        "Crosshair 15",
+        "Crosshair 17",
+        "Creator Z16",
+        "Creator Z17",
+        "Modern 14",
+        "Modern 15",
+        "Summit E13",
+        "Summit E16",
+        "Prestige 14",
+        "Prestige 15",
+        "Workstation WS66",
+        "Alpha 15",
+        "Bravo 15",
+        "Delta 15",
+        "Trident",
+        "MEG",
+        "MPG",
+        "MAG",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Razer",
+      "modelo": [
+        "Blade 14",
+        "Blade 15",
+        "Blade 16",
+        "Blade 17",
+        "Blade Stealth 13",
+        "Blade Pro 17",
+        "Book 13",
+        "Book 14",
+        "Raptor",
+        "Tomahawk",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Microsoft",
+      "modelo": [
+        "Surface Laptop 5",
+        "Surface Laptop 4",
+        "Surface Laptop Studio",
+        "Surface Laptop Go 2",
+        "Surface Pro 9",
+        "Surface Pro 8",
+        "Surface Pro 7+",
+        "Surface Pro X",
+        "Surface Book 3",
+        "Surface Go 3",
+        "Surface Studio 2+",
+        "Surface Duo",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Samsung",
+      "modelo": [
+        "Galaxy Book3 Pro",
+        "Galaxy Book3 Ultra",
+        "Galaxy Book2 Pro",
+        "Galaxy Book2 Pro 360",
+        "Galaxy Book Pro",
+        "Galaxy Book Flex",
+        "Galaxy Book Ion",
+        "Galaxy Book Go",
+        "Galaxy Chromebook",
+        "Chromebook 4",
+        "Chromebook Plus",
+        "Odyssey",
+        "Galaxy Tab S8 Ultra",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Huawei",
+      "modelo": [
+        "MateBook X Pro",
+        "MateBook 14",
+        "MateBook 16",
+        "MateBook D14",
+        "MateBook D15",
+        "MateBook E",
+        "MateBook 13",
+        "MateBook B",
+        "MateStation X",
+        "MateStation S",
+        "MateBook D16",
+        "MateBook 14s",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Xiaomi",
+      "modelo": [
+        "Mi Notebook Pro",
+        "Mi Notebook Ultra",
+        "RedmiBook 15",
+        "RedmiBook Pro 15",
+        "Mi Notebook Air",
+        "Mi Laptop",
+        "Mi Gaming Laptop",
+        "Redmi G",
+        "Redmi Book 14",
+        "Redmi Book 16",
+        "Mi Notebook",
+        "Xiaomi Book S",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Toshiba",
+      "modelo": [
+        "Dynabook Tecra",
+        "Dynabook Portégé",
+        "Dynabook Satellite",
+        "Dynabook Satellite Pro",
+        "Tecra A40",
+        "Portégé X30",
+        "Satellite C55",
+        "Satellite L50",
+        "Satellite Pro",
+        "Tecra Z50",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Fujitsu",
+      "modelo": [
+        "Lifebook U9311",
+        "Lifebook U7511",
+        "Lifebook E5511",
+        "Lifebook A3511",
+        "Lifebook P1511",
+        "Celsius H7510",
+        "Celsius M7510",
+        "Lifebook T939",
+        "Lifebook S935",
+        "Primergy",
+        "autre"
+      ]
+    },
+    {
+      "marca": "LG",
+      "modelo": [
+        "Gram 14",
+        "Gram 15",
+        "Gram 16",
+        "Gram 17",
+        "Gram Style 14",
+        "Gram Ultra PC",
+        "Gram 2-in-1",
+        "Ultra PC",
+        "Ultra Gear",
+        "Ultra Tablet",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Medion",
+      "modelo": [
+        "Erazer Engineer P10",
+        "Erazer Crawler E10",
+        "Erazer Beast X40",
+        "Akoya E15403",
+        "Akoya P17801",
+        "Akoya S15449",
+        "Akoya E15301",
+        "Akoya P6689",
+        "Erazer X6603",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Clevo",
+      "modelo": [
+        "X170KM-G",
+        "X170SM-G",
+        "NH70",
+        "NH55",
+        "N960",
+        "N960K",
+        "P970",
+        "P751",
+        "P950",
+        "P650",
+        "W650",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Chuwi",
+      "modelo": [
+        "GemiBook Pro",
+        "GemiBook XPro",
+        "CoreBook Pro",
+        "CoreBook X",
+        "LarkBox",
+        "AeroBook",
+        "Herobook Pro",
+        "Hi10 X",
+        "Hi10 Go",
+        "Hi8 Pro",
+        "UBook",
+        "autre"
+      ]
+    },
+    {
+      "marca": "PC Gamer (Custom)",
+      "modelo": [
+        "Desktop - Monté sur mesure",
+        "Tour complète",
+        "Mini PC Gaming",
+        "Barebone",
+        "PC Gamer RTX 3060",
+        "PC Gamer RTX 3070",
+        "PC Gamer RTX 3080",
+        "PC Gamer RTX 4060",
+        "PC Gamer RTX 4070",
+        "PC Gamer RTX 4080",
+        "PC Gamer RTX 4090",
+        "PC Gamer RX 6600",
+        "PC Gamer RX 6700",
+        "PC Gamer RX 6800",
+        "autre"
+      ]
+    },
+    {
+      "marca": "TCL",
+      "modelo": [
+        "TCL Book 14 Go",
+        "TCL Book X12",
+        "TCL Tab",
+        "TCL AI PC",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Honor",
+      "modelo": [
+        "Honor MagicBook X14",
+        "Honor MagicBook X15",
+        "Honor MagicBook Pro",
+        "Honor MagicBook 14",
+        "Honor MagicBook 15",
+        "Honor MagicBook 16",
+        "Honor MagicBook V14",
+        "Honor MagicBook Art 14",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Realme",
+      "modelo": [
+        "Realme Book Slim",
+        "Realme Book Prime",
+        "Realme Pad",
+        "Realme Book Enhanced",
+        "Realme Book",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Vivobook",
+      "modelo": [
+        "Vivobook 14",
+        "Vivobook 15",
+        "Vivobook 16",
+        "Vivobook S14",
+        "Vivobook S15",
+        "Vivobook Pro 14",
+        "Vivobook Pro 15",
+        "Vivobook Pro 16",
+        "Vivobook Flip",
+        "Vivobook Go",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Gigabyte",
+      "modelo": [
+        "Aorus 15",
+        "Aorus 17",
+        "G5",
+        "G7",
+        "Aero 15",
+        "Aero 16",
+        "Aero 17",
+        "Aorus X7",
+        "Gigabyte Sabre",
+        "Gigabyte SabrePro",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Packard Bell",
+      "modelo": [
+        "EasyNote",
+        "Dot S",
+        "Dot SE",
+        "EasyNote TE",
+        "EasyNote TK",
+        "EasyNote TS",
+        "EasyNote TV",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Thomson",
+      "modelo": [
+        "Thomson Neo",
+        "Thomson Ultra",
+        "Thomson Book",
+        "Thomson Evo",
+        "Thomson Elite",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Nexstgo",
+      "modelo": [
+        "Primo NX",
+        "Primo NX Air",
+        "Primo NX Mini",
+        "Primo NX Plus",
+        "Primo NX Ultra",
+        "autre"
+      ]
+    },
+    {
+      "marca": "VAIO",
+      "modelo": [
+        "VAIO SX12",
+        "VAIO SX14",
+        "VAIO Z",
+        "VAIO A12",
+        "VAIO SE14",
+        "VAIO Fit",
+        "VAIO Pro",
+        "VAIO Duo",
+        "VAIO Tap",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Panasonic",
+      "modelo": [
+        "Toughbook CF-33",
+        "Toughbook CF-54",
+        "Toughbook CF-20",
+        "Toughbook CF-55",
+        "Toughbook CF-31",
+        "Let's Note",
+        "Toughbook S1",
+        "autre"
+      ]
+    },
+    {
+      "marca": "Autre",
+      "modelo": [
+        "Modèle non listé",
+        "Marque inconnue",
+        "PC de bureau générique",
+        "Marque distributeur",
+        "PC reconditionné",
+        "PC monté",
+        "Marque non spécifiée",
+        "Autre marque"
+      ]
+    }
+  ]

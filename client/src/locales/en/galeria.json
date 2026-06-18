@@ -1,0 +1,66 @@
+{
+  "inspirationGallery": {
+    "title": "Inspiration Gallery",
+    "subtitle": "Find the perfect artwork for your custom order",
+    "description": "Explore our art collection for inspiration and find the style that matches your taste.",
+    "inspirationBadge": "Inspiration gallery for orders",
+ 
+    "filters": {
+      "all": "🎨 All Themes",
+      "retratos": "👤 Portraits",
+      "paisajes": "🏞️ Landscapes",
+      "marinas": "🌊 Seascapes",
+      "bodegones": "🍎 Still Life",
+      "animales": "🐾 Animals",
+      "flores": "🌹 Flowers",
+      "naturalezaMuerta": "📚 Classical Still Life",
+      "oriental": "🎎 Oriental Art"
+    },
+    
+    "filterByTheme": "Filter by theme:",
+    "searchPlaceholder": "Search by title, technique or description...",
+    "resultsCount": "{{count}} artworks found",
+    "clearFilter": "Clear filter",
+    
+    "howToUseTitle": "How to use this gallery",
+    "howToUseDescription": "This gallery is designed to help you find inspiration for your custom order.",
+    "usageSteps": {
+      "title": "Usage Instructions",
+      "step1": "Explore artworks by theme using filters",
+      "step2": "Click 'View Details' to enlarge the image",
+      "step3": "When you find an artwork you like, click 'Use as Reference'",
+      "step4": "The reference will be automatically copied for your order"
+    },
+    
+    "viewDetails": "View Details",
+    "useAsReference": "Use as Reference",
+    "workDetails": "Artwork Details",
+    "theme": "Theme",
+    "technique": "Technique",
+    "close": "Close",
+    
+    "noResults": "No artworks found",
+    "tryDifferentSearch": "Try different search terms or change the filter",
+    "showAllWorks": "Show all artworks",
+    
+    "copySuccess": "✅ Reference copied to clipboard",
+    "copyError": "❌ Error copying reference",
+    
+    "referenceText": "Reference: \"{{title}}\" - Theme: {{theme}} - Technique: {{technique}}",
+    
+    "themes": {
+      "retratos": "Portraits",
+      "paisajes": "Landscapes",
+      "marinas": "Seascapes",
+      "bodegones": "Still Life",
+      "animales": "Animals",
+      "flores": "Flowers",
+      "naturaleza-muerta": "Classical Still Life",
+      "oriental": "Oriental Art"
+    },
+    
+    "techniques": {
+      "oil": "Oil on canvas"
+    }
+  }
+}

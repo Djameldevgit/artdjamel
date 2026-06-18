@@ -1,0 +1,55 @@
+{
+    "cardbody": {
+      "moreOptions": "Plus d'options",
+      "viewDestinationOnMap": "Voir la destination sur la carte",
+      "departure": "Départ",
+      
+      "days": {
+        "monday": "Lun",
+        "tuesday": "Mar", 
+        "wednesday": "Mer",
+        "thursday": "Jeu",
+        "friday": "Ven",
+        "saturday": "Sam",
+        "sunday": "Dim"
+      },
+      
+      "categories": {
+        "locationVacances": "Location vacance",
+        "hajjUmrah": "Hajj & Omra",
+        "voyageOrganise": "Voyage Organisé",
+        "businessTrip": "Voyage d'Affaires",
+        "tourism": "Tourisme",
+        "adventure": "Aventure",
+        "cultural": "Culturel",
+        "beach": "Balnéaire",
+        "mountain": "Montagne",
+        "desert": "Désert"
+      },
+      
+      "noCategory": "Sans catégorie",
+      
+      "agency": {
+        "contactError": "Impossible de contacter cette agence",
+        "profileError": "Impossible de voir le profil de cette agence"
+      },
+      
+      "post": {
+        "deleteConfirmation": "Êtes-vous sûr de vouloir supprimer cette publication?"
+      },
+      
+      "editPost": "Modifier le post",
+      "deletePost": "Supprimer le post",
+      "writeToAgency": "Écrire à la boutique", 
+      "followAgency": "Suivre l'a boutique",
+      "sharePost": "Partager",
+      "viewDetails": "Voir détails",
+      
+      "auth": {
+        "required": "Authentification Requise",
+        "loginToContinue": "Veuillez vous connecter pour continuer",
+        "login": "Connexion",
+        "register": "Inscription"
+      }
+    }
+  }

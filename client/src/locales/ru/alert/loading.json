@@ -1,0 +1,9 @@
+{
+    "error": "Ошибка",
+    "success": "Успех",
+    "login_failed": "Ошибка входа",
+    "update_success": "Обновление успешно",
+    "loading": "Загрузка...",
+    "errorTitle": "Ошибка",
+    "successTitle": "Успех"
+}

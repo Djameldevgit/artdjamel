@@ -1,0 +1,34 @@
+{
+    "page_title": {
+      "create": "إنشاء إعلان جديد",
+      "edit": "تعديل الإعلان"
+    },
+    "sections": {
+      "categories": "الفئات",
+      "dynamic_fields": "التفاصيل",
+      "location_contact": "الموقع والتواصل",
+      "images": "الصور"
+    },
+    "buttons": {
+      "publish": "نشر",
+      "update": "تحديث",
+      "cancel": "إلغاء",
+      "processing": "جاري المعالجة..."
+    },
+    "alerts": {
+      "success_create": "✅ تم إنشاء المنشور بنجاح!",
+      "success_update": "✅ تم تحديث المنشور بنجاح!",
+      "error_server": "❌ خطأ في الخادم",
+      "no_images": "أضف صورة واحدة على الأقل",
+      "no_subcategory": "اختر فئة فرعية"
+    },
+    "labels": {
+      "photos_count": "{{count}} صورة(صور)",
+      "max_photos": "الحد الأقصى: 10",
+      "required_field": "* حقل إلزامي"
+    },
+    "validation": {
+      "select_subcategory": "يجب اختيار فئة فرعية",
+      "add_min_one_photo": "يجب إضافة صورة واحدة على الأقل"
+    }
+  }

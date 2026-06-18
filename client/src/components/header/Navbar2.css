@@ -1,0 +1,625 @@
+/* ============================================
+   Navbar2.css - Elegant & Responsive Navbar
+   Marketplace MERN
+   ============================================ */
+
+/* ----- CSS Variables (Light Mode Default) ----- */
+:root {
+  --nb2-bg: rgba(255, 255, 255, 0.92);
+  --nb2-surface: rgba(0, 0, 0, 0.04);
+  --nb2-surface-hover: rgba(0, 0, 0, 0.08);
+  --nb2-text: #1c1c1e;
+  --nb2-text-muted: #6c6c70;
+  --nb2-border: rgba(0, 0, 0, 0.08);
+  --nb2-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
+  --nb2-dropdown-bg: rgba(255, 255, 255, 0.98);
+  --nb2-icon-color: #0a84ff;
+  --nb2-danger: #ff3b30;
+  --nb2-success: #34c759;
+  --nb2-warning: #ff9f0a;
+  /* Tamaños de iconos */
+  --nb2-icon-size-sm: 20px;
+  --nb2-icon-size-md: 22px;
+  --nb2-icon-size-lg: 24px;
+  --nb2-icon-size-xl: 26px;
+}
+
+/* ----- Dark Mode Variables ----- */
+.nb2-root.dark {
+  --nb2-bg: rgba(0, 0, 0, 0.88);
+  --nb2-surface: rgba(255, 255, 255, 0.08);
+  --nb2-surface-hover: rgba(255, 255, 255, 0.12);
+  --nb2-text: #f5f5f7;
+  --nb2-text-muted: #8e8e93;
+  --nb2-border: rgba(255, 255, 255, 0.1);
+  --nb2-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  --nb2-dropdown-bg: rgba(28, 28, 30, 0.98);
+}
+
+/* ----- Base Navbar Styles ----- */
+.nb2-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  background: var(--nb2-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--nb2-border);
+  transition: all 0.25s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+}
+
+.nb2-container {
+  padding: 0 20px !important;
+  min-height: 64px;
+  transition: min-height 0.2s ease;
+}
+
+/* Logo & Brand */
+.nb2-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.nb2-logo-link:hover {
+  transform: scale(0.97);
+}
+
+.nb2-logo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--nb2-surface);
+  transition: background 0.2s;
+}
+
+.nb2-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nb2-brand-link {
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+.nb2-brand {
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.3px;
+  background: linear-gradient(135deg, var(--nb2-text) 0%, var(--nb2-text-muted) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+  transition: opacity 0.2s;
+}
+
+/* ----- Right Actions Container ----- */
+.nb2-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Aumentado de 8px a 12px */
+}
+
+/* ----- Common Button Styles ----- */
+.nb2-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--nb2-surface);
+  border: none;
+  border-radius: 40px;
+  color: var(--nb2-text);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  backdrop-filter: blur(4px);
+  /* Tamaños base para botones con iconos */
+  width: 44px;
+  height: 44px;
+}
+
+/* Iconos dentro de botones */
+.nb2-btn svg,
+.nb2-btn i,
+.nb2-btn .icon {
+  width: var(--nb2-icon-size-md);
+  height: var(--nb2-icon-size-md);
+  font-size: var(--nb2-icon-size-md);
+}
+
+.nb2-btn:hover {
+  background: var(--nb2-surface-hover);
+  transform: translateY(-1px);
+}
+
+.nb2-btn:active {
+  transform: translateY(1px);
+}
+
+.nb2-btn--install {
+  color: var(--nb2-success);
+}
+
+.nb2-btn--notify {
+  position: relative;
+}
+
+.nb2-notify-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Notification Badge */
+.nb2-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #ff3b30;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  box-shadow: 0 0 0 2px var(--nb2-bg);
+  animation: badgePop 0.3s ease;
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0.6); opacity: 0; }
+  80% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.has-notif {
+  color: #ff9f0a;
+  animation: bellRing 1s ease infinite;
+}
+
+@keyframes bellRing {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(12deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(6deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* ----- Three Dots Trigger (Custom Dropdown Toggle) ----- */
+.nb2-dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* Aumentado de 4px a 5px */
+  border-radius: 40px;
+  background: var(--nb2-surface);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 44px;
+  height: 44px;
+}
+
+.nb2-dots:hover {
+  background: var(--nb2-surface-hover);
+  transform: scale(0.96);
+}
+
+.nb2-dot {
+  width: 5px; /* Aumentado de 4.5px a 5px */
+  height: 5px; /* Aumentado de 4.5px a 5px */
+  background: currentColor;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.nb2-dots.open .nb2-dot:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  width: 14px;
+  border-radius: 2px;
+}
+.nb2-dots.open .nb2-dot:nth-child(2) {
+  opacity: 0;
+  transform: scale(0.5);
+}
+.nb2-dots.open .nb2-dot:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  width: 14px;
+  border-radius: 2px;
+}
+
+/* ----- Dropdown Menu Override (react-bootstrap) ----- */
+.nb2-dropdown-root .dropdown-toggle {
+  padding: 0 !important;
+  margin: 0;
+  background: transparent !important;
+  border: none;
+}
+
+.nb2-dropdown-root .dropdown-toggle::after {
+  display: none;
+}
+
+.nb2-dropdown-root .dropdown-menu {
+  background: var(--nb2-dropdown-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--nb2-border);
+  border-radius: 24px;
+  box-shadow: var(--nb2-shadow);
+  padding: 8px 0;
+  min-width: 280px;
+  max-width: 340px;
+  margin-top: 12px;
+  animation: dropdownFade 0.2s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll inside dropdown if many items */
+.nb2-scroll-wrap {
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.nb2-scroll-wrap::-webkit-scrollbar {
+  width: 4px;
+}
+.nb2-scroll-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nb2-scroll-wrap::-webkit-scrollbar-thumb {
+  background: var(--nb2-text-muted);
+  border-radius: 10px;
+}
+
+/* User Header inside dropdown */
+.nb2-user-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--nb2-border);
+  margin-bottom: 6px;
+}
+
+.nb2-user-avatar .medium-avatar {
+  width: 52px; /* Aumentado de 48px a 52px */
+  height: 52px; /* Aumentado de 48px a 52px */
+  border-radius: 60px;
+  object-fit: cover;
+  border: 2px solid var(--nb2-border);
+}
+
+.nb2-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.nb2-user-name {
+  font-weight: 600;
+  font-size: 1rem; /* Aumentado de 0.95rem a 1rem */
+  color: var(--nb2-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nb2-user-role {
+  font-size: 0.75rem; /* Aumentado de 0.7rem a 0.75rem */
+  color: var(--nb2-text-muted);
+  margin-top: 2px;
+}
+
+/* Section Label (Store Management etc) */
+.nb2-section-label {
+  padding: 8px 16px 4px;
+  font-size: 0.75rem; /* Aumentado de 0.7rem a 0.75rem */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--nb2-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Menu Items */
+.nb2-menu-item {
+  display: flex !important;
+  align-items: center;
+  gap: 14px; /* Aumentado de 12px a 14px */
+  padding: 12px 16px !important; /* Aumentado de 10px a 12px */
+  font-size: 0.95rem; /* Aumentado de 0.9rem a 0.95rem */
+  color: var(--nb2-text);
+  background: transparent;
+  border: none;
+  width: 100%;
+  transition: background 0.12s ease;
+}
+
+.nb2-menu-item:hover {
+  background: var(--nb2-surface);
+}
+
+.nb2-menu-item.danger .nb2-item-label {
+  color: var(--nb2-danger);
+}
+
+.nb2-item-icon {
+  width: 28px; /* Aumentado de 24px a 28px */
+  font-size: 1.2rem; /* Aumentado de 1.1rem a 1.2rem */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Iconos dentro de items del menú */
+.nb2-item-icon svg,
+.nb2-item-icon i {
+  width: var(--nb2-icon-size-md);
+  height: var(--nb2-icon-size-md);
+}
+
+.nb2-item-label {
+  flex: 1;
+  text-align: left;
+}
+
+/* Dropdown Dividers */
+.dropdown-divider {
+  margin: 8px 0; /* Aumentado de 6px a 8px */
+  border-top: 1px solid var(--nb2-border);
+}
+
+/* ----- Fallback when settings missing ----- */
+.nb2-fallback {
+  background: var(--nb2-bg);
+  backdrop-filter: blur(12px);
+  padding: 0 20px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--nb2-border);
+}
+
+/* ============================================
+   RESPONSIVE - Móvil (< 700px) con iconos más grandes
+   ============================================ */
+@media (max-width: 699px) {
+  .nb2-container {
+    min-height: 56px;
+    padding: 0 12px !important;
+  }
+
+  .nb2-actions {
+    gap: 8px;
+  }
+
+  .nb2-btn,
+  .nb2-dots {
+    width: 42px; /* Aumentado de 38px a 42px */
+    height: 42px; /* Aumentado de 38px a 42px */
+  }
+
+  /* Iconos más grandes en móvil */
+  .nb2-btn svg,
+  .nb2-btn i,
+  .nb2-btn .icon {
+    width: var(--nb2-icon-size-sm);
+    height: var(--nb2-icon-size-sm);
+    font-size: var(--nb2-icon-size-sm);
+  }
+
+  .nb2-dot {
+    width: 4px; /* Aumentado de 3.5px a 4px */
+    height: 4px; /* Aumentado de 3.5px a 4px */
+    gap: 4px;
+  }
+
+  .nb2-dots.open .nb2-dot:nth-child(1),
+  .nb2-dots.open .nb2-dot:nth-child(3) {
+    width: 12px;
+  }
+
+  .nb2-dropdown-root .dropdown-menu {
+    position: fixed !important;
+    top: 56px !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: calc(100% - 24px) !important;
+    max-width: none;
+    min-width: auto;
+    border-radius: 28px;
+    margin: 0;
+    transform: none !important;
+  }
+
+  .nb2-user-header {
+    padding: 12px;
+  }
+
+  .nb2-user-avatar .medium-avatar {
+    width: 46px; /* Aumentado de 42px a 46px */
+    height: 46px; /* Aumentado de 42px a 46px */
+  }
+
+  .nb2-menu-item {
+    padding: 14px 16px !important; /* Aumentado de 12px a 14px */
+  }
+
+  .nb2-item-icon {
+    width: 26px; /* Aumentado de 24px a 26px */
+    font-size: 1.15rem;
+  }
+
+  .nb2-brand {
+    font-size: 1.15rem; /* Aumentado de 1.1rem a 1.15rem */
+  }
+}
+
+/* ============================================
+   RESPONSIVE - Tablet (700px - 1024px)
+   ============================================ */
+@media (min-width: 700px) and (max-width: 1024px) {
+  .nb2-btn,
+  .nb2-dots {
+    width: 46px;
+    height: 46px;
+  }
+
+  .nb2-btn svg,
+  .nb2-btn i,
+  .nb2-btn .icon {
+    width: var(--nb2-icon-size-lg);
+    height: var(--nb2-icon-size-lg);
+    font-size: var(--nb2-icon-size-lg);
+  }
+
+  .nb2-actions {
+    gap: 10px;
+  }
+
+  .nb2-item-icon {
+    width: 30px;
+    font-size: 1.25rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - Desktop (> 1024px)
+   ============================================ */
+@media (min-width: 1025px) {
+  .nb2-btn,
+  .nb2-dots {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nb2-btn svg,
+  .nb2-btn i,
+  .nb2-btn .icon {
+    width: var(--nb2-icon-size-xl);
+    height: var(--nb2-icon-size-xl);
+    font-size: var(--nb2-icon-size-xl);
+  }
+
+  .nb2-actions {
+    gap: 12px;
+  }
+
+  .nb2-item-icon {
+    width: 32px;
+    font-size: 1.3rem;
+  }
+
+  .nb2-menu-item {
+    padding: 12px 20px !important;
+  }
+}
+
+/* ============================================
+   RTL (Right-to-Left) Support
+   ============================================ */
+[dir="rtl"] .nb2-brand-link {
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+[dir="rtl"] .nb2-actions {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nb2-item-label {
+  text-align: right;
+}
+
+[dir="rtl"] .nb2-menu-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nb2-user-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nb2-section-label {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+[dir="rtl"] .dropdown-menu-end {
+  right: auto !important;
+  left: 0 !important;
+}
+
+/* Small tweak for RTL + mobile */
+@media (max-width: 699px) and (dir: rtl) {
+  .nb2-dropdown-root .dropdown-menu {
+    left: 12px !important;
+    right: 12px !important;
+  }
+}
+
+/* ============================================
+   Additional Polish & Accessibility
+   ============================================ */
+.nb2-btn:focus-visible,
+.nb2-dots:focus-visible,
+.nb2-menu-item:focus-visible {
+  outline: 2px solid var(--nb2-icon-color);
+  outline-offset: 2px;
+  border-radius: 40px;
+}
+
+.nb2-logo-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--nb2-icon-color);
+  border-radius: 16px;
+}
+
+/* Prevent zoom on double tap in iOS (logo double-click reload) */
+.nb2-logo-link,
+.nb2-brand-link {
+  touch-action: manipulation;
+}
+
+/* Smooth transition for dark/light mode switch */
+.nb2-root,
+.nb2-root * {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Navbar2.css */
+.nb2-root {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Clase para ocultar el navbar (desliza hacia arriba) */
+.nb2-root.nb2-hidden {
+  transform: translateY(-100%);
+}

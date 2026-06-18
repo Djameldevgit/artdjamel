@@ -1,0 +1,194 @@
+{
+    "title": "العنوان",
+    "theme": "الموضوع",
+    "technique": "التقنية",
+    "support": "الدعم",
+    "art_style": "الأسلوب الفني",
+    "packaging": "التغليف",
+    "copyright": "حقوق النشر",
+    "measurements": "الأبعاد",
+    "unit": "الوحدة",
+    "sale_option": "خيار البيع",
+    "price": "السعر",
+    "availability": "التوفر",
+    "size": "الحجم",
+    "description": "الوصف",
+    "region": "المنطقة",
+    "city": "المدينة",
+    "category": "الفئة",
+    "Painting": "الرسم",
+   
+    "photography": "التصوير الفوتوغرافي",
+    "Photography": "التصوير الفوتوغرافي",
+    "Drawing": "الرسم باليد",
+    "Engraving": "النقش",
+    "Digital_art": "الفن الرقمي",
+    "Collage": "الكولاج",
+    "Textile_art": "الفن النسيجي",
+     
+      "photo_paper": "ورق صور",
+      "aluminum_dibond": "ألومنيوم ديبوند",
+      
+   
+   
+      "subcategory": "الفئة الفرعية",
+      
+   
+    "acrylique": "أكريليك",
+    "huile": "زيت",
+    "aerographe": "الرذاذ الفني",
+    "aquarelle": "ألوان مائية",
+    "autre": "أخرى",
+    "bombe_aerosol": "بخاخ الرذاذ",
+    "carte_a_gratter": "خدش الورق",
+    "cire": "شمع",
+    "conte": "كونتيه",
+    "craie": "طباشير",
+    "crayon": "قلم رصاص",
+    "email": "مينا",
+    "encaustique": "الرسم بالشمع",
+    "encre": "حبر",
+    "fusain": "فحم",
+    "gouache": "جواش",
+    "graphite": "جرافيت",
+    "laque": "ورنيش",
+    "marqueur": "ماركر",
+    "pastel": "باستيل",
+    "peinture_vitrail": "طلاء الزجاج المعشق",
+    "pigments": "أصباغ",
+    "pochoir": "استنسل",
+    "pointe_d_argent": "قلم فضي",
+    "stylo_bille": "قلم حبر جاف",
+    "stylo_gel": "قلم جيل",
+    "tempera": "تمبيرا",
+    "acier_inoxydable": "فولاذ غير قابل للصدأ",
+    "aluminium": "ألومنيوم",
+    "argile": "طين",
+    "beton": "خرسانة",
+    "beton_cellulaire": "خرسانة خلوية",
+    "bois": "خشب",
+    "bronze": "برونز",
+    "carton": "كرتون",
+    "ceramique": "سيراميك",
+    "ciment": "أسمنت",
+    "coulage": "صب",
+    "cuir": "جلد",
+    "fil_de_fer": "سلك حديدي",
+    "glace": "جليد",
+    "metaux": "معادن",
+    "mosaique": "فسيفساء",
+    "os": "عظم",
+    "papier": "ورق",
+    "papier_mache": "ورق ماشيه",
+    "pate_polymere": "معجون بوليمر",
+    "pierre": "حجر",
+    "plastique": "بلاستيك",
+    "platre": "جبس",
+    "resine": "راتنج",
+    "sable": "رمل",
+    "savon": "صابون",
+    "terre_cuite": "فخار",
+    "verre": "زجاج",
+    "light_painting": "الرسم الضوئي",
+    "photographie_argentique": "التصوير الفوتوغرافي التناظري",
+    "photographie_manipulee": "التصوير الفوتوغرافي المعدل",
+    "photographie_non_manipulee": "التصوير الفوتوغرافي غير المعدل",
+    "photographie_numerique": "التصوير الرقمي",
+     "collagraphie": "كولاجراف",
+    "eau_forte": "الحفر المائي",
+    "embossage": "نقش بارز",
+    "gravure": "نقش",
+    "impression_numerique": "طباعة رقمية",
+    "linogravures": "نقش اللينو",
+    "lithographie": "طباعة حجرية",
+    "monotype": "مونوتايب",
+    "serigraphie": "سلك سكرين",
+    "tirage_argentique": "طبعة فضية",
+    "xylographie": "نقش خشبي",
+    "broderie": "تطريز",
+    "fibre_textile": "ألياف نسيجية",
+    "fil": "خيط",
+    "patchwork": "ترقيع",
+    "string_art": "فن الخيط",
+    "tapisserie": "نَسِيج جداري",
+    "tissu": "قماش",
+  
+  
+  
+    "theme.select_label":"موضوع العمل الفني",
+    "select_label": "اختر دعم العمل الفني",
+    "canvas": "قماش",
+    "wood_panel": "لوح خشبي",
+    "paper": "ورق",
+    "metal": "معدن",
+    "cardboard": "كرتون",
+    "acrylic": {
+      "linen_canvas": "قماش كتان (أكريليك)",
+      "mdf_board": "لوح MDF",
+      "cotton_canvas": "قماش قطني"
+    },
+    "oil": {
+      "linen_canvas": "قماش كتان (زيت)",
+      "copper_plate": "لوح نحاسي",
+      "wood_mounted": "خشب مثبت"
+    },
+    "watercolor": {
+      "paper": "ورق ألوان مائية",
+      "arches": "ورق أرتشيس"
+    },
+    "sculpture": {
+      "bronze": "برونز",
+      "marble": "رخام",
+      "resin": "راتنج",
+      "wood": "خشب",
+      "ceramic": "سيراميك"
+    },
+    "Potography": {
+      "photo_paper": "ورق صور",
+      "aluminum_dibond": "ألومنيوم ديبوند",
+      "acrylic": "زجاج أكريليك"
+    },
+    "drawing": {
+      "paper": "ورق رسم",
+      "parchment": "رق",
+      "vellum": "ورق شهامان"
+    },
+    "digital": {
+      "file": "ملف رقمي",
+      "canvas_print": "طباعة على قماش",
+      "acrylic_print": "طباعة أكريليك"
+    },
+    "textile": {
+      "fabric": "نسيج",
+      "tapestry": "نسيج حائطي",
+      "embroidery": "تطريز"
+    },
+    "other": "أخرى",
+    "mixed": "مختلط",
+    
+    "theme_groups": {
+      "styles": "أنماط",
+      "nature": "طبيعة",
+      "animaux": "حيوانات",
+      "culture": "ثقافة",
+      "urbain": "حضري",
+      "personnages": "شخصيات",
+      "fantastique": "خيالي",
+      "divers": "متنوع"
+    },
+  
+  
+  "categorias":{
+     "painting": "لوحة",
+  "sculpture": "نحت",
+  "photography": "تصوير فوتوغرافي",
+  "drawing": "رسم",
+  "engraving": "نقش و مطبوعات",
+  "digital_art": "فن رقمي",
+  "collage": "كولاج",
+  "textile_art": "فن النسيج"
+  }
+   
+  
+  
+  }

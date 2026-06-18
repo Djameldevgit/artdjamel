@@ -1,0 +1,32 @@
+{
+  "errors": {
+    "maxImages": "最多允许 {{max}} 张图片。{{extra}}",
+    "superUserExtra": "高级用户最多可以上传 4 张图片。",
+    "fileNotExist": "文件不存在。",
+    "invalidType": "仅允许图像文件 (JPEG, JPG, PNG, GIF)。",
+    "invalidName": "名称 \"{{name}}\" 包含无效字符。",
+    "maxSize": "图像不能超过 5 MB。",
+    "minDimensions": "图像必须至少为 {{width}}x{{height}} 像素。",
+    "maxDimensions": "图像不能超过 {{width}}x{{height}} 像素。",
+    "duplicateImage": "图像 \"{{name}}\" 已被选择。",
+    "imageLoad": "加载图像时出错。",
+    "categoryRequired": "请选择一个分类。",
+    "imageRequired": "请至少添加一张图片。",
+    "invalidFiles": "仅允许图像文件 (JPEG, JPG, PNG, GIF, WEBP)。"
+  },
+  "statusModal": {
+    "title": "创建帖子"
+  },
+  "titulostatusmoddal": "创建帖子",
+  "sectionTitles": {
+    "basicInfo": "基本信息",
+    "artisticDetails": "艺术细节",
+    "dimensions": "尺寸",
+    "availabilityPrice": "可用性和价格",
+    "saleLogistics": "销售物流",
+    "artistInfo": "艺术家信息"
+  },
+  "button": {
+    "post": "发布"
+  }
+}

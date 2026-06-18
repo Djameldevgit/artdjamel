@@ -1,0 +1,25 @@
+{
+ 
+    
+      "searchPlaceholder": "Search users...",
+      "searchError": "Error searching users",
+      "noUsersFound": "No conversations",
+      "loadMore2": "Load more",
+      "offline": "Offline",
+      "searchResults": "Search results",
+      "searchToStart": "Search users to start a conversation",
+   
+   
+      "online": "Online",
+     
+      "typing": "Typing...",
+      "lastSeen": "Last seen",
+      "justNow": "Just now",
+      "minutesAgo": "{{minutes}} min ago",
+      "hoursAgo": "{{hours}} h ago",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "daysAgo": "days ago"
+   
+  
+}

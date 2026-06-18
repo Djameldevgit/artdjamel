@@ -1,0 +1,11 @@
+{
+   "contact_form": "Formulario de contacto",
+   "subjectt": "Asunto",
+   "messagee": "Mensaje",
+   "write_subject": "Escribe el asunto",
+   "write_message": "Escribe tu mensaje aquí",
+   "send_message": "Enviar mensaje",
+   "sendingg": "Enviando",
+   "mensajeenviadoconexito": "Mensaje enviado con éxito.",
+   "erroralenviarmensaje": "Ocurrió un error al enviar el mensaje."
+}

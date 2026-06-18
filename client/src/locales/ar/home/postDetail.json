@@ -1,0 +1,13 @@
+{
+  "views": "المشاهدات",
+  "likes": "الإعجابات", 
+  "comments": "التعليقات",
+  "published": "نُشر",
+  "updated": "تم التحديث",
+  "basic_info": "المعلومات الأساسية",
+  "technical_details": "التفاصيل التقنية",
+  "commercial_info": "المعلومات التجارية", 
+  "location_rights": "الموقع والحقوق",
+  "read_more": "قراءة المزيد",
+  "read_less": "قراءة أقل"
+}

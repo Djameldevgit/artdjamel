@@ -1,0 +1,32 @@
+{
+  
+    "editCommentPlaceholder": "Edita tu comentario...",
+    "hideContent": "Ocultar contenido",
+    "readMore": "Leer más",
+    "like": "me gusta",
+    "likes": "me gusta",
+    "update": "actualizar",
+    "cancel": "cancelar",
+    "reply": "responder",
+    "editComment": "Editar",
+    "deleteComment": "Eliminar",
+    "confirmDelete": "¿Estás seguro de que quieres eliminar este comentario?",
+    "commentDeleted": "Comentario eliminado correctamente",
+    "commentUpdated": "Comentario actualizado correctamente",
+    "commentAdded": "Comentario agregado correctamente",
+    "writeComment": "Escribe un comentario...",
+    "writeReply": "Escribe una respuesta...",
+    "postComment": "Publicar",
+    "replyingTo": "Respondiendo a",
+    "noComments": "No hay comentarios aún",
+    "beFirstToComment": "Sé el primero en comentar",
+    "remove": "Eliminar",
+    "seeMoreComments": "Ver más comentarios...",
+    "hideComments": "Ocultar comentarios...",
+    "loadMoreReplies": "Cargar más respuestas",
+    "viewReplies": "Ver respuestas",
+    "hideReplies": "Ocultar respuestas",
+    "addComment": "Añadir comentario",
+    "addReply": "Añadir respuesta"
+  }
+ 

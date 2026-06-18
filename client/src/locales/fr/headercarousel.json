@@ -1,0 +1,20 @@
+{
+  
+    "carousel": {
+      "title1": "Nouvelle Collection Printemps",
+      "desc1": "Découvrez les dernières tendances de la saison",
+      "title2": "Soldes Exceptionnelles",
+      "desc2": "Jusqu'à -50% sur toute la boutique",
+      "title3": "Livraison Gratuite",
+      "desc3": "Partout en Algérie à partir de 3000 DZD",
+      "title4": "Mode Homme & Femme",
+      "desc4": "Des styles uniques pour tous les goûts",
+      "title5": "Qualité Garantie",
+      "desc5": "Des matériaux premium et une confection soignée",
+      "title6": "Nouveautés Quotidiennes",
+      "desc6": "Découvrez nos nouvelles arrivées chaque jour",
+      "defaultTitle": "Tassili Fashion",
+      "defaultDesc": "Votre destination mode préférée"
+    }
+   
+}

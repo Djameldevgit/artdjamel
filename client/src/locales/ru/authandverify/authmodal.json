@@ -1,0 +1,23 @@
+{
+  "auth": "authhhhhhhhhhhhhhhhhhhhhhhhhhh",
+  "authenticationRequired": "Требуется аутентификация",
+  "pleaseLoginToContinue": "Пожалуйста, войдите или зарегистрируйтесь, чтобы продолжить",
+  "login": "Войти",
+  "register": "Зарегистрироваться",
+  "activate": "activateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "activationRequest": "Запрос на активацию",
+  "activationMessage": "Ваша учетная запись деактивирована. Пожалуйста, свяжитесь с администратором для повторной активации вашей учетной записи.",
+  "userEmail": "Email пользователя",
+  "message": "Сообщение",
+  "messagePlaceholder": "Напишите ваш запрос на активацию здесь...",
+  "messageRequired": "Вы должны написать сообщение",
+  "messageSentSuccess": "Запрос успешно отправлен",
+  "requestActivation": "Запросить активацию",
+  "requestError": "Ошибка при отправке запроса",
+  "sending": "Отправка...",
+  "close": "Закрыть",
+  "verifyyyyy": "verifyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+  "verificationRequired": "Требуется верификация",
+  "verificationMessage": "Ваша учетная запись должна быть проверена для доступа ко всем функциям. Пожалуйста, подтвердите ваш email, чтобы продолжить.",
+  "verificationNote": "Если вы не получили письмо, вы можете запросить новое"
+}

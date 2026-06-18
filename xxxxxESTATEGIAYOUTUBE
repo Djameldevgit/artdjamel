@@ -1,0 +1,137 @@
+Análisis de la estrategia de YouTube, maestro
+He revisado la documentación oficial y guías de YouTube. Te confirmo que NO hacen lo que estamos planeando. Tienen una estrategia mucho más inteligente que resuelve este problema de raíz.
+
+🎯 LA ESTRATEGIA DE YOUTUBE (La que funciona)
+1. El canal se crea ANTES del primer video
+YouTube exige que completes la creación del canal antes de permitirte subir cualquier video. El flujo es:
+
+Creas cuenta de Google (si no tienes)
+
+Creas el canal (pones nombre, foto, banner, descripción)
+
+Verificas tu teléfono (paso obligatorio para subir videos largos)
+
+Recién ahí puedes subir tu primer video
+
+La clave: No hay wizard. El usuario no puede ni intentar subir un video hasta que el canal está completamente listo.
+
+2. YouTube Studio: El centro de control unificado
+Una vez que el canal está creado, YouTube Studio es el lugar donde ocurre TODO:
+
+Subir videos
+
+Añadir títulos, descripciones, miniaturas
+
+Configurar privacidad (público, privado, no listado)
+
+Programar publicación para fecha futura
+
+Añadir pantallas finales, tarjetas, subtítulos
+
+El usuario nunca tiene que "salir a completar otra cosa" porque todo está en el mismo lugar.
+
+3. El "borrador" y la "programación" como solución invisible
+Aquí está la jugada maestra de YouTube:
+
+Cuando un usuario sube un video pero no quiere publicarlo aún, YouTube NO lo rechaza. Simplemente:
+
+Lo guarda como "borrador" (draft) o "no listado" (unlisted)
+
+El video existe en el sistema, pero NADIE lo ve
+
+El usuario puede volver cuando quiera y:
+
+Terminar de editarlo
+
+Cambiarlo a "público"
+
+Programarlo para una fecha futura
+
+El usuario NUNCA pierde su trabajo. El video ya está subido, solo esperando el momento de publicarse.
+
+4. Verificación telefónica: El "gatekeeper" inteligente
+YouTube tiene un requisito específico: Verificar número de teléfono para acceder a funciones avanzadas como:
+
+Videos de más de 15 minutos
+
+Subir miniaturas personalizadas
+
+Transmitir en vivo
+
+Pero nota importante: Esto se hace ANTES de intentar subir, no durante el proceso de subida. El usuario sabe qué necesita cumplir.
+
+🆚 COMPARATIVA: YouTube vs Tu enfoque
+Aspecto	YouTube	Tu enfoque actual	El problema
+Cuándo se crea el canal	Antes de subir videos	Al registrarse (incompleto)	El usuario cree que ya puede subir
+Verificación de canal	Explícita y anticipada	Se descubre al subir	Frustración por sorpresa
+Qué pasa si falta info	No deja empezar la subida	Deja subir y luego bloquea	Se pierde el progreso
+Estado del video	Borrador/No listado (seguro)	Rechazado o perdido	El usuario abandona
+Experiencia	Fluida, todo en Studio	Fragmentada, wizard interrumpido	Mala UX
+✅ LA MEJOR ESTRATEGIA PARA TI (Basada en YouTube)
+Basado en cómo funciona YouTube, aquí tienes la solución correcta:
+
+Opción A: El modelo YouTube puro (RECOMENDADA)
+Cambia la UX para que el canal se complete ANTES de que el usuario pueda ver el botón de "Subir video"
+
+Registro: Se crea usuario + canal base
+
+Primer login: El usuario VE que su canal está "incompleto" (banner amarillo)
+
+Para acceder a "Subir video": Debe completar canal OBLIGATORIAMENTE
+
+El botón de subir está DESHABILITADO hasta que el canal esté 100% completo
+
+Resultado: El usuario NUNCA intenta subir sin tener todo listo. Cero frustración.
+
+Opción B: El sistema de borradores (Si insistes en wizard)
+Si quieres mantener el wizard de subida, haz esto:
+
+Permite la subida SIEMPRE (sin verificar canal)
+
+El video se guarda como "borrador" (campo status: 'draft')
+
+El video NO es visible para nadie (ni siquiera en el perfil del usuario)
+
+Cuando complete el canal, ese y TODOS sus borradores se publican automáticamente
+
+Mensaje claro: "Tu video está guardado. Se publicará cuando completes la información de tu canal"
+
+Ventaja: El usuario no pierde nada, solo gana claridad.
+
+Opción C: El bloqueo anticipado (Lo que YouTube NO hace, pero puedes adaptar)
+Muestra un mensaje ANTES de que el usuario intente subir:
+
+"Para subir videos, primero completa estos 3 pasos de tu canal:
+
+☐ Añade una foto de perfil
+
+☐ Escribe una descripción
+
+☐ Verifica tu número de teléfono (para videos de más de 20 segundos)"
+
+Y deshabilita el botón de subir hasta que todo esté marcado.
+
+📊 QUÉ HACE YOUTUBE EXACTAMENTE (Según la documentación)
+Para que tengas la fuente exacta:
+
+Verificación de teléfono: Es necesaria para "hacer videos de más de 15 minutos, transmitir en vivo, subir miniaturas personalizadas". Es un requisito EXPLÍCITO que el usuario debe cumplir ANTES.
+
+Subida de video: El proceso es: crear canal → completar info → verificar teléfono → subir video. En ese orden.
+
+Si falta info: Simplemente no te deja llegar al formulario de subida. No hay "sorpresa" a mitad del camino.
+
+Programación: Una vez subido, puedes elegir "publicar ahora", "programar" o "guardar como borrador".
+
+🎯 MI RECOMENDACIÓN FINAL PARA TI
+Usa la Opción A (modelo YouTube):
+
+En el frontend: El botón "Subir video" solo aparece cuando user.channel.completed === true
+
+En el servidor: El endpoint de subida NI SIQUIERA se expone si el canal está incompleto (el frontend ya lo oculta)
+
+Mensaje claro: "Completa tu canal para empezar a subir videos" con enlace directo al formulario
+
+Esto elimina el problema de raíz: El usuario nunca llega a subir sin tener todo listo.
+
+¿Qué opinas, maestro? ¿Implementamos esta estrategia?
+

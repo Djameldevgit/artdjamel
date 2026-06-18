@@ -1,0 +1,53 @@
+{
+  "searchUsers": "Buscar usuarios...",
+  "noUsersFound": "No se encontraron usuarios",
+  "noUsersFoundSearch": "No se encontraron usuarios que coincidan con la búsqueda",
+  "searching": "Buscando usuarios...",
+ 
+    "user": "Usuario",
+   
+    "lastDisconnect": "Última desconexión",
+    "registration": "Registro",
+    "verification": "Verificación",
+    "accountStatus": "Estado cuenta",
+    "blockStatus": "Bloqueo",
+    "actions": "Acciones",
+ 
+  "status": {
+    "online": "En línea",
+    "offline": "Desconectado",
+    "offlineSince": "Desconectado {{time}}",
+    "verified": "Verificado",
+    "notVerified": "No verificado",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "blocked": "Bloqueado",
+    "notBlocked": "No bloqueado"
+  },
+  "action": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "activate": "Activar",
+    "deactivate": "Desactivar",
+    "block": "Bloquear",
+    "unblock": "Desbloquear",
+    "verify": "Verificar",
+    "unverify": "Quitar verificación",
+    "managePermissions": "Gestionar permisos"
+  },
+  "deleteModal": {
+    "title": "Confirmar eliminación",
+    "message": "¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar usuario"
+  },
+  "errors": {
+    "fetchUsers": "Error al cargar usuarios",
+    "loadMore": "Error al cargar más usuarios",
+    "deleteUser": "Error al eliminar usuario",
+    "blockUser": "Error al bloquear usuario",
+    "unblockUser": "Error al desbloquear usuario",
+    "toggleStatus": "Error al cambiar estado",
+    "toggleVerification": "Error al cambiar verificación"
+  }
+}

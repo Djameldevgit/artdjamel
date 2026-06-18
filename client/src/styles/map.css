@@ -1,0 +1,57 @@
+/* Variables para el mapa */
+:root {
+  --map-height-lg: 700px; /* Aumentado de 600px a 700px */
+  --map-height-md: 600px; /* Aumentado de 500px a 600px */
+  --map-height-sm: 500px; /* Aumentado de 400px a 500px */
+  --primary-blue: #4a90e2;
+  --primary-red: #FF0000;
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 15px rgba(0, 0, 0, 0.15);
+  --border-radius-lg: 12px;
+  --border-radius-sm: 8px;
+  --border-color: #444;
+}
+
+/* Contenedor principal del mapa */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: var(--map-height-lg); /* Aplicando la nueva altura */
+  margin: 1.7rem;
+  padding: 0.3rem;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background-color: #f5f5f5;
+  border: 2px solid var(--border-color);
+}
+
+/* Estilo del mapa Leaflet */
+.map {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--border-color);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 1024px) {
+  .map-container {
+    height: var(--map-height-md); /* Aplicando la nueva altura */
+  }
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    height: var(--map-height-sm); /* Aplicando la nueva altura */
+    border-radius: var(--border-radius-sm);
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container {
+    height: 450px; /* Ajustado para pantallas pequeñas */
+  }
+}

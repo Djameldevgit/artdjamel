@@ -1,0 +1,160 @@
+/* Estilos generales del contenedor */
+.modalusersearchlist {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Estilos del encabezado */
+  .headersearchlist {
+    margin-bottom: 20px;
+  }
+  
+  .titlesearchlist {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+  }
+  
+  /* Estilos de la tabla */
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Estilos para el mensaje de "No hay usuarios bloqueados" */
+  .table tbody tr td[colSpan="10"] {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+  }
+  
+  /* Estilos para el botón de acción */
+  .action-dropdown {
+    position: relative;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 0.875rem;
+    color: #333;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    clear: both;
+    font-weight: 400;
+    color: #333;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .modalusersearchlist {
+      padding: 15px;
+    }
+  
+    .titlesearchlist {
+      font-size: 1.25rem;
+    }
+  
+    .table th,
+    .table td {
+      padding: 8px;
+    }
+  
+    .btn-danger {
+      padding: 6px 12px;
+      font-size: 0.875rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modalusersearchlist {
+      padding: 10px;
+    }
+  
+    .titlesearchlist {
+      font-size: 1rem;
+    }
+  
+    .table th,
+    .table td {
+      padding: 6px;
+    }
+  
+    .btn-danger {
+      padding: 4px 8px;
+      font-size: 0.75rem;
+    }
+  }

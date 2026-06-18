@@ -1,0 +1,11 @@
+{
+ 
+ 
+      "installing": "Service Worker: جاري التثبيت...",
+      "caching": "Service Worker: جاري تخزين الموارد",
+      "installation_complete": "Service Worker: اكتمل التثبيت",
+      "activating": "Service Worker: جاري التفعيل...",
+      "deleting_old_cache": "Service Worker: جاري حذف الذاكرة المؤقتة القديمة",
+      "activated": "Service Worker: مفعل الآن!",
+      "fetch_failed": "فشل الجلب; العودة إلى الصفحة غير المتصلة:"
+}

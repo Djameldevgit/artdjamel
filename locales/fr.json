@@ -1,0 +1,204 @@
+{
+	 
+		"emailActivation": {
+		  "subject": "Activez votre compte sur Tassili Art",
+		  "body": "Bienvenue sur Tassili Art ! Pour rejoindre notre communauté artistique et profiter pleinement de la plateforme, nous devons vérifier votre compte. Cliquez sur le bouton ci-dessous pour terminer la vérification :",
+		  "button": "Vérifier le compte",
+		  "alt": "Si le bouton ne fonctionne pas, copiez et collez le lien ci-dessous dans votre navigateur pour activer votre compte Tassili Art."
+		},
+		"emailReset": {
+		  "subject": "Réinitialisez votre mot de passe sur Tassili Art",
+		  "body": "Vous avez demandé à réinitialiser votre mot de passe sur Tassili Art. Cliquez sur le bouton ci-dessous pour continuer le processus :",
+		  "button": "Réinitialiser le mot de passe",
+		  "alt": "Si vous n’êtes pas à l’origine de cette demande, ignorez simplement ce message."
+		},
+		"emailInformativo": {
+		  "subject": "Nouveautés sur Tassili Art",
+		  "body": "Découvrez les dernières actualités et mises à jour de Tassili Art. Explorez de nouvelles œuvres, artistes et fonctionnalités sur notre plateforme.",
+		  "button": "Explorer maintenant",
+		  "alt": "Si vous ne pouvez pas accéder via le bouton, visitez notre site web pour plus d’informations."
+		 
+	  },
+	  
+
+
+
+
+
+
+
+
+	"auth": {
+		"username_exists": "Le nom d'utilisateur existe déjà.",
+		"email_exists": "L'e-mail existe déjà.",
+		"password_too_short": "Le mot de passe doit contenir au moins 6 caractères.",
+		"register_success": "Inscription réussie !",
+		"email_not_exist": "Cet e-mail n'existe pas.",
+		"incorrect_password": "Mot de passe incorrect.",
+		"login_success": "Connexion réussie !",
+		"logout_success": "Déconnexion réussie !",
+		"login_required": "Veuillez vous connecter maintenant.",
+		"user_not_found": "Cet utilisateur n'existe pas.",
+		"server_error": "Erreur serveur.",
+		"activation_email_sent": "auth.activation_email_sent",
+		"forgot_email_sent": "auth.forgot_email_sent",
+		"account_activated": "✅ Compte activé avec succès.",
+		"reset_email_sent": "Lien de réinitialisation du mot de passe envoyé.",
+		"password_changed": "Mot de passe modifié avec succès."
+	},
+	"post": {
+		"POST": "POST",
+		"created_post": "Nous avons reçu votre message, notre équipe l'examine. Nous vous informerons lors de son approbation.",
+		"updated_post": "Publication mise à jour !",
+		"deleted_post": "Publication supprimée !",
+		"liked_post": "Vous aimez cette publication !",
+		"unliked_post": "J'aime retiré de la publication !",
+		"saved_post": "Publication enregistrée !",
+		"unsaved_post": "Publication retirée des enregistrements !",
+		"post_not_exist": "Cette publication n'existe pas.",
+		"user_not_exist": "Cet utilisateur n'existe pas.",
+		"already_liked": "Vous aimez déjà cette publication.",
+		"already_saved": "Vous avez déjà enregistré cette publication.",
+		"please_add_photo": "Veuillez ajouter une photo.",
+		"post_approved": "Publication approuvée !",
+		"post_not_found": "Publication introuvable.",
+		"success": "Succès !",
+		"USER": "USER",
+		"user_not_found": "Utilisateur introuvable.",
+		"please_add_username": "Veuillez ajouter un nom d'utilisateur.",
+		"update_success": "Mise à jour réussie !",
+		"already_followed": "Vous suivez déjà cet utilisateur.",
+		"follow_success": "Abonnement réussi !",
+		"unfollow_success": "Désabonnement réussi !",
+		"search_failed": "Échec de la recherche d'utilisateurs.",
+		"suggestions_loaded": "Suggestions d'utilisateurs chargées.",
+		"error": "Une erreur s'est produite.",
+		"no_users_found": "Aucun utilisateur trouvé.",
+		"invalid_user_id": "ID utilisateur invalide.",
+		"updated_arabic": "language.updated_arabic",
+		"updated_french": "language.updated_french",
+		"updated_spanish": "language.updated_spanish"
+	},
+	"comment": {
+		"error_post_not_exist": "Cette publication n'existe pas.",
+		"error_comment_not_exist": "Ce commentaire n'existe pas.",
+		"success": "Commentaire créé avec succès !"
+	},
+	"lang": {
+		"langUpdatedToSpanish": "Langue mise à jour vers l'espagnol",
+		"langUpdatedToRussian": "Langue mise à jour vers le russe",
+		"langUpdatedToKabyle": "Langue mise à jour vers le kabyle",
+		"langUpdatedToChinese": "Langue mise à jour vers le chinois",
+		"langUpdatedToEnglish": "Langue mise à jour vers l'anglais",
+		"langUpdatedToFrench": "Langue mise à jour vers le français",
+		"langUpdatedToArabic": "Langue mise à jour vers l'arabe",
+		"langUpdated": "Langue mise à jour",
+		"languageNotSpecified": "Langue non spécifiée",
+		"userNotFoundOrAlreadyUpdated": "Utilisateur introuvable ou langue déjà mise à jour",
+		"errorUpdatingLanguage": "Erreur lors de la mise à jour de la langue",
+		"languageSavedForVisitor": "Langue enregistrée pour le visiteur",
+		"errorSavingLanguageForVisitor": "Erreur lors de l'enregistrement de la langue pour le visiteur"
+	},
+	"cart": {
+		"postNotFoundOrNoPrice": "Publication introuvable ou sans prix",
+		"postAddedToCart": "Publication ajoutée au panier",
+		"priceMustBeNumber": "Le prix doit être un nombre",
+		"priceMustBePositive": "Le prix doit être positif",
+		"quantityAtLeastOne": "La quantité doit être au moins de 1",
+		"productRemoved": "Produit supprimé",
+		"serverError": "Erreur serveur",
+		"invalidQuantity": "Quantité invalide",
+		"productNotFoundInCart": "Produit introuvable dans le panier",
+		"quantityUpdated": "Quantité mise à jour"
+	},
+	"language": {
+		"updated_arabic": "language.updated_arabic",
+		"updated_spanish": "language.updated_spanish",
+		"updated_english": "language.updated_english",
+		"updated_french": "language.updated_french"
+	},
+	"email": {
+		"subject": "Jamal Art",
+		"title": "Bienvenue dans l'art du Tassili",
+		"body": "Félicitations ! Vous êtes sur le point d'utiliser l'application. Cliquez sur le bouton ou le lien ci-dessous pour confirmer votre e-mail.",
+		"button": "Confirmer l'e-mail",
+		"alt": "Si le bouton ne fonctionne pas, vous pouvez également cliquer sur le lien suivant :",
+		"reset_button": "email.reset_button"
+	},
+	"user_not_found": "Utilisateur introuvable.",
+	"already_verified": "Compte déjà vérifié.",
+	"activation_email_sent": "E-mail d'activation envoyé à votre adresse.",
+	"server_error": "Erreur serveur interne.",
+	"order": {
+		"cart_empty": "Le panier est vide",
+		"created_success": "✅ Commande créée avec succès",
+		"not_found": "Commande introuvable",
+		"status_updated": "Statut de la commande mis à jour",
+		"deleted_success": "Commande supprimée avec succès"
+	},
+	"role": {
+		"user_not_found": "Utilisateur introuvable",
+		"role_assigned": "Rôle utilisateur attribué avec succès",
+		"Super-utilisateur": "Rôle superutilisateur attribué avec succès",
+		"moderator_assigned": "Rôle modérateur attribué avec succès",
+		"admin_assigned": "Rôle administrateur attribué avec succès",
+		"update_error": "Erreur lors de la mise à jour du rôle utilisateur"
+	},
+	"message": {
+		"create_success": "Message créé avec succès !",
+		"delete_success": "Suppression réussie !",
+		"invalid_data": "Données invalides : destinataire et contenu du message requis",
+		"server_error": "Erreur serveur de messagerie",
+		"createMessage.empty": "Le message ne peut pas être vide.",
+		"createMessage.success": "Message créé avec succès !",
+		"deleteMessage.success": "Message supprimé avec succès !",
+		"deleteConversation.success": "Conversation supprimée avec succès !"
+	},
+	"report": {
+		"missing_fields": "Tous les champs sont obligatoires",
+		"create_success": "Rapport créé avec succès",
+		"server_error": "Erreur serveur de rapports",
+		"report_not_found": "Rapport introuvable",
+		"update_success": "Statut du rapport mis à jour avec succès",
+		"delete_success": "Rapport supprimé avec succès"
+	},
+	"block": {
+		"user_not_found": "Utilisateur introuvable",
+		"already_blocked": "Cet utilisateur est déjà bloqué",
+		"default_reason": "Raison non spécifiée",
+		"default_content": "Pas de contenu supplémentaire",
+		"default_date": "Date de début non spécifiée",
+		"block_success": "Utilisateur bloqué avec succès",
+		"not_blocked": "Cet utilisateur n'est pas bloqué",
+		"unblock_success": "Déblocage de l'utilisateur réussi",
+		"server_error": "Erreur serveur de blocage"
+	},
+	"user": {
+		"activation_message_required": "Un message est requis pour l'activation du compte",
+		"activation_request_sent": "✅ Demande d'activation envoyée à l'administrateur",
+		"server_error": "Erreur serveur utilisateurs",
+		"unauthenticated": "Utilisateur non authentifié",
+		"contact_title_message_required": "Titre et message requis",
+		"contact_message_sent": "Message d'assistance envoyé avec succès",
+		"contact_send_error": "Erreur d'envoi du message d'assistance",
+		"blocked_message_required": "Un message est requis pour la demande de révision",
+		"blocked_request_sent": "✅ Demande de révision de blocage envoyée",
+		"blocked_send_error": "Erreur d'envoi de la demande de révision",
+		"not_found": "Utilisateur introuvable",
+		"account_deleted_unverified": "Votre compte a été supprimé pour non-vérification sous 3 jours. Reconnectez-vous pour accéder",
+		"status_updated": "Statut utilisateur mis à jour",
+		"not_exist": "Utilisateur inexistant",
+		"success": "Succès",
+		"username_required": "Nom complet requis",
+		"update_success": "Utilisateur mis à jour avec succès !",
+		"already_followed": "Vous suivez déjà cet utilisateur",
+		"delete_denied_admin": "Refusé : droits administrateur requis",
+		"invalid_id": "ID utilisateur invalide",
+		"delete_self_denied": "Vous ne pouvez pas supprimer votre propre compte",
+		"delete_success": "Utilisateur et contenu associé supprimés avec succès",
+		"delete_error": "Erreur de suppression de l'utilisateur",
+		"cleanup_denied_admin": "Refusé : droits administrateur requis pour le nettoyage",
+		"cleanup_success": "Nettoyé : {{posts}} publications et {{comments}} commentaires",
+		"cleanup_error": "Erreur de nettoyage du contenu restant"
+	}
+}

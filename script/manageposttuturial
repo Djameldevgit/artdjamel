@@ -1,0 +1,61 @@
+# Listar todos los posts de teléfono
+node scripts/managePosts.js list category=telephone
+
+# Listar posts de teléfono con subcategoría smartphones
+node scripts/managePosts.js list category=telephone subCategory=smartphones
+
+# Listar posts de boutiques
+node scripts/managePosts.js list boutique=true
+
+# Listar posts por IDs específicos
+node scripts/managePosts.js list ids=69cad6c19ae0f6003226c3c8,69cbdaa32848910032078fc9
+2. Actualizar posts
+bash
+# Actualizar category de todos los posts de teléfono
+node scripts/managePosts.js update category=telephone field=category value=69bdcafb0a38bd0b84ead629
+
+# Desactivar todos los posts de una categoría
+node scripts/managePosts.js update category=vehicules field=isActive value=false
+
+# Poner precio a 0 en todos los posts de teléfono
+node scripts/managePosts.js update category=telephone field=price value=0
+
+# Simular sin ejecutar (dry run)
+node scripts/managePosts.js update category=telephone field=price value=0 dryRun=true
+3. Eliminar posts
+bash
+# Eliminar todos los posts de teléfono
+node scripts/managePosts.js delete category=telephone
+
+# Eliminar posts específicos por IDs
+node scripts/managePosts.js delete ids=69cad6c19ae0f6003226c3c8,69cbdaa32848910032078fc9
+
+# Simular sin ejecutar
+node scripts/managePosts.js delete category=telephone dryRun=true
+4. Corregir categoría
+bash
+# Corregir todos los posts que tienen categorie "telephone"
+node scripts/managePosts.js fix-category category=telephone
+
+# Corregir a una categoría específica
+node scripts/managePosts.js fix-category category=telephone targetCategory=telephone
+
+# Solo posts de boutique
+node scripts/managePosts.js fix-category category=telephone boutique=true
+5. Ver estadísticas
+bash
+# Estadísticas generales
+node scripts/managePosts.js stats
+
+# Estadísticas por categoría
+node scripts/managePosts.js stats category=telephone
+6. Exportar posts
+bash
+# Exportar a consola
+node scripts/managePosts.js export category=telephone
+
+# Exportar a JSON
+node scripts/managePosts.js export category=telephone format=json
+
+# Exportar posts de boutique
+node scripts/managePosts.js export boutique=true format=json

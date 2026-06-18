@@ -1,0 +1,39 @@
+{
+  "header": {
+    "title": "Bloquear Usuario"
+  },
+  "userInfo": "Usuario: {username} | Email: {email}",
+  "form": {
+    "reasonLabel": "Motivo de bloqueo",
+    "selectReason": "Seleccionar motivo",
+    "detailsLabel": "Detalles adicionales",
+    "detailsPlaceholder": "Proporciona detalles específicos sobre el motivo del bloqueo...",
+    "detailsHelp": "Esta información será visible para el usuario y los administradores",
+    "blockDuration": "Duración del bloqueo",
+    "dateLabel": "Fecha de desbloqueo",
+    "timeLabel": "Hora de desbloqueo",
+    "durationHelp": "Selecciona la fecha y hora en que el usuario será desbloqueado automáticamente"
+  },
+  "reasons": {
+    "abusiveBehavior": "Comportamiento abusivo",
+    "spam": "Spam",
+    "termsViolation": "Violación de términos de uso",
+    "offensiveLanguage": "Lenguaje ofensivo",
+    "fraud": "Fraude",
+    "identityTheft": "Suplantación de identidad",
+    "inappropriateContent": "Contenido inapropiado",
+    "privacyViolation": "Violación de privacidad",
+    "serviceDisruption": "Interrupción del servicio",
+    "suspiciousActivity": "Actividad sospechosa",
+    "other": "Otro"
+  },
+  "actions": {
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "confirmBlock": "Confirmar Bloqueo"
+  },
+  "errors": {
+    "missingFields": "Por favor, complete todos los campos obligatorios",
+    "futureDate": "La fecha y hora deben ser futuras"
+  }
+}

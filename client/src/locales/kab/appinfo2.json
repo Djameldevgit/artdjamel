@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "title": "Platform MERN Tamatut",
+    "subtitle": "Aserdex timezzegt s e-commerce, asefrek deg wakud ilaw akked usefrek n tutlayin timegrad"
+  },
+  "about": {
+    "name": "Aneflay Aneɣmas",
+    "title": "Aneɣmas & Aneflay Full Stack",
+    "greeting": "Γef Umsnulfu",
+    "description": "Nek d aneɣmas aεeṭṭun akked aneflay full stack si Lezzayer, Lezzayer. Abrid-iw yemmeslayen tafrayt tneɣmast akked tneɣmi tasnawant, snulfuyen tarmiwin tudmawin i d imɛawanen akken d imɛiwen.",
+    "journey": "Tafelseft-iw n usnulfu tebda deg usendu CRUD aγelsan, yettwaseḥzen s tibḍarit n usnulfu AI am DeepSeek, Claude akked ChatGPT. Sɣur iseggasen n unadi yettwakkes akked usiḍen n ukod, selɣeɣ idegman tizmamin s iseqdacen id yettwaseklesen. Yal aseɣwen yettwakka d isragen n tisdatin n ufraz n wuguren akked uselmed usrid.",
+    "philosophy": "Yerna d aγur n usellek akked usfeḍ n tsnilelt n ukod, tḥemlit-iw akked tɣil-iw ttemcawaken i wakken ad tafeɣ yal aseɣwen. Umneɣ ad ttwasekren isγanen d tifrawin n usɣer."
+  },
+  "apps": {
+    "title": "Isseqdacen-iw deg Usɣer",
+    "subtitle": "Snirem tilɣa-inu n marketplace ideg iseqdacen zemren ad ttarun akked usunef s wudem uslig",
+    "marketplace": "Marketplace",
+    "art_marketplace": "Aswir n Tneɣmast",
+    "art_marketplace_desc": "Platform i usɣar akked uznez n yiseɣwa n tneɣmast - Iseqdacen ttarun isluɣ-nsen",
+    "real_estate": "Aɣerbaz",
+    "real_estate_desc": "Aswir n wakal - Iseqdacen ttarun akked usnirem n tifrawin n wakal",
+    "automobiles": "Aswir n Yitrank",
+    "automobiles_desc": "Platform n usunef n tkerkas akked yitrank - Tira n yismal akked yiznan yettwaseɣrent sɣur iseqdacen",
+    "smartphones": "Aswir n Yitelifunen",
+    "smartphones_desc": "Aswir n yibenkan aziraz - Iseqdacen sɣaren akked uznen yitelifunen s lḥurriya",
+    "travel_agency": "Tiktabt n Yirwel",
+    "travel_agency_desc": "Platform n yimahalen n irwel - Iseqdacen bḍun akked usireg n tarmiwin n irwel"
+  },
+  "sections": {
+    "features": "Timellalin Tigejdanin",
+    "architecture": "Tasnilelt Tasnawant",
+    "faq": "Isteqsiyen Yettwasnen",
+    "statistics": "Tidaddanin n Unagraw"
+  },
+  "features": {
+    "multi_language": {
+      "title": "Anagraw n Tutlayin Timegrad",
+      "description": "Abeddel s talɣift gar 6+ n tutlayin deg-sent Tamaziɣt, Taɛrabt, Taglizit, Taspanyult, Tafransist akked ugar s yiwen usiti."
+    },
+    "authentication": {
+      "title": "Tabaḍnit Tunṣibt",
+      "description": "Tibḍarin timegrad n usentem: asesteb s ufus, tuqqna s usiti s umiḍan Google/Facebook, asentem s imayl akked usali n wawal uffir."
+    },
+    "real_time_chat": {
+      "title": "Asefrek deg Wakud Ilaw",
+      "description": "Aznuzu uslig s tuzna n tugniwin, imḍanen n tuqqna akked unermes s talɣift srid seg yismal."
+    },
+    "ecommerce": {
+      "title": "Anagraw E-Commerce",
+      "description": "Taεekcart n usɣar tamatut, afhim aγelsan s tmetti n yibankan adiganen akked amazray n tiɣin timeɣranin."
+    },
+    "responsive": {
+      "title": "Yettwaεeddan Akken Iwata",
+      "description": "Tarmit tigejdant ɣef yal ibenk: tiliɣri, tablet akked aselkim s tneɣruft tameynut."
+    },
+    "performance": {
+      "title": "Taɣuri Tameqrant",
+      "description": "Tasnilelt MERN yettwasεedden s usfeḍ amawan, ileqman deg wakud ilaw akked usefrek n yisefka s wudem anmizan."
+    }
+  },
+  "architecture": {
+    "frontend": "Tibḍarit Frontend",
+    "backend": "Tibḍarit Backend",
+    "frontend_points": {
+      "react": "Ikanunen timezzegin akked iḥukan",
+      "redux": "Asefrek n addad agraɣlan",
+      "bootstrap": "Aframeṛwork UI yettwaεeddan",
+      "i18n": "Anagraw n usnagraw agraɣlan"
+    },
+    "backend_points": {
+      "express": "Aqeddac API REST",
+      "mongodb": "Talɣut NoSQL",
+      "jwt": "Asentem aγelsan",
+      "socket": "Anermes deg wakud ilaw"
+    }
+  },
+  "faq": {
+    "how_register": {
+      "question": "Amek ara d-tesεeddeɣ ɣef platform?",
+      "answer": "Tzemreḍ ad tesεeddeḍ s kṛaḍ n tɣawsiwin: 1) Asesteb s ufus s imayl akked wawal uffir, 2) Asiti s umiḍan Google, 3) Asiti s umiḍan Facebook. Akk ten sran asentem s imayl."
+    },
+    "language_change": {
+      "question": "Amek ara beddleɣ tutlayt?",
+      "answer": "Sit ɣef umsebter n tutlayt deg ufeggag n unig, fren tutlayt-ik·im. Abeddel d arurad, yettwasεed ɣef platform meṛṛa."
+    },
+    "post_validation": {
+      "question": "Acḥal n wakud ay yesra asentem n yismal?",
+      "answer": "Ismal ttwassentmen sɣur imsengaren deg tsinin neḍ tisdatin. Ad trem tilɣa mi ara yettwasentem asmel-ik·im ad yili d amven i tgemṭ."
+    },
+    "security": {
+      "question": "Acu ten measures n tbadednit i yellan?",
+      "answer": "Nesseqdec asentem JWT, asentem s imayl, anagraw n usewḥel amawan, asfeḍ n wass n yiseqdacen ur nettwasentmen ara, akked aḍessi n urmus deg wakud ilaw."
+    }
+  },
+  "stats": {
+    "validation_time": "Asentem n yismal",
+    "validation_time_desc": "Tsinin - Tisdatin",
+    "languages": "Tutlayin yettwasrakken",
+    "languages_desc": "6+ n Tutlayin",
+    "verification_rate": "Asentem Imayl",
+    "verification_rate_desc": "> 95% Anzaf n Irra",
+    "chat_response": "Tririt n usefrek",
+    "chat_response_desc": "< 30 n tsinin"
+  },
+  "cta": {
+    "title": "Theggideḍ i wulad n tgemṭ?",
+    "description": "Sεedded tura, bdu seqdec akk timellalin n platform-nneɣ aserdex timezzegt.",
+    "button": "Bdu"
+  }
+}

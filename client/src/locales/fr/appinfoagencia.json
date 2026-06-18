@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "title": "Fatigué de lutter contre les algorithmes des réseaux sociaux ?",
+    "subtitle": "Transformez votre agence de voyage avec une application PWA professionnelle que vos clients peuvent installer en quelques secondes. Reprenez le contrôle de votre entreprise et construisez une confiance réelle.",
+    "cta_button": "Créer mon application professionnelle gratuitement"
+  },
+  "pain_section": {
+    "title": "Les vrais problèmes des réseaux sociaux",
+    "subtitle": "Les plateformes sociales sont conçues pour tirer profit de votre contenu, pas pour faire croître votre entreprise",
+    "algorithm": {
+      "title": "Algorithmes imprévisibles",
+      "description": "Vos publications de voyage n'atteignent que 5 à 10 % de vos abonnés. Vous perdez du temps à créer du contenu que personne ne voit. Facebook et Instagram décident qui voit vos forfaits Hajj et circuits internationaux."
+    },
+    "trust": {
+      "title": "Manque de confiance et de professionnalisme",
+      "description": "Sur les réseaux sociaux, n'importe qui peut publier des voyages. Vos clients potentiels ne peuvent pas distinguer une agence sérieuse d'un amateur. Vous perdez des ventes par manque de crédibilité."
+    },
+    "data_control": {
+      "title": "Vous perdez le contrôle de vos données",
+      "description": "Toutes les informations de vos clients et leur comportement appartiennent à Meta. Ils gagnent de l'argent avec vos données tandis que vous perdez des opportunités commerciales précieuses."
+    },
+    "limited_features": {
+      "title": "Fonctionnalités limitées",
+      "description": "Vous ne pouvez pas avoir de chat organisé, de base de données clients, de notifications push, de favoris, de profils utilisateur ou de catalogue professionnel. Vous êtes limité à ce que les réseaux sociaux vous permettent."
+    }
+  },
+  "solution_section": {
+    "title": "La solution : Votre application PWA professionnelle",
+    "subtitle": "Une technologie moderne qui met le contrôle entre vos mains",
+    "instant_app": {
+      "title": "Installation instantanée",
+      "description": "Vos clients installent votre application en 2 secondes depuis n'importe quel navigateur. Sans magasins d'applications, sans téléchargements compliqués. Une expérience native directement depuis leur navigateur."
+    },
+    "trust_brand": {
+      "title": "Confiance et marque professionnelle",
+      "description": "Une application dédiée démontre le sérieux et le professionnalisme. Vos clients savent qu'ils traitent avec une agence réelle, pas avec un vendeur occasionnel sur les réseaux sociaux."
+    },
+    "your_data": {
+      "title": "Vos données, votre contrôle",
+      "description": "Base de données privée avec toutes les informations de vos clients, leurs préférences, historique des demandes et comportement. Votre propriété, votre contrôle absolu."
+    }
+  },
+  "features_section": {
+    "title": "Fonctionnalités qui transformeront votre entreprise",
+    "subtitle": "Tout ce dont vous avez besoin pour vendre plus et construire des relations durables avec vos clients",
+    "client_database": {
+      "title": "Base de données clients",
+      "description": "Enregistrez et organisez tous vos clients potentiels. Connaissez leurs préférences, historique des demandes et comportement. Segmentez et envoyez des offres personnalisées."
+    },
+    "notifications": {
+      "title": "Notifications push directes",
+      "description": "Lorsque vous publiez un nouveau voyage, tous vos clients installés reçoivent une notification immédiate. Oubliez les algorithmes qui cachent votre contenu."
+    },
+    "private_chat": {
+      "title": "Chat privé organisé",
+      "description": "Système de messagerie intégré où vous gérez toutes les conversations en un seul endroit. Répondez aux demandes depuis votre panneau de contrôle sans mélanger avec les chats personnels."
+    },
+    "favorites": {
+      "title": "Favoris et sauvegardes",
+      "description": "Vos clients peuvent aimer et sauvegarder leurs voyages favoris. Vous voyez quels forfaits génèrent le plus d'intérêt et pouvez effectuer un suivi intelligent."
+    },
+    "multi_language": {
+      "title": "Multilingue automatique",
+      "description": "Votre application disponible en français, arabe et plus. Servez une audience mondiale sans effort. Nous ajoutons de nouvelles langues selon vos besoins."
+    },
+    "easy_sharing": {
+      "title": "Partage sur les réseaux sociaux",
+      "description": "Partagez des voyages individuels sur les réseaux OU partagez votre application complète. Deux façons de promouvoir : des posts spécifiques et votre application professionnelle complète."
+    }
+  },
+  "how_it_works": {
+    "title": "Comment ça marche en 3 étapes simples",
+    "subtitle": "En moins de 10 minutes, votre application professionnelle sera opérationnelle",
+    "step1": {
+      "title": "Inscription instantanée",
+      "description": "Créez votre compte en 1 minute en utilisant Facebook ou email. Accédez immédiatement à votre panneau de contrôle professionnel."
+    },
+    "step2": {
+      "title": "Publiez vos voyages",
+      "description": "Téléchargez des photos magnifiques, décrivez votre forfait avec notre formulaire guidé et fixez les prix. Publiez Hajj, Umrah, circuits internationaux en quelques secondes."
+    },
+    "step3": {
+      "title": "Partagez et commencez à vendre",
+      "description": "Partagez votre lien unique sur WhatsApp, Instagram, Facebook. Vos clients installent votre application et commencent à interagir immédiatement."
+    }
+  },
+  "support_section": {
+    "title": "Support et mises à jour continues",
+    "subtitle": "Vous n'achetez pas une application, vous investissez dans une relation à long terme",
+    "real_time_updates": {
+      "title": "Mises à jour en temps réel",
+      "description": "Nous travaillons directement avec vous pour implémenter les fonctionnalités dont vous avez besoin. Vous avez besoin d'un champ spécifique pour vos forfaits Hajj ? Une intégration avec votre fournisseur actuel ? Nous le concrétisons."
+    },
+    "whats_included": {
+      "title": "Tout inclus dans votre application :",
+      "feature1": "Support technique prioritaire",
+      "feature2": "Mises à jour de sécurité continues",
+      "feature3": "Nouvelles fonctionnalités selon vos besoins",
+      "feature4": "Optimisation des performances",
+      "feature5": "Sauvegardes automatiques de votre base de données",
+      "feature6": "Conseil en stratégie digitale"
+    }
+  },
+  "final_cta": {
+    "title": "Il est temps de reprendre le contrôle de votre entreprise",
+    "subtitle": "Rejoignez les agences visionnaires qui construisent déjà leur patrimoine numérique. Arrêtez de dépendre des plateformes qui ne vous valorisent pas et commencez à construire votre propre empire de voyage.",
+    "button": "Commencer ma révolution numérique",
+    "no_risk": "Essai gratuit sans engagement - Annulez à tout moment"
+  }
+}

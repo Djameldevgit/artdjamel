@@ -1,0 +1,48 @@
+{
+  "deleteModal": {
+    "searchUsers":  "بحث المستخدمين",
+    
+    "title": "حذف المستخدم",
+    "message": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟",
+    "cancel": "إلغاء",
+    "confirm": "حذف"
+  },
+  "noUsersFound": "لم يتم العثور على مستخدمين.",
+  "tableHeaders": {
+    "user": "المستخدم",
+    "status": "الحالة",
+    "lastDisconnect": "آخر تسجيل خروج",
+    "registration": "تاريخ التسجيل",
+    "verification": "التحقق",
+    "accountStatus": "حالة الحساب",
+    "blockStatus": "حالة الحظر",
+    "actions": "الإجراءات"
+  },
+  "status": {
+    "online": "متصل",
+    "offline": "غير متصل",
+    "offlineSince": "غير متصل منذ {{time}}",
+    "verified": "تم التحقق",
+    "notVerified": "لم يتم التحقق",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "blocked": "محظور",
+    "notBlocked": "غير محظور"
+  },
+  "action": {
+    "edit": "تعديل",
+    "delete": "حذف",
+    "managePermissions": "إدارة الصلاحيات",
+    "deactivate": "إلغاء التفعيل",
+    "activate": "تفعيل",
+    "block": "حظر",
+    "unblock": "إلغاء الحظر"
+  },
+  "errors": {
+    "fetchUsers": "حدث خطأ أثناء جلب المستخدمين",
+    "loadMore": "حدث خطأ أثناء تحميل المزيد من المستخدمين",
+    "deleteUser": "حدث خطأ أثناء حذف المستخدم",
+    "blockUser": "حدث خطأ أثناء حظر المستخدم",
+    "unblockUser": "حدث خطأ أثناء إلغاء حظر المستخدم"
+  }
+}

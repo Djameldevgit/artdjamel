@@ -1,0 +1,522 @@
+/* pages/video/HeaderVideo.css - Versión mejorada con iconos premium */
+
+/* ============================================
+   CONTENEDOR PRINCIPAL - ESTILO TIKTOK
+   ============================================ */
+   .header-video-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(30px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 1000;
+    padding: 8px 0 14px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  /* ============================================
+     CONTENIDO
+     ============================================ */
+  .header-video-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  /* ============================================
+     ITEMS DEL HEADER - CON FONDO REDONDEADO
+     ============================================ */
+  .header-video-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 30px;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .header-video-item:active {
+    transform: scale(0.92);
+  }
+  
+  /* ============================================
+     ICON WRAPPER - CON FONDO GRIS
+     ============================================ */
+  .header-video-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(128, 128, 128, 0.3);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    transition: all 0.25s ease;
+  }
+  
+  /* Iconos dentro del wrapper */
+  .header-video-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+    transition: all 0.2s ease;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Hover y active en el icono */
+  .header-video-item:hover .header-video-icon-wrapper {
+    background: rgba(128, 128, 128, 0.5);
+    transform: scale(1.02);
+  }
+  
+  .header-video-item:active .header-video-icon-wrapper {
+    transform: scale(0.95);
+    background: rgba(128, 128, 128, 0.6);
+  }
+  
+  /* ============================================
+     ITEM ACTIVO (ESTILO TIKTOK)
+     ============================================ */
+  .header-video-item.active {
+    color: #fe2c55;
+  }
+  
+  .header-video-item.active .header-video-icon-wrapper {
+    background: rgba(254, 44, 85, 0.2);
+  }
+  
+  .header-video-item.active .header-video-icon-wrapper svg {
+    color: #fe2c55;
+    filter: drop-shadow(0 0 4px rgba(254, 44, 85, 0.5));
+  }
+  
+  /* Indicador activo (punto rojo) */
+  .active-indicator {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #fe2c55;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translateX(-50%) scale(0.8);
+    }
+  }
+  
+  /* ============================================
+     ANIMACIÓN AL HACER CLIC
+     ============================================ */
+  .header-video-item:active .header-video-icon-wrapper svg {
+    transform: scale(0.9);
+  }
+  
+  /* ============================================
+     AVATAR
+     ============================================ */
+  .header-video-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+  
+  .header-video-item.active .header-video-avatar {
+    border-color: #fe2c55;
+    box-shadow: 0 0 8px rgba(254, 44, 85, 0.4);
+  }
+  
+  /* ============================================
+     LABEL (TEXTO)
+     ============================================ */
+  .header-video-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+  }
+  
+  .header-video-item.active .header-video-label {
+    color: #fe2c55;
+    font-weight: 600;
+  }
+  
+  /* ============================================
+     NOTIFICATION BADGE
+     ============================================ */
+  .notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #fe2c55, #ff6b6b);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 20px;
+    min-width: 18px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(254, 44, 85, 0.4);
+    animation: badgeBounce 0.3s ease;
+  }
+  
+  @keyframes badgeBounce {
+    0% {
+      transform: scale(0);
+    }
+    70% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* ============================================
+     BOTÓN CREAR (CON EFECTO GRADIENTE)
+     ============================================ */
+  .create-btn .header-video-icon-wrapper {
+    background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(255, 107, 107, 0.1));
+    border: 1px solid rgba(254, 44, 85, 0.3);
+  }
+  
+  .create-btn.active .header-video-icon-wrapper {
+    background: linear-gradient(135deg, rgba(254, 44, 85, 0.35), rgba(255, 107, 107, 0.2));
+    border-color: #fe2c55;
+  }
+  
+  .create-btn .header-video-icon-wrapper svg {
+    transition: all 0.3s ease;
+  }
+  
+  .create-btn:active .header-video-icon-wrapper svg {
+    transform: rotate(90deg);
+  }
+  
+  /* ============================================
+     MENÚ DESPLEGABLE PARA CREAR (ESTILO MODERNO)
+     ============================================ */
+  .header-video-create-wrapper {
+    position: relative;
+  }
+  
+  .create-menu {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(25, 25, 30, 0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 12px 0;
+    min-width: 240px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideUpMenu 0.25s ease;
+    z-index: 1001;
+    overflow: hidden;
+  }
+  
+  @keyframes slideUpMenu {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  .create-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .create-menu-item svg {
+    width: 20px;
+    height: 20px;
+    color: #fe2c55;
+  }
+  
+  .create-menu-item:hover {
+    background: rgba(254, 44, 85, 0.15);
+    color: #fe2c55;
+  }
+  
+  .create-menu-item:active {
+    transform: scale(0.98);
+  }
+  
+  .create-menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 6px 0;
+  }
+  
+  /* ============================================
+     TABLET / DESKTOP (BARRA SUPERIOR)
+     ============================================ */
+  @media (min-width: 768px) {
+    .header-video-container {
+      top: 0;
+      bottom: auto;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: none;
+      padding: 0;
+    }
+    
+    .header-video-content {
+      max-width: 1200px;
+      justify-content: flex-start;
+      gap: 16px;
+      padding: 0 24px;
+    }
+    
+    .header-video-item {
+      flex-direction: row;
+      gap: 8px;
+      padding: 10px 20px;
+    }
+    
+    .header-video-icon-wrapper {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .header-video-icon-wrapper svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .header-video-label {
+      font-size: 13px;
+    }
+    
+    .header-video-avatar {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .active-indicator {
+      bottom: -10px;
+    }
+    
+    .create-menu {
+      bottom: auto;
+      top: 65px;
+      left: 0;
+      transform: translateX(0);
+    }
+    
+    @keyframes slideUpMenu {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  /* ============================================
+     AJUSTES PARA EL CONTENIDO PRINCIPAL
+     ============================================ */
+  body {
+    padding-bottom: 75px;
+  }
+  
+  @media (min-width: 768px) {
+    body {
+      padding-bottom: 0;
+      padding-top: 70px;
+    }
+  }
+  
+  /* Ajuste para la feed de videos */
+  .video-reel-container {
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 767px) {
+    .video-reel-container:last-child {
+      margin-bottom: 75px;
+    }
+  }
+  
+  /* ============================================
+     TOUCH OPTIMIZATIONS PARA ANDROID
+     ============================================ */
+  @media (hover: none) and (pointer: coarse) {
+    .header-video-item {
+      cursor: default;
+    }
+    
+    .header-video-item:active {
+      transform: scale(0.95);
+    }
+    
+    .create-menu-item {
+      cursor: default;
+    }
+    
+    .header-video-icon-wrapper {
+      background: rgba(128, 128, 128, 0.4);
+    }
+  }
+  
+  /* ============================================
+     EFECTO GLOW PARA ÍTEMS ACTIVOS
+     ============================================ */
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(254, 44, 85, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgba(254, 44, 85, 0);
+    }
+  }
+  
+  .header-video-item.active .header-video-icon-wrapper {
+    animation: glowPulse 2s infinite;
+  }
+  
+  /* ============================================
+     ICONOS ESPECIALES (TIKTOK STYLE)
+     ============================================ */
+  /* Efecto de gradiente para iconos activos */
+  .header-video-item.active .header-video-icon-wrapper svg {
+    animation: iconGlow 0.3s ease;
+  }
+  
+  @keyframes iconGlow {
+    0% {
+      filter: drop-shadow(0 0 0px #fe2c55);
+    }
+    50% {
+      filter: drop-shadow(0 0 6px #fe2c55);
+    }
+    100% {
+      filter: drop-shadow(0 0 0px #fe2c55);
+    }
+  }
+  
+  /* ============================================
+     RESPONSIVE PARA PANTALLAS MUY PEQUEÑAS
+     ============================================ */
+  @media (max-width: 380px) {
+    .header-video-icon-wrapper {
+      width: 42px;
+      height: 42px;
+    }
+    
+    .header-video-icon-wrapper svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .header-video-label {
+      font-size: 9px;
+    }
+    
+    .header-video-item {
+      padding: 4px 8px;
+    }
+    
+    .create-menu {
+      min-width: 200px;
+    }
+    
+    .create-menu-item {
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+  }
+  
+  /* ============================================
+     EFFECTO DE ONDA AL HACER CLIC
+     ============================================ */
+  .header-video-item {
+    position: relative;
+    overflow: visible;
+  }
+  
+  .header-video-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(254, 44, 85, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+    pointer-events: none;
+  }
+  
+  .header-video-item:active::after {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+  }
+  .notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #fe2c55, #ff6b6b);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 20px;
+    min-width: 18px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(254, 44, 85, 0.4);
+    animation: badgeBounce 0.3s ease;
+  }
+  /* ============================================
+     DARK MODE SUPPORT
+     ============================================ */
+  @media (prefers-color-scheme: dark) {
+    .header-video-container {
+      background: rgba(0, 0, 0, 0.96);
+    }
+  }

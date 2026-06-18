@@ -1,0 +1,74 @@
+/* Estilos generales para RTL */
+.rtl-container {
+    direction: rtl;
+  }
+  
+  /* Estilos específicos para el encabezado en RTL */
+  .rtl-header {
+    flex-direction: row-reverse;
+  }
+  
+  /* Ajustes para el cuerpo en RTL */
+  .rtl-body .list-group-item {
+    text-align: right;
+  }
+  
+  /* Ajuste para los márgenes de los iconos */
+  [dir="rtl"] .me-2 {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+  }
+  
+  [dir="rtl"] .ms-2 {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+  }
+  
+  /* Mantener el ancho de las columnas */
+  .list-group-item > span {
+    flex: 1;
+  }
+  
+  /* Asegurar que el texto largo no rompa el diseño */
+  .text-start, .text-end {
+    word-break: break-word;
+  }
+
+  /* Ajuste fino de la posición del modal */
+.modal {
+  top: 10%;
+}
+
+/* Asegurar que el modal no sea demasiado ancho */
+.modal-dialog {
+  max-width: 500px;
+  margin: 1.75rem auto;
+}
+
+/* Estilos para RTL en el modal */
+[dir="rtl"] .modal-header .btn-close {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .justify-content-end {
+  justify-content: flex-start !important;
+}
+
+/* styles.css */
+.contact-method {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.contact-method svg {
+  color: #6c757d;
+}
+
+[dir="rtl"] .contact-method {
+  flex-direction: row-reverse;
+}

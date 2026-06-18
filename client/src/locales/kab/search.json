@@ -1,0 +1,64 @@
+{
+  "title": "🔍 Nadi Tameẓla",
+  "subtitle": "Af-d tixxamin n tameẓla d imseḥḍan",
+  "searchPlaceholder": "Amedya: Aẓawan n ddhu, agdil aɣerfan, aseklu ameqran...",
+  "searchLabel": "D acu i tettnadiḍ?",
+  "searchHelp": "Nadi s uzwel, amseḥḍa, tafawt neɣ asefhem",
+  "artistsFound": "Imseḥḍan yettwafen",
+  "searchingArtists": "Anadi n imseḥḍan...",
+  "categories": {
+    "title": "Igenwan n Tameẓla",
+    "painting": "Tasebɣa",
+    "sculpture": "Tasekla",
+    "photography": "Tasewḍa",
+    "drawing": "Tugna",
+    "engraving": "Taseɣti",
+    "digital_art": "Tameẓla tanefdayt",
+    "collage": "Tasekla",
+    "textile_art": "Tameẓla n tneẓruft"
+  },
+  "advancedSearch": {
+    "title": "Anadi Uzzilen",
+    "theme": "Asentel",
+    "themePlaceholder": "Amedya: tafukt, aɣerfan, agdil...",
+    "style": "Aɣanib",
+    "stylePlaceholder": "Amedya: tidet, asehwu, ameqran...",
+    "minPrice": "Serṭa anecta",
+    "minPricePlaceholder": "Amedya: 50",
+    "maxPrice": "Serṭa tameqrant",
+    "maxPricePlaceholder": "Amedya: 500",
+    "location": "Adig (Wilaya)",
+    "locationPlaceholder": "Amedya: Lezzayer, Wahran, Qsenṭina..."
+  },
+  "buttons": {
+    "search": "Nadi tixxamin",
+    "searching": "Anadi...",
+    "clear": "Sfeḍ",
+    "close": "×"
+  },
+  "results": {
+    "found": "Ttwafen {{count}} n tixxamin i yemcaban akked unadi-nnek",
+    "searching": "Anadi n tixxamin n tameẓla...",
+    "loading": "Yezmer ad yawi kra n tsinin",
+    "noResults": "Ulac tixxamin n tameẓla i yettwafen i yemcaban akked unadi-nnek"
+  },
+  "errors": {
+    "searchError": "Tuccḍa deg unadi",
+    "userSearchError": "Tuccḍa deg unadi n iseqdacen"
+  },
+  "common": {
+    "loading": "Asali...",
+    "error": "Tuccḍa",
+    "success": "Arraz",
+    "save": "Sekles",
+    "cancel": "Sefsex",
+    "delete": "Kkes",
+    "edit": "Ẓreg",
+    "yes": "Ih",
+    "no": "Ala",
+    "confirm": "Sentem",
+    "back": "Uɣal",
+    "next": "Uḍfer",
+    "previous": "Yezrin"
+  }
+}

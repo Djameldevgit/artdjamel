@@ -1,0 +1,48 @@
+
+chargily
+artealger2020argelia@gmail.com    telefonos  658556296
+ 
+ contrasena     djamelbaoualichargily2026ultima  
+
+
+
+bravo por ti maetro ahora si , con el pago se actualizar el role y el plan en el cliente te felicito por este logro gracias, me pregunto como se hace ahora esto para hacerlo con dinero real ya que tengo la tarjeta dahabia
+¡Gracias maestro! 🎉 Me alegra mucho que todo funcione.
+
+Para pasar a producción con dinero real:
+1. Activar tu cuenta en Chargily
+Tu cuenta actual está en modo TEST. Necesitas activarla para producción:
+
+Ve al dashboard de Chargily
+
+Completa la verificación de tu perfil (está pendiente - "غير مفعل")
+
+Agrega tu cuenta bancaria para recibir pagos reales
+
+Contacta a Chargily para activar el modo LIVE
+
+2. Cambiar las claves de TEST a LIVE
+Cuando Chargily active tu cuenta, te darán nuevas claves. Actualiza tu .env en Render:
+
+env
+# Cambiar de TEST a LIVE
+CHARGILY_SECRET_KEY=live_sk_...    ← Nueva clave LIVE
+CHARGILY_PUBLIC_KEY=live_pk_...    ← Nueva clave pública
+CHARGILY_BASE_URL=https://pay.chargily.net/api/v2   ← Sin "test"
+CHARGILY_MODE=live
+WEBHOOK_URL=https://videocommerce.onrender.com
+3. Cambiar la URL de la API en el código
+En chargilyPlanCtrl.js, cambia:
+
+javascript
+// ❌ TEST
+"https://pay.chargily.net/test/api/v2/checkouts"
+
+// ✅ LIVE
+"https://pay.chargily.net/api/v2/checkouts"
+4. Actualizar el webhook en el dashboard
+En "ركن المبرمجين", asegúrate que el webhook esté configurado en modo LIVE también.
+
+¿Quieres que prepare el código para que sea fácil cambiar entre TEST y LIVE con una variable de entorno?
+
+Esta respuesta es generada por AI, solo como referencia.

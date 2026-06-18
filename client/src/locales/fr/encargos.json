@@ -1,0 +1,149 @@
+{
+  "title": "Commandes d'Œuvres d'Art Personnalisées",
+  "subtitle": "Transformez votre vision en une œuvre d'art unique créée spécialement pour vous",
+  "specialOffer": "Devis gratuit et sans engagement !",
+  
+  "importantNote": "Informations importantes pour votre commande",
+  "importantDescription": "Pour garantir que vous receviez exactement ce que vous imaginez, il est essentiel que vous nous fournissiez le plus de détails possible.",
+  
+  "welcome": {
+    "title": "Bienvenue au service de commandes personnalisées",
+    "description1": "Vous avez une idée spécifique en tête ou souhaiteriez une réplique d'une œuvre que vous avez vue ? Notre service de commandes vous permet de collaborer directement avec l'artiste pour créer une pièce unique qui s'adapte parfaitement à vos besoins et préférences.",
+    "description2": "Que vous désiriez une copie fidèle d'une œuvre existante ou une création complètement originale, nous sommes ici pour concrétiser votre vision artistique."
+  },
+  
+  "guarantee": {
+    "title": "Garantie de satisfaction",
+    "description": "Nous travaillons avec vous à chaque étape du processus pour nous assurer que le résultat final dépasse vos attentes"
+  },
+  
+  "specificationRequirements": "Détails requis pour votre commande",
+  "specificationDescription": "Veuillez fournir les informations suivantes pour que nous puissions créer votre œuvre parfaite :",
+  
+  "requirements": {
+    "style": {
+      "title": "Style Artistique",
+      "items": ["Réaliste ou abstrait", "Moderne ou classique", "Style spécifique (impressionnisme, cubisme, etc.)", "Coloré ou monochromatique"]
+    },
+    "measurements": {
+      "title": "Dimensions et Format",
+      "items": ["Hauteur et largeur exactes", "Format (horizontal, vertical, carré)", "Épaisseur du châssis le cas échéant", "Espace disponible où vous accrocherez l'œuvre"]
+    },
+    "technique": {
+      "title": "Technique et Matériaux",
+      "items": ["Huile, acrylique, aquarelle", "Techniques mixtes", "Type de coups de pinceau souhaité", "Textures spécifiques"]
+    },
+    "theme": {
+      "title": "Thème et Contenu",
+      "items": ["Thème principal de l'œuvre", "Éléments spécifiques à inclure", "Ambiance ou atmosphère", "Histoire ou signification personnelle"]
+    },
+    "support": {
+      "title": "Support et Finition",
+      "items": ["Toile, bois, papier", "Type de cadre souhaité", "Finition (brillante, mate)", "Protection UV si nécessaire"]
+    },
+    "reference": {
+      "title": "Matériel de Référence",
+      "items": ["Photographies d'inspiration", "Liens vers des œuvres similaires", "Croquis ou dessins préalables", "Couleurs spécifiques à utiliser"]
+    }
+  },
+  
+  "process": {
+    "title": "Processus de Commande",
+    "consultation": {
+      "title": "Consultation Initiale",
+      "description": "Nous discutons de votre vision, exigences et préférences artistiques"
+    },
+    "quote": {
+      "title": "Devis Détaillé",
+      "description": "Vous recevrez un devis complet avec coûts et délais de livraison"
+    },
+    "deposit": {
+      "title": "Acompte de 30%",
+      "description": "Un acompte est requis pour démarrer le processus créatif et acheter les matériaux"
+    },
+    "creation": {
+      "title": "Processus Créatif",
+      "description": "L'artiste crée votre œuvre en vous tenant informé de l'avancement"
+    },
+    "approval": {
+      "title": "Approbation Finale",
+      "description": "Vous examinez l'œuvre terminée et donnez votre approbation finale"
+    },
+    "payment": {
+      "title": "Paiement du Solde",
+      "description": "Vous effectuez le paiement des 70% restants avant l'expédition"
+    },
+    "shipping": {
+      "title": "Expédition et Livraison",
+      "description": "Votre œuvre est emballée professionnellement et expédiée en toute sécurité"
+    }
+  },
+  
+  "payment": {
+    "title": "Informations de Paiement",
+    "deposit": {
+      "title": "Acompte Initial (30%)",
+      "description": "L'acompte est nécessaire pour :",
+      "points": {
+        "secure": "Garantir votre place dans l'agenda de l'artiste",
+        "materials": "Achat de matériaux de haute qualité",
+        "reservation": "Démarrer le processus créatif immédiatement"
+      }
+    },
+    "final": {
+      "title": "Paiement Final (70%)",
+      "description": "Le solde est payé lorsque :",
+      "points": {
+        "balance": "L'œuvre est terminée et approuvée",
+        "shipping": "Avant l'expédition ou la livraison",
+        "secure": "Garantit la sécurité des deux parties"
+      }
+    },
+    "guarantee": {
+      "title": "Garantie de Remboursement",
+      "description": "Si vous n'êtes pas satisfait du résultat, nous proposons des ajustements ou un remboursement partiel selon le cas"
+    }
+  },
+  
+  "delivery": {
+    "title": "Délais de Livraison",
+    "description": "Les délais de livraison varient selon la complexité de l'œuvre :",
+    "standard": {
+      "title": "Livraison Standard",
+      "time": "2-4 semaines selon la technique et la taille"
+    },
+    "express": {
+      "title": "Livraison Express",
+      "time": "1-2 semaines (coût supplémentaire applicable)"
+    }
+  },
+  
+  "faq": {
+    "title": "Questions Fréquentes",
+    "q1": {
+      "question": "Puis-je demander des modifications pendant le processus ?",
+      "answer": "Oui, pendant les premières étapes vous pouvez demander des ajustements. Une fois le travail avancé, les modifications significatives peuvent générer des coûts supplémentaires."
+    },
+    "q2": {
+      "question": "Que se passe-t-il si je n'aime pas le résultat final ?",
+      "answer": "Nous travaillons avec vous tout au long du processus pour assurer votre satisfaction. Si au final vous n'êtes pas content, nous évaluons les options de modification ou de remboursement partiel selon l'avancement du travail."
+    },
+    "q3": {
+      "question": "Le prix inclut-il le cadre et l'expédition ?",
+      "answer": "Le prix de base inclut l'œuvre terminée. Le cadre et l'expédition sont facturés séparément selon vos préférences spécifiques."
+    }
+  },
+  
+  
+    "cta": {
+      "title": "Prêt à commencer votre projet artistique ?",
+      "description": "Contactez-nous aujourd'hui pour obtenir un devis gratuit et discuter de votre vision",
+      "emailButton": "Demander un devis par email",
+      "chatButton": "Chat direct avec l'artiste",
+      "loginButton": "Se connecter pour chatter", 
+      "galleryButton": "Galerie d'œuvres pour inspiration",
+      "responseTime": "Réponse sous 24 heures",
+      "freeQuote": "Devis gratuit"
+    
+  }
+}

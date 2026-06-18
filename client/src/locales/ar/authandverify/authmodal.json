@@ -1,0 +1,32 @@
+{
+"auth":"authhhhhhhhhhhhhhhhhhhhhhhhhhh",
+  "authenticationRequired": "مطلوب مصادقة",
+  "pleaseLoginToContinue": "يرجى تسجيل الدخول أو التسجيل للمتابعة",
+  "login": "تسجيل الدخول",
+  "register": "تسجيل",
+
+
+ "activate":"activateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "activationRequest": "طلب التفعيل",
+    "activationMessage": "حسابك معطل. يرجى الاتصال بالمسؤول لإعادة تفعيل حسابك.",
+    "userEmail": "بريد المستخدم",
+    "message": "الرسالة",
+    "messagePlaceholder": "اكتب طلب التفعيل هنا...",
+    "messageRequired": "يجب كتابة رسالة",
+    "messageSentSuccess": "تم إرسال الطلب بنجاح",
+    "requestActivation": "طلب التفعيل",
+    "requestError": "خطأ في إرسال الطلب",
+    "sending": "جاري الإرسال...",
+    
+  
+    
+    "verifyyyyy":"verifyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "verificationRequired": "مطلوب التحقق",
+      "verificationMessage": "حسابك يحتاج إلى التحقق للوصول إلى جميع الميزات. يرجى التحقق من بريدك الإلكتروني للمتابعة.",
+      "verificationNote": "إذا لم تستلم البريد الإلكتروني، يمكنك طلب واحد جديد",
+      "close": "إغلاق"
+ 
+
+
+
+}

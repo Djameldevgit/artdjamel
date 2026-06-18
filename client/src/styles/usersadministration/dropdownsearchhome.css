@@ -1,0 +1,76 @@
+/* En tu archivo CSS */
+select, button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* En tu archivo CSS */
+select, button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button.reset {
+    background-color: #dc3545; /* Color rojo para el botón Reset */
+}
+
+button.reset:hover {
+    background-color: #c82333;
+}
+
+/* En tu archivo CSS */
+select, input, button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input {
+    width: 200px; /* Ajusta el ancho según sea necesario */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button.reset {
+    background-color: #dc3545; /* Color rojo para el botón Reset */
+}
+
+button.reset:hover {
+    background-color: #c82333;
+}

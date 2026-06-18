@@ -1,0 +1,288 @@
+/* src/pages/ChannelsPage.css */
+
+/* Contenedor principal */
+.channels-page {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+    min-height: 100vh;
+}
+
+.channels-header {
+    text-align: center;
+    padding: 2rem 1rem 1.5rem;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.channels-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.channels-header p {
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+/* Enlace de tarjeta */
+.channel-card-link {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+}
+
+/* Tarjeta personalizada */
+.channel-card-custom {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.channel-card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+}
+
+/* Cover */
+.channel-card-cover {
+    height: 140px;
+    background-color: #f0f2f5;
+    overflow: hidden;
+    position: relative;
+}
+
+.channel-card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.channel-card-custom:hover .channel-card-cover img {
+    transform: scale(1.03);
+}
+
+.channel-card-cover-default {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+    color: #64748b;
+}
+
+/* Avatar */
+.channel-card-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    margin: -40px auto 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.channel-card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Info */
+.channel-card-info {
+    padding: 1rem 1rem 1.5rem;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-card-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0.25rem;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.channel-card-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 0.75rem;
+}
+
+.channel-card-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.channel-card-description {
+    font-size: 0.8rem;
+    color: #475569;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+/* Botón */
+.channel-card-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    margin-top: auto;
+}
+
+.channel-card-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .channel-card-cover {
+        height: 110px;
+    }
+    .channel-card-avatar {
+        width: 65px;
+        height: 65px;
+        margin-top: -32px;
+    }
+    .channel-card-name {
+        font-size: 1rem;
+    }
+    .channel-card-stats {
+        font-size: 0.65rem;
+        gap: 0.75rem;
+    }
+    .channel-card-description {
+        font-size: 0.7rem;
+    }
+    .channel-card-btn {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+    }
+}
+
+/* Loading, error, empty (igual que antes) */
+.channels-loading,
+.channels-error,
+.channels-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    gap: 1rem;
+}
+
+.channels-loading .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.channels-error button {
+    background: #667eea;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    color: white;
+    font-weight: 600;
+}
+
+.channels-empty .empty-icon {
+    font-size: 4rem;
+    background: #f1f3f5;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.infinite-scroll-loader {
+    text-align: center;
+    padding: 2rem;
+    color: #667eea;
+    font-weight: 500;
+}
+
+/* Añadir al final de ChannelsPage.css */
+.channel-card-avatar-default {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.channel-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.channel-card-btn.secondary {
+    background: transparent;
+    color: #667eea;
+    border: 1px solid #667eea;
+}
+
+.channel-card-btn.secondary:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: scale(1.02);
+    box-shadow: none;
+}
+
+.channel-card-btn.following {
+    background: #10b981;
+    background: linear-gradient(135deg, #10b981, #059669);
+}

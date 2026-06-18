@@ -1,0 +1,123 @@
+{
+  "page_title": {
+    "create": "Créer une annonce",
+    "edit": "Modifier l'annonce"
+  },
+  "sections": {
+    "categories": "Catégories",
+    "dynamic_fields": "Détails",
+    "location_contact": "Localisation & Contact",
+    "images": "Photos"
+  },
+  "buttons": {
+    "publish": "Publier",
+    "update": "Mettre à jour",
+    "cancel": "Annuler",
+    "processing": "Traitement en cours..."
+  },
+  "alerts": {
+    "success_create": "✅ Publication créée avec succès !",
+    "success_update": "✅ Publication mise à jour avec succès !",
+    "error_server": "❌ Erreur serveur",
+    "no_images": "Ajoutez au moins une photo",
+    "no_subcategory": "Sélectionnez une sous-catégorie"
+  },
+  "labels": {
+    "photos_count": "{{count}} photo(s)",
+    "max_photos": "Max: 10",
+    "required_field": "* Champ obligatoire"
+  },
+  
+
+
+
+
+ 
+    "color": "Couleur",
+    "select_color": "Sélectionnez une couleur",
+    "other_color": "Autre (précisez)",
+    "specify_color": "Précisez la couleur exacte",
+    "color_custom": "Couleur personnalisée",
+    "main_colors": "🎨 Couleurs principales",
+    "all_colors": "📋 Toutes les couleurs",
+    "available_colors": "{{count}} couleur(s) disponible(s) pour",
+    "universal_colors": "Couleurs universelles",
+    "no_color_selected": "Aucune couleur sélectionnée",
+    "hex_code": "Code hexadécimal",
+    "rgb_code": "Code RGB",
+    "palette": "Palette",
+    "light": "Clair",
+    "dark": "Foncé",
+    "metallic": "Métallique",
+    "matte": "Mat",
+    "glossy": "Brillant",
+    "transparent": "Transparent",
+    "multicolor": "Multicolore",
+    "color_groups": {
+      "basic": "Basiques",
+      "neutral": "Neutres",
+      "vibrant": "Vibrants",
+      "pastel": "Pastels",
+      "metallic": "Métalliques",
+      "wood": "Bois",
+      "fabric": "Textiles"
+    },
+    "validation": {
+      "color_required": "La couleur est requise",
+      "invalid_hex": "Code hexadécimal invalide",
+      "custom_color_required": "Veuillez préciser la couleur"
+    },
+ 
+   
+      "etat": "État",
+      "select_condition": "Sélectionnez l'état",
+      "condition": "État",
+      "condition_label": "État du produit",
+      
+      "conditions": {
+        "new": "Neuf",
+        "excellent": "Excellent",
+        "very_good": "Très bon",
+        "good": "Bon",
+        "average": "État moyen",
+        "functional": "Fonctionnel",
+        "needs_repair": "À réparer",
+        "for_parts": "Pour pièces",
+        "screen_broken": "Écran cassé",
+        "new_with_tag": "Neuf avec étiquette",
+        "new_without_tag": "Neuf sans étiquette",
+        "visible_use": "Usage visible",
+        "to_renovate": "À rénover",
+        "refurbished": "Reconditionné",
+        "damaged": "Endommagé",
+        "like_new": "Comme neuf"
+      },
+      
+      "category_hints": {
+        "automobiles": "État général du véhicule",
+        "immobilier": "État du bien immobilier",
+        "telephones": "État de l'appareil",
+        "electromenager": "État de l'appareil",
+        "informatique": "État de l'équipement",
+        "vetements": "État du vêtement",
+        "meubles": "État du meuble",
+        "default": "État général du produit"
+      },
+      
+      
+      "descriptions": {
+        "new": "Produit jamais utilisé, dans son emballage d'origine",
+        "excellent": "Presque comme neuf, très peu d'utilisations",
+        "very_good": "Très bon état, légères traces d'utilisation",
+        "good": "Bon état, utilisation normale visible",
+        "average": "État correct, signes d'usure visibles",
+        "functional": "Fonctionne correctement mais état usé",
+        "needs_repair": "Nécessite des réparations pour fonctionner",
+        "for_parts": "Vendu pour pièces détachées uniquement"
+      }
+  
+
+
+
+
+}

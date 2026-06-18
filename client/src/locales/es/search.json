@@ -1,0 +1,68 @@
+{
+  "title": "🔍 Buscar Arte",
+  "subtitle": "Encuentra obras de arte y artistas",
+  "searchPlaceholder": "Ej: Paisaje al óleo, retrato abstracto, escultura moderna...",
+  "searchLabel": "¿Qué estás buscando?",
+  "searchHelp": "Busca por título, artista, técnica o descripción",
+  "artistsFound": "Artistas encontrados",
+  "searchingArtists": "Buscando artistas...",
+  "categories": {
+    "title": "Categorías Artísticas",
+    "painting": "Pintura",
+    "sculpture": "Escultura",
+    "photography": "Fotografía",
+    "drawing": "Dibujo",
+    "engraving": "Grabado",
+    "digital_art": "Arte Digital",
+    "collage": "Collage",
+    "textile_art": "Arte Textil"
+  },
+  "advancedSearch": {
+    "title": "Búsqueda Avanzada",
+    "theme": "Tema",
+    "themePlaceholder": "Ej: naturaleza, abstracto, retrato...",
+    "style": "Estilo",
+    "stylePlaceholder": "Ej: realismo, impresionismo, moderno...",
+    "minPrice": "Precio mínimo",
+    "minPricePlaceholder": "Ej: 50",
+    "maxPrice": "Precio máximo",
+    "maxPricePlaceholder": "Ej: 500",
+    "location": "Ubicación (Wilaya)",
+    "locationPlaceholder": "Ej: Alger, Oran, Constantine..."
+  },
+  "buttons": {
+    "search": "Buscar Obras",
+    "searching": "Buscando...",
+    "clear": "Limpiar",
+    "close": "×"
+  },
+  "results": {
+    "found": "Se encontraron {{count}} obras que coinciden con tu búsqueda",
+    "searching": "Buscando obras de arte...",
+    "loading": "Esto puede tomar unos segundos",
+    "noResults": "No se encontraron obras que coincidan con tu búsqueda"
+  },
+  "errors": {
+    "searchError": "Error en la búsqueda",
+    "userSearchError": "Error al buscar usuarios"
+  },
+
+ 
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "yes": "Sí",
+    "no": "No",
+    "confirm": "Confirmar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior"
+ 
+
+
+
+}

@@ -1,0 +1,56 @@
+.bloqueo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #c50000;
+    padding: 20px;
+}
+
+.bloqueo-card {
+    background-color: rgb(104, 0, 0);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    text-align: center;
+}
+
+.bloqueo-card h2 {
+    font-size: 24px;
+    color: rgb(243, 235, 235);
+    margin-bottom: 20px;
+}
+
+.bloqueo-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+   
+}
+
+.bloqueo-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.label {
+    font-weight: bold;
+    color: rgb(243, 235, 235);
+}
+
+.value {
+    color: rgb(243, 235, 235);
+    font-size: 16px;
+}
+
+.value {
+    font-weight: 600;
+}
+
+.bloqueo-item span {
+    display: inline-block;
+}
