@@ -1,5 +1,6 @@
-// sw.js - Service Worker con Push Notifications y Sonido
-const CACHE_NAME = 'vetements-boutique-v2.3';
+// sw.js - Service Worker avec notifications push et son (version Djamel Art)
+
+const CACHE_NAME = 'djamel-art-v1.0';
 
 const urlsToCache = [
   '/',
@@ -9,38 +10,38 @@ const urlsToCache = [
   '/icon-web-01.png',
   '/sounds/notify.mp3'
 ];
-npm 
-// Instalación
+
+// Installation
 self.addEventListener('install', (event) => {
-  console.log('🚀 Service Worker instalando...');
+  console.log('🚀 Service Worker en cours d\'installation...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('📦 Cache abierto');
+        console.log('📦 Cache ouvert');
         return Promise.all(
           urlsToCache.map((url) => {
             return cache.add(url).catch((error) => {
-              console.log(`❌ Error cacheando ${url}:`, error);
+              console.log(`❌ Erreur lors de la mise en cache de ${url} :`, error);
             });
           })
         );
       })
       .then(() => {
-        console.log('✅ Todos los recursos cacheados');
+        console.log('✅ Toutes les ressources sont en cache');
         return self.skipWaiting();
       })
   );
 });
 
-// Activación
+// Activation
 self.addEventListener('activate', (event) => {
-  console.log('🎯 Service Worker activado');
+  console.log('🎯 Service Worker activé');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('🗑️ Eliminando cache antigua:', cacheName);
+            console.log('🗑️ Suppression de l\'ancien cache :', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -52,31 +53,31 @@ self.addEventListener('activate', (event) => {
 });
 
 // ============================================
-// ✅ NOTIFICACIONES PUSH PARA PWA INSTALADA
+// ✅ NOTIFICATIONS PUSH POUR PWA INSTALLÉE
 // ============================================
 
-// ✅ Escuchar mensajes del cliente
+// Écoute des messages du client
 self.addEventListener('message', (event) => {
-  console.log('📨 Mensaje recibido en SW:', event.data);
+  console.log('📨 Message reçu dans le SW :', event.data);
   
   if (event.data?.type === 'PLAY_SOUND') {
     const audioUrl = event.data.url || '/sounds/notify.mp3';
     
     caches.match(audioUrl).then(response => {
       if (response) {
-        console.log('🔊 Sonido encontrado en cache');
+        console.log('🔊 Son trouvé dans le cache');
       }
     });
   }
 });
 
-// ✅ Recibir notificación push
+// Réception d'une notification push
 self.addEventListener('push', (event) => {
-  console.log('📨 Push notification recibida:', event);
+  console.log('📨 Notification push reçue :', event);
   
   let notificationData = {
-    title: 'MarketPlace',
-    body: 'Vous avez une nouvelle notification',
+    title: 'Djamel Art',
+    body: 'Nouvelle œuvre d\'art disponible !',
     icon: '/icon-web-01.png',
     badge: '/icon-web-01.png',
     vibrate: [200, 100, 200, 100, 400],
@@ -88,12 +89,12 @@ self.addEventListener('push', (event) => {
     }
   };
   
-  // Extraer datos del push
+  // Extraction des données du push
   if (event.data) {
     try {
       const payload = event.data.json();
       notificationData = { ...notificationData, ...payload };
-      console.log('📦 Datos de notificación:', notificationData);
+      console.log('📦 Données de notification :', notificationData);
     } catch (e) {
       notificationData.body = event.data.text();
     }
@@ -114,7 +115,7 @@ self.addEventListener('push', (event) => {
     data: notificationData.data
   };
   
-  // Intentar usar el sonido personalizado (si el navegador lo soporta)
+  // Tentative d'utilisation du son personnalisé (si le navigateur le supporte)
   if ('sound' in options) {
     options.sound = '/sounds/notify.mp3';
   }
@@ -124,9 +125,9 @@ self.addEventListener('push', (event) => {
   );
 });
 
-// ✅ Manejar click en notificación
+// Gestion du clic sur une notification
 self.addEventListener('notificationclick', (event) => {
-  console.log('🔔 Click en notificación:', event);
+  console.log('🔔 Clic sur la notification :', event);
   event.notification.close();
   
   const action = event.action;
@@ -151,13 +152,13 @@ self.addEventListener('notificationclick', (event) => {
   );
 });
 
-// ✅ Manejar cierre de notificación
+// Gestion de la fermeture de la notification
 self.addEventListener('notificationclose', (event) => {
-  console.log('❌ Notificación cerrada');
+  console.log('❌ Notification fermée');
 });
 
 // ============================================
-// FETCH - Estrategia de cache
+// FETCH - Stratégie de cache
 // ============================================
 
 self.addEventListener('fetch', (event) => {
@@ -185,12 +186,12 @@ self.addEventListener('fetch', (event) => {
           }
           return response;
         })
-        .catch(() => caches.match('/').then(cached => cached || new Response('Offline', { status: 503 })))
+        .catch(() => caches.match('/').then(cached => cached || new Response('Hors ligne', { status: 503 })))
     );
     return;
   }
 
-  // Sonidos - Network First con fallback a cache
+  // Sons - Network First avec fallback cache
   if (event.request.url.includes('/sounds/')) {
     event.respondWith(
       fetch(event.request)
@@ -199,7 +200,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Recursos estáticos - Cache First
+  // Ressources statiques - Cache First
   event.respondWith(
     caches.match(event.request)
       .then((cachedResponse) => {
@@ -219,7 +220,7 @@ self.addEventListener('fetch', (event) => {
             if (event.request.destination === 'image') {
               return new Response('', { status: 404 });
             }
-            return new Response('Offline', { status: 503 });
+            return new Response('Hors ligne', { status: 503 });
           });
       })
   );

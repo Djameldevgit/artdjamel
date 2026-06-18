@@ -149,7 +149,7 @@ useEffect(() => {
                 msg.user.username + ' ' + msg.text,
                 msg.user.avatar,
                 msg.url,
-                'Video Commerce'
+                'Djamel Art'
             )
         })
 

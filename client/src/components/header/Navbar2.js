@@ -1,4 +1,4 @@
-// components/Navbar2.jsx - VERSIÓN CON CARRITO Y SIN PLUS EN NAVBAR
+// components/Navbar2.jsx - VERSIÓN CON CARRITO Y NUEVO ENLACE ADMIN PARA PUBLICAR OBRA
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';
@@ -465,6 +465,12 @@ const Navbar2 = () => {
                         <MenuItem icon={FaUsers} iconColor="#28a745" to="/admindashboard">Dashboard Admin</MenuItem>
                         <MenuItem icon={FaUserCog} iconColor="#667eea" to="/users">Gestion utilisateurs</MenuItem>
                         <MenuItem icon={FaTools} iconColor="#6c757d" to="/users/roles">Gestion rôles</MenuItem>
+                        {/* ✅ NUEVO ENLACE PARA ADMIN – PUBLIER UNE ŒUVRE */}
+                        {auth.user.role === 'admin' && (
+                          <MenuItem icon={FaPlus} iconColor="#ffc107" to="/create-video-page">
+                            Publier une œuvre
+                          </MenuItem>
+                        )}
                       </>
                     )}
 

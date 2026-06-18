@@ -27,7 +27,7 @@ const UserProInfoPlans = () => {
     { id: 'music', name: 'Musique', icon: <FaMusic />, description: 'Ajoutez de la musique à vos vidéos' }
   ];
 
-  // 4 plans pour le canal Video Commerce (prix en DA)
+  // 4 plans pour le canal art (prix en DA)
   const plans = [
     {
       id: 'free',

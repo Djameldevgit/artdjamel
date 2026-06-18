@@ -11,7 +11,7 @@ const InfoPlans = () => {
   const { auth } = useSelector(state => state);
   const [activeTab, setActiveTab] = useState('free');
 
-  // 4 Planes para CANAL de Video Commerce
+  // 4 Planes para CANAL de Vidkeo Commerce
   const plans = [
     {
       id: 'free',
