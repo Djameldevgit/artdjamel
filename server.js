@@ -10,7 +10,6 @@ const morgan = require('morgan');
 const axios = require('axios');
 const path = require('path')
  
-const { startExpiryJob } = require('./cronJobs/ExpireTrial')
  
 // --- Cloudinary ---
 const cloudinary = require('cloudinary').v2;
@@ -123,7 +122,7 @@ app.use('/api', require('./routes/rolesRouter'));
 app.use('/api', require('./routes/chargilyPlanRouter'));
 // --- Categorías (SOLO UNA VEZ) ---
 app.use('/api/categories', require('./routes/categoryRouter'));  // ✅ Esta se queda
-app.use('/api', require('./routes/cartRoutes'));
+app.use('/api', require('./routes/cartRouter'));
 // --- Posts y Comentarios ---
 app.use('/api', require('./routes/commentRouter'));
 app.use('/api', require('./routes/donationRouter'));
@@ -136,8 +135,7 @@ app.use('/api', require('./routes/reportRouter'));
 
 // --- Videos, Canales, Imágenes ---
 app.use('/api', require('./routes/videoRouter'));
-// ❌ ELIMINA ESTA LÍNEA: app.use('/api', require('./routes/categoryRouter'));
-app.use('/api', require('./routes/channelRouter'));
+ 
 app.use('/api', require('./routes/imageRouter'));
 
 // --- Configuración y Settings ---
@@ -160,7 +158,7 @@ mongoose.connect(URI, {
 })
 
 // ============================================
-startExpiryJob();
+ 
 // ============================================
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))

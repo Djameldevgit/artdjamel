@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Button, Alert, Spinner, Card, ProgressBar, Badge } from 'react-bootstrap';
-import { ArrowLeft, ArrowRight, CloudUpload, PencilFill, Trash,   X } from 'react-bootstrap-icons';
+import { ArrowLeft, ArrowRight, CloudUpload, PencilFill, Trash, X } from 'react-bootstrap-icons';
 import StepIndicator from './StepIndicator';
 import StepMusicSelection from './StepMusicSelection';
 import ImageUploadField from './ImageUploadField';
@@ -28,7 +28,6 @@ const EditVideoWizard = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [keepExistingVideo, setKeepExistingVideo] = useState(true);
 
-  // Estado principal
   const [artworkData, setArtworkData] = useState({
     videoFile: null,
     videoPreview: null,
@@ -49,9 +48,7 @@ const EditVideoWizard = () => {
     price: '',
     status: 'en vente',
     stock: 1,
-    // Imágenes existentes (objetos con url e isExisting: true)
     existingImages: [],
-    // Nuevas imágenes para subir (objetos con file)
     newImages: [],
   });
 
@@ -72,12 +69,9 @@ const EditVideoWizard = () => {
     }
   }, [dispatch, id]);
 
-  // Rellenar formulario cuando el video está disponible
+  // Rellenar formulario
   useEffect(() => {
     if (video && !videoLoading) {
-      console.log('🎨 Édition vidéo:', video);
-
-      // Transformar imágenes existentes: array de strings -> array de objetos { url, isExisting: true }
       const existingImages = (video.images || []).map(img => {
         let url = '';
         let public_id = '';
@@ -116,13 +110,11 @@ const EditVideoWizard = () => {
     }
   }, [video, videoLoading]);
 
-  // Actualizar campo general
   const updateArtworkField = useCallback((newData) => {
     setArtworkData(prev => ({ ...prev, ...newData }));
     if (newData.videoFile) setKeepExistingVideo(false);
   }, []);
 
-  // Eliminar una imagen existente
   const removeExistingImage = useCallback((index) => {
     setArtworkData(prev => ({
       ...prev,
@@ -130,7 +122,6 @@ const EditVideoWizard = () => {
     }));
   }, []);
 
-  // Validación de pasos
   const validateStep = useCallback((step) => {
     switch (step) {
       case 1:
@@ -194,7 +185,6 @@ const EditVideoWizard = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Envío del formulario
   const handleSubmit = useCallback(async () => {
     if (!validateStep(3)) return;
 
@@ -208,7 +198,6 @@ const EditVideoWizard = () => {
       let thumbnail = artworkData.thumbnail;
       let videoDuration = artworkData.videoDuration;
 
-      // Si se cambió el video, subir el nuevo
       if (!keepExistingVideo && artworkData.videoFile) {
         const result = await videoUpload(artworkData.videoFile, (progress) => setUploadProgress(progress));
         videoUrl = result.url;
@@ -217,24 +206,18 @@ const EditVideoWizard = () => {
         videoDuration = artworkData.videoDuration;
       }
 
-      // Subir nuevas imágenes (las que el usuario añadió)
       let uploadedNewImages = [];
       if (artworkData.newImages && artworkData.newImages.length > 0) {
-        // newImages son objetos con { file, url, isExisting: false }
         const newImageObjects = artworkData.newImages.filter(img => !img.isExisting);
         if (newImageObjects.length > 0) {
-          // Convertir a array de { file, isExisting: false } para imageUpload2
           const uploadArray = newImageObjects.map(img => ({ file: img.file, isExisting: false }));
           uploadedNewImages = await imageUpload2(uploadArray);
-          // uploadedNewImages es un array de strings (URLs de Cloudinary)
         }
       }
 
-      // Combinar URLs de imágenes existentes (que no se eliminaron) + nuevas
       const existingUrls = artworkData.existingImages.map(img => img.url);
       const finalImages = [...existingUrls, ...uploadedNewImages];
 
-      // Datos de música
       let musicData = null;
       if (artworkData.selectedMusic) {
         musicData = {
@@ -247,7 +230,6 @@ const EditVideoWizard = () => {
         };
       }
 
-      // Preparar payload
       const payload = {
         title: artworkData.title,
         description: artworkData.description,
@@ -263,18 +245,17 @@ const EditVideoWizard = () => {
         videoPublicId,
         thumbnail,
         duration: videoDuration,
-        images: finalImages, // array de URLs
+        images: finalImages,
         music: musicData,
       };
 
-      // Llamar a la acción updateVideo (que usa patchDataAPI)
       const res = await dispatch(updateVideo(id, payload, auth.token));
       if (res?.success) {
         dispatch({
           type: GLOBALTYPES.ALERT,
           payload: { success: '✏️ Œuvre modifiée avec succès !' }
         });
-        history.push(`/video/${id}`);
+        history.push('/'); // ✅ Redirigir al HOME
       } else {
         setError(res?.message || 'Erreur lors de la modification');
       }
@@ -354,28 +335,26 @@ const EditVideoWizard = () => {
 
   // ===== RENDER PASO 2 =====
   const renderStep2 = () => (
-    <StepMusicSelection 
-      wizardData={{ 
-        selectedMusic: artworkData.selectedMusic, 
+    <StepMusicSelection
+      wizardData={{
+        selectedMusic: artworkData.selectedMusic,
         musicVolume: artworkData.musicVolume,
         originalAudio: artworkData.originalAudio
-      }} 
-      updateData={updateArtworkField} 
+      }}
+      updateData={updateArtworkField}
     />
   );
 
-  // ===== RENDER PASO 3 (CON IMÁGENES EXISTENTES Y NUEVAS) =====
+  // ===== RENDER PASO 3 =====
   const renderStep3 = () => (
     <div className="step3-container" style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '16px' }}>
       <h5 className="mb-4" style={{ color: '#212529', fontWeight: 'bold' }}>🎨 Détails de l'œuvre</h5>
 
-      {/* Título */}
       <div className="mb-3">
         <label className="form-label fw-bold" style={{ color: '#212529' }}>Titre *</label>
         <input type="text" className="form-control" style={{ border: '1px solid #ced4da' }} value={artworkData.title} onChange={e => updateArtworkField({ title: e.target.value })} />
       </div>
 
-      {/* Categoría */}
       <div className="mb-3">
         <label className="form-label fw-bold" style={{ color: '#212529' }}>Thème *</label>
         <select className="form-select" style={{ border: '1px solid #ced4da' }} value={artworkData.category} onChange={e => updateArtworkField({ category: e.target.value })}>
@@ -384,13 +363,11 @@ const EditVideoWizard = () => {
         </select>
       </div>
 
-      {/* Descripción */}
       <div className="mb-3">
         <label className="form-label" style={{ color: '#212529' }}>Description</label>
         <textarea rows="3" className="form-control" style={{ border: '1px solid #ced4da' }} value={artworkData.description} onChange={e => updateArtworkField({ description: e.target.value })} />
       </div>
 
-      {/* Técnica y Estilo */}
       <div className="row">
         <div className="col-md-6 mb-3">
           <label style={{ color: '#212529' }}>Technique *</label>
@@ -418,7 +395,6 @@ const EditVideoWizard = () => {
         </div>
       </div>
 
-      {/* Dimensiones */}
       <div className="row">
         <div className="col-md-6 mb-3">
           <label style={{ color: '#212529' }}>Largeur (cm) *</label>
@@ -430,13 +406,11 @@ const EditVideoWizard = () => {
         </div>
       </div>
 
-      {/* Precio */}
       <div className="mb-3">
         <label style={{ color: '#212529' }}>Prix (DZD) *</label>
         <input type="number" className="form-control" style={{ border: '1px solid #ced4da' }} value={artworkData.price} onChange={e => updateArtworkField({ price: e.target.value })} />
       </div>
 
-      {/* Status y Stock */}
       <div className="row">
         <div className="col-md-6 mb-3">
           <label className="form-label fw-bold" style={{ color: '#212529' }}>Statut *</label>
@@ -452,16 +426,15 @@ const EditVideoWizard = () => {
         </div>
       </div>
 
-      {/* Imágenes existentes */}
       {artworkData.existingImages.length > 0 && (
         <div className="mb-3">
           <label className="form-label fw-bold" style={{ color: '#212529' }}>🖼️ Images existantes</label>
           <div className="d-flex gap-3 flex-wrap">
             {artworkData.existingImages.map((img, idx) => (
               <div key={idx} className="position-relative" style={{ width: '100px', height: '100px' }}>
-                <img 
-                  src={img.url} 
-                  alt={`existing-${idx}`} 
+                <img
+                  src={img.url}
+                  alt={`existing-${idx}`}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', border: '2px solid #ddd' }}
                 />
                 <button
@@ -479,7 +452,6 @@ const EditVideoWizard = () => {
         </div>
       )}
 
-      {/* Añadir nuevas imágenes */}
       <div className="mb-4">
         <label style={{ color: '#212529' }}>🖼️ Ajouter des photos (max 5)</label>
         <ImageUploadField
@@ -489,7 +461,7 @@ const EditVideoWizard = () => {
           maxImages={5}
         />
         <small className="text-muted d-block mt-2">
-          Vous pouvez ajouter jusqu'à 5 nouvelles images. Les images existantes sont affichées ci-dessus.
+          Vous pouvez ajouter jusqu'à 5 nouvelles images.
         </small>
       </div>
     </div>
@@ -548,7 +520,7 @@ const EditVideoWizard = () => {
           </div>
 
           <div className="mt-4 pt-3 d-flex justify-content-between">
-            <Button variant="outline-secondary" onClick={currentStep === 1 ? () => history.push(`/video/${id}`) : prevStep} disabled={loading}
+            <Button variant="outline-secondary" onClick={currentStep === 1 ? () => history.push('/') : prevStep} disabled={loading}
               style={{ borderRadius: '40px', padding: '8px 20px' }}>
               <ArrowLeft className="me-2" /> {currentStep === 1 ? 'Annuler' : 'Retour'}
             </Button>

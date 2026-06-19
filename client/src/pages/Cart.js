@@ -1,189 +1,259 @@
-// src/s/cart/Cart.jsx
+// src/pages/cart/Cart.jsx
+// 🔥 VERSIÓN COMPLETA Y FINAL
+
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { Container, Row, Col, Card, Button, ListGroup, Image, Badge, Spinner, Alert } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPlus, faMinus, faShoppingCart, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { getCart , updateCartItem, removeFromCart, clearCart } from '../redux/actions/cartAction';
- 
-import { GLOBALTYPES } from '../redux/actions/globalTypes';
- 
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Badge,
+  Alert,
+  Spinner,
+  ListGroup,
+  Image
+} from 'react-bootstrap';
+import { FaTrashAlt, FaShoppingCart, FaPlus, FaMinus } from 'react-icons/fa';
+import { getCart, removeFromCart, updateCartItem, clearCart } from '../redux/actions/cartAction';
 import './Cart.css';
+
 const Cart = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { cart, loading } = useSelector(state => state.cart);
-  const { auth } = useSelector(state => state.auth || { user: null, token: null });
+  const { auth, cart } = useSelector(state => state);
   const [error, setError] = useState(null);
+  const [updating, setUpdating] = useState(false);
 
   useEffect(() => {
-    if (!auth || !auth.token) {
-      history.push('/login');
-      return;
+    if (auth?.token) {
+      dispatch(getCart());
     }
-    dispatch(getCart());
-  }, [dispatch, auth, history]);
+  }, [auth.token, dispatch]);
 
-  const handleUpdateQuantity = (videoId, currentQty, delta) => {
+  const handleRemove = async (videoId) => {
+    try {
+      setUpdating(true);
+      await dispatch(removeFromCart(videoId));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  const handleUpdateQuantity = async (videoId, currentQty, delta) => {
     const newQty = currentQty + delta;
     if (newQty < 1) return;
-    dispatch(updateCartItem(videoId, newQty));
-  };
-
-  const handleRemove = (videoId) => {
-    dispatch(removeFromCart(videoId));
-  };
-
-  const handleClearCart = () => {
-    if (window.confirm('Vider le panier ?')) {
-      dispatch(clearCart());
+    try {
+      setUpdating(true);
+      await dispatch(updateCartItem(videoId, newQty));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setUpdating(false);
     }
   };
 
-  const handleCheckout = () => {
-    dispatch({ type: GLOBALTYPES.ALERT, payload: { info: 'Fonctionnalité de paiement bientôt disponible' } });
+  const handleClear = async () => {
+    if (window.confirm('Vider le panier ?')) {
+      try {
+        setUpdating(true);
+        await dispatch(clearCart());
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setUpdating(false);
+      }
+    }
   };
 
-  if (loading && !cart) {
+  // ===============================
+  // Manejo de imágenes (sin errores 404)
+  // ===============================
+  const handleImageError = (e) => {
+    const parent = e.target.parentElement;
+    const placeholder = document.createElement('div');
+    placeholder.className = 'cart-image-placeholder';
+    placeholder.innerHTML = `
+      <svg viewBox="0 0 100 100" style="width:100%;height:100%;">
+        <rect width="100" height="100" fill="#e9ecef"/>
+        <text x="50" y="55" font-size="12" text-anchor="middle" fill="#6c757d" font-family="sans-serif">Sans image</text>
+      </svg>
+    `;
+    e.target.style.display = 'none';
+    parent.appendChild(placeholder);
+  };
+
+  const getImageSrc = (item) => {
+    // Priorizar thumbnail guardado en el item
+    if (item.thumbnail && item.thumbnail !== '/default-thumbnail.png') {
+      return item.thumbnail;
+    }
+    // Si el video está presente
+    if (item.video) {
+      if (item.video.thumbnail) return item.video.thumbnail;
+      if (item.video.images && item.video.images.length > 0) {
+        const first = item.video.images[0];
+        if (typeof first === 'object' && first.url) return first.url;
+        if (typeof first === 'string') return first;
+      }
+    }
+    return null; // → activa el placeholder
+  };
+
+  if (!auth.token) {
+    return (
+      <Container className="py-5 text-center">
+        <h3>Veuillez vous connecter</h3>
+        <Button as={Link} to="/login">Se connecter</Button>
+      </Container>
+    );
+  }
+
+  if (cart.loading) {
     return (
       <Container className="py-5 text-center">
         <Spinner animation="border" variant="primary" />
-        <p className="mt-3">Chargement du panier...</p>
+        <p>Chargement du panier...</p>
       </Container>
     );
   }
 
-  if (!cart || cart.items?.length === 0) {
+  if (!cart.items || cart.items.length === 0) {
     return (
-      <Container className="py-5 text-center">
-        <div className="empty-cart-icon">
-          <FontAwesomeIcon icon={faShoppingCart} size="4x" className="text-muted mb-4" />
-        </div>
+      <Container className="py-5 text-center cart-empty">
+        <FaShoppingCart size={80} className="text-muted mb-4" />
         <h4>Votre panier est vide</h4>
-        <p className="text-muted">Parcourez les œuvres et ajoutez celles qui vous plaisent.</p>
-        <Button variant="primary" onClick={() => history.push('/')}>
-          Découvrir les œuvres
-        </Button>
+        <Button as={Link} to="/" variant="primary">Découvrir les œuvres</Button>
       </Container>
     );
   }
+
+  const totalItems = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cart.items.reduce((sum, item) => sum + (item.priceAtAdd || 0) * item.quantity, 0);
 
   return (
     <Container className="py-4 cart-page">
-      <Button variant="link" className="p-0 mb-3" onClick={() => history.goBack()}>
-        <FontAwesomeIcon icon={faArrowLeft} className="me-2" /> Retour
-      </Button>
-
-      <h2 className="mb-4 d-flex align-items-center">
-        <FontAwesomeIcon icon={faShoppingCart} className="me-3 text-primary" />
-        Mon panier
-        <Badge bg="primary" className="ms-3">{cart.totalItems} article{cart.totalItems > 1 ? 's' : ''}</Badge>
-      </h2>
-
+      <h2 className="mb-4">🛒 Mon panier</h2>
       {error && <Alert variant="danger">{error}</Alert>}
+      {updating && <div className="text-center"><Spinner size="sm" /> Mise à jour...</div>}
 
       <Row>
         <Col lg={8}>
-          <Card className="shadow-sm">
+          <Card className="shadow-sm cart-items-card">
             <ListGroup variant="flush">
-              {cart.items.map((item) => (
-                <ListGroup.Item key={item.video._id} className="cart-item py-3">
-                  <Row className="align-items-center">
-                    <Col xs={3} md={2}>
-                      <Image
-                        src={item.video.thumbnail || '/default-thumbnail.png'}
-                        alt={item.video.title}
-                        rounded
-                        style={{ width: '100%', height: 'auto', maxHeight: '80px', objectFit: 'cover' }}
-                        onError={(e) => { e.target.src = '/default-thumbnail.png'; }}
-                      />
-                    </Col>
-                    <Col xs={6} md={6}>
-                      <h6 className="mb-1">{item.video.title}</h6>
-                      <small className="text-muted">{item.video.price.toLocaleString()} DA</small>
-                      {item.video.status === 'vendue' && (
-                        <Badge bg="danger" className="ms-2">Vendue</Badge>
-                      )}
-                    </Col>
-                    <Col xs={3} md={4} className="text-end">
-                      <div className="d-flex align-items-center justify-content-end gap-2">
-                        <Button
-                          variant="outline-secondary"
-                          size="sm"
-                          onClick={() => handleUpdateQuantity(item.video._id, item.quantity, -1)}
-                          disabled={item.video.status === 'vendue' || item.quantity <= 1}
-                        >
-                          <FontAwesomeIcon icon={faMinus} />
-                        </Button>
-                        <span className="fw-bold">{item.quantity}</span>
-                        <Button
-                          variant="outline-secondary"
-                          size="sm"
-                          onClick={() => handleUpdateQuantity(item.video._id, item.quantity, 1)}
-                          disabled={item.video.status === 'vendue' || item.quantity >= item.video.stock}
-                        >
-                          <FontAwesomeIcon icon={faPlus} />
-                        </Button>
-                        <Button
-                          variant="outline-danger"
-                          size="sm"
-                          onClick={() => handleRemove(item.video._id)}
-                          className="ms-1"
-                        >
-                          <FontAwesomeIcon icon={faTrash} />
-                        </Button>
-                      </div>
-                      <div className="mt-1">
-                        <small className="text-muted">
-                          {item.video.stock > 0 ? `${item.video.stock} disponible${item.video.stock > 1 ? 's' : ''}` : 'Rupture de stock'}
-                        </small>
-                      </div>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-              ))}
+              {cart.items.map((item, index) => {
+                const video = item.video;
+                const videoId = item.videoId || video?._id || index;
+                const title = item.title || video?.title || 'Sans titre';
+                const price = item.priceAtAdd || video?.price || 0;
+                const imgSrc = getImageSrc(item);
+                const isSold = video?.status === 'vendue' || video?.stock === 0;
+                const isUnique = video?.stock === 1;
+
+                return (
+                  <ListGroup.Item key={videoId} className="cart-item py-3">
+                    <Row className="align-items-center">
+                      {/* Imagen */}
+                      <Col xs={3} md={2} className="text-center">
+                        <div style={{ position: 'relative', width: '100%' }}>
+                          {imgSrc ? (
+                            <Image
+                              src={imgSrc}
+                              alt={title}
+                              rounded
+                              className="cart-item-image"
+                              onError={handleImageError}
+                            />
+                          ) : (
+                            <div className="cart-image-placeholder">
+                              <span>📷</span>
+                            </div>
+                          )}
+                        </div>
+                      </Col>
+
+                      {/* Info */}
+                      <Col xs={6} md={6}>
+                        <div className="cart-item-title">{title}</div>
+                        <div className="cart-item-meta">
+                          <span className="text-muted" style={{ fontSize: '0.85rem' }}>
+                            {price.toLocaleString()} DA
+                          </span>
+                          {isSold && <Badge bg="danger" className="ms-2">Vendue</Badge>}
+                          {isUnique && !isSold && <Badge bg="warning" text="dark" className="ms-2">Œuvre unique</Badge>}
+                          {video?.stock !== undefined && video.stock < 3 && !isSold && (
+                            <Badge bg="warning" text="dark" className="ms-2">Stock faible</Badge>
+                          )}
+                        </div>
+                      </Col>
+
+                      {/* Controles */}
+                      <Col xs={3} md={4} className="text-end mt-2 mt-md-0">
+                        <div className="d-flex align-items-center justify-content-end gap-2">
+                          <button
+                            className="qty-btn"
+                            onClick={() => handleUpdateQuantity(videoId, item.quantity, -1)}
+                            disabled={item.quantity <= 1 || isSold || updating}
+                          >
+                            <FaMinus size={12} />
+                          </button>
+                          <span className="cart-qty">{item.quantity}</span>
+                          <button
+                            className="qty-btn"
+                            onClick={() => handleUpdateQuantity(videoId, item.quantity, 1)}
+                            disabled={item.quantity >= (video?.stock || 0) || isSold || updating}
+                          >
+                            <FaPlus size={12} />
+                          </button>
+                          <button
+                            className="remove-btn"
+                            onClick={() => handleRemove(videoId)}
+                            disabled={updating}
+                          >
+                            <FaTrashAlt size={12} />
+                          </button>
+                        </div>
+                        <div className="cart-item-subtotal mt-1">
+                          Sous-total: <strong>{(price * item.quantity).toLocaleString()} DA</strong>
+                        </div>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                );
+              })}
             </ListGroup>
           </Card>
 
           {cart.items.length > 1 && (
-            <Button variant="outline-danger" className="mt-3" onClick={handleClearCart}>
-              <FontAwesomeIcon icon={faTrash} className="me-2" /> Vider le panier
+            <Button variant="outline-danger" className="mt-3" onClick={handleClear} disabled={updating}>
+              Vider le panier
             </Button>
           )}
         </Col>
 
         <Col lg={4} className="mt-4 mt-lg-0">
-          <Card className="shadow-sm sticky-top" style={{ top: '80px' }}>
+          <Card className="shadow-sm cart-summary sticky-top" style={{ top: '80px' }}>
             <Card.Body>
-              <h5 className="mb-3">Résumé</h5>
+              <h5 className="summary-title">Résumé</h5>
               <hr />
               <div className="d-flex justify-content-between mb-2">
-                <span>Sous-total ({cart.totalItems} article{cart.totalItems > 1 ? 's' : ''})</span>
-                <span>{cart.totalPrice.toLocaleString()} DA</span>
+                <span>Total articles</span>
+                <span><strong>{totalItems}</strong></span>
               </div>
-              <div className="d-flex justify-content-between mb-3 text-muted">
-                <small>Livraison</small>
-                <small>À calculer</small>
-              </div>
-              <hr />
-              <div className="d-flex justify-content-between mb-3 fw-bold">
+              <div className="d-flex justify-content-between mb-3 fw-bold summary-total">
                 <span>Total</span>
-                <span style={{ color: '#198754' }}>{cart.totalPrice.toLocaleString()} DA</span>
+                <span style={{ color: '#198754' }}>{totalPrice.toLocaleString()} DA</span>
               </div>
               <Button
                 variant="success"
-                className="w-100"
-                onClick={handleCheckout}
-                disabled={cart.items.some(item => item.video.status === 'vendue')}
+                className="w-100 checkout-btn"
+                disabled={cart.items.some(item => item.video?.status === 'vendue' || item.video?.stock === 0) || updating}
               >
                 Procéder au paiement
               </Button>
-              {cart.items.some(item => item.video.status === 'vendue') && (
-                <small className="text-danger d-block mt-2 text-center">
-                  Certaines œuvres sont déjà vendues. Veuillez les retirer du panier.
-                </small>
-              )}
             </Card.Body>
           </Card>
         </Col>

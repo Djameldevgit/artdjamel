@@ -1,4 +1,6 @@
 // src/pages/artwork/CreateArtworkWizard.jsx
+// VERSIÓN SIMPLIFICADA - SIN LÓGICA DE CANALES NI USERPRO
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -46,8 +48,8 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
     width: '',
     height: '',
     price: '',
-    status: 'en vente',   // ✅ NUEVO
-    stock: 1,             // ✅ NUEVO
+    status: 'en vente',
+    stock: 1,
   });
 
   const [additionalImages, setAdditionalImages] = useState([]);
@@ -203,8 +205,8 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
       width: Number(artworkData.width),
       height: Number(artworkData.height),
       price: Number(artworkData.price),
-      status: artworkData.status,      // ✅ AÑADIDO
-      stock: Number(artworkData.stock), // ✅ AÑADIDO
+      status: artworkData.status,
+      stock: Number(artworkData.stock),
       music: musicData.selectedMusic ? {
         id: musicData.selectedMusic.id,
         title: musicData.selectedMusic.title,
@@ -289,12 +291,11 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
     />
   );
 
-  // ====== RENDER PASO 3 (CON STATUS Y STOCK) ======
+  // ====== RENDER PASO 3 ======
   const renderStep3 = () => (
     <div className="step3-container" style={{ background: '#ffffff', padding: '20px', borderRadius: '16px' }}>
       <h5 className="mb-4" style={{ color: '#212529', fontWeight: 'bold' }}>🎨 Détails de l'œuvre</h5>
 
-      {/* Título */}
       <div className="mb-3">
         <label className="form-label fw-bold" style={{ color: '#212529' }}>Titre *</label>
         <input 
@@ -306,7 +307,6 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
         />
       </div>
 
-      {/* Categoría */}
       <div className="mb-3">
         <label className="form-label fw-bold" style={{ color: '#212529' }}>Thème / Catégorie *</label>
         <select 
@@ -323,7 +323,6 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
         <small className="text-muted">Le thème artistique de votre œuvre (paysage, portrait, marine...)</small>
       </div>
 
-      {/* Descripción */}
       <div className="mb-3">
         <label className="form-label" style={{ color: '#212529' }}>Description</label>
         <textarea 
@@ -335,7 +334,6 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
         />
       </div>
 
-      {/* Técnica y Estilo */}
       <div className="row">
         <div className="col-md-6 mb-3">
           <label className="form-label fw-bold" style={{ color: '#212529' }}>Technique *</label>
@@ -373,7 +371,6 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
         </div>
       </div>
 
-      {/* Dimensiones */}
       <div className="row">
         <div className="col-md-6 mb-3">
           <label className="form-label fw-bold" style={{ color: '#212529' }}>Largeur (cm) *</label>
@@ -397,7 +394,6 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
         </div>
       </div>
 
-      {/* Precio */}
       <div className="mb-3">
         <label className="form-label fw-bold" style={{ color: '#212529' }}>Prix (DZD) *</label>
         <input 
@@ -409,7 +405,6 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
         />
       </div>
 
-      {/* ✅ NUEVOS CAMPOS: STATUS Y STOCK */}
       <div className="row">
         <div className="col-md-6 mb-3">
           <label className="form-label fw-bold" style={{ color: '#212529' }}>Statut *</label>
@@ -437,7 +432,6 @@ const CreateArtworkWizard = ({ onSuccess, onCancel }) => {
         </div>
       </div>
 
-      {/* Imágenes adicionales */}
       <div className="mb-4">
         <label className="form-label fw-bold" style={{ color: '#212529' }}>
           🖼️ Photos supplémentaires (max 5)

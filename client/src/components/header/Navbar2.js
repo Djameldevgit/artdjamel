@@ -1,13 +1,11 @@
-// components/Navbar2.jsx - VERSIÓN CON CARRITO Y NUEVO ENLACE ADMIN PARA PUBLICAR OBRA
+// components/Navbar2.jsx - VERSIÓN SIMPLIFICADA SIN LÓGICA DE CANALES
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory } from 'react-router-dom';
-import Avatar from '../Avatar';
 import Card from 'react-bootstrap/Card';
 import {
-  FaStore,
   FaTools,
   FaShieldAlt,
   FaUsers,
@@ -23,8 +21,6 @@ import {
   FaBell,
   FaUserCircle,
   FaDownload,
-  FaStar,
-  FaInnosoft,
   FaTimes,
   FaShoppingCart
 } from 'react-icons/fa';
@@ -35,11 +31,9 @@ import DesactivateModal from '../authAndVerify/DesactivateModal';
 import MultiCheckboxModal from './MultiCheckboxModal.';
 import ShareAppModal from '../shareAppModal';
 import Drawer from './Drawer';
-import { getMyChannels } from '../../redux/actions/channelAction';
 
 const Navbar2 = () => {
   const { auth, cart, notify, settings } = useSelector((state) => state);
-  const { userChannels = [] } = useSelector((state) => state.channel || {});
   const dispatch = useDispatch();
 
   const { t } = useTranslation('navbar2');
@@ -54,20 +48,10 @@ const Navbar2 = () => {
   const [showFeaturesModal, setShowFeaturesModal] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [hasChannel, setHasChannel] = useState(false);
-  const [hasApprovedChannel, setHasApprovedChannel] = useState(false);
-  const [hasPendingChannel, setHasPendingChannel] = useState(false);
-  const [checkingChannel, setCheckingChannel] = useState(true);
 
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const notifyDropdownRef = useRef(null);
-
-  // Estados para el modal personalizado
-  const [showCustomModal, setShowCustomModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const [modalTitle, setModalTitle] = useState('');
-  const [modalAction, setModalAction] = useState(null);
 
   // ✅ Función para abrir el drawer
   const handleDrawerOpen = () => {
@@ -80,47 +64,6 @@ const Navbar2 = () => {
     console.log('Cerrando drawer...');
     setShowDrawer(false);
   };
-
-  // Función para cerrar el modal
-  const handleCloseCustomModal = () => {
-    setShowCustomModal(false);
-    setTimeout(() => {
-      setModalAction(null);
-      setModalMessage('');
-      setModalTitle('');
-    }, 200);
-  };
-
-  // Cargar canales del usuario
-  useEffect(() => {
-    const loadUserChannels = async () => {
-      if (auth.token && !userChannels.length) {
-        setCheckingChannel(true);
-        await dispatch(getMyChannels(auth.token));
-        setCheckingChannel(false);
-      } else if (!auth.token) {
-        setCheckingChannel(false);
-      } else {
-        setCheckingChannel(false);
-      }
-    };
-    loadUserChannels();
-  }, [auth.token, dispatch, userChannels.length]);
-
-  // Verificar estado de los canales
-  useEffect(() => {
-    if (userChannels && userChannels.length > 0) {
-      setHasChannel(true);
-      const approved = userChannels.some(ch => ch.pending === false);
-      const pending = userChannels.some(ch => ch.pending === true);
-      setHasApprovedChannel(approved);
-      setHasPendingChannel(pending);
-    } else {
-      setHasChannel(false);
-      setHasApprovedChannel(false);
-      setHasPendingChannel(false);
-    }
-  }, [userChannels]);
 
   // Handle resize
   useEffect(() => {
@@ -208,55 +151,6 @@ const Navbar2 = () => {
   const handleRegister = () => {
     setDropdownOpen(false);
     history.push('/register');
-  };
-
-  // ✅ Función para manejar creación de video o canal (para el dropdown y modales)
-  const handleCreateVideoClick = () => {
-    if (checkingChannel) return;
-
-    // Caso 1: No tiene ningún canal
-    if (!hasChannel) {
-      setModalTitle('📢 Création de chaîne requise');
-      setModalMessage(
-        "⚠️ VOUS N'AVEZ PAS ENCORE DE CHAÎNE\n\n" +
-        "Pour publier des vidéos sur la plateforme, vous devez d'abord créer une chaîne.\n\n" +
-        "La création d'une chaîne est gratuite et rapide.\n\n" +
-        "Souhaitez-vous créer votre chaîne maintenant ?"
-      );
-      setModalAction(() => () => {
-        handleCloseCustomModal();
-        setTimeout(() => history.push('/channel/new'), 200);
-      });
-      setShowCustomModal(true);
-      return;
-    }
-
-    // Caso 2: Tiene canales pero todos están pendientes
-    if (hasPendingChannel && !hasApprovedChannel) {
-      setModalTitle('⏳ Chaîne en cours de vérification');
-      setModalMessage(
-        "🔍 VOTRE CHAÎNE EST EN COURS DE VÉRIFICATION\n\n" +
-        "Merci d'avoir créé votre chaîne ! Elle est actuellement examinée par notre équipe administrative.\n\n" +
-        "📌 Pendant cette période, vous ne pouvez pas encore publier de vidéos.\n\n" +
-        "✅ Dès que votre chaîne sera approuvée, vous recevrez une notification et pourrez commencer à publier.\n\n" +
-        "⏱️ Le délai d'approbation est généralement de 24 à 48 heures.\n\n" +
-        "Merci pour votre patience ! 🙏"
-      );
-      setModalAction(null);
-      setShowCustomModal(true);
-      return;
-    }
-
-    // Caso 3: Tiene al menos un canal aprobado
-    if (hasApprovedChannel) {
-      history.push('/create-video-page');
-    }
-  };
-
-  // ✅ Función para crear canal desde el dropdown
-  const handleCreateChannel = () => {
-    setDropdownOpen(false);
-    history.push('/channel/new');
   };
 
   if (!settings || Object.keys(settings).length === 0) {
@@ -348,7 +242,7 @@ const Navbar2 = () => {
               </button>
             )}
 
-            {/* 🛒 CARRITO - NUEVO */}
+            {/* 🛒 CARRITO */}
             {auth.user && (
               <Link to="/cart" className="icon-button" style={{ position: 'relative', width: isMobile ? '38px' : '42px', height: isMobile ? '38px' : '42px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: settings.style ? 'rgba(255,255,255,0.1)' : 'rgba(102, 126, 234, 0.1)' }}>
                 <FaShoppingCart size={isMobile ? 18 : 20} style={{ color: '#667eea' }} />
@@ -416,45 +310,20 @@ const Navbar2 = () => {
                                auth.user.role === 'Super-utilisateur' ? `⭐ Super Utilisateur` : `👤 Utilisateur`}
                             </div>
                           </div>
-                          {hasApprovedChannel && <div className="has-channel-badge mt-1"><Badge bg="success" style={{ fontSize: '0.6rem' }}><FaStore size={8} className="me-1" /> Chaîne active</Badge></div>}
-                          {hasPendingChannel && !hasApprovedChannel && <div className="has-channel-badge mt-1"><Badge bg="warning" text="dark" style={{ fontSize: '0.6rem' }}><FaStore size={8} className="me-1" /> Chaîne en attente</Badge></div>}
-                          {!hasChannel && (
-                            <div className="has-channel-badge mt-1">
-                              <Badge bg="danger" style={{ fontSize: '0.6rem' }}>
-                                <FaStore size={8} className="me-1" /> Aucune chaîne
-                              </Badge>
-                            </div>
-                          )}
+                          {/* Ya no mostramos badges de canales */}
                         </div>
                       </div>
                     </div>
                     <NavDropdown.Divider />
 
-                    {/* OPCIÓN PARA CREAR CANAL (si no tiene canal) */}
-                    {!hasChannel && (
-                      <MenuItem icon={FaStore} iconColor="#28a745" onClick={handleCreateChannel}>
-                        Créer une chaîne
+                    {/* ✅ Enlace directo a PUBLICAR OBRA (solo admin) */}
+                    {auth.user.role === 'admin' && (
+                      <MenuItem icon={FaPlus} iconColor="#28a745" to="/create-video-page">
+                        Publier une œuvre
                       </MenuItem>
-                    )}
-
-                    {/* OPCIÓN PARA CREAR VIDEO (si tiene canal aprobado) */}
-                    {hasApprovedChannel && (
-                      <MenuItem icon={FaPlus} iconColor="#28a745" onClick={handleCreateVideoClick}>
-                        Créer une vidéo
-                      </MenuItem>
-                    )}
-
-                    {/* MENSAJE SI TIENE CANAL PENDIENTE */}
-                    {hasPendingChannel && !hasApprovedChannel && (
-                      <div className="px-3 py-2 text-center">
-                        <Badge bg="warning" text="dark" style={{ fontSize: '0.7rem' }}>
-                          ⏳ Chaîne en attente de validation
-                        </Badge>
-                      </div>
                     )}
 
                     <MenuItem icon={FaUserCircle} iconColor="#667eea" to={`/profile/${auth.user._id}`}>Mon Profil</MenuItem>
-                    <MenuItem icon={FaUserCircle} iconColor="#667eea" to="/userproinfoplans"> Info plan</MenuItem>
                     <MenuItem icon={FaShareAlt} iconColor="#ffc107" onClick={() => setShowShareModal(true)}>Partager l'App</MenuItem>
 
                     {/* ACCIONES DE ADMINISTRACIÓN */}
@@ -465,12 +334,6 @@ const Navbar2 = () => {
                         <MenuItem icon={FaUsers} iconColor="#28a745" to="/admindashboard">Dashboard Admin</MenuItem>
                         <MenuItem icon={FaUserCog} iconColor="#667eea" to="/users">Gestion utilisateurs</MenuItem>
                         <MenuItem icon={FaTools} iconColor="#6c757d" to="/users/roles">Gestion rôles</MenuItem>
-                        {/* ✅ NUEVO ENLACE PARA ADMIN – PUBLIER UNE ŒUVRE */}
-                        {auth.user.role === 'admin' && (
-                          <MenuItem icon={FaPlus} iconColor="#ffc107" to="/create-video-page">
-                            Publier une œuvre
-                          </MenuItem>
-                        )}
                       </>
                     )}
 
@@ -486,7 +349,7 @@ const Navbar2 = () => {
               </div>
             </NavDropdown>
 
-            {/* ✅ BOTÓN DEL DRAWER - VERIFICADO Y FUNCIONAL */}
+            {/* ✅ BOTÓN DEL DRAWER */}
             <button
               onClick={handleDrawerOpen}
               className="icon-button"
@@ -513,174 +376,7 @@ const Navbar2 = () => {
 
       <div style={{ height: isMobile ? '56px' : '64px' }} />
 
-      {/* ✅ MODAL PERSONALIZADO - FUNCIONA 100% */}
-      {showCustomModal && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 9999,
-            animation: 'fadeIn 0.3s ease'
-          }}
-          onClick={handleCloseCustomModal}
-        >
-          <div
-            style={{
-              backgroundColor: settings.style ? '#1a1a2e' : '#ffffff',
-              borderRadius: '20px',
-              maxWidth: '500px',
-              width: '90%',
-              margin: '20px',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
-              animation: 'slideIn 0.3s ease'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              padding: '20px 24px',
-              borderRadius: '20px 20px 0 0',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <h3 style={{
-                margin: 0,
-                color: 'white',
-                fontSize: '1.3rem',
-                fontWeight: 'bold'
-              }}>
-                {modalTitle}
-              </h3>
-              <button
-                onClick={handleCloseCustomModal}
-                style={{
-                  background: 'rgba(255,255,255,0.2)',
-                  border: 'none',
-                  borderRadius: '50%',
-                  width: '32px',
-                  height: '32px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  color: 'white',
-                  transition: 'all 0.2s'
-                }}
-                onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.3)'}
-                onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.2)'}
-              >
-                <FaTimes size={18} />
-              </button>
-            </div>
-
-            {/* Body */}
-            <div style={{
-              padding: '32px 24px',
-              color: settings.style ? '#e0e0e0' : '#333333',
-              fontSize: '1rem',
-              lineHeight: '1.6',
-              whiteSpace: 'pre-line',
-              textAlign: 'center'
-            }}>
-              {modalMessage}
-            </div>
-
-            {/* Footer */}
-            <div style={{
-              padding: '20px 24px',
-              borderTop: `1px solid ${settings.style ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '16px'
-            }}>
-              {modalAction ? (
-                <>
-                  <button
-                    onClick={handleCloseCustomModal}
-                    style={{
-                      padding: '10px 28px',
-                      borderRadius: '30px',
-                      border: `1px solid ${settings.style ? 'rgba(255,255,255,0.3)' : '#6c757d'}`,
-                      background: 'transparent',
-                      color: settings.style ? '#ffffff' : '#6c757d',
-                      cursor: 'pointer',
-                      fontWeight: 'bold',
-                      fontSize: '0.9rem',
-                      transition: 'all 0.2s'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = 'rgba(108, 117, 125, 0.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'transparent';
-                    }}
-                  >
-                    Annuler
-                  </button>
-                  <button
-                    onClick={modalAction}
-                    style={{
-                      padding: '10px 32px',
-                      borderRadius: '30px',
-                      border: 'none',
-                      background: 'linear-gradient(135deg, #28a745, #20c997)',
-                      color: 'white',
-                      cursor: 'pointer',
-                      fontWeight: 'bold',
-                      fontSize: '0.9rem',
-                      boxShadow: '0 4px 15px rgba(40, 167, 69, 0.3)',
-                      transition: 'transform 0.2s'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    Créer une chaîne
-                  </button>
-                </>
-              ) : (
-                <button
-                  onClick={handleCloseCustomModal}
-                  style={{
-                    padding: '10px 40px',
-                    borderRadius: '30px',
-                    border: 'none',
-                    background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                    color: 'white',
-                    cursor: 'pointer',
-                    fontWeight: 'bold',
-                    fontSize: '0.9rem',
-                    boxShadow: '0 4px 15px rgba(102, 126, 234, 0.3)',
-                    transition: 'transform 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-2px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                  }}
-                >
-                  J'ai compris
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ✅ DRAWER - VERIFICADO Y FUNCIONAL */}
+      {/* DRAWER */}
       <Drawer
         show={showDrawer}
         onHide={handleDrawerClose}
@@ -689,30 +385,14 @@ const Navbar2 = () => {
         user={auth.user}
       />
 
-      {/* Otros modales */}
+      {/* Modales */}
       <VerifyModal show={showVerifyModal} onClose={() => setShowVerifyModal(false)} />
       <DesactivateModal show={showDeactivatedModal} onClose={() => setShowDeactivatedModal(false)} />
       <MultiCheckboxModal show={showFeaturesModal} onClose={() => setShowFeaturesModal(false)} />
       <ShareAppModal show={showShareModal} onClose={() => setShowShareModal(false)} />
 
-      {/* Animaciones CSS */}
+      {/* Estilos CSS */}
       <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateY(-50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
         .nb2-hidden { transform: translateY(-100%); }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         .icon-button { cursor: pointer; transition: all 0.3s ease; }
@@ -724,7 +404,6 @@ const Navbar2 = () => {
         .user-avatar-wrapper { width: 50px; height: 50px; border-radius: 50%; border: 3px solid white; padding: 2px; background: white; }
         .user-name { font-size: 1rem; }
         .user-role-badge { font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-top: 4px; color: white; }
-        .has-channel-badge { margin-top: 4px; }
         #nav-user-dropdown + .dropdown-menu { position: absolute !important; right: 0 !important; left: auto !important; width: 290px !important; border-radius: 12px !important; background: ${settings.style ? '#2d3748' : '#ffffff'} !important; }
         @media (max-width: 700px) { #nav-user-dropdown + .dropdown-menu { width: 280px !important; } .custom-menu-item { padding: 10px 14px !important; } }
       `}</style>

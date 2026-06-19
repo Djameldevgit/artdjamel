@@ -3,7 +3,9 @@ import { CART_TYPES } from '../actions/cartAction';
 
 const initialState = {
   loading: false,
-  cart: { items: [], totalItems: 0, totalPrice: 0 },
+  items: [],
+  totalPrice: 0,
+  totalItems: 0,
   error: null
 };
 
@@ -15,11 +17,19 @@ const cartReducer = (state = initialState, action) => {
     case CART_TYPES.ADD_TO_CART:
     case CART_TYPES.UPDATE_CART_ITEM:
     case CART_TYPES.REMOVE_FROM_CART:
-      return { ...state, cart: action.payload, error: null };
+      // ✅ Asegurar que payload tiene items, totalPrice y totalItems
+      return {
+        ...state,
+        items: action.payload.items || [],
+        totalPrice: action.payload.totalPrice || 0,
+        totalItems: action.payload.totalItems || 0,
+        loading: false,
+        error: null
+      };
     case CART_TYPES.CLEAR_CART:
-      return { ...state, cart: { items: [], totalItems: 0, totalPrice: 0 } };
+      return { ...state, items: [], totalPrice: 0, totalItems: 0 };
     case CART_TYPES.CART_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, loading: false };
     default:
       return state;
   }

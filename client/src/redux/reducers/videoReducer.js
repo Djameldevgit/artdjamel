@@ -1,4 +1,4 @@
-// redux/reducers/videoReducer.js
+// src/redux/reducers/videoReducer.js
 import { VIDEO_TYPES } from '../actions/videoAction';
 
 const initialState = {
@@ -10,6 +10,13 @@ const initialState = {
   totalPages: 0,
   hasMore: true,
   cart: [],
+  userVideos: {
+    videos: [],
+    loading: false,
+    total: 0,
+    page: 1,
+    hasMore: true,
+  },
 };
 
 const updateVideoInArray = (arr, videoId, updater) => {
@@ -28,15 +35,32 @@ const videoReducer = (state = initialState, action) => {
       return { ...state, loading: action.payload };
 
     case VIDEO_TYPES.CREATE_VIDEO:
-      return { ...state, videos: [action.payload, ...state.videos] };
+      return {
+        ...state,
+        videos: [action.payload, ...state.videos],
+        userVideos: {
+          ...state.userVideos,
+          videos: [action.payload, ...state.userVideos.videos],
+          total: state.userVideos.total + 1,
+        }
+      };
 
     case VIDEO_TYPES.UPDATE_VIDEO: {
       const updated = action.payload;
+      // ✅ Validación robusta: si no hay video o no tiene _id, no actualizar
+      if (!updated || !updated._id) {
+        console.warn('⚠️ UPDATE_VIDEO: payload inválido, ignorando.', updated);
+        return state;
+      }
       const updater = () => updated;
       return {
         ...state,
         videos: updateVideoInArray(state.videos, updated._id, updater),
         currentVideo: state.currentVideo?._id === updated._id ? updated : state.currentVideo,
+        userVideos: {
+          ...state.userVideos,
+          videos: updateVideoInArray(state.userVideos.videos, updated._id, updater),
+        },
       };
     }
 
@@ -46,6 +70,11 @@ const videoReducer = (state = initialState, action) => {
         ...state,
         videos: filterVideoFromArray(state.videos, id),
         currentVideo: state.currentVideo?._id === id ? null : state.currentVideo,
+        userVideos: {
+          ...state.userVideos,
+          videos: filterVideoFromArray(state.userVideos.videos, id),
+          total: state.userVideos.total - 1,
+        },
       };
     }
 
@@ -63,6 +92,27 @@ const videoReducer = (state = initialState, action) => {
         loading: false,
       };
 
+    case VIDEO_TYPES.GET_USER_VIDEOS:
+      return {
+        ...state,
+        userVideos: {
+          videos: action.payload.page === 1 ? action.payload.videos : [...state.userVideos.videos, ...action.payload.videos],
+          total: action.payload.total,
+          page: action.payload.page,
+          hasMore: action.payload.hasMore,
+          loading: false,
+        },
+      };
+
+    case VIDEO_TYPES.USER_VIDEOS_LOADING:
+      return {
+        ...state,
+        userVideos: {
+          ...state.userVideos,
+          loading: action.payload,
+        },
+      };
+
     case VIDEO_TYPES.LIKE_VIDEO: {
       const { id, liked, likes } = action.payload;
       const updater = (v) => ({ ...v, liked, likes });
@@ -70,6 +120,10 @@ const videoReducer = (state = initialState, action) => {
         ...state,
         videos: updateVideoInArray(state.videos, id, updater),
         currentVideo: state.currentVideo?._id === id ? updater(state.currentVideo) : state.currentVideo,
+        userVideos: {
+          ...state.userVideos,
+          videos: updateVideoInArray(state.userVideos.videos, id, updater),
+        },
       };
     }
 
@@ -80,6 +134,10 @@ const videoReducer = (state = initialState, action) => {
         ...state,
         videos: updateVideoInArray(state.videos, id, updater),
         currentVideo: state.currentVideo?._id === id ? updater(state.currentVideo) : state.currentVideo,
+        userVideos: {
+          ...state.userVideos,
+          videos: updateVideoInArray(state.userVideos.videos, id, updater),
+        },
       };
     }
 
@@ -90,6 +148,10 @@ const videoReducer = (state = initialState, action) => {
         ...state,
         videos: updateVideoInArray(state.videos, id, updater),
         currentVideo: state.currentVideo?._id === id ? updater(state.currentVideo) : state.currentVideo,
+        userVideos: {
+          ...state.userVideos,
+          videos: updateVideoInArray(state.userVideos.videos, id, updater),
+        },
       };
     }
 
@@ -100,6 +162,10 @@ const videoReducer = (state = initialState, action) => {
         ...state,
         videos: updateVideoInArray(state.videos, id, updater),
         currentVideo: state.currentVideo?._id === id ? updater(state.currentVideo) : state.currentVideo,
+        userVideos: {
+          ...state.userVideos,
+          videos: updateVideoInArray(state.userVideos.videos, id, updater),
+        },
       };
     }
 

@@ -1,4 +1,5 @@
-// pages/CategoryPage.jsx - CON LOGS PARA DEPURAR EL CHANNEL
+// pages/CategoryPage.jsx - SIN LOGS DE CANALES (versión limpia)
+
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, useLocation } from "react-router-dom";
@@ -9,7 +10,7 @@ import VideoCard from "../../components/VideoCard";
 import VideoReelItem from "../video/Feed";
 import { getSliderCategories, getVideosByCategory } from "../../redux/actions/categoryAction";
 import FilterDrawer from "./FilterDrawer";
- 
+
 const VIDEO_VIEW_MODE = {
   REEL: 'reel',
   GRID: 'grid'
@@ -20,8 +21,6 @@ const CategoryPage = () => {
   const history = useHistory();
   const location = useLocation();
   const { slug, subSlug, page } = useParams();
-
-  console.log('🔍 [CategoryPage] slug actual:', slug);
 
   const { sliderCategories, loadingSlider } = useSelector(state => state.category || { sliderCategories: [], loadingSlider: false });
 
@@ -57,7 +56,7 @@ const CategoryPage = () => {
     page: page ? parseInt(page) : 1
   });
 
-  // ✅ SELECTOR CORRECTO - state.category
+  // Selector - state.category
   const categoryState = useSelector(state => state.category);
   const videos = categoryState.videos || [];
   const videosLoading = categoryState.videosLoading || false;
@@ -65,14 +64,6 @@ const CategoryPage = () => {
   const totalVideos = categoryState.totalVideos || 0;
   const currentPage = categoryState.videosCurrentPage || 1;
   const categoryInfo = categoryState.categoryInfo || {};
-
-  // ✅ LOG PARA VER LOS VIDEOS Y SU CHANNEL
-  console.log('📹 [CategoryPage] Videos del reducer:', {
-    count: videos.length,
-    firstVideo: videos[0]?.title,
-    firstVideoChannel: videos[0]?.channel,
-    firstVideoChannelId: videos[0]?.channel?._id || videos[0]?.channelId
-  });
 
   // Redirigir si no hay página en la URL
   useEffect(() => {
@@ -87,13 +78,11 @@ const CategoryPage = () => {
   }, [slug, subSlug, page, history, location.search]);
 
   // ============================================
-  // 🎯 FUNCIÓN PARA CARGAR VIDEOS CON getVideosByCategory
+  // FUNCIÓN PARA CARGAR VIDEOS
   // ============================================
   const loadVideos = useCallback(async (pageNum = 1) => {
     if (!slug) return;
-    
-    console.log(`🎬 [loadVideos] Cargando página ${pageNum} para categoría: ${slug}`);
-    
+
     try {
       const result = await dispatch(getVideosByCategory(
         slug, pageNum, 12,
@@ -102,28 +91,7 @@ const CategoryPage = () => {
         activeFilters?.maxPrice || null,
         activeFilters?.sortBy || 'recent'
       ));
-      
-      console.log(`✅ [loadVideos] Recibidos: ${result?.videos?.length || 0} videos`);
-      console.log(`✅ [loadVideos] Total: ${result?.total || 0}`);
-      
-      // ✅ LOG PARA VER EL PRIMER VIDEO Y SU CHANNEL
-      if (result?.videos && result.videos.length > 0) {
-        const firstVideo = result.videos[0];
-        console.log(`📹 [loadVideos] Primer video:`, {
-          title: firstVideo.title,
-          hasChannel: !!firstVideo.channel,
-          channelId: firstVideo.channel?._id || firstVideo.channelId,
-          channelName: firstVideo.channel?.name,
-          channelData: firstVideo.channel
-        });
-      }
-      
-      if (result?.categoryInfo) {
-        console.log(`📂 Categoría: ${result.categoryInfo.name}`);
-      }
-      
       setIsInitialLoad(false);
-      
     } catch (err) {
       console.error('❌ [loadVideos] Error:', err);
       setError(err.message);
@@ -151,16 +119,14 @@ const CategoryPage = () => {
   const handleCategoryClick = useCallback((category) => {
     const categorySlug = category?.slug || category;
     if (!categorySlug) return;
-    
-    console.log(`🖱️ [handleCategoryClick] Navegando a: ${categorySlug}`);
-    
+
     setFilters({ page: 1 });
     setActiveVideoIndex(0);
     setCurrentReelIndex(0);
     setIsInitialLoad(true);
     setError(null);
     setCurrentSub(null);
-    
+
     dispatch({ type: 'CLEAR_CATEGORY_VIDEOS' });
     history.push(`/${categorySlug}/1`);
   }, [dispatch, history]);
@@ -170,13 +136,12 @@ const CategoryPage = () => {
   // ============================================
   const loadMoreVideos = useCallback(() => {
     if (!hasMoreVideos || videosLoading) return;
-    
+
     const nextPage = currentPage + 1;
-    console.log(`📥 [loadMoreVideos] Cargando página ${nextPage}`);
-    
+
     setFilters(prev => ({ ...prev, page: nextPage }));
     history.replace(`/${slug}/${nextPage}`);
-    
+
     dispatch(getVideosByCategory(
       slug, nextPage, 12,
       activeFilters?.wilaya || null,
@@ -191,7 +156,7 @@ const CategoryPage = () => {
   // ============================================
   useEffect(() => {
     if (videoViewMode !== VIDEO_VIEW_MODE.REEL) return;
-    
+
     const handleScroll = () => {
       if (isScrollingRef.current) return;
       const container = videoReelsRef.current;
@@ -205,7 +170,7 @@ const CategoryPage = () => {
       }
       setShowScrollTop(scrollTop > window.innerHeight * 2);
     };
-    
+
     const container = videoReelsRef.current;
     if (container && videos.length > 0) {
       container.addEventListener('scroll', handleScroll);
@@ -314,35 +279,35 @@ const CategoryPage = () => {
   };
 
   // ============================================
-  // 🆕 COMPONENTE EMPTY STATE (Sin videos)
+  // COMPONENTE EMPTY STATE
   // ============================================
   const EmptyState = () => {
     const categoryName = categoryInfo?.name || slug;
-    
+
     return (
       <div className="text-center py-5 my-5">
-        <div 
+        <div
           className="d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
-          style={{ 
-            width: '80px', 
-            height: '80px', 
+          style={{
+            width: '80px',
+            height: '80px',
             backgroundColor: '#f5f5f5',
             borderRadius: '50%'
           }}
         >
           <CameraVideo size={40} className="text-muted" />
         </div>
-        
+
         <h4 className="fw-semibold mb-3">
-          Aucune vidéo dans {categoryName}
+          Aucune œuvre dans {categoryName}
         </h4>
-        
+
         <p className="text-muted mb-4" style={{ maxWidth: '400px', margin: '0 auto' }}>
-          Soyez le premier à partager une vidéo dans cette catégorie et développez votre activité.
+          Soyez le premier à publier une œuvre dans cette catégorie.
         </p>
-        
-        <Button 
-          variant="primary" 
+
+        <Button
+          variant="primary"
           className="rounded-pill px-4 py-2"
           onClick={() => history.push('/create-video-page')}
           style={{
@@ -352,7 +317,7 @@ const CategoryPage = () => {
           }}
         >
           <PlusCircle size={18} className="me-2" />
-          Publier une vidéo
+          Publier une œuvre
         </Button>
       </div>
     );
@@ -376,7 +341,7 @@ const CategoryPage = () => {
       return (
         <div className="text-center py-5">
           <Spinner animation="border" variant="primary" />
-          <p className="mt-3 text-muted">Chargement des vidéos de {slug}...</p>
+          <p className="mt-3 text-muted">Chargement des œuvres de {slug}...</p>
         </div>
       );
     }
@@ -419,48 +384,43 @@ const CategoryPage = () => {
   // RENDER MODO REEL
   // ============================================
   if (videoViewMode === VIDEO_VIEW_MODE.REEL) {
-    // Si no hay videos en modo REEL, mostrar mensaje
     if (!videosLoading && videos.length === 0 && !isInitialLoad) {
       return (
         <>
-          <div style={{ 
-            position: 'sticky', 
-            top: 0, 
-            zIndex: 100, 
+          <div style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 100,
             backgroundColor: 'rgba(0,0,0,0.8)',
             backdropFilter: 'blur(10px)'
           }}>
-           
           </div>
-          
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
+
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             height: 'calc(100vh - 140px)',
             flexDirection: 'column',
             padding: '20px'
           }}>
             <EmptyState />
           </div>
-          
-       
         </>
       );
     }
 
     return (
       <>
-        <div style={{ 
-          position: 'sticky', 
-          top: 0, 
-          zIndex: 100, 
+        <div style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
           backgroundColor: 'rgba(0,0,0,0.8)',
           backdropFilter: 'blur(10px)'
         }}>
-        
         </div>
-        
+
         <button
           onClick={() => setVideoViewMode(VIDEO_VIEW_MODE.GRID)}
           style={{
@@ -471,7 +431,6 @@ const CategoryPage = () => {
             background: 'rgba(0,0,0,0.6)',
             border: 'none',
             borderRadius: '8px',
-            
             color: 'white',
             display: 'flex',
             alignItems: 'center',
@@ -481,10 +440,9 @@ const CategoryPage = () => {
           }}
         >
           <Grid3x3 size={18} />
-       
         </button>
 
-        <div 
+        <div
           ref={videoReelsRef}
           className="video-reels-container"
           style={{
@@ -496,33 +454,19 @@ const CategoryPage = () => {
             paddingBottom: '70px'
           }}
         >
-          {videos.map((video, index) => {
-            // ✅ LOG PARA VER CADA VIDEO Y SU CHANNEL
-            console.log(`🎬 [REEL] Video ${index}:`, {
-              id: video._id,
-              title: video.title,
-              hasChannel: !!video.channel,
-              channelId: video.channel?._id || video.channelId,
-              channelName: video.channel?.name,
-              fullChannel: video.channel
-            });
-            
-            return (
-              <VideoReelItem
-                key={video._id}
-                video={video}
-                isActive={index === currentReelIndex}
-                onVideoDeleted={handleVideoDeleted}
-                onNextVideo={handleNextVideo}
-                onPreviousVideo={handlePreviousVideo}
-                hasNext={index < videos.length - 1}
-                hasPrev={index > 0}
-              />
-            );
-          })}
+          {videos.map((video, index) => (
+            <VideoReelItem
+              key={video._id}
+              video={video}
+              isActive={index === currentReelIndex}
+              onVideoDeleted={handleVideoDeleted}
+              onNextVideo={handleNextVideo}
+              onPreviousVideo={handlePreviousVideo}
+              hasNext={index < videos.length - 1}
+              hasPrev={index > 0}
+            />
+          ))}
         </div>
-
-   
 
         {showScrollTop && videos.length > 3 && (
           <button
@@ -583,25 +527,24 @@ const CategoryPage = () => {
   // ============================================
   return (
     <div className="category-page">
-      <div style={{ 
-        position: 'sticky', 
-        top: 0, 
-        zIndex: 100, 
+      <div style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
         backgroundColor: 'white',
         borderBottom: '1px solid #f0f0f0'
       }}>
-      
       </div>
-      
+
       <main className="category-content" style={{ paddingBottom: '80px' }}>
         <Container>
           <div className="d-flex justify-content-between align-items-center mb-4">
             <div>
               <h2 className="mb-0">
-                Vidéos de {categoryInfo?.name || slug}
+                Œuvres de {categoryInfo?.name || slug}
               </h2>
               {totalVideos > 0 && (
-                <small className="text-muted">{totalVideos} vidéos</small>
+                <small className="text-muted">{totalVideos} œuvres</small>
               )}
             </div>
             <Button
@@ -618,7 +561,7 @@ const CategoryPage = () => {
             <div className="d-flex justify-content-between align-items-center mb-3">
               <div>
                 <h4 className="mb-0">
-                  Vidéos
+                  Œuvres
                   {currentSub && <span className="text-muted ms-2">- {currentSub.name}</span>}
                 </h4>
                 {countActiveFilters() > 0 && (
@@ -627,7 +570,7 @@ const CategoryPage = () => {
                   </small>
                 )}
               </div>
-              
+
               <div className="d-flex align-items-center gap-3">
                 <span className="text-muted">{videos.length} résultat{videos.length > 1 ? 's' : ''}</span>
                 <Button
@@ -651,8 +594,6 @@ const CategoryPage = () => {
           </section>
         </Container>
       </main>
-
-      
 
       <FilterDrawer
         show={showFilterDrawer}

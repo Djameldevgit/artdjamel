@@ -15,7 +15,7 @@ const artworkSchema = new mongoose.Schema({
 images: [{
   url: { type: String, required: true },
   public_id: { type: String, default: '' }
-}], // ← antes era [{ type: String }]
+}],  
   category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
   technique: { type: String, required: true },
   style: { type: String, required: true },

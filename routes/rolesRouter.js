@@ -17,8 +17,7 @@ router.patch('/user/:id/roleuser', auth, roleCtrl.assignUserRole);
 router.patch('/user/:id/roleuserpro', auth, roleCtrl.assignUserProRole);  // ✅ Actualizado
 router.patch('/user/:id/rolemoderador', auth, roleCtrl.assignModeratorRole);
 router.patch('/user/:id/roleadmin', auth, roleCtrl.assignAdminRole);
-router.patch('/admin/update-plan/:userId', auth,  roleCtrl.updateUserPlan); // ✅ NUEVA RUTA
-
+ 
 // ============================================
 // 3️⃣ RUTA GENÉRICA DE ACTUALIZACIÓN
 // ============================================

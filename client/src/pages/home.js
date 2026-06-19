@@ -1,3 +1,4 @@
+// pages/Home.jsx - Con loading centrado y estilos mejorados
 import React, {
   useEffect,
   useCallback,
@@ -17,6 +18,34 @@ import {
   getSliderCategories,
   getCategoriesWithVideos
 } from '../redux/actions/categoryAction';
+
+// ============================================
+// ESTILOS EN LÍNEA PARA LOADING (opcional)
+// ============================================
+const loadingStyles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    width: '100vw',
+    background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+    color: 'white',
+    textAlign: 'center',
+    padding: '20px'
+  },
+  spinner: {
+    width: '50px',
+    height: '50px',
+    marginBottom: '20px'
+  },
+  text: {
+    fontSize: '1.2rem',
+    opacity: 0.8,
+    marginTop: '10px'
+  }
+};
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -127,21 +156,33 @@ const Home = () => {
   }, []);
 
   // ===============================
-  // LOADING FIRST
+  // LOADING FIRST (ESTILOS MEJORADOS)
   // ===============================
   const isLoading = isInitialLoad && loadingCategoriesWithVideos && allCategories.length === 0;
 
   if (isLoading) {
     return (
-      <div className={`home-loading ${theme}`}>
-        <Spinner animation="border" variant="primary" />
-        <p>Chargement des catégories...</p>
+      <div style={loadingStyles.container}>
+        <Spinner
+          animation="border"
+          variant="light"
+          style={loadingStyles.spinner}
+        />
+        <p style={loadingStyles.text}>Chargement des catégories...</p>
+        <style>{`
+          /* Estilos adicionales para pantallas pequeñas */
+          @media (max-width: 576px) {
+            .home-loading-text {
+              font-size: 1rem;
+            }
+          }
+        `}</style>
       </div>
     );
   }
 
   // ===============================
-  // RENDER
+  // RENDER PRINCIPAL
   // ===============================
   return (
     <div className={`home-root ${theme}`}>
@@ -158,8 +199,8 @@ const Home = () => {
         hasMore={hasMore && !loadingCategoriesWithVideos}
         loader={
           <div className="home-loader">
-            <Spinner animation="border" size="sm" />
-            <span>Chargement...</span>
+            <Spinner animation="border" size="sm" variant="primary" />
+            <span style={{ marginLeft: '10px' }}>Chargement...</span>
           </div>
         }
         endMessage={

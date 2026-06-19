@@ -23,27 +23,17 @@ import EditVideoWizard from './pages/video/EditVideoWizard';
 import usePushNotifications from './pages/notiy/UsePushNotifications';
 import InfoUserVideo from './pages/video/userVideo/InfoUserVideo';
 import TrendingVideos from './pages/video/TrendingVideos';
-import CreateImageWizard from './pages/video/CreateImageWizard';
-import EditImageWizard from './pages/video/EditImageWizar';
+ 
 import Conversation from './pages/message/[id]';
 import Message from './pages/message/index';
  
-import EditChannel from './pages/channel/EditChannel';
-import ChannelProfile from './pages/channel/ChannelProfile';
-
-import ChannelFeed from './pages/channel/ChannelFeed';
 import Map from './pages/Map';
 import UserProInfoPlans from './pages/userProInfoPlans';
 import PaymentRequest from './pages/PaymentRequest';
 import planes from './pages/userProo/planes';
 import PaymentSuccess from './pages/userProo/PaymentSuccess';
  
-import { getDataAPI } from './utils/fetchData';
-import CreateChannelWizard from './pages/channel/createChannelWizard';
-import ChannelOwnerView from './pages/channel/ChannelOwnerView';
-import AdminChannelPreview from './pages/channel/AdminChannelPreview';
-import { loadFollowingFromStorage } from './redux/actions/channelAction';
-import ChannelsPage from './pages/canales/ChannelsPage';
+ 
 import CreateArtworkWizard from './pages/video/CreateArtWorkWizard';
 import DetailArtworkPage from './pages/video/DetailArtworkPage';
 import Cart from './pages/Cart';
@@ -125,73 +115,9 @@ function AppContent() {
   // ✅ ============================================
   // ✅ VERIFICACIÓN DE PLAN DESPUÉS DE PAGO
   // ✅ ============================================
-  useEffect(() => {
-    const checkPlanUpdate = async () => {
-      if (!auth.token) return;
+  
 
-      try {
-        const res = await getDataAPI('check-plan-status', auth.token);
-
-        console.log('🔍 Verificando plan después de pago:');
-        console.log('Redux actual:', {
-          plan: auth.user?.channelPlan,
-          role: auth.user?.role,
-          isPro: auth.user?.isPro
-        });
-        console.log('Servidor:', {
-          plan: res.data.user.channelPlan,
-          role: res.data.user.role,
-          isPro: res.data.user.isPro
-        });
-
-        if (res.data.user.channelPlan !== auth.user?.channelPlan ||
-          res.data.user.role !== auth.user?.role) {
-
-          console.log('⚠️ ACTUALIZANDO REDUX - Plan cambiado');
-
-          dispatch({
-            type: GLOBALTYPES.AUTH,
-            payload: {
-              ...auth,
-              user: {
-                ...auth.user,
-                channelPlan: res.data.user.channelPlan,
-                role: res.data.user.role,
-                isPro: res.data.user.isPro,
-                channelPlanExpiresAt: res.data.user.expiresAt
-              }
-            }
-          });
-
-          dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {
-              success: `✅ Plan ${res.data.user.channelPlan} activado! Rol: ${res.data.user.role}`
-            }
-          });
-        }
-      } catch (error) {
-        console.error("Error verificando plan:", error);
-      }
-    };
-
-    if (auth.token) {
-      checkPlanUpdate();
-    }
-
-    window.addEventListener('focus', checkPlanUpdate);
-    return () => window.removeEventListener('focus', checkPlanUpdate);
-  }, [auth.token]);
-
-  useEffect(() => {
-    // ✅ Cargar following channels desde localStorage AL INICIAR
-    const loadStoredFollowing = async () => {
-      await dispatch(loadFollowingFromStorage());
-    };
-
-    loadStoredFollowing();
-
-  }, [dispatch]);
+  
   useEffect(() => {
     initAudio();
     setIsReady(true);
@@ -309,9 +235,9 @@ function AppContent() {
       '/users/roles',
       '/donation',
       '/planes',
-      '/userproinfoplans',
-      '/channel/new',
-      '/channels',
+      '/userproinfoplans'
+     
+      
    
     ];
 
@@ -324,8 +250,8 @@ function AppContent() {
       '/message/',
       '/profile/',
       '/donation/',
-      '/userproinfoplans',
-      '/channel/new',
+      '/userproinfoplans'
+       
     
     ];
 
@@ -363,22 +289,11 @@ function AppContent() {
         <Route exact path="/video/userVideo/:userId/info" component={InfoUserVideo} />
         <Route exact path="/videos/trending" component={TrendingVideos} />
 
-        <Route exact path="/channel/new" component={CreateChannelWizard} />
-
-        <Route exact path="/channel/:channelId/edit" component={EditChannel} />
-        <Route exact path="/channel/:channelId" component={ChannelProfile} />
+     
         <Route exact path="/cart" component={Cart} />
-
-
-        <Route exact path="/channel/:channelId/owner" component={ChannelOwnerView} />
-        <Route
-          path="/admin/channel-preview/:id" component={AdminChannelPreview} />
-        <Route path="/video/channelFeed/:channelId" component={ChannelFeed} />
-        <Route exact path="/map" component={Map} />
-        <Route path="/create-image-page" component={CreateImageWizard} />
-        <Route path="/edit-image/:id" component={EditImageWizard} />
-       
  
+        <Route exact path="/map" component={Map} />
+       
         <Route exact path="/message" component={Message} />
         <Route exact path="/message/:id" component={Conversation} />
         <Route exact path="/profile/settings" component={ProfileSettings} />
@@ -390,8 +305,7 @@ function AppContent() {
         <Route exact path="/userproinfoplans" component={UserProInfoPlans} />
         <Route path="/payment-success" component={PaymentSuccess} />
         
-        <Route exact path="/channels" component={ChannelsPage} />
-        <Route exact path="/:slug/:page?" component={CategoryPage} />
+         <Route exact path="/:slug/:page?" component={CategoryPage} />
         <Route exact path="/:slug/:subSlug/:page?" component={CategoryPage} />
         <Route exact path="/:slug/:subSlug/:articleSlug/:page?" component={CategoryPage} />
         <Route component={NotFound} />
