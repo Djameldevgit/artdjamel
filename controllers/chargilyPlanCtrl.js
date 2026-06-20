@@ -2,39 +2,29 @@
 const axios = require('axios');
 const crypto = require('crypto');
 const User = require('../models/userModel');
-const Transaction = require('../models/transactionModel');
+const Transaction = require('../models/transactionModel'); // ← Usamos el modelo correcto
 
 const chargilyPlanCtrl = {
   
-  // Crear checkout para suscripción o carrito
+  // Crear checkout (para planes O para carrito)
   createPlanCheckout: async (req, res) => {
     try {
       const userId = req.user._id;
-      const { 
-        plan_id, plan_name, amount, duration_months, discount_percent, free_months, 
-        category, cart_items 
-      } = req.body;
+      const { plan_id, plan_name, amount, duration_months, discount_percent, free_months, category, cart_items } = req.body;
       
-      // Validaciones básicas
       if (!plan_id || !amount) {
         return res.status(400).json({ error: 'Plan et montant requis' });
       }
       
-      // Si es carrito, debe tener items
-      if (plan_id === 'cart' && (!cart_items || cart_items.length === 0)) {
-        return res.status(400).json({ error: 'Panier vide' });
-      }
-      
       const user = await User.findById(userId).select('email username');
       
-      // Configuración de Chargily
       const isLive = process.env.CHARGILY_MODE === 'live';
       const baseUrl = isLive 
         ? 'https://pay.chargily.net/api/v2/checkouts'
         : 'https://pay.chargily.net/test/api/v2/checkouts';
       
       const baseClientUrl = process.env.CLIENT_URL || (isLive 
-        ? 'https://artdjamel.onrender.com' 
+        ? 'https://videocommerce.onrender.com' 
         : 'http://localhost:3000');
       
       const webhookUrl = process.env.WEBHOOK_URL 
@@ -42,36 +32,27 @@ const chargilyPlanCtrl = {
         : `${baseClientUrl}/api/webhook`;
       
       console.log(`🎯 Modo: ${isLive ? '🔴 LIVE' : '🟡 TEST'}`);
-      console.log(`📦 Plan: ${plan_id} - ${plan_name || ''}`);
       console.log(`💰 Monto: ${amount} DZD`);
+      console.log(`📦 Plan: ${plan_id}`);
       
       // Construir metadata
-      const metadata = {
-        type: plan_id === 'cart' ? 'cart_purchase' : 'plan_subscription',
+      let metadata = {
+        type: plan_id === 'cart' ? 'cart_payment' : 'plan_subscription',
         user_id: userId.toString(),
         user_email: user.email || '',
         user_username: user.username || '',
         plan_id: plan_id,
-        plan_name: plan_name || '',
-        platform: "video_marketplace"
+        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : 'Plan')
       };
       
-      // Si es suscripción, añadir datos de duración
-      if (plan_id !== 'cart') {
+      if (plan_id === 'cart') {
+        metadata.cart_items = cart_items || [];
+        metadata.total_items = cart_items ? cart_items.length : 0;
+      } else {
         metadata.duration_months = duration_months || 1;
         metadata.discount_percent = discount_percent || 0;
         metadata.free_months = free_months || 0;
         metadata.category = category || '';
-      } else {
-        // Si es carrito, guardar los items en metadata (opcional)
-        metadata.cart_items = cart_items.map(item => ({
-          videoId: item.videoId,
-          title: item.title,
-          quantity: item.quantity,
-          price: item.price
-        }));
-        // También podemos guardar el total de items
-        metadata.total_items = cart_items.reduce((sum, item) => sum + item.quantity, 0);
       }
       
       // Llamar a Chargily
@@ -94,35 +75,26 @@ const chargilyPlanCtrl = {
       );
       
       // Guardar transacción en BD
-      const transactionData = {
+      const transaction = new Transaction({
         checkout_id: response.data.id,
         user_id: userId,
         user_email: user.email,
         user_username: user.username,
         plan_id: plan_id,
-        plan_name: plan_name || '',
+        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : 'Plan'),
         amount: Number(amount),
         currency: 'dzd',
+        duration_months: plan_id === 'cart' ? 0 : (duration_months || 1),
+        free_months: free_months || 0,
+        discount_percent: discount_percent || 0,
+        category: category || '',
+        cart_items: cart_items || [],
         status: 'pending',
-        chargily_response: response.data,
-        created_at: new Date()
-      };
+        chargily_response: response.data
+      });
       
-      // Si es suscripción, añadir campos de duración
-      if (plan_id !== 'cart') {
-        transactionData.duration_months = duration_months || 1;
-        transactionData.free_months = free_months || 0;
-        transactionData.discount_percent = discount_percent || 0;
-        transactionData.category = category || '';
-      } else {
-        // Si es carrito, guardar los items
-        transactionData.cart_items = cart_items || [];
-      }
-      
-      const transaction = new Transaction(transactionData);
       await transaction.save();
-      
-      console.log('✅ Transacción registrada en BD:', transaction._id);
+      console.log('✅ Transacción registrada:', transaction._id);
       
       return res.json({
         success: true,
@@ -144,20 +116,17 @@ const chargilyPlanCtrl = {
     }
   },
   
-  // Webhook para procesar pagos exitosos
+  // Webhook
   handlePlanWebhook: async (req, res) => {
     try {
       console.log('\n🔔 ===== WEBHOOK RECIBIDO =====');
-      console.log('📅 Hora:', new Date().toISOString());
       
       const signature = req.headers["signature"];
       const payload = JSON.stringify(req.body);
       const isLive = process.env.CHARGILY_MODE === 'live';
       
-      // Verificar firma en modo LIVE
       if (isLive) {
         if (!signature) {
-          console.warn('⚠️ No signature provided - REJECTED');
           return res.status(403).json({ error: "Missing signature" });
         }
         const computedSignature = crypto
@@ -165,16 +134,15 @@ const chargilyPlanCtrl = {
           .update(payload)
           .digest("hex");
         if (computedSignature !== signature) {
-          console.warn('⚠️ Invalid signature - REJECTED');
           return res.status(403).json({ error: "Invalid signature" });
         }
-        console.log('✅ Firma verificada correctamente');
+        console.log('✅ Firma verificada');
       } else {
-        console.log('🟡 Modo TEST - Verificación de firma omitida');
+        console.log('🟡 Modo TEST - firma omitida');
       }
       
       const event = req.body;
-      console.log('📨 Tipo de evento:', event.type);
+      console.log('📨 Tipo:', event.type);
       
       if (event.type === "checkout.paid") {
         const checkoutData = event.data;
@@ -182,35 +150,56 @@ const chargilyPlanCtrl = {
         const checkoutId = checkoutData.id;
         
         console.log(`🎉 PAGO CONFIRMADO: ${checkoutId}`);
-        console.log('👤 User ID:', metadata.user_id);
-        console.log('📦 Plan:', metadata.plan_id);
-        console.log('💰 Monto:', checkoutData.amount, checkoutData.currency);
         
-        // Buscar transacción pendiente
+        // Buscar transacción
         const transaction = await Transaction.findOne({ checkout_id: checkoutId });
         if (!transaction) {
           console.warn(`⚠️ Transacción no encontrada: ${checkoutId}`);
           return res.json({ received: true, warning: 'Transaction not found' });
         }
+        
         if (transaction.status === 'paid') {
-          console.log('⏭️ Transacción ya procesada anteriormente');
+          console.log('⏭️ Ya procesado');
           return res.json({ received: true });
         }
         
-        // Actualizar transacción
+        // Marcar como pagado
         transaction.status = 'paid';
         transaction.payment_completed_at = new Date();
         transaction.chargily_payment_id = checkoutData.payment_intent || checkoutData.id;
         transaction.webhook_received = event;
+        await transaction.save();
+        console.log('✅ Transacción actualizada a PAID');
         
-        // Si es suscripción, calcular expiración
-        if (metadata.plan_id !== 'cart') {
-          const totalMonths = (parseInt(metadata.duration_months) || 1) + (parseInt(metadata.free_months) || 0);
+        // ===== PROCESAR SEGÚN TIPO =====
+        if (metadata.plan_id === 'cart') {
+          // 🛒 PAGO DE CARRITO
+          console.log('🛒 Procesando pago de carrito...');
+          console.log('📦 Items:', transaction.cart_items);
+          
+          // Aquí debes implementar la lógica de tu negocio:
+          // 1. Crear órdenes de compra
+          // 2. Marcar videos como vendidos (actualizar stock)
+          // 3. Vaciar el carrito del usuario
+          // 4. Enviar email de confirmación, etc.
+          
+          // Ejemplo: actualizar stock de cada video
+          // const Video = require('../models/Video');
+          // for (const item of transaction.cart_items) {
+          //   await Video.findByIdAndUpdate(item.videoId, { $inc: { stock: -item.quantity } });
+          // }
+          
+          // También puedes notificar al usuario por socket
+          
+        } else {
+          // 📦 PAGO DE PLAN
+          const totalMonths = (metadata.duration_months || 1) + (metadata.free_months || 0);
           const expiresAt = new Date();
           expiresAt.setMonth(expiresAt.getMonth() + totalMonths);
-          transaction.plan_expires_at = expiresAt;
           
-          // Actualizar usuario con el plan
+          transaction.plan_expires_at = expiresAt;
+          await transaction.save();
+          
           const updatedUser = await User.findByIdAndUpdate(
             transaction.user_id,
             {
@@ -218,31 +207,15 @@ const chargilyPlanCtrl = {
               channelPlanExpiresAt: expiresAt,
               channelPlanAutoRenew: false,
               isPro: metadata.plan_id !== 'basic',
-              role: metadata.plan_id === 'basic' ? 'user' : 'userpro'
+              role: 'userpro'
             },
             { new: true }
-          ).select('username email channelPlan role isPro channelPlanExpiresAt');
+          );
           
-          console.log('✅ USUARIO ACTUALIZADO CON PLAN:');
-          console.log('   ID:', transaction.user_id);
-          console.log('   Nombre:', updatedUser.username);
-          console.log('   Plan:', updatedUser.channelPlan);
-          console.log('   Expira:', expiresAt.toISOString());
-        } else {
-          // Si es carrito: aquí debes implementar la lógica de confirmación de pedido
-          // Por ejemplo, crear órdenes de compra, marcar productos como pagados, etc.
-          console.log('🛒 PAGO DE CARRITO CONFIRMADO');
-          console.log('   Items:', transaction.cart_items || metadata.cart_items);
-          
-          
-          // Puedes llamar a un servicio de pedidos aquí.
+          console.log('✅ Usuario actualizado:', updatedUser.username, '→', updatedUser.channelPlan);
         }
-        
-        await transaction.save();
-        console.log('✅ Transacción actualizada a PAID');
       }
       
-      console.log('===== FIN WEBHOOK =====\n');
       return res.json({ received: true });
       
     } catch (err) {
@@ -251,22 +224,19 @@ const chargilyPlanCtrl = {
     }
   },
   
-  // Verificar estado del plan del usuario
+  // Verificar estado del plan
   checkPlanStatus: async (req, res) => {
     try {
       const userId = req.user._id;
       const user = await User.findById(userId)
         .select('channelPlan channelPlanExpiresAt isPro role username email');
       
-      if (!user) {
-        return res.status(404).json({ error: 'Utilisateur non trouvé' });
-      }
+      if (!user) return res.status(404).json({ error: 'Utilisateur non trouvé' });
       
       const now = new Date();
       const isExpired = user.channelPlanExpiresAt && new Date(user.channelPlanExpiresAt) < now;
       
       if (isExpired && user.channelPlan !== 'free') {
-        console.log(`⏰ Plan expiré pour ${user.username}, dégradation à free`);
         await User.findByIdAndUpdate(userId, {
           channelPlan: 'free',
           channelPlanExpiresAt: null,
@@ -289,7 +259,6 @@ const chargilyPlanCtrl = {
           email: user.email
         }
       });
-      
     } catch (err) {
       console.error('❌ Error checkPlanStatus:', err);
       res.status(500).json({ error: err.message });

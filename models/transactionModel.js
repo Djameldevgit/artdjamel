@@ -7,17 +7,16 @@ const transactionSchema = new mongoose.Schema({
   user_email: String,
   user_username: String,
   
-  // plan_id ahora es String sin enum, puede ser 'basic', 'pro', 'business', 'free', 'cart'
+  // plan_id es String libre → permite 'basic', 'pro', 'business', 'free', 'cart'
   plan_id: { type: String, required: true }, 
   plan_name: String,
   
-  // Campos para suscripción
   duration_months: Number,
   free_months: Number,
   discount_percent: Number,
   category: String,
   
-  // Para carrito: items
+  // Para carrito
   cart_items: [{
     videoId: { type: mongoose.Schema.Types.ObjectId, ref: 'video' },
     title: String,
