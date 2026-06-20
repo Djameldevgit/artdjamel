@@ -1,17 +1,10 @@
-// redux/actions/userAction.js
-// ============================================
-// 📦 ACCIONES DE USUARIO - COMPLETO
-// ============================================
-
+ 
 import { getDataAPI, postDataAPI, patchDataAPI, deleteDataAPI } from '../../utils/fetchData';
 import { GLOBALTYPES } from './globalTypes';
 import { PROFILE_TYPES } from './profileAction';
 import { createNotify } from './notifyAction';
 
-// ============================================
-// 📦 TIPOS DE ACCIONES
-// ============================================
-
+ 
 export const USER_TYPES = {
   // Usuarios normales
   LOADING_USERS: 'LOADING_USERS',

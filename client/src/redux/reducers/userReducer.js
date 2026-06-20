@@ -1,8 +1,4 @@
-// redux/reducers/userReducer.js
-// ============================================
-// 📦 REDUCER DE USUARIO - ACTUALIZADO CON LIKE_VIDEO
-// ============================================
-
+ 
 import { USER_TYPES } from '../actions/userAction';
 
 const initialState = {

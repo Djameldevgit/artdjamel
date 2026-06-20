@@ -1,47 +1,46 @@
+// models/Transaction.js
 const mongoose = require('mongoose');
 
-const paymentSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        required: true
-    },
-    plan: {
-        type: String,
-        enum: ['basic', 'pro', 'business', 'free'],
-        required: true
-    },
-    amount: {
-        type: Number,
-        required: true
-    },
-    duration: {
-        type: Number,
-        required: true
-    },
-    category: String,
-    discount: Number,
-    freeMonths: Number,
-    orderId: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    chargilyCheckoutId: String,
-    chargilyPaymentId: String,
-    status: {
-        type: String,
-        enum: ['pending', 'paid', 'failed', 'expired', 'refunded'],
-        default: 'pending'
-    },
-    paidAt: Date,
-    expiresAt: {
-        type: Date,
-        default: () => new Date(+new Date() + 48 * 60 * 60 * 1000)
-    }
-    // paymentMethod NO está incluido - elimínalo del objeto
-}, {
-    timestamps: true
+const transactionSchema = new mongoose.Schema({
+  checkout_id: { type: String, required: true, unique: true },
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
+  user_email: String,
+  user_username: String,
+  
+  // plan_id ahora es String sin enum, puede ser 'basic', 'pro', 'business', 'free', 'cart'
+  plan_id: { type: String, required: true }, 
+  plan_name: String,
+  
+  // Campos para suscripción
+  duration_months: Number,
+  free_months: Number,
+  discount_percent: Number,
+  category: String,
+  
+  // Para carrito: items
+  cart_items: [{
+    videoId: { type: mongoose.Schema.Types.ObjectId, ref: 'video' },
+    title: String,
+    quantity: Number,
+    price: Number,
+    thumbnail: String
+  }],
+  
+  amount: Number,
+  currency: { type: String, default: 'dzd' },
+  status: { 
+    type: String, 
+    enum: ['pending', 'paid', 'failed', 'expired', 'refunded'], 
+    default: 'pending' 
+  },
+  payment_completed_at: Date,
+  plan_expires_at: Date,
+  chargily_payment_id: String,
+  webhook_received: mongoose.Schema.Types.Mixed,
+  chargily_response: mongoose.Schema.Types.Mixed,
+  
+  created_at: { type: Date, default: Date.now },
+  updated_at: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Payment', paymentSchema);
+module.exports = mongoose.model('Transaction', transactionSchema);

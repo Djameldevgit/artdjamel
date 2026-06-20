@@ -8,9 +8,7 @@ import { Link } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/fa';
 import axios from 'axios';
 import { BASE_URL } from '../../utils/config';
-// ✅ Importar acción para obtener los canales del usuario
-import { getMyChannels } from '../../redux/actions/channelAction';
-
+ 
 // ============================================
 // CONSTANTES (idiomas)
 // ============================================
@@ -120,12 +118,7 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
   // ============================================
   // CARGAR CANALES DEL USUARIO (para saber si tiene canal)
   // ============================================
-  useEffect(() => {
-    if (show && auth?.user && userChannels.length === 0 && !channelsLoading) {
-      dispatch(getMyChannels(auth.token));
-    }
-  }, [show, auth, userChannels.length, channelsLoading, dispatch]);
-
+ 
   const isProActive = useMemo(() => {
     const user = auth?.user;
     if (!user?.isPro) return false;

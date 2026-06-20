@@ -1,5 +1,5 @@
 // src/pages/cart/Cart.jsx
-// 🔥 VERSIÓN COMPLETA Y FINAL
+// 🔥 VERSIÓN CON PAGO INTEGRADO (Chargily)
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,6 +18,7 @@ import {
 } from 'react-bootstrap';
 import { FaTrashAlt, FaShoppingCart, FaPlus, FaMinus } from 'react-icons/fa';
 import { getCart, removeFromCart, updateCartItem, clearCart } from '../redux/actions/cartAction';
+import { postDataAPI } from '../utils/fetchData';
 import './Cart.css';
 
 const Cart = () => {
@@ -25,6 +26,7 @@ const Cart = () => {
   const { auth, cart } = useSelector(state => state);
   const [error, setError] = useState(null);
   const [updating, setUpdating] = useState(false);
+  const [processing, setProcessing] = useState(false); // Estado para el pago
 
   useEffect(() => {
     if (auth?.token) {
@@ -69,9 +71,69 @@ const Cart = () => {
     }
   };
 
-  // ===============================
-  // Manejo de imágenes (sin errores 404)
-  // ===============================
+  // ============================================
+  // 🛒 PAGO CON CHARGILY
+  // ============================================
+  const handleCheckout = async () => {
+    // Validar que hay items y usuario autenticado
+    if (!auth?.token) {
+      setError('Veuillez vous connecter pour passer commande.');
+      return;
+    }
+    if (!cart.items || cart.items.length === 0) {
+      setError('Votre panier est vide.');
+      return;
+    }
+
+    // Calcular total (ya está en cart.totalPrice, pero lo recalculamos por si acaso)
+    const totalPrice = cart.items.reduce((sum, item) => sum + (item.priceAtAdd || 0) * item.quantity, 0);
+    if (totalPrice <= 0) {
+      setError('Le montant total doit être supérieur à 0.');
+      return;
+    }
+
+    setProcessing(true);
+    setError(null);
+
+    try {
+      // Construir payload para el backend (similar a planes.js)
+      const paymentData = {
+        plan_id: 'cart',                  // Identificador para el backend
+        plan_name: 'Panier d\'achat',
+        amount: totalPrice,
+        currency: 'dzd',
+        cart_items: cart.items.map(item => ({
+          videoId: item.videoId,
+          title: item.title || item.video?.title || 'Sans titre',
+          quantity: item.quantity,
+          price: item.priceAtAdd || item.video?.price || 0,
+          thumbnail: item.thumbnail || item.video?.thumbnail || null
+        }))
+      };
+
+      // Llamar al mismo endpoint que usa Planes
+      const response = await postDataAPI('create-checkout', paymentData, auth.token);
+      
+      // Extraer la URL de checkout (puede estar en response.data.checkout_url o response.data.data.checkout_url)
+      const checkoutUrl = response.data?.checkout_url || response.data?.data?.checkout_url;
+      
+      if (checkoutUrl) {
+        // Redirigir al usuario a la pasarela de pago
+        window.location.href = checkoutUrl;
+      } else {
+        throw new Error('URL de paiement manquante. Veuillez réessayer.');
+      }
+    } catch (err) {
+      console.error('❌ Error en checkout:', err);
+      setError(err.response?.data?.message || err.message || 'Erreur lors de la création du paiement.');
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  // ============================================
+  // MANEJO DE IMÁGENES (fallback)
+  // ============================================
   const handleImageError = (e) => {
     const parent = e.target.parentElement;
     const placeholder = document.createElement('div');
@@ -87,11 +149,9 @@ const Cart = () => {
   };
 
   const getImageSrc = (item) => {
-    // Priorizar thumbnail guardado en el item
     if (item.thumbnail && item.thumbnail !== '/default-thumbnail.png') {
       return item.thumbnail;
     }
-    // Si el video está presente
     if (item.video) {
       if (item.video.thumbnail) return item.video.thumbnail;
       if (item.video.images && item.video.images.length > 0) {
@@ -100,9 +160,12 @@ const Cart = () => {
         if (typeof first === 'string') return first;
       }
     }
-    return null; // → activa el placeholder
+    return null;
   };
 
+  // ============================================
+  // RENDER CONDICIONAL
+  // ============================================
   if (!auth.token) {
     return (
       <Container className="py-5 text-center">
@@ -134,10 +197,15 @@ const Cart = () => {
   const totalItems = cart.items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cart.items.reduce((sum, item) => sum + (item.priceAtAdd || 0) * item.quantity, 0);
 
+  // Verificar si algún item está agotado o vendido
+  const hasUnavailable = cart.items.some(item => 
+    item.video?.status === 'vendue' || item.video?.stock === 0
+  );
+
   return (
     <Container className="py-4 cart-page">
       <h2 className="mb-4">🛒 Mon panier</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
+      {error && <Alert variant="danger" onClose={() => setError(null)} dismissible>{error}</Alert>}
       {updating && <div className="text-center"><Spinner size="sm" /> Mise à jour...</div>}
 
       <Row>
@@ -250,10 +318,23 @@ const Cart = () => {
               <Button
                 variant="success"
                 className="w-100 checkout-btn"
-                disabled={cart.items.some(item => item.video?.status === 'vendue' || item.video?.stock === 0) || updating}
+                disabled={hasUnavailable || processing || updating || totalItems === 0}
+                onClick={handleCheckout}
               >
-                Procéder au paiement
+                {processing ? (
+                  <>
+                    <Spinner as="span" size="sm" animation="border" className="me-2" />
+                    Traitement...
+                  </>
+                ) : (
+                  'Procéder au paiement'
+                )}
               </Button>
+              {hasUnavailable && (
+                <div className="mt-2 text-danger small">
+                  Certains articles ne sont plus disponibles. Veuillez les retirer pour continuer.
+                </div>
+              )}
             </Card.Body>
           </Card>
         </Col>
