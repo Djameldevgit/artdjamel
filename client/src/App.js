@@ -30,7 +30,7 @@ import Message from './pages/message/index';
 import Map from './pages/Map';
 import UserProInfoPlans from './pages/userProInfoPlans';
 import PaymentRequest from './pages/PaymentRequest';
-import planes from './pages/userProo/planes';
+ 
 import PaymentSuccess from './pages/userProo/PaymentSuccess';
  
  
@@ -39,6 +39,7 @@ import DetailArtworkPage from './pages/video/DetailArtworkPage';
 import Cart from './pages/Cart';
 import AdminOrders from './components/orders/AdminOrders';
 import UserOrders from './components/orders/UserOrders';
+import Roless from './components/Roless';
  
  
 let audioElement = null;
@@ -302,8 +303,8 @@ function AppContent() {
         <Route exact path="/profile/settings" component={ProfileSettings} />
         <Route exact path="/users/dashboard" component={DashboardPage} />
         <Route exact path="/profile/:id" component={profile} />
-      
-        <Route exact path="/planes" component={planes} />
+        <Route exact path="/users/roles" component={Roless} />
+   
         <Route exact path="/userpropayment" component={PaymentRequest} />
         <Route exact path="/userproinfoplans" component={UserProInfoPlans} />
         <Route path="/payment-success" component={PaymentSuccess} />
