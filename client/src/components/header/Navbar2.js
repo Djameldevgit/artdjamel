@@ -306,8 +306,8 @@ const Navbar2 = () => {
                           <div className="fw-bold text-white user-name">{auth.user.username} -
                             <div className="user-role-badge">
                               {auth.user.role === 'admin' ? `👑 Admin` :
-                               auth.user.role === 'Moderateur' ? `🛡️ Modérateur` :
-                               auth.user.role === 'Super-utilisateur' ? `⭐ Super Utilisateur` : `👤 Utilisateur`}
+                                auth.user.role === 'Moderateur' ? `🛡️ Modérateur` :
+                                  auth.user.role === 'Super-utilisateur' ? `⭐ Super Utilisateur` : `👤 Utilisateur`}
                             </div>
                           </div>
                           {/* Ya no mostramos badges de canales */}
@@ -322,7 +322,9 @@ const Navbar2 = () => {
                         Publier une œuvre
                       </MenuItem>
                     )}
-
+                    <MenuItem icon={FaShoppingCart} iconColor="#ffc107" to="/adminorders">
+                      Mes commandes
+                    </MenuItem>
                     <MenuItem icon={FaUserCircle} iconColor="#667eea" to={`/profile/${auth.user._id}`}>Mon Profil</MenuItem>
                     <MenuItem icon={FaShareAlt} iconColor="#ffc107" onClick={() => setShowShareModal(true)}>Partager l'App</MenuItem>
 
@@ -330,6 +332,9 @@ const Navbar2 = () => {
                     {(auth.user.role === 'admin' || auth.user.role === 'Super-utilisateur') && (
                       <>
                         <NavDropdown.Divider />
+                        <MenuItem icon={FaShoppingCart} iconColor="#28a745" to="/admin/orders">
+                          Gestion des commandes
+                        </MenuItem>
                         <MenuItem icon={FaShieldAlt} iconColor="#ffc107" to="/admin/posts">Approbation vidéos</MenuItem>
                         <MenuItem icon={FaUsers} iconColor="#28a745" to="/admindashboard">Dashboard Admin</MenuItem>
                         <MenuItem icon={FaUserCog} iconColor="#667eea" to="/users">Gestion utilisateurs</MenuItem>

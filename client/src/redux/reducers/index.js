@@ -37,6 +37,7 @@ import video  from './videoReducer'
 import image from './imageReducer'
  
 import cart  from './cartReducer'
+import order  from './orderReducer';
  
  
 export default combineReducers({
@@ -71,5 +72,5 @@ export default combineReducers({
     category,
     accordionReducer,
     filter,
-    carousel,video ,cart  ,image 
+    carousel,video ,cart  ,image ,order
 })

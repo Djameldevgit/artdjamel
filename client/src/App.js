@@ -37,6 +37,9 @@ import PaymentSuccess from './pages/userProo/PaymentSuccess';
 import CreateArtworkWizard from './pages/video/CreateArtWorkWizard';
 import DetailArtworkPage from './pages/video/DetailArtworkPage';
 import Cart from './pages/Cart';
+import AdminOrders from './components/orders/AdminOrders';
+import UserOrders from './components/orders/UserOrders';
+ 
  
 let audioElement = null;
 let audioUnlocked = false;
@@ -288,8 +291,8 @@ function AppContent() {
         <Route exact path="/video/:id" component={DetailArtworkPage} />
         <Route exact path="/video/userVideo/:userId/info" component={InfoUserVideo} />
         <Route exact path="/videos/trending" component={TrendingVideos} />
-
-     
+        <Route exact path="/adminorders" component={AdminOrders} />
+        <Route exact path="/adminorders" component={UserOrders} />
         <Route exact path="/cart" component={Cart} />
  
         <Route exact path="/map" component={Map} />
@@ -299,7 +302,7 @@ function AppContent() {
         <Route exact path="/profile/settings" component={ProfileSettings} />
         <Route exact path="/users/dashboard" component={DashboardPage} />
         <Route exact path="/profile/:id" component={profile} />
-    
+      
         <Route exact path="/planes" component={planes} />
         <Route exact path="/userpropayment" component={PaymentRequest} />
         <Route exact path="/userproinfoplans" component={UserProInfoPlans} />

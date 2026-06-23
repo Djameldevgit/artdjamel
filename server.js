@@ -132,6 +132,7 @@ app.use('/api', require('./routes/notifyRouter'));
 
 // --- Reportes y Bloqueos ---
 app.use('/api', require('./routes/reportRouter'));
+app.use('/api', require('./routes/orderRouter'));
 
 // --- Videos, Canales, Imágenes ---
 app.use('/api', require('./routes/videoRouter'));
