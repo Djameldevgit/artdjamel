@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 import { GLOBALTYPES } from './redux/actions/globalTypes';
 import SocketClient from './SocketClient';
 import Home from './pages/home';
-import Bloqueos404 from './components/adminitration/Bloqueos404';
+ 
 import NotFound from './pages/NotFound';
 import CategoryPage from './pages/category/CategoryPage';
 import Navbar2 from './components/header/Navbar2';
@@ -16,7 +16,7 @@ import DashboardPage from './pages/users/dashboardpage';
 import profile from './pages/users/profile';
  
 import ProfileSettings from './pages/users/ProfileSettings';
- 
+import Bloqueos404 from './components/adminitration/Bloqueos404';
  
 import NotifyPage from './pages/notiy/NotifyPage';
 import EditVideoWizard from './pages/video/EditVideoWizard';
