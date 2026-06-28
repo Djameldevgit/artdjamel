@@ -1,4 +1,9 @@
-// 📂 components/common/Drawer.js - VERSIÓN CON ENLACE CONDICIONAL "CREAR CANAL" E ICONOS PNG
+// 📂 components/common/Drawer.js - VERSIÓN CON VALIDACIONES DE ROL PARA ÓRDENES Y PUBLICACIÓN
+// MODIFICADO: 
+// - Solo admin ve "Publier une œuvre" y "Gestion des commandes"
+// - Todos los usuarios ven "Mes commandes" (UserOrders)
+// - Traducción de estados al francés (ya en componentes hijos)
+
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
@@ -8,7 +13,7 @@ import { Link } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/fa';
 import axios from 'axios';
 import { BASE_URL } from '../../utils/config';
- 
+
 // ============================================
 // CONSTANTES (idiomas)
 // ============================================
@@ -74,11 +79,9 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
   const location = useLocation();
   const history = useHistory();
   const { auth } = useSelector(state => state);
-  // ✅ Obtener los canales del usuario desde Redux
   const { userChannels = [], loading: channelsLoading } = useSelector(state => state.channel || {});
 
   // Estados
-  const [darkMode, setDarkMode] = useState(false);
   const [imageErrors, setImageErrors] = useState({});
   const [currentLang, setCurrentLang] = useState(DEFAULT_LANG);
   const [openDropdowns, setOpenDropdowns] = useState({
@@ -91,6 +94,11 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
   });
   const [localCategories, setLocalCategories] = useState([]);
   const [loadingLocal, setLoadingLocal] = useState(false);
+
+  // Verificar roles del usuario
+  const isAdmin = useMemo(() => {
+    return auth?.user?.role === 'admin' || auth?.user?.role === 'Super-utilisateur';
+  }, [auth?.user]);
 
   // ============================================
   // CARGAR CATEGORÍAS PARA EL DRAWER
@@ -116,9 +124,8 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
   }, [show, localCategories.length, loadingLocal, loadCategoriesDirectly]);
 
   // ============================================
-  // CARGAR CANALES DEL USUARIO (para saber si tiene canal)
+  // CARGAR CANALES DEL USUARIO
   // ============================================
- 
   const isProActive = useMemo(() => {
     const user = auth?.user;
     if (!user?.isPro) return false;
@@ -248,7 +255,7 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
   };
 
   // ============================================
-  // MEJORA: ICONOS DE CATEGORÍAS (priorizar imagen PNG)
+  // ICONOS DE CATEGORÍAS
   // ============================================
   const defaultCategoryIcons = useMemo(() => ({
     'vehicules': '🚗', 'immobilier': '🏠', 'electromenager': '🔌',
@@ -265,35 +272,27 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
     return `${baseUrl}${iconPath.startsWith('/') ? iconPath : `/categories/${iconPath}`}`;
   }, []);
 
-  // ✅ Función mejorada: prioriza imageUrl, luego icon (si es URL), luego emoji por defecto
   const getCategoryIcon = useCallback((category) => {
-    // Si ya hubo error con esta categoría, mostrar emoji
     if (imageErrors[category.slug]) {
-      return { type: 'emoji', value: defaultCategoryIcons[category.slug] || '📦' };
+      return { type: 'initial', value: category.name?.charAt(0) || '?' };
     }
-
-    // 1. Intentar usar imageUrl (ruta a PNG)
     if (category.imageUrl) {
       const fullUrl = getFullImageUrl(category.imageUrl);
       if (fullUrl) return { type: 'image', value: fullUrl, alt: category.name };
     }
-
-    // 2. Si no hay imageUrl, pero category.icon es una URL (posible legacy)
     if (category.icon && (category.icon.startsWith('http') || category.icon.startsWith('/'))) {
       const fullUrl = getFullImageUrl(category.icon);
       if (fullUrl) return { type: 'image', value: fullUrl, alt: category.name };
     }
-
-    // 3. Por defecto, usar emoji (category.icon suele ser el emoji)
-    return { type: 'emoji', value: category.icon || defaultCategoryIcons[category.slug] || '📦' };
-  }, [imageErrors, getFullImageUrl, defaultCategoryIcons]);
+    return { type: 'initial', value: category.name?.charAt(0) || '?' };
+  }, [imageErrors, getFullImageUrl]);
 
   const handleImageError = useCallback((slug) => {
     setImageErrors(prev => ({ ...prev, [slug]: true }));
   }, []);
 
   // ============================================
-  // MANEJADORES (sin cambios)
+  // MANEJADORES
   // ============================================
   const handleCategoryClick = useCallback((category) => {
     onHide();
@@ -308,12 +307,6 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
     dispatch(logout());
     onHide();
     history.push('/');
-  };
-
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    document.body.classList.toggle('dark-mode', newDarkMode);
   };
 
   const isDashboardPage = location.pathname.includes('/users/dashboard') ||
@@ -346,7 +339,7 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
   };
 
   // ============================================
-  // COMPONENTES INTERNOS (LinkItem, CategoryIcon, etc.)
+  // COMPONENTES INTERNOS
   // ============================================
   const LinkItem = ({ emoji, icon, name, path, onClick, color = '#8b5cf6', badge = null, isDashboardLink = false, external = false }) => {
     const isActive = !external && (location.pathname === path || (isDashboardLink && location.pathname.startsWith('/dashboard')));
@@ -378,17 +371,35 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
 
   const CategoryIcon = ({ category }) => {
     const iconData = getCategoryIcon(category);
-    const style = { width: '32px', height: '32px', borderRadius: '10px', backgroundColor: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 };
+    const style = {
+      width: '32px',
+      height: '32px',
+      borderRadius: '10px',
+      backgroundColor: '#f3f4f6',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      flexShrink: 0
+    };
+
     if (iconData.type === 'image') {
       return (
         <div style={style}>
-          <img src={iconData.value} alt={iconData.alt || category.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={() => handleImageError(category.slug)} />
+          <img
+            src={iconData.value}
+            alt={iconData.alt || category.name}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            onError={() => handleImageError(category.slug)}
+          />
         </div>
       );
     }
+
+    const initial = category.name?.charAt(0) || '?';
     return (
-      <div style={style}>
-        <span style={{ fontSize: '1rem', color: '#6b7280' }}>{iconData.value}</span>
+      <div style={{ ...style, fontSize: '0.9rem', fontWeight: 'bold', color: '#374151' }}>
+        {initial}
       </div>
     );
   };
@@ -451,7 +462,10 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
     if (!isProActive) return null;
     return (
       <DropdownHeader title="Vidéos" icon="🎬" dropdownName="videos" color="#DC2626">
-        <DropdownItem icon="🎬" name="Créer une vidéo" path="/create-video-page" color="#DC2626" />
+        {/* Solo admin ve "Publier une œuvre" */}
+        {isAdmin && (
+          <DropdownItem icon="🎬" name="Publier une œuvre" path="/create-video-page" color="#DC2626" />
+        )}
         <DropdownItem icon="📹" name="Mes vidéos" path="/video/userVideo" color="#DC2626" />
         <DropdownItem icon="📊" name="Statistiques vidéos" path="/stats-videos" color="#F59E0B" />
       </DropdownHeader>
@@ -496,7 +510,24 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
   };
 
   // ============================================
-  // CONTENIDO PRINCIPAL (con enlace condicional)
+  // RENDER DE SECCIÓN "MES COMMANDES" con validación de roles
+  // ============================================
+  const renderOrdersSection = () => {
+    return (
+      <DropdownHeader title="Mes Commandes" emoji={emojis.commande} dropdownName="mesCommandes" color="#F59E0B">
+        {/* ✅ TODOS los usuarios autenticados ven "Mes commandes" (UserOrders) */}
+        <DropdownItem icon="📦" name="Mes commandes" path="/adminorders" color="#F59E0B" />
+        
+        {/* ✅ Solo ADMIN ve "Gestion des commandes" (AdminOrders) */}
+        {isAdmin && (
+          <DropdownItem icon="📊" name="Gestion des commandes" path="/admin/orders" color="#8B5CF6" />
+        )}
+      </DropdownHeader>
+    );
+  };
+
+  // ============================================
+  // CONTENIDO PRINCIPAL
   // ============================================
   const renderDashboardContent = () => (
     <>
@@ -519,56 +550,29 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
       </div>
 
       <DropdownHeader title="Mon Compte" emoji={emojis.user} dropdownName="monCompte" color="#6366F1">
-        <DropdownItem icon="📊" name="Tableau de bord" path="/users/dashboard" color="#6366F1" />
         <DropdownItem icon="⚙️" name="Paramètres du profil" path="/profile/settings" color="#6b7280" />
         <DropdownItem icon={emojis.logout} name="Se déconnecter" onClick={handleLogout} color="#ef4444" />
       </DropdownHeader>
 
       {renderVideosDropdown()}
       {renderCategoriesDropdown()}
-
-      <DropdownHeader title="Annonces" emoji={emojis.annonce} dropdownName="mesAnnonces" color="#3B82F6">
-        <DropdownItem icon="📋" name="Mes annonces" path="/mes-annonces" color="#3B82F6" />
-        <DropdownItem icon="🆕" name="Annonces actives" path="/mes-annonces?filter=active" color="#10b981" />
-        <DropdownItem icon="⏳" name="Annonces en attente" path="/mes-annonces?filter=pending" color="#f59e0b" />
-        <DropdownItem icon="✅" name="Annonces vendues" path="/mes-annonces?filter=sold" color="#6b7280" />
-        <DropdownItem icon="📝" name="Ajouter une annonce" path="/creer-annonce" color="#10b981" />
-      </DropdownHeader>
-
-      <DropdownHeader title="Mes Commandes" emoji={emojis.commande} dropdownName="mesCommandes" color="#F59E0B">
-        <DropdownItem icon="📦" name="Toutes mes commandes" path="/mes-commandes" color="#F59E0B" />
-        <DropdownItem icon="🔄" name="Commandes en cours" path="/mes-commandes?filter=processing" color="#3b82f6" />
-        <DropdownItem icon="✅" name="Commandes livrées" path="/mes-commandes?filter=delivered" color="#10b981" />
-        <DropdownItem icon="🧾" name="Tickets de livraison" path="/mes-tickets" color="#ec4899" />
-      </DropdownHeader>
-
-      <DropdownHeader title="Transactions" emoji={emojis.transaction} dropdownName="mesTransactions" color="#10B981">
-        <DropdownItem icon="💰" name="Mes crédits" path="/mes-credits" color="#10B981" />
-        <DropdownItem icon="💳" name="Recharger" path="/recharger-credits" color="#8b5cf6" />
-        <DropdownItem icon="📊" name="Historique" path="/historique-transactions" color="#6b7280" />
-        <DropdownItem icon="📈" name="Statistiques" path="/stats-transactions" color="#f59e0b" />
-      </DropdownHeader>
+      {renderOrdersSection()}
     </>
   );
 
   const renderLoggedInContent = () => (
     <>
-      <LinkItem emoji={darkMode ? emojis.sun : emojis.moon} name={darkMode ? 'Mode Clair' : 'Mode Sombre'} onClick={toggleDarkMode} color={darkMode ? '#f59e0b' : '#4b5563'} />
-      <LinkItem emoji={emojis.dashboard} name="Mon Tableau de bord" path="/users/dashboard" color="#8b5cf6" isDashboardLink={true} />
       <LinkItem emoji="👤" name="Mon profil" path={`/profile/${auth.user?._id}`} color="#8b5cf6" isDashboardLink={true} />
-      
-      {/* ✅ Enlace condicional: mostrar solo si el usuario NO tiene ningún canal */}
       {userChannels.length === 0 && (
         <LinkItem emoji="📢" name="Créer une chaîne" path="/channel/new" color="#10b981" />
       )}
-      
       {renderCategoriesDropdown()}
+      {renderOrdersSection()}
     </>
   );
 
   const renderGuestContent = () => (
     <>
-      <LinkItem emoji={darkMode ? emojis.sun : emojis.moon} name={darkMode ? 'Mode Clair' : 'Mode Sombre'} onClick={toggleDarkMode} color={darkMode ? '#f59e0b' : '#4b5563'} />
       <div style={{ margin: '20px 0 5px 16px', fontSize: '0.9rem', fontWeight: '600', color: '#555' }}>{emojis.user} Compte</div>
       <LinkItem emoji={emojis.login} name="Se connecter" path="/login" color="#10b981" />
       <LinkItem emoji={emojis.register} name="S'inscrire" path="/register" color="#667eea" />
@@ -624,14 +628,30 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
       <Offcanvas.Body style={{ overflowY: 'auto', padding: '10px 0', scrollbarWidth: 'thin' }}>
         {renderMainContent()}
         <div style={{ margin: '30px 0 15px 16px', fontSize: '0.9rem', fontWeight: '600', color: '#555' }}>🔗 Liens utiles</div>
-        
-        <LinkItem emoji="🎓" name="Tutoriels (Comment utiliser l'app)" path="/tutorials" color="#F1C40F" />
-        <LinkItem emoji="📺" name="Explorer les Chaînes" path="/channels" color="#8E44AD" />
-        
+
+        <div
+          onClick={() => handleCategoryClick({ slug: 'tutorials', name: 'Tutoriels' })}
+          style={{
+            padding: '10px 16px',
+            margin: '2px 0',
+            borderRadius: '10px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <div style={{ width: '32px', height: '32px', borderRadius: '10px', backgroundColor: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>
+            🎓
+          </div>
+          <span style={{ fontSize: '0.9rem', fontWeight: '500', color: '#374151' }}>Tutoriels</span>
+        </div>
+
         <LinkItem emoji="❓" name="Comment annoncer ?" path="/bloginfo" color="#6b7280" />
         <LinkItem emoji="✉️" name="Contactez-nous" path="/users/contactt" color="#6b7280" />
         <LinkItem emoji="🛡️" name="Politique de confidentialité" path="/bloginfo" color="#6b7280" />
-        
+
         <div style={{ marginTop: '30px', padding: '15px 16px', borderTop: '1px solid #e5e7eb', fontSize: '0.7rem', color: '#9ca3af', textAlign: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', marginBottom: '8px' }}>
             <span>🛡️</span>

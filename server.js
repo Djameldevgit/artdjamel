@@ -123,7 +123,7 @@ app.use('/api', require('./routes/chargilyPlanRouter'));
 // --- Categorías (SOLO UNA VEZ) ---
 app.use('/api/categories', require('./routes/categoryRouter'));  // ✅ Esta se queda
 app.use('/api', require('./routes/cartRouter'));
-// --- Posts y Comentarios ---
+ app.use('/api', require('./routes/orderRouter'));
 app.use('/api', require('./routes/commentRouter'));
 app.use('/api', require('./routes/donationRouter'));
 // --- Mensajes y Notificaciones ---
@@ -132,7 +132,7 @@ app.use('/api', require('./routes/notifyRouter'));
 
 // --- Reportes y Bloqueos ---
 app.use('/api', require('./routes/reportRouter'));
-app.use('/api', require('./routes/orderRouter'));
+
 
 // --- Videos, Canales, Imágenes ---
 app.use('/api', require('./routes/videoRouter'));

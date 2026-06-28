@@ -7,7 +7,10 @@ export const ORDER_TYPES = {
   GET_ALL_ORDERS: 'GET_ALL_ORDERS',
   GET_ORDER_DETAIL: 'GET_ORDER_DETAIL',
   UPDATE_ORDER_STATUS: 'UPDATE_ORDER_STATUS',
-  CLEAR_ORDERS: 'CLEAR_ORDERS'
+  CLEAR_ORDERS: 'CLEAR_ORDERS',
+  SYNC_ORDERS_LOADING: 'SYNC_ORDERS_LOADING',
+  SYNC_ORDERS_SUCCESS: 'SYNC_ORDERS_SUCCESS',
+  SYNC_ORDERS_ERROR: 'SYNC_ORDERS_ERROR'
 };
 
 // ============================================
@@ -126,8 +129,24 @@ export const updateOrderStatus = (orderId, status) => async (dispatch, getState)
     dispatch({ type: ORDER_TYPES.LOADING, payload: false });
   }
 };
+// redux/actions/orderAction.js
+// Agregar al final del archivo
 
-// ============================================
-// Limpiar órdenes (al hacer logout)
-// ============================================
+ 
+
+
+export const syncPendingOrders = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_TYPES.LOADING, payload: true });
+    const { auth } = getState();
+    const res = await postDataAPI('sync-pending-orders', {}, auth.token); // ← usa postDataAPI
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.message } });
+    return res.data;
+  } catch (err) {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response?.data?.error || err.message } });
+    return null;
+  } finally {
+    dispatch({ type: ORDER_TYPES.LOADING, payload: false });
+  }
+};
 export const clearOrders = () => ({ type: ORDER_TYPES.CLEAR_ORDERS });

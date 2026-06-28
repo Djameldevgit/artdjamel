@@ -293,7 +293,7 @@ function AppContent() {
         <Route exact path="/video/userVideo/:userId/info" component={InfoUserVideo} />
         <Route exact path="/videos/trending" component={TrendingVideos} />
         <Route exact path="/adminorders" component={AdminOrders} />
-        <Route exact path="/adminorders" component={UserOrders} />
+        <Route exact path="/userorders" component={UserOrders} />
         <Route exact path="/cart" component={Cart} />
  
         <Route exact path="/map" component={Map} />

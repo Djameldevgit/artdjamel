@@ -7,7 +7,7 @@ const Order = require('../models/orderModel');
 const Video = require('../models/videoModel');
 
 const chargilyPlanCtrl = {
-  
+
   // ============================================
   // 1. CREAR CHECKOUT (PLAN O CARRITO)
   // ============================================
@@ -31,14 +31,13 @@ const chargilyPlanCtrl = {
         ? 'https://artdjamel.onrender.com' 
         : 'http://localhost:3000');
       
-      const webhookUrl = `${baseClientUrl}/api/webhook`;  // ✅ URL pública del webhook
+      const webhookUrl = `${baseClientUrl}/api/webhook`;
       
       console.log(`🎯 Modo: ${isLive ? '🔴 LIVE' : '🟡 TEST'}`);
       console.log(`💰 Monto: ${amount} DZD`);
       console.log(`📦 Plan: ${plan_id}`);
       console.log(`🌐 Webhook URL: ${webhookUrl}`);
       
-      // Construir metadata
       let metadata = {
         type: plan_id === 'cart' ? 'cart_payment' : 'plan_subscription',
         user_id: userId.toString(),
@@ -58,7 +57,6 @@ const chargilyPlanCtrl = {
         metadata.category = category || '';
       }
       
-      // Llamar a Chargily
       const response = await axios.post(
         baseUrl,
         {
@@ -66,7 +64,7 @@ const chargilyPlanCtrl = {
           currency: "dzd",
           success_url: `${baseClientUrl}/payment-success`,
           failure_url: `${baseClientUrl}/payment-failure`,
-          webhook_endpoint: webhookUrl,  // ← Enviamos la URL del webhook
+          webhook_endpoint: webhookUrl,
           metadata: metadata
         },
         {
@@ -77,7 +75,6 @@ const chargilyPlanCtrl = {
         }
       );
       
-      // Guardar transacción en BD
       const transaction = new Transaction({
         checkout_id: response.data.id,
         user_id: userId,
@@ -120,7 +117,7 @@ const chargilyPlanCtrl = {
   },
   
   // ============================================
-  // 2. WEBHOOK - PROCESAR PAGO EXITOSO (CON LOGS MEJORADOS)
+  // 2. WEBHOOK - PROCESAR PAGO EXITOSO
   // ============================================
   handlePlanWebhook: async (req, res) => {
     try {
@@ -136,7 +133,6 @@ const chargilyPlanCtrl = {
       const payload = JSON.stringify(req.body);
       const isLive = process.env.CHARGILY_MODE === 'live';
       
-      // Verificar firma en LIVE
       if (isLive && signature) {
         const computedSignature = crypto
           .createHmac("sha256", process.env.CHARGILY_SECRET_KEY)
@@ -144,14 +140,11 @@ const chargilyPlanCtrl = {
           .digest("hex");
         if (computedSignature !== signature) {
           console.warn('⚠️ Firma inválida!');
-          console.warn('   Esperada:', computedSignature);
-          console.warn('   Recibida:', signature);
           return res.status(403).json({ error: "Invalid signature" });
         }
         console.log('✅ Firma verificada correctamente');
       } else if (isLive && !signature) {
         console.warn('⚠️ No hay firma en modo LIVE!');
-        // Aún así, seguimos procesando (pero deberías verificar)
       } else {
         console.log('🟡 Modo TEST - verificación de firma omitida');
       }
@@ -159,7 +152,6 @@ const chargilyPlanCtrl = {
       const event = req.body;
       console.log('📨 Tipo de evento:', event.type);
       
-      // Solo procesamos eventos de pago exitoso
       if (event.type === "checkout.paid") {
         const checkoutData = event.data;
         const metadata = checkoutData.metadata || {};
@@ -169,32 +161,19 @@ const chargilyPlanCtrl = {
         console.log(`👤 Usuario ID: ${metadata.user_id}`);
         console.log(`💰 Monto: ${checkoutData.amount} ${checkoutData.currency}`);
         console.log(`📦 Plan: ${metadata.plan_id}`);
-        console.log(`📦 Items: ${metadata.cart_items ? metadata.cart_items.length : 0}`);
         
-        // Buscar la transacción pendiente
         const transaction = await Transaction.findOne({ checkout_id: checkoutId });
         if (!transaction) {
           console.warn(`⚠️ Transacción NO encontrada para checkout_id: ${checkoutId}`);
-          // Buscar por cualquier otro campo (por si acaso)
-          const altTransaction = await Transaction.findOne({ 'chargily_response.id': checkoutId });
-          if (altTransaction) {
-            console.log(`✅ Encontrada por chargily_response.id: ${altTransaction._id}`);
-            // Actualizar la transacción con el checkout_id
-            altTransaction.checkout_id = checkoutId;
-            await altTransaction.save();
-            // Usar esta transacción
-            return processPaidTransaction(altTransaction, checkoutData, metadata, res);
-          }
           return res.json({ received: true, warning: 'Transaction not found' });
         }
         
         if (transaction.status === 'paid') {
-          console.log('⏭️ Transacción ya procesada anteriormente');
+          console.log('⏭️ Transacción ya procesada');
           return res.json({ received: true });
         }
         
-        // Procesar la transacción pagada
-        return await processPaidTransaction(transaction, checkoutData, metadata, res);
+        return await this.processPaidTransaction(transaction, checkoutData, metadata, res);
         
       } else {
         console.log(`⏭️ Evento ignorado: ${event.type}`);
@@ -203,13 +182,221 @@ const chargilyPlanCtrl = {
       
     } catch (err) {
       console.error('❌ ERROR WEBHOOK:', err);
-      console.error('❌ Stack:', err.stack);
       return res.status(500).json({ error: "Webhook error", details: err.message });
     }
   },
   
   // ============================================
-  // 3. VERIFICAR ESTADO DEL PLAN
+  // 3. PROCESAR TRANSACCIÓN PAGADA (Método interno)
+  // ============================================
+  processPaidTransaction: async (transaction, checkoutData, metadata, res) => {
+    try {
+      transaction.status = 'paid';
+      transaction.payment_completed_at = new Date();
+      transaction.chargily_payment_id = checkoutData.payment_intent || checkoutData.id;
+      transaction.webhook_received = checkoutData;
+      await transaction.save();
+      console.log('✅ Transacción actualizada a PAID');
+      
+      if (metadata.plan_id === 'cart') {
+        // PAGO DE CARRITO
+        console.log('🛒 Procesando pago de carrito...');
+        
+        let cartItems = transaction.cart_items || [];
+        if (cartItems.length === 0 && metadata.cart_items) {
+          cartItems = metadata.cart_items;
+        }
+        
+        if (cartItems.length === 0) {
+          console.warn('⚠️ No hay items en el carrito');
+          return res.json({ received: true, warning: 'No cart items' });
+        }
+        
+        console.log(`📦 Items del carrito: ${cartItems.length}`);
+        
+        // Crear la orden
+        const order = new Order({
+          orderId: checkoutData.id,
+          userId: transaction.user_id,
+          userEmail: transaction.user_email,
+          userName: transaction.user_username,
+          items: cartItems.map(item => ({
+            videoId: item.videoId,
+            title: item.title || 'Sans titre',
+            price: item.price || 0,
+            quantity: item.quantity || 1,
+            thumbnail: item.thumbnail || ''
+          })),
+          totalAmount: transaction.amount,
+          currency: transaction.currency || 'dzd',
+          paymentMethod: 'chargily',
+          paymentId: transaction.chargily_payment_id,
+          checkoutId: checkoutData.id,
+          status: 'paid',
+          paidAt: new Date()
+        });
+        
+        await order.save();
+        console.log(`✅ ORDEN CREADA: ${order.orderId}`);
+        
+        // Actualizar stock
+        for (const item of cartItems) {
+          try {
+            const video = await Video.findById(item.videoId);
+            if (video) {
+              video.stock = Math.max(0, video.stock - (item.quantity || 1));
+              if (video.stock <= 0) video.status = 'vendue';
+              await video.save();
+              console.log(`📦 Video "${video.title}" actualizado: stock=${video.stock}`);
+            }
+          } catch (err) {
+            console.error(`❌ Error actualizando video ${item.videoId}:`, err.message);
+          }
+        }
+        
+        console.log('✅ Procesamiento de carrito completado');
+        return res.json({ received: true, orderCreated: true });
+        
+      } else {
+        // PAGO DE PLAN
+        console.log('📦 Procesando pago de plan...');
+        const totalMonths = (metadata.duration_months || 1) + (metadata.free_months || 0);
+        const expiresAt = new Date();
+        expiresAt.setMonth(expiresAt.getMonth() + totalMonths);
+        
+        transaction.plan_expires_at = expiresAt;
+        await transaction.save();
+        
+        await User.findByIdAndUpdate(
+          transaction.user_id,
+          {
+            channelPlan: metadata.plan_id,
+            channelPlanExpiresAt: expiresAt,
+            channelPlanAutoRenew: false,
+            isPro: metadata.plan_id !== 'basic',
+            role: 'userpro'
+          }
+        );
+        
+        console.log(`✅ Usuario actualizado con plan ${metadata.plan_id}`);
+        return res.json({ received: true, userUpdated: true });
+      }
+      
+    } catch (err) {
+      console.error('❌ Error procesando transacción pagada:', err);
+      return res.status(500).json({ error: "Error processing transaction" });
+    }
+  },
+  
+  // ============================================
+  // 4. SINCRONIZAR ÓRDENES PENDIENTES (ADMIN)
+  // ============================================
+  syncPendingOrders: async (req, res) => {
+    try {
+      if (req.user.role !== 'admin' && req.user.role !== 'moderator') {
+        return res.status(403).json({ error: 'Accès réservé aux administrateurs' });
+      }
+
+      console.log('🔄 ===== SINCRONIZANDO ÓRDENES PENDIENTES =====');
+      
+      const transactions = await Transaction.find({ 
+        status: 'paid',
+        plan_id: 'cart'
+      }).sort({ created_at: -1 });
+
+      console.log(`📊 Encontradas ${transactions.length} transacciones pagadas de carrito`);
+
+      let created = 0;
+      let skipped = 0;
+      let errors = 0;
+
+      for (const transaction of transactions) {
+        const existingOrder = await Order.findOne({ orderId: transaction.checkout_id });
+        if (existingOrder) {
+          console.log(`⏭️ Orden ya existe para checkout_id: ${transaction.checkout_id}`);
+          skipped++;
+          continue;
+        }
+
+        try {
+          const cartItems = transaction.cart_items || [];
+          if (cartItems.length === 0) {
+            console.warn(`⚠️ Transacción ${transaction.checkout_id} sin items`);
+            skipped++;
+            continue;
+          }
+
+          console.log(`📦 Creando orden para checkout_id: ${transaction.checkout_id}`);
+          console.log(`   Usuario: ${transaction.user_email}`);
+          console.log(`   Items: ${cartItems.length}`);
+          console.log(`   Total: ${transaction.amount} DA`);
+
+          const order = new Order({
+            orderId: transaction.checkout_id,
+            userId: transaction.user_id,
+            userEmail: transaction.user_email,
+            userName: transaction.user_username || 'User',
+            items: cartItems.map(item => ({
+              videoId: item.videoId,
+              title: item.title || 'Sans titre',
+              price: item.price || 0,
+              quantity: item.quantity || 1,
+              thumbnail: item.thumbnail || ''
+            })),
+            totalAmount: transaction.amount,
+            currency: transaction.currency || 'dzd',
+            paymentMethod: 'chargily',
+            paymentId: transaction.chargily_payment_id,
+            checkoutId: transaction.checkout_id,
+            status: 'paid',
+            paidAt: transaction.payment_completed_at || new Date()
+          });
+
+          await order.save();
+          created++;
+          console.log(`✅ Orden creada: ${order.orderId}`);
+
+          for (const item of cartItems) {
+            try {
+              const video = await Video.findById(item.videoId);
+              if (video) {
+                const oldStock = video.stock || 0;
+                const qty = item.quantity || 1;
+                video.stock = Math.max(0, oldStock - qty);
+                if (video.stock <= 0) video.status = 'vendue';
+                await video.save();
+                console.log(`📦 Video "${video.title}" actualizado: stock ${oldStock} → ${video.stock}`);
+              }
+            } catch (err) {
+              console.error(`❌ Error actualizando video ${item.videoId}:`, err.message);
+            }
+          }
+
+        } catch (err) {
+          errors++;
+          console.error(`❌ Error creando orden para ${transaction.checkout_id}:`, err.message);
+        }
+      }
+
+      console.log(`\n✅ Sincronización completada:`);
+      console.log(`   - ${created} órdenes creadas`);
+      console.log(`   - ${skipped} omitidas`);
+      console.log(`   - ${errors} errores`);
+
+      res.json({
+        success: true,
+        message: 'Sincronización completada',
+        stats: { totalTransactions: transactions.length, created, skipped, errors }
+      });
+
+    } catch (err) {
+      console.error('❌ Error en syncPendingOrders:', err);
+      res.status(500).json({ error: err.message });
+    }
+  },
+  
+  // ============================================
+  // 5. VERIFICAR ESTADO DEL PLAN
   // ============================================
   checkPlanStatus: async (req, res) => {
     try {
@@ -254,7 +441,7 @@ const chargilyPlanCtrl = {
   },
 
   // ============================================
-  // 4. HISTORIAL DE TRANSACCIONES DEL USUARIO
+  // 6. HISTORIAL DE TRANSACCIONES DEL USUARIO
   // ============================================
   getUserTransactions: async (req, res) => {
     try {
@@ -284,125 +471,5 @@ const chargilyPlanCtrl = {
     }
   }
 };
-
-// ============================================
-// FUNCIÓN AUXILIAR: Procesar transacción pagada
-// ============================================
-async function processPaidTransaction(transaction, checkoutData, metadata, res) {
-  try {
-    // Marcar como pagado
-    transaction.status = 'paid';
-    transaction.payment_completed_at = new Date();
-    transaction.chargily_payment_id = checkoutData.payment_intent || checkoutData.id;
-    transaction.webhook_received = checkoutData;
-    await transaction.save();
-    console.log('✅ Transacción actualizada a PAID');
-    
-    // ============================================
-    // 🛒 PROCESAR SEGÚN TIPO DE PAGO
-    // ============================================
-    if (metadata.plan_id === 'cart') {
-      // ---------- PAGO DE CARRITO ----------
-      console.log('🛒 Procesando pago de carrito...');
-      
-      // Usar los items guardados en la transacción o en metadata
-      let cartItems = transaction.cart_items || [];
-      if (cartItems.length === 0 && metadata.cart_items) {
-        cartItems = metadata.cart_items;
-        console.log('📦 Usando items de metadata');
-      }
-      
-      if (cartItems.length === 0) {
-        console.warn('⚠️ No hay items en el carrito para esta transacción');
-        return res.json({ received: true, warning: 'No cart items' });
-      }
-      
-      console.log(`📦 Items del carrito: ${cartItems.length}`);
-      
-      // Crear la orden
-      const order = new Order({
-        orderId: checkoutData.id,
-        userId: transaction.user_id,
-        userEmail: transaction.user_email,
-        userName: transaction.user_username,
-        items: cartItems.map(item => ({
-          videoId: item.videoId,
-          title: item.title || 'Sans titre',
-          price: item.price || 0,
-          quantity: item.quantity || 1,
-          thumbnail: item.thumbnail || ''
-        })),
-        totalAmount: transaction.amount,
-        currency: transaction.currency || 'dzd',
-        paymentMethod: 'chargily',
-        paymentId: transaction.chargily_payment_id,
-        checkoutId: checkoutData.id,
-        status: 'paid',
-        paidAt: new Date()
-      });
-      
-      await order.save();
-      console.log(`✅ ORDEN CREADA: ${order.orderId} para usuario ${transaction.user_id}`);
-      
-      // ----- ACTUALIZAR STOCK DE VIDEOS -----
-      for (const item of cartItems) {
-        try {
-          const video = await Video.findById(item.videoId);
-          if (video) {
-            // Reducir stock
-            if (video.stock !== undefined && video.stock !== null) {
-              video.stock = Math.max(0, video.stock - (item.quantity || 1));
-            }
-            // Si stock llega a 0, cambiar estado a 'vendue'
-            if (video.stock <= 0) {
-              video.status = 'vendue';
-            }
-            await video.save();
-            console.log(`📦 Video "${video.title}" actualizado: stock=${video.stock}, status=${video.status}`);
-          } else {
-            console.warn(`⚠️ Video no encontrado: ${item.videoId}`);
-          }
-        } catch (err) {
-          console.error(`❌ Error actualizando video ${item.videoId}:`, err.message);
-        }
-      }
-      
-      console.log('✅ Procesamiento de carrito completado');
-      return res.json({ received: true, orderCreated: true });
-      
-    } else {
-      // ---------- PAGO DE PLAN (Suscripción) ----------
-      console.log('📦 Procesando pago de plan...');
-      
-      const totalMonths = (metadata.duration_months || 1) + (metadata.free_months || 0);
-      const expiresAt = new Date();
-      expiresAt.setMonth(expiresAt.getMonth() + totalMonths);
-      
-      transaction.plan_expires_at = expiresAt;
-      await transaction.save();
-      
-      const updatedUser = await User.findByIdAndUpdate(
-        transaction.user_id,
-        {
-          channelPlan: metadata.plan_id,
-          channelPlanExpiresAt: expiresAt,
-          channelPlanAutoRenew: false,
-          isPro: metadata.plan_id !== 'basic',
-          role: 'userpro'
-        },
-        { new: true }
-      );
-      
-      console.log(`✅ Usuario actualizado: ${updatedUser.username} → ${updatedUser.channelPlan}`);
-      console.log(`📅 Expira: ${expiresAt.toISOString()}`);
-      return res.json({ received: true, userUpdated: true });
-    }
-    
-  } catch (err) {
-    console.error('❌ Error procesando transacción pagada:', err);
-    // No devolvemos error para que Chargily no reintente
-    return res.status(500).json({ error: "Error processing transaction" });
-  }
-}
 
 module.exports = chargilyPlanCtrl;

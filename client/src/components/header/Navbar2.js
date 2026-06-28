@@ -1,4 +1,4 @@
-// components/Navbar2.jsx - VERSIÓN SIMPLIFICADA SIN LÓGICA DE CANALES
+// components/Navbar2.jsx - VERSIÓN CON NAVEGACIÓN DE ÓRDENES PARA ADMIN Y USER
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';
@@ -310,7 +310,6 @@ const Navbar2 = () => {
                                   auth.user.role === 'Super-utilisateur' ? `⭐ Super Utilisateur` : `👤 Utilisateur`}
                             </div>
                           </div>
-                          {/* Ya no mostramos badges de canales */}
                         </div>
                       </div>
                     </div>
@@ -322,33 +321,55 @@ const Navbar2 = () => {
                         Publier une œuvre
                       </MenuItem>
                     )}
+
+                    {/* ✅ MES COMMANDES (para todos los usuarios autenticados) */}
                     <MenuItem icon={FaShoppingCart} iconColor="#ffc107" to="/adminorders">
                       Mes commandes
                     </MenuItem>
-                    <MenuItem icon={FaUserCircle} iconColor="#667eea" to={`/profile/${auth.user._id}`}>Mon Profil</MenuItem>
-                    <MenuItem icon={FaShareAlt} iconColor="#ffc107" onClick={() => setShowShareModal(true)}>Partager l'App</MenuItem>
 
-                    {/* ACCIONES DE ADMINISTRACIÓN */}
+                    <MenuItem icon={FaUserCircle} iconColor="#667eea" to={`/profile/${auth.user._id}`}>
+                      Mon Profil
+                    </MenuItem>
+                    <MenuItem icon={FaShareAlt} iconColor="#ffc107" onClick={() => setShowShareModal(true)}>
+                      Partager l'App
+                    </MenuItem>
+
+                    {/* ✅ ACCIONES DE ADMINISTRACIÓN (solo admin y super-usuario) */}
                     {(auth.user.role === 'admin' || auth.user.role === 'Super-utilisateur') && (
                       <>
                         <NavDropdown.Divider />
+                        {/* ✅ GESTION DES COMMANDES (solo admin) */}
                         <MenuItem icon={FaShoppingCart} iconColor="#28a745" to="/admin/orders">
                           Gestion des commandes
                         </MenuItem>
-                        <MenuItem icon={FaShieldAlt} iconColor="#ffc107" to="/admin/posts">Approbation vidéos</MenuItem>
-                        <MenuItem icon={FaUsers} iconColor="#28a745" to="/admindashboard">Dashboard Admin</MenuItem>
-                        <MenuItem icon={FaUserCog} iconColor="#667eea" to="/users">Gestion utilisateurs</MenuItem>
-                        <MenuItem icon={FaTools} iconColor="#6c757d" to="/users/roles">Gestion rôles</MenuItem>
+                        <MenuItem icon={FaShieldAlt} iconColor="#ffc107" to="/admin/posts">
+                          Approbation vidéos
+                        </MenuItem>
+                        <MenuItem icon={FaUsers} iconColor="#28a745" to="/admindashboard">
+                          Dashboard Admin
+                        </MenuItem>
+                        <MenuItem icon={FaUserCog} iconColor="#667eea" to="/users">
+                          Gestion utilisateurs
+                        </MenuItem>
+                        <MenuItem icon={FaTools} iconColor="#6c757d" to="/users/roles">
+                          Gestion rôles
+                        </MenuItem>
                       </>
                     )}
 
                     <NavDropdown.Divider />
-                    <MenuItem icon={FaSignOutAlt} iconColor="#dc3545" onClick={handleLogout} danger>Se déconnecter</MenuItem>
+                    <MenuItem icon={FaSignOutAlt} iconColor="#dc3545" onClick={handleLogout} danger>
+                      Se déconnecter
+                    </MenuItem>
                   </>
                 ) : (
                   <>
-                    <MenuItem icon={FaSignInAlt} iconColor="#28a745" onClick={handleLogin}>Se connecter</MenuItem>
-                    <MenuItem icon={FaUserPlus} iconColor="#667eea" onClick={handleRegister}>S'inscrire</MenuItem>
+                    <MenuItem icon={FaSignInAlt} iconColor="#28a745" onClick={handleLogin}>
+                      Se connecter
+                    </MenuItem>
+                    <MenuItem icon={FaUserPlus} iconColor="#667eea" onClick={handleRegister}>
+                      S'inscrire
+                    </MenuItem>
                   </>
                 )}
               </div>

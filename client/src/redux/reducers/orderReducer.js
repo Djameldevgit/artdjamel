@@ -1,3 +1,4 @@
+// redux/reducers/orderReducer.js
 import { ORDER_TYPES } from '../actions/orderAction';
 
 const initialState = {
@@ -10,7 +11,10 @@ const initialState = {
     totalOrders: 0,
     totalAmount: 0
   },
-  orderDetail: null
+  orderDetail: null,
+  syncLoading: false,
+  syncStats: null,
+  syncError: null
 };
 
 const orderReducer = (state = initialState, action) => {
@@ -49,6 +53,23 @@ const orderReducer = (state = initialState, action) => {
         orderDetail: state.orderDetail?.orderId === action.payload.orderId
           ? action.payload
           : state.orderDetail
+      };
+      
+    case ORDER_TYPES.SYNC_ORDERS_LOADING:
+      return { ...state, syncLoading: action.payload };
+      
+    case ORDER_TYPES.SYNC_ORDERS_SUCCESS:
+      return {
+        ...state,
+        syncStats: action.payload,
+        syncError: null
+      };
+      
+    case ORDER_TYPES.SYNC_ORDERS_ERROR:
+      return {
+        ...state,
+        syncError: action.payload,
+        syncStats: null
       };
       
     case ORDER_TYPES.CLEAR_ORDERS:

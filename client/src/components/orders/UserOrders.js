@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, Badge, Spinner, Pagination, Button, Modal } from 'react-bootstrap';
-import { FaEye, FaDownload } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
 import moment from 'moment';
+import 'moment/locale/fr';
 import { getUserOrders, getOrderDetail } from '../../redux/actions/orderAction';
 import './Orders.css';
- 
- 
- const UserOrders = () => {
+
+moment.locale('fr');
+
+const UserOrders = () => {
   const dispatch = useDispatch();
   const { orders, total, page, pages, loading } = useSelector(state => state.order);
   const { auth } = useSelector(state => state);
+  
   const [currentPage, setCurrentPage] = useState(1);
   const [showDetail, setShowDetail] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -35,16 +38,19 @@ import './Orders.css';
     return moment(date).format('DD/MM/YYYY HH:mm');
   };
 
+  // ✅ ESTADOS TRADUCIDOS AL FRANCÉS
   const getStatusBadge = (status) => {
-    const variants = {
-      pending: 'warning',
-      paid: 'success',
-      shipped: 'info',
-      delivered: 'primary',
-      cancelled: 'danger',
-      refunded: 'secondary'
+    const statusMap = {
+      pending: { label: 'En attente', variant: 'warning' },
+      paid: { label: 'Payée', variant: 'success' },
+      shipped: { label: 'Expédiée', variant: 'info' },
+      delivered: { label: 'Livrée', variant: 'primary' },
+      cancelled: { label: 'Annulée', variant: 'danger' },
+      refunded: { label: 'Remboursée', variant: 'secondary' }
     };
-    return <Badge bg={variants[status] || 'secondary'}>{status}</Badge>;
+    
+    const statusInfo = statusMap[status] || { label: status, variant: 'secondary' };
+    return <Badge bg={statusInfo.variant}>{statusInfo.label}</Badge>;
   };
 
   if (loading) {
@@ -87,7 +93,7 @@ import './Orders.css';
               <td>{formatDate(order.createdAt)}</td>
               <td>{order.items.length} article{order.items.length > 1 ? 's' : ''}</td>
               <td><strong>{order.totalAmount.toLocaleString()} DA</strong></td>
-              <td>{getStatusBadge(order.status)}</td>
+              <td>{getStatusBadge(order.status)}</td> {/* ✅ Mostrará "En attente", "Payée", etc. */}
               <td>
                 <Button
                   variant="outline-primary"
@@ -120,8 +126,7 @@ import './Orders.css';
         </Pagination>
       )}
 
-      {/* Modal de detalle de orden */}
-      <Modal show={showDetail} onHide={() => setShowDetail(false)} size="lg">
+      <Modal show={showDetail} onHide={() => setShowDetail(false)} size="lg" className="order-detail-modal">
         <Modal.Header closeButton>
           <Modal.Title>Commande #{selectedOrder?.orderId?.slice(-8)}</Modal.Title>
         </Modal.Header>
@@ -133,7 +138,7 @@ import './Orders.css';
                 <p><strong>Statut :</strong> {getStatusBadge(selectedOrder.status)}</p>
                 <p><strong>Total :</strong> {selectedOrder.totalAmount.toLocaleString()} DA</p>
               </div>
-              <Table responsive size="sm" className="mt-3">
+              <Table responsive size="sm" className="order-items-table">
                 <thead>
                   <tr>
                     <th>Produit</th>
@@ -148,7 +153,12 @@ import './Orders.css';
                       <td>
                         <div className="d-flex align-items-center">
                           {item.thumbnail && (
-                            <img src={item.thumbnail} alt={item.title} style={{ width: 50, height: 50, objectFit: 'cover', marginRight: 10, borderRadius: 4 }} />
+                            <img 
+                              src={item.thumbnail} 
+                              alt={item.title} 
+                              style={{ width: 50, height: 50, objectFit: 'cover', marginRight: 10, borderRadius: 4 }}
+                              onError={(e) => { e.target.style.display = 'none'; }}
+                            />
                           )}
                           <span>{item.title}</span>
                         </div>
@@ -176,5 +186,5 @@ import './Orders.css';
     </div>
   );
 };
- 
- export default UserOrders
+
+export default UserOrders;
