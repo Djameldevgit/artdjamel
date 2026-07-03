@@ -1,17 +1,17 @@
 /* ============================================
-   ORDERS.CSS - Estilos compartidos
+   ORDERS.CSS - VERSIÓN DEFINITIVA (LIMPIA Y RESPONSIVE)
    ============================================ */
 
 /* ---------- Contenedores principales ---------- */
 .user-orders-container,
 .admin-orders-container {
-  padding: 20px;
+  padding: 16px 12px;
   background: transparent;
   border-radius: 16px;
   min-height: 400px;
 }
 
-/* ---------- Tablas ---------- */
+/* ---------- Tabla ---------- */
 .orders-table {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -25,25 +25,20 @@
 
 .orders-table thead th {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #ffffff;
+  color: #fff;
   font-weight: 600;
-  padding: 14px 16px;
+  padding: 12px 14px;
   border: none;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
-.orders-table thead th:first-child {
-  border-radius: 12px 0 0 0;
-}
-
-.orders-table thead th:last-child {
-  border-radius: 0 12px 0 0;
-}
+.orders-table thead th:first-child { border-radius: 12px 0 0 0; }
+.orders-table thead th:last-child { border-radius: 0 12px 0 0; }
 
 .orders-table tbody tr {
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -52,129 +47,80 @@
 }
 
 .orders-table tbody tr:hover {
-  background: rgba(102, 126, 234, 0.08);
+  background: rgba(102, 126, 234, 0.12);
   transform: scale(1.002);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .orders-table tbody td {
-  padding: 14px 16px;
+  padding: 12px 14px;
   vertical-align: middle;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   color: #e0e0e0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 /* Tema oscuro (por defecto) */
-.orders-table {
-  background: rgba(26, 26, 46, 0.9);
-}
+.orders-table { background: rgba(26, 26, 46, 0.9); }
 
-.orders-table tbody td {
-  color: #e0e0e0;
-}
-
-/* Tema claro (si settings.style = false) */
+/* Tema claro */
 .light-theme .orders-table {
-  background: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
-
-.light-theme .orders-table tbody td {
-  color: #2d3748;
-}
-
-.light-theme .orders-table tbody tr:nth-child(even) {
-  background: rgba(102, 126, 234, 0.04);
-}
-
-.light-theme .orders-table tbody tr:hover {
-  background: rgba(102, 126, 234, 0.1);
-}
+.light-theme .orders-table tbody td { color: #2d3748; }
+.light-theme .orders-table tbody tr:nth-child(even) { background: rgba(102,126,234,0.04); }
+.light-theme .orders-table tbody tr:hover { background: rgba(102,126,234,0.1); }
 
 /* ---------- Badges de estado ---------- */
 .status-badge {
-  padding: 4px 14px;
+  padding: 3px 12px;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: capitalize;
   display: inline-block;
   letter-spacing: 0.3px;
 }
 
-.status-badge-pending {
-  background: rgba(255, 193, 7, 0.2);
-  color: #ffc107;
-  border: 1px solid rgba(255, 193, 7, 0.3);
-}
-
-.status-badge-paid {
-  background: rgba(40, 167, 69, 0.2);
-  color: #28a745;
-  border: 1px solid rgba(40, 167, 69, 0.3);
-}
-
-.status-badge-shipped {
-  background: rgba(23, 162, 184, 0.2);
-  color: #17a2b8;
-  border: 1px solid rgba(23, 162, 184, 0.3);
-}
-
-.status-badge-delivered {
-  background: rgba(0, 123, 255, 0.2);
-  color: #007bff;
-  border: 1px solid rgba(0, 123, 255, 0.3);
-}
-
-.status-badge-cancelled {
-  background: rgba(220, 53, 69, 0.2);
-  color: #dc3545;
-  border: 1px solid rgba(220, 53, 69, 0.3);
-}
-
-.status-badge-refunded {
-  background: rgba(108, 117, 125, 0.2);
-  color: #adb5bd;
-  border: 1px solid rgba(108, 117, 125, 0.3);
-}
+.status-badge-pending { background: rgba(255,193,7,0.2); color: #ffc107; border: 1px solid rgba(255,193,7,0.3); }
+.status-badge-paid    { background: rgba(40,167,69,0.2); color: #28a745; border: 1px solid rgba(40,167,69,0.3); }
+.status-badge-shipped { background: rgba(23,162,184,0.2); color: #17a2b8; border: 1px solid rgba(23,162,184,0.3); }
+.status-badge-delivered { background: rgba(0,123,255,0.2); color: #007bff; border: 1px solid rgba(0,123,255,0.3); }
+.status-badge-cancelled { background: rgba(220,53,69,0.2); color: #dc3545; border: 1px solid rgba(220,53,69,0.3); }
+.status-badge-refunded { background: rgba(108,117,125,0.2); color: #adb5bd; border: 1px solid rgba(108,117,125,0.3); }
 
 /* ---------- Paginación ---------- */
 .orders-pagination {
   display: flex;
   justify-content: center;
   gap: 6px;
-  margin-top: 24px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 
 .orders-pagination .page-item .page-link {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
   color: #e0e0e0;
   border-radius: 8px;
-  padding: 8px 14px;
-  transition: all 0.2s ease;
+  padding: 6px 12px;
+  transition: 0.2s ease;
   font-weight: 500;
 }
 
 .orders-pagination .page-item .page-link:hover {
-  background: rgba(102, 126, 234, 0.2);
+  background: rgba(102,126,234,0.2);
   border-color: #667eea;
   transform: translateY(-2px);
 }
-
 .orders-pagination .page-item.active .page-link {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border-color: #667eea;
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(102,126,234,0.3);
 }
-
-.orders-pagination .page-item.disabled .page-link {
-  opacity: 0.4;
-  pointer-events: none;
-}
+.orders-pagination .page-item.disabled .page-link { opacity: 0.4; pointer-events: none; }
 
 /* Tema claro */
 .light-theme .orders-pagination .page-item .page-link {
@@ -182,202 +128,243 @@
   border-color: #dee2e6;
   color: #2d3748;
 }
-
-.light-theme .orders-pagination .page-item .page-link:hover {
-  background: rgba(102, 126, 234, 0.1);
-}
+.light-theme .orders-pagination .page-item .page-link:hover { background: rgba(102,126,234,0.1); }
 
 /* ---------- Botones de acción ---------- */
 .btn-action {
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 8px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+}
+.btn-action:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.btn-action-view { background: rgba(102,126,234,0.15); color: #667eea; }
+.btn-action-view:hover { background: rgba(102,126,234,0.3); }
+.btn-action-edit { background: rgba(255,193,7,0.15); color: #ffc107; }
+.btn-action-edit:hover { background: rgba(255,193,7,0.3); }
+
+/* ---------- MODAL DE DETALLE - VERSIÓN LIMPIA Y RESPONSIVE ---------- */
+.order-detail-modal .modal-dialog {
+  margin: 0.5rem;
+  max-width: 95vw;
 }
 
-.btn-action:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+@media (min-width: 576px) {
+  .order-detail-modal .modal-dialog {
+    max-width: 90vw;
+    margin: 1.75rem auto;
+  }
+}
+@media (min-width: 992px) {
+  .order-detail-modal .modal-dialog {
+    max-width: 800px;
+  }
 }
 
-.btn-action-view {
-  background: rgba(102, 126, 234, 0.15);
-  color: #667eea;
-}
-
-.btn-action-view:hover {
-  background: rgba(102, 126, 234, 0.3);
-}
-
-.btn-action-edit {
-  background: rgba(255, 193, 7, 0.15);
-  color: #ffc107;
-}
-
-.btn-action-edit:hover {
-  background: rgba(255, 193, 7, 0.3);
-}
-
-.btn-action-delete {
-  background: rgba(220, 53, 69, 0.15);
-  color: #dc3545;
-}
-
-.btn-action-delete:hover {
-  background: rgba(220, 53, 69, 0.3);
-}
-
-/* ---------- Modales ---------- */
+/* Contenedor principal del modal - sin scroll exterior */
 .order-detail-modal .modal-content {
-  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   color: #e0e0e0;
+  max-height: 92vh;
+  overflow: hidden; /* Evita doble scroll */
+  display: flex;
+  flex-direction: column;
 }
 
+/* Header fijo */
 .order-detail-modal .modal-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 18px 24px;
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-
 .order-detail-modal .modal-header .modal-title {
+  font-size: 1rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-   
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-
 .order-detail-modal .modal-header .btn-close {
   filter: brightness(0) invert(1);
+  opacity: 0.6;
+  transition: 0.2s;
 }
+.order-detail-modal .modal-header .btn-close:hover { opacity: 1; }
 
+/* Body con scroll interno si es necesario */
 .order-detail-modal .modal-body {
-  padding: 24px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 4px 4px;
+  max-height: calc(92vh - 120px); /* Resta header + footer */
+  min-height: 200px;
 }
 
+/* Footer fijo */
+.order-detail-modal .modal-footer {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ---------- Contenido interno (order-meta) ---------- */
 .order-meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  padding: 16px;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  gap: 6px 14px;
+  background: rgba(255,255,255,0.04);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 14px;
 }
-
 .order-meta p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
-
 .order-meta p strong {
   color: #667eea;
   font-weight: 600;
+  margin-right: 4px;
 }
 
-/* Tema claro */
+@media (max-width: 576px) {
+  .order-meta {
+    grid-template-columns: 1fr;
+    gap: 4px 0;
+    padding: 10px 12px;
+  }
+  .order-meta p { font-size: 0.8rem; }
+}
+
+/* ---------- Tabla de items dentro del modal ---------- */
+.order-items-table {
+  margin-bottom: 0;
+  font-size: 0.85rem;
+}
+.order-items-table thead th {
+  background: rgba(102,126,234,0.15);
+  color: #667eea;
+  font-weight: 600;
+  padding: 6px 10px;
+  border: none;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.order-items-table tbody td {
+  padding: 6px 10px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.order-items-table tbody td img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+.order-items-table tfoot td {
+  padding: 8px 10px;
+  font-weight: 600;
+  border-top: 2px solid rgba(102,126,234,0.2);
+}
+
+/* En móviles, compacto */
+@media (max-width: 576px) {
+  .order-items-table { font-size: 0.75rem; }
+  .order-items-table thead th,
+  .order-items-table tbody td,
+  .order-items-table tfoot td {
+    padding: 4px 6px;
+  }
+  .order-items-table tbody td img {
+    width: 28px;
+    height: 28px;
+    margin-right: 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .order-items-table thead th,
+  .order-items-table tbody td,
+  .order-items-table tfoot td {
+    padding: 3px 4px;
+    font-size: 0.65rem;
+  }
+  .order-items-table tbody td img {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* ---------- Tema claro para el modal ---------- */
 .light-theme .order-detail-modal .modal-content {
   background: #ffffff;
   color: #2d3748;
 }
-
 .light-theme .order-detail-modal .modal-header {
   border-bottom: 1px solid #e9ecef;
 }
-
 .light-theme .order-meta {
   background: #f8f9fa;
+}
+.light-theme .order-items-table thead th {
+  background: rgba(102,126,234,0.08);
+  color: #4a5568;
+}
+.light-theme .order-items-table tbody td {
+  border-bottom: 1px solid #edf2f7;
+}
+.light-theme .order-items-table tfoot td {
+  border-top: 2px solid #e2e8f0;
+}
+.light-theme .order-detail-modal .btn-close {
+  filter: none;
+  opacity: 0.4;
+}
+.light-theme .order-detail-modal .btn-close:hover { opacity: 0.8; }
+
+/* ---------- Ajustes para pantallas muy pequeñas (< 400px) ---------- */
+@media (max-width: 400px) {
+  .order-detail-modal .modal-dialog { margin: 0.2rem; }
+  .order-detail-modal .modal-body { padding: 8px 10px; }
+  .order-detail-modal .modal-header { padding: 8px 12px; }
+  .order-detail-modal .modal-footer { padding: 8px 12px; }
+  .order-meta { padding: 6px 8px; }
+  .order-meta p { font-size: 0.7rem; }
 }
 
 /* ---------- Estado vacío ---------- */
 .empty-orders {
   text-align: center;
-  padding: 60px 20px;
+  padding: 40px 20px;
   color: #adb5bd;
 }
+.empty-orders .empty-icon { font-size: 3rem; margin-bottom: 12px; opacity: 0.3; }
+.empty-orders h5 { color: #e0e0e0; margin-bottom: 6px; }
+.empty-orders p { color: #adb5bd; font-size: 0.9rem; }
+.light-theme .empty-orders h5 { color: #2d3748; }
 
-.empty-orders .empty-icon {
-  font-size: 4rem;
-  margin-bottom: 16px;
-  opacity: 0.3;
-}
-
-.empty-orders h5 {
-  color: #e0e0e0;
-  margin-bottom: 8px;
-}
-
-.empty-orders p {
-  color: #adb5bd;
-  font-size: 0.95rem;
-}
-
-.light-theme .empty-orders h5 {
-  color: #2d3748;
-}
-
-/* ---------- Responsive ---------- */
+/* ---------- Responsive general ---------- */
 @media (max-width: 768px) {
-  .orders-table thead th {
-    font-size: 0.7rem;
-    padding: 10px 12px;
-  }
-
-  .orders-table tbody td {
-    font-size: 0.8rem;
-    padding: 10px 12px;
-  }
-
-  .order-meta {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .order-meta p {
-    font-size: 0.85rem;
-  }
-
-  .orders-pagination .page-item .page-link {
-    padding: 6px 10px;
-    font-size: 0.8rem;
-  }
-
+  .orders-table thead th { font-size: 0.65rem; padding: 2px 2px; }
+  .orders-table tbody td { font-size: 0.75rem; padding: 1px 2px; }
   .user-orders-container,
-  .admin-orders-container {
-    padding: 12px;
-  }
-
-  /* Hacer la tabla scrollable en móvil */
-  .orders-table-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+  .admin-orders-container { padding: 2px 1px; }
 }
 
 @media (max-width: 576px) {
-  .orders-table thead th {
-    font-size: 0.6rem;
-    padding: 8px 10px;
-    letter-spacing: 0;
-  }
-
-  .orders-table tbody td {
-    font-size: 0.7rem;
-    padding: 8px 10px;
-  }
-
-  .btn-action {
-    padding: 4px 8px;
-    font-size: 0.7rem;
-  }
-
-  .order-detail-modal .modal-body {
-    padding: 16px;
-  }
+  .orders-table thead th { font-size: 0.55rem; padding: 2px 2px; letter-spacing: 0; }
+  .orders-table tbody td { font-size: 0.65rem; padding: 2px 1px; }
+  .btn-action { padding: 3px 6px; font-size: 0.6rem; }
 }

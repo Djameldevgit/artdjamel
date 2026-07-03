@@ -38,7 +38,7 @@ import image from './imageReducer'
  
 import cart  from './cartReducer'
 import order  from './orderReducer';
- 
+import commissions from './commissionReducer'
  
 export default combineReducers({
     auth,
@@ -72,5 +72,5 @@ export default combineReducers({
     category,
     accordionReducer,
     filter,
-    carousel,video ,cart  ,image ,order
+    carousel,video ,cart  ,image ,order,commissions
 })

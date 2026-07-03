@@ -5,8 +5,8 @@ import { FaEye, FaEdit, FaSync, FaFilter } from 'react-icons/fa';
 import moment from 'moment';
 import 'moment/locale/fr';
 import { getAllOrders, updateOrderStatus, getOrderDetail, syncPendingOrders } from '../../redux/actions/orderAction';
-import './Orders.css';
-
+ 
+import OrderModal from './OrderModal'; // Ajusta la ruta
 moment.locale('fr');
 
 const AdminOrders = () => {
@@ -305,25 +305,11 @@ const AdminOrders = () => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={showStatusModal} onHide={() => setShowStatusModal(false)} className="status-modal">
-        <Modal.Header closeButton>
-          <Modal.Title>Changer le statut</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form.Group>
-            <Form.Label>Nouveau statut</Form.Label>
-            <Form.Select value={newStatus} onChange={(e) => setNewStatus(e.target.value)}>
-              {statusOptions.map(s => (
-                <option key={s.value} value={s.value}>{s.label}</option> // ✅ Mostrará "En attente", "Payée", etc.
-              ))}
-            </Form.Select>
-          </Form.Group>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowStatusModal(false)}>Annuler</Button>
-          <Button variant="primary" onClick={handleUpdateStatus}>Mettre à jour</Button>
-        </Modal.Footer>
-      </Modal>
+      <OrderModal
+  show={showDetail}
+  onHide={() => setShowDetail(false)}
+  order={selectedOrder}
+/>
     </div>
   );
 };

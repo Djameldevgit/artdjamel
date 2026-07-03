@@ -40,6 +40,9 @@ import Cart from './pages/Cart';
 import AdminOrders from './components/orders/AdminOrders';
 import UserOrders from './components/orders/UserOrders';
 import Roless from './components/Roless';
+import ClientCommissionPage from './pages/commission/ClientCommissionPage';
+import ArtistCommissionPage from './pages/commission/ArtistCommissionPage';
+import CommissionDetailPage from './pages/commission/CommissionDetailPage';
  
  
 let audioElement = null;
@@ -239,10 +242,10 @@ function AppContent() {
       '/users/roles',
       '/donation',
       '/planes',
-      '/userproinfoplans'
-     
-      
-   
+      '/userproinfoplans',
+      '/adminorders',
+      '/userorders',
+      '/cart'
     ];
 
     const prefixes = [
@@ -254,9 +257,10 @@ function AppContent() {
       '/message/',
       '/profile/',
       '/donation/',
-      '/userproinfoplans'
-       
-    
+      '/userproinfoplans',
+      '/adminorders',
+      '/userorders',
+      '/cart'
     ];
 
     if (explicitRoutes.includes(pathname)) return true;
@@ -295,7 +299,12 @@ function AppContent() {
         <Route exact path="/adminorders" component={AdminOrders} />
         <Route exact path="/userorders" component={UserOrders} />
         <Route exact path="/cart" component={Cart} />
- 
+        <Route exact path="/mes-commandes" component={ClientCommissionPage} />
+  {/* Artista: ver y responder encargos */}
+  <Route exact path="/encargos-recibidos" component={ArtistCommissionPage} />
+  
+  {/* Ruta para ver detalle de un encargo (opcional) */}
+  <Route exact path="/encargo/:id" component={CommissionDetailPage} />
         <Route exact path="/map" component={Map} />
        
         <Route exact path="/message" component={Message} />

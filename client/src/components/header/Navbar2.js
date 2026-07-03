@@ -1,4 +1,4 @@
-// components/Navbar2.jsx - VERSIÓN CON NAVEGACIÓN DE ÓRDENES PARA ADMIN Y USER
+// components/Navbar2.jsx - VERSIÓN CON NAVEGACIÓN DE ÓRDENES Y ENCARGOS
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';
@@ -22,7 +22,9 @@ import {
   FaUserCircle,
   FaDownload,
   FaTimes,
-  FaShoppingCart
+  FaShoppingCart,
+  FaClipboardList,   // 🆕 para "Mis encargos"
+  FaInbox            // 🆕 para "Encargos recibidos"
 } from 'react-icons/fa';
 
 import { Navbar, Container, NavDropdown, Badge, Button } from 'react-bootstrap';
@@ -300,68 +302,91 @@ const Navbar2 = () => {
               <div className="dropdown-scroll-wrapper">
                 {auth.user ? (
                   <>
-                    <div className="user-header">
-                      <div className="d-flex align-items-center gap-3">
-                        <div className="flex-grow-1">
-                          <div className="fw-bold text-white user-name">{auth.user.username} -
-                            <div className="user-role-badge">
-                              {auth.user.role === 'admin' ? `👑 Admin` :
-                                auth.user.role === 'Moderateur' ? `🛡️ Modérateur` :
-                                  auth.user.role === 'Super-utilisateur' ? `⭐ Super Utilisateur` : `👤 Utilisateur`}
-                            </div>
+                  {/* Header usuario */}
+                  <div className="user-header">
+                    <div className="d-flex align-items-center gap-3">
+                      <div className="flex-grow-1">
+                        <div className="fw-bold text-white user-name">
+                          {auth.user.username} -
+                          <div className="user-role-badge">
+                            {auth.user.role === 'admin' ? `👑 Admin` :
+                              auth.user.role === 'Moderateur' ? `🛡️ Modérateur` :
+                                auth.user.role === 'Super-utilisateur' ? `⭐ Super Utilisateur` : `👤 Utilisateur`}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <NavDropdown.Divider />
-
-                    {/* ✅ Enlace directo a PUBLICAR OBRA (solo admin) */}
-                    {auth.user.role === 'admin' && (
-                      <MenuItem icon={FaPlus} iconColor="#28a745" to="/create-video-page">
-                        Publier une œuvre
-                      </MenuItem>
-                    )}
-
-                    {/* ✅ MES COMMANDES (para todos los usuarios autenticados) */}
+                  </div>
+                  <NavDropdown.Divider />
+          
+                  {/* ✅ Admin: Publier une œuvre */}
+                  {auth.user.role === 'admin' && (
+                    <MenuItem icon={FaPlus} iconColor="#28a745" to="/create-video-page">
+                      Publier une œuvre
+                    </MenuItem>
+                  )}
+          
+                  {/* ✅ ADMIN: VER TODOS LOS ACHATS (compras de todos los usuarios) */}
+                  {auth.user.role === 'admin' && (
                     <MenuItem icon={FaShoppingCart} iconColor="#ffc107" to="/adminorders">
-                      Mes commandes
+                      Voir les achats
                     </MenuItem>
-
-                    <MenuItem icon={FaUserCircle} iconColor="#667eea" to={`/profile/${auth.user._id}`}>
-                      Mon Profil
+                  )}
+          
+                  {/* ✅ USUARIO NORMAL: VER SUS ACHATS (sus propias compras) */}
+                  {auth.user.role !== 'admin' && (
+                    <MenuItem icon={FaShoppingCart} iconColor="#ffc107" to="/userorders">
+                       Voir mes achats
                     </MenuItem>
-                    <MenuItem icon={FaShareAlt} iconColor="#ffc107" onClick={() => setShowShareModal(true)}>
-                      Partager l'App
+                  )}
+          
+                  {/* 🆕 Créer une commande (encargo) - para todos */}
+                  <MenuItem  icon={FaPlus}  iconColor="#28a745" to="/creer-une-commande">
+                  Créer une commande
+                  </MenuItem>
+          
+                  {/* ✅ Mes commandes (encargos del usuario) - para todos */}
+                  <MenuItem icon={FaClipboardList} iconColor="#17a2b8" to="/mes-commandes">
+                     Mes commandes 
+                  </MenuItem>
+          
+                  {/* ✅ Commandes reçues (solo admin) */}
+                  {auth.user.role === 'admin' && (
+                    <MenuItem icon={FaInbox} iconColor="#fd7e14" to="/encargos-recibidos">
+                      Commandes reçues
                     </MenuItem>
-
-                    {/* ✅ ACCIONES DE ADMINISTRACIÓN (solo admin y super-usuario) */}
-                    {(auth.user.role === 'admin' || auth.user.role === 'Super-utilisateur') && (
-                      <>
-                        <NavDropdown.Divider />
-                        {/* ✅ GESTION DES COMMANDES (solo admin) */}
-                        <MenuItem icon={FaShoppingCart} iconColor="#28a745" to="/admin/orders">
-                          Gestion des commandes
-                        </MenuItem>
-                        <MenuItem icon={FaShieldAlt} iconColor="#ffc107" to="/admin/posts">
-                          Approbation vidéos
-                        </MenuItem>
-                        <MenuItem icon={FaUsers} iconColor="#28a745" to="/admindashboard">
-                          Dashboard Admin
-                        </MenuItem>
-                        <MenuItem icon={FaUserCog} iconColor="#667eea" to="/users">
-                          Gestion utilisateurs
-                        </MenuItem>
-                        <MenuItem icon={FaTools} iconColor="#6c757d" to="/users/roles">
-                          Gestion rôles
-                        </MenuItem>
-                      </>
-                    )}
-
-                    <NavDropdown.Divider />
-                    <MenuItem icon={FaSignOutAlt} iconColor="#dc3545" onClick={handleLogout} danger>
-                      Se déconnecter
-                    </MenuItem>
-                  </>
+                  )}
+          
+                  {/* Otras opciones */}
+                  <MenuItem icon={FaUserCircle} iconColor="#667eea" to={`/profile/${auth.user._id}`}>
+                    Mon Profil
+                  </MenuItem>
+                  <MenuItem icon={FaShareAlt} iconColor="#ffc107" onClick={() => setShowShareModal(true)}>
+                    Partager l'App
+                  </MenuItem>
+          
+                  {/* ✅ Acciones de administración (solo admin y super-usuario) */}
+                  {(auth.user.role === 'admin' || auth.user.role === 'Super-utilisateur') && (
+                    <>
+                      <NavDropdown.Divider />
+                      <MenuItem icon={FaUsers} iconColor="#28a745" to="/admindashboard">
+                        Dashboard Admin
+                      </MenuItem>
+                      <MenuItem icon={FaUserCog} iconColor="#667eea" to="/users">
+                        Gestion utilisateurs
+                      </MenuItem>
+                      <MenuItem icon={FaTools} iconColor="#6c757d" to="/users/roles">
+                        Gestion rôles
+                      </MenuItem>
+                    </>
+                  )}
+          
+                  <NavDropdown.Divider />
+                  <MenuItem icon={FaSignOutAlt} iconColor="#dc3545" onClick={handleLogout} danger>
+                    Se déconnecter
+                  </MenuItem>
+                </>
+                  
                 ) : (
                   <>
                     <MenuItem icon={FaSignInAlt} iconColor="#28a745" onClick={handleLogin}>

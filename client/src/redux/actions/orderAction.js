@@ -1,4 +1,4 @@
-import { getDataAPI, putDataAPI } from '../../utils/fetchData';
+import { getDataAPI, putDataAPI,postDataAPI } from '../../utils/fetchData';
 import { GLOBALTYPES } from './globalTypes';
 
 export const ORDER_TYPES = {
@@ -139,12 +139,15 @@ export const syncPendingOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_TYPES.LOADING, payload: true });
     const { auth } = getState();
-    const res = await postDataAPI('sync-pending-orders', {}, auth.token); // ← usa postDataAPI
+    const res = await postDataAPI('sync-pending-orders', {}, auth.token);
+    dispatch({
+      type: ORDER_TYPES.SYNC_ORDERS_SUCCESS,
+      payload: res.data.stats // <--- ¿Está guardando `stats`?
+    });
     dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.message } });
     return res.data;
   } catch (err) {
-    dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response?.data?.error || err.message } });
-    return null;
+    // ...
   } finally {
     dispatch({ type: ORDER_TYPES.LOADING, payload: false });
   }

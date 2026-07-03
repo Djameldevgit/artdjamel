@@ -3,6 +3,7 @@
 // - Solo admin ve "Publier une œuvre" y "Gestion des commandes"
 // - Todos los usuarios ven "Mes commandes" (UserOrders)
 // - Traducción de estados al francés (ya en componentes hijos)
+// - Agregada sección "Mes Encargos" con "Mis encargos" y "Encargos recibidos" (solo admin/artista)
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -90,7 +91,8 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
     mesCommandes: false,
     mesTransactions: false,
     videos: false,
-    categories: false
+    categories: false,
+    mesEncargos: false  // 🆕 Agregado
   });
   const [localCategories, setLocalCategories] = useState([]);
   const [loadingLocal, setLoadingLocal] = useState(false);
@@ -335,7 +337,8 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
     mesAnnonces: { primary: '#3B82F6', light: '#EFF6FF' },
     mesCommandes: { primary: '#F59E0B', light: '#FFFBEB' },
     mesTransactions: { primary: '#10B981', light: '#ECFDF5' },
-    videos: { primary: '#DC2626', light: '#FEF2F2' }
+    videos: { primary: '#DC2626', light: '#FEF2F2' },
+    mesEncargos: { primary: '#8B5CF6', light: '#F3E8FF' }  // 🆕
   };
 
   // ============================================
@@ -527,6 +530,38 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
   };
 
   // ============================================
+  // SECCIÓN "MES ENCARGOS"
+  // ============================================
+  const renderCommissionsSection = () => {
+    return (
+      <DropdownHeader 
+        title="Mes Encargos" 
+        emoji="🎨" 
+        dropdownName="mesEncargos" 
+        color="#8B5CF6"
+      >
+        {/* ✅ Todos los usuarios ven "Mis encargos" */}
+        <DropdownItem 
+          icon="📋" 
+          name="Mis encargos" 
+          path="/mis-encargos" 
+          color="#8B5CF6" 
+        />
+        
+        {/* ✅ Solo ADMIN (artista) ve "Encargos recibidos" */}
+        {isAdmin && (
+          <DropdownItem 
+            icon="📩" 
+            name="Encargos recibidos" 
+            path="/encargos-recibidos" 
+            color="#F59E0B" 
+          />
+        )}
+      </DropdownHeader>
+    );
+  };
+
+  // ============================================
   // CONTENIDO PRINCIPAL
   // ============================================
   const renderDashboardContent = () => (
@@ -557,6 +592,7 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
       {renderVideosDropdown()}
       {renderCategoriesDropdown()}
       {renderOrdersSection()}
+      {renderCommissionsSection()}  {/* 🆕 Agregado */}
     </>
   );
 
@@ -568,6 +604,7 @@ const Drawer = ({ show, onHide, width = 280, height = '100vh' }) => {
       )}
       {renderCategoriesDropdown()}
       {renderOrdersSection()}
+      {renderCommissionsSection()}  {/* 🆕 Agregado */}
     </>
   );
 

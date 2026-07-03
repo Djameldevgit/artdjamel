@@ -75,35 +75,53 @@ const orderCtrl = {
   // ============================================
   // 2️⃣ OBTENER ÓRDENES DEL USUARIO (para el cliente)
   // ============================================
-  getUserOrders: async (req, res) => {
-    try {
-      const userId = req.user._id;
-      const { page = 1, limit = 10 } = req.query;
-      
-      const skip = (parseInt(page) - 1) * parseInt(limit);
-      
-      const orders = await Order.find({ userId })
-        .sort({ createdAt: -1 })
-        .skip(skip)
-        .limit(parseInt(limit));
-      
-      const total = await Order.countDocuments({ userId });
-      
-      res.json({
-        success: true,
-        orders,
-        pagination: {
-          total,
-          page: parseInt(page),
-          pages: Math.ceil(total / parseInt(limit))
-        }
-      });
-    } catch (err) {
-      console.error('❌ Error getUserOrders:', err);
-      res.status(500).json({ error: err.message });
+// controllers/orderCtrl.js
+getUserOrders: async (req, res) => {
+  try {
+    // 1️⃣ Verificar usuario autenticado
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ error: 'Utilisateur non authentifié' });
     }
-  },
 
+    const userId = req.user._id;
+    console.log('🔍 getUserOrders para usuario:', userId);
+
+    const { page = 1, limit = 10 } = req.query;
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+
+    // 2️⃣ Consultar órdenes (sin populate para evitar errores)
+    const orders = await Order.find({ userId })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(parseInt(limit));
+
+    const total = await Order.countDocuments({ userId });
+
+    // 3️⃣ Siempre devolver 200 (incluso con array vacío)
+    res.json({
+      success: true,
+      orders: orders || [],
+      pagination: {
+        total: total || 0,
+        page: parseInt(page),
+        pages: Math.ceil(total / parseInt(limit)) || 1
+      }
+    });
+
+  } catch (err) {
+    console.error('❌ Error getUserOrders:', err);
+    
+    // 🛡️ Capturar errores de Cast específicamente
+    if (err.name === 'CastError') {
+      return res.status(400).json({ 
+        error: 'ID de usuario inválido. Por favor, cierra sesión y vuelve a iniciar.' 
+      });
+    }
+
+    res.status(500).json({ error: err.message });
+  }
+ 
+},
   // ============================================
   // 3️⃣ OBTENER TODAS LAS ÓRDENES (para admin)
   // ============================================

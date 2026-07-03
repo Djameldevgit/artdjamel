@@ -1,20 +1,157 @@
-// controllers/chargilyPlanCtrl.js
 const axios = require('axios');
 const crypto = require('crypto');
 const User = require('../models/userModel');
 const Transaction = require('../models/transactionModel');
 const Order = require('../models/orderModel');
 const Video = require('../models/videoModel');
+const Commission = require('../models/commissionModel');
 
 const chargilyPlanCtrl = {
 
   // ============================================
-  // 1. CREAR CHECKOUT (PLAN O CARRITO)
+  // 1. CREAR CHECKOUT (PLAN, CARRITO O ENCARGO)
   // ============================================
+ /* createPlanCheckout: async (req, res) => {
+    try {
+      const userId = req.user._id;
+      const {
+        plan_id, plan_name, amount, duration_months, discount_percent,
+        free_months, category, cart_items, commission_id,
+        type = 'plan_subscription' // valor por defecto, pero lo sobreescribiremos
+      } = req.body;
+
+      if (!plan_id || !amount) {
+        return res.status(400).json({ error: 'Plan et montant requis' });
+      }
+
+      const user = await User.findById(userId).select('email username');
+
+      const isLive = process.env.CHARGILY_MODE === 'live';
+      const baseUrl = isLive
+        ? 'https://pay.chargily.net/api/v2/checkouts'
+        : 'https://pay.chargily.net/test/api/v2/checkouts';
+
+      const baseClientUrl = process.env.CLIENT_URL || (isLive
+        ? 'https://artdjamel.onrender.com'
+        : 'http://localhost:3000');
+
+      const webhookUrl = `${baseClientUrl}/api/webhook`;
+
+      console.log(`🎯 Modo: ${isLive ? '🔴 LIVE' : '🟡 TEST'}`);
+      console.log(`💰 Monto: ${amount} DZD`);
+      console.log(`📦 Plan: ${plan_id}`);
+      console.log(`🌐 Webhook URL: ${webhookUrl}`);
+
+      // --- CORRECCIÓN: Asignar type según plan_id ---
+      let finalType = type; // por defecto el que venga
+      if (plan_id === 'cart') {
+        finalType = 'cart_payment';
+      } else if (plan_id === 'commission') {
+        finalType = 'commission_payment';
+      } else {
+        finalType = 'plan_subscription';
+      }
+      // Si el frontend envía type y es válido, podríamos respetarlo, pero mejor forzamos.
+      console.log(`📋 Tipo final asignado: ${finalType}`);
+      // --- fin corrección ---
+
+      let metadata = {
+        type: finalType,
+        user_id: userId.toString(),
+        user_email: user.email || '',
+        user_username: user.username || '',
+        plan_id: plan_id,
+        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan'))
+      };
+
+      // Guardar datos específicos según tipo
+      if (plan_id === 'cart') {
+        metadata.cart_items = cart_items || [];
+        metadata.total_items = cart_items ? cart_items.length : 0;
+      } else if (plan_id === 'commission') {
+        metadata.commission_id = commission_id;
+        metadata.advance_percent = 30;
+        if (req.body.commission_title) {
+          metadata.commission_title = req.body.commission_title;
+        }
+      } else {
+        metadata.duration_months = duration_months || 1;
+        metadata.discount_percent = discount_percent || 0;
+        metadata.free_months = free_months || 0;
+        metadata.category = category || '';
+      }
+
+      const response = await axios.post(
+        baseUrl,
+        {
+          amount: Number(amount),
+          currency: "dzd",
+          success_url: `${baseClientUrl}/payment-success`,
+          failure_url: `${baseClientUrl}/payment-failure`,
+          webhook_endpoint: webhookUrl,
+          metadata: metadata
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.CHARGILY_SECRET_KEY}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Crear transacción
+      const transaction = new Transaction({
+        checkout_id: response.data.id,
+        user_id: userId,
+        user_email: user.email,
+        user_username: user.username,
+        plan_id: plan_id,
+        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan')),
+        amount: Number(amount),
+        currency: 'dzd',
+        duration_months: plan_id === 'cart' ? 0 : (plan_id === 'commission' ? 0 : (duration_months || 1)),
+        free_months: free_months || 0,
+        discount_percent: discount_percent || 0,
+        category: category || '',
+        cart_items: cart_items || [],
+        metadata: metadata,
+        status: 'pending',
+        chargily_response: response.data
+      });
+
+      if (commission_id && transaction.schema.path('commission_id')) {
+        transaction.commission_id = commission_id;
+      }
+
+      await transaction.save();
+      console.log('✅ Transacción registrada:', transaction._id);
+
+      return res.json({
+        success: true,
+        checkout_url: response.data.checkout_url,
+        transaction_id: transaction._id,
+        mode: isLive ? 'live' : 'test'
+      });
+
+    } catch (err) {
+      console.error('❌ Error en createPlanCheckout:', err.message);
+      if (err.response) {
+        console.error('Status:', err.response.status);
+        console.error('Data:', err.response.data);
+        return res.status(err.response.status).json({
+          error: err.response.data.message || 'Erreur Chargily'
+        });
+      }
+      return res.status(500).json({ error: err.message });
+    }
+  },*/
   createPlanCheckout: async (req, res) => {
     try {
       const userId = req.user._id;
-      const { plan_id, plan_name, amount, duration_months, discount_percent, free_months, category, cart_items } = req.body;
+      const { 
+        plan_id, plan_name, amount, duration_months, discount_percent, 
+        free_months, category, cart_items, commission_id
+      } = req.body;
       
       if (!plan_id || !amount) {
         return res.status(400).json({ error: 'Plan et montant requis' });
@@ -38,18 +175,37 @@ const chargilyPlanCtrl = {
       console.log(`📦 Plan: ${plan_id}`);
       console.log(`🌐 Webhook URL: ${webhookUrl}`);
       
+      // ============================================
+      // 🔥 CORRECCIÓN: Asignar type según plan_id
+      // ============================================
+      let actualType;
+      if (plan_id === 'cart') {
+        actualType = 'cart_payment';
+      } else if (plan_id === 'commission') {
+        actualType = 'commission_payment';
+      } else {
+        actualType = 'plan_subscription';
+      }
+      
       let metadata = {
-        type: plan_id === 'cart' ? 'cart_payment' : 'plan_subscription',
+        type: actualType, // <--- AQUÍ VA EL TIPO CORRECTO
         user_id: userId.toString(),
         user_email: user.email || '',
         user_username: user.username || '',
         plan_id: plan_id,
-        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : 'Plan')
+        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan'))
       };
       
+      // Guardar datos específicos según tipo
       if (plan_id === 'cart') {
         metadata.cart_items = cart_items || [];
         metadata.total_items = cart_items ? cart_items.length : 0;
+      } else if (plan_id === 'commission') {
+        metadata.commission_id = commission_id;
+        metadata.advance_percent = 30;
+        if (req.body.commission_title) {
+          metadata.commission_title = req.body.commission_title;
+        }
       } else {
         metadata.duration_months = duration_months || 1;
         metadata.discount_percent = discount_percent || 0;
@@ -75,23 +231,29 @@ const chargilyPlanCtrl = {
         }
       );
       
+      // Crear transacción
       const transaction = new Transaction({
         checkout_id: response.data.id,
         user_id: userId,
         user_email: user.email,
         user_username: user.username,
         plan_id: plan_id,
-        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : 'Plan'),
+        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan')),
         amount: Number(amount),
         currency: 'dzd',
-        duration_months: plan_id === 'cart' ? 0 : (duration_months || 1),
+        duration_months: plan_id === 'cart' ? 0 : (plan_id === 'commission' ? 0 : (duration_months || 1)),
         free_months: free_months || 0,
         discount_percent: discount_percent || 0,
         category: category || '',
         cart_items: cart_items || [],
+        metadata: metadata, // Guardamos el metadata completo
         status: 'pending',
         chargily_response: response.data
       });
+      
+      if (commission_id && transaction.schema.path('commission_id')) {
+        transaction.commission_id = commission_id;
+      }
       
       await transaction.save();
       console.log('✅ Transacción registrada:', transaction._id);
@@ -115,7 +277,6 @@ const chargilyPlanCtrl = {
       return res.status(500).json({ error: err.message });
     }
   },
-  
   // ============================================
   // 2. WEBHOOK - PROCESAR PAGO EXITOSO
   // ============================================
@@ -128,11 +289,11 @@ const chargilyPlanCtrl = {
       console.log('📨 Headers:', JSON.stringify(req.headers, null, 2));
       console.log('📨 Body:', JSON.stringify(req.body, null, 2));
       console.log('========================================\n');
-      
+
       const signature = req.headers["signature"];
       const payload = JSON.stringify(req.body);
       const isLive = process.env.CHARGILY_MODE === 'live';
-      
+
       if (isLive && signature) {
         const computedSignature = crypto
           .createHmac("sha256", process.env.CHARGILY_SECRET_KEY)
@@ -148,44 +309,54 @@ const chargilyPlanCtrl = {
       } else {
         console.log('🟡 Modo TEST - verificación de firma omitida');
       }
-      
+
       const event = req.body;
       console.log('📨 Tipo de evento:', event.type);
-      
+
       if (event.type === "checkout.paid") {
         const checkoutData = event.data;
-        const metadata = checkoutData.metadata || {};
+        let metadata = checkoutData.metadata || {};
         const checkoutId = checkoutData.id;
-        
+
         console.log(`🎉 PAGO CONFIRMADO: ${checkoutId}`);
         console.log(`👤 Usuario ID: ${metadata.user_id}`);
         console.log(`💰 Monto: ${checkoutData.amount} ${checkoutData.currency}`);
         console.log(`📦 Plan: ${metadata.plan_id}`);
-        
+        console.log(`📋 Tipo original en metadata: ${metadata.type}`);
+
+        // --- CORRECCIÓN: Normalizar tipo si es carrito ---
+        if (metadata.plan_id === 'cart' && metadata.type !== 'cart_payment') {
+          console.log(`🔄 Normalizando type: de "${metadata.type}" a "cart_payment"`);
+          metadata.type = 'cart_payment';
+        }
+        // --- fin corrección ---
+
+        console.log(`📋 Tipo final procesado: ${metadata.type}`);
+
         const transaction = await Transaction.findOne({ checkout_id: checkoutId });
         if (!transaction) {
           console.warn(`⚠️ Transacción NO encontrada para checkout_id: ${checkoutId}`);
           return res.json({ received: true, warning: 'Transaction not found' });
         }
-        
+
         if (transaction.status === 'paid') {
           console.log('⏭️ Transacción ya procesada');
           return res.json({ received: true });
         }
-        
+
         return await this.processPaidTransaction(transaction, checkoutData, metadata, res);
-        
+
       } else {
         console.log(`⏭️ Evento ignorado: ${event.type}`);
         return res.json({ received: true });
       }
-      
+
     } catch (err) {
       console.error('❌ ERROR WEBHOOK:', err);
       return res.status(500).json({ error: "Webhook error", details: err.message });
     }
   },
-  
+
   // ============================================
   // 3. PROCESAR TRANSACCIÓN PAGADA (Método interno)
   // ============================================
@@ -197,24 +368,25 @@ const chargilyPlanCtrl = {
       transaction.webhook_received = checkoutData;
       await transaction.save();
       console.log('✅ Transacción actualizada a PAID');
-      
-      if (metadata.plan_id === 'cart') {
-        // PAGO DE CARRITO
+
+      const type = metadata.type || 'plan_subscription';
+      console.log(`📋 Procesando tipo: ${type}`);
+
+      if (type === 'cart_payment') {
         console.log('🛒 Procesando pago de carrito...');
-        
+
         let cartItems = transaction.cart_items || [];
         if (cartItems.length === 0 && metadata.cart_items) {
           cartItems = metadata.cart_items;
         }
-        
+
         if (cartItems.length === 0) {
           console.warn('⚠️ No hay items en el carrito');
           return res.json({ received: true, warning: 'No cart items' });
         }
-        
+
         console.log(`📦 Items del carrito: ${cartItems.length}`);
-        
-        // Crear la orden
+
         const order = new Order({
           orderId: checkoutData.id,
           userId: transaction.user_id,
@@ -235,11 +407,10 @@ const chargilyPlanCtrl = {
           status: 'paid',
           paidAt: new Date()
         });
-        
+
         await order.save();
         console.log(`✅ ORDEN CREADA: ${order.orderId}`);
-        
-        // Actualizar stock
+
         for (const item of cartItems) {
           try {
             const video = await Video.findById(item.videoId);
@@ -253,20 +424,56 @@ const chargilyPlanCtrl = {
             console.error(`❌ Error actualizando video ${item.videoId}:`, err.message);
           }
         }
-        
+
         console.log('✅ Procesamiento de carrito completado');
         return res.json({ received: true, orderCreated: true });
-        
+
+      } else if (type === 'commission_payment') {
+        console.log('🎨 Procesando pago de encargo...');
+        const commissionId = metadata.commission_id;
+        if (!commissionId) {
+          console.error('❌ No se encontró commission_id en metadata');
+          return res.status(400).json({ error: 'Commission ID missing' });
+        }
+
+        const Commission = require('../models/commissionModel');
+        const commission = await Commission.findById(commissionId);
+        if (!commission) {
+          console.error(`❌ Encargo ${commissionId} no encontrado`);
+          return res.status(404).json({ error: 'Commission not found' });
+        }
+
+        const expectedAmount = commission.respuesta.adelantoMonto;
+        if (expectedAmount && Math.abs(expectedAmount - transaction.amount) > 0.01) {
+          console.warn(`⚠️ Monto pagado (${transaction.amount}) no coincide con el esperado (${expectedAmount})`);
+        }
+
+        commission.estado = 'pagado';
+        commission.pago = {
+          idChargily: checkoutData.id || transaction.chargily_payment_id,
+          monto: transaction.amount,
+          estadoPago: 'completado',
+          fechaPago: new Date()
+        };
+        commission.mensajes = commission.mensajes || [];
+        commission.mensajes.push({
+          emisor: null,
+          texto: 'Pago del adelanto confirmado. El artista puede comenzar la obra.'
+        });
+        await commission.save();
+        console.log(`✅ Encargo ${commissionId} actualizado a PAGADO`);
+
+        return res.json({ received: true, commissionUpdated: true });
+
       } else {
-        // PAGO DE PLAN
         console.log('📦 Procesando pago de plan...');
         const totalMonths = (metadata.duration_months || 1) + (metadata.free_months || 0);
         const expiresAt = new Date();
         expiresAt.setMonth(expiresAt.getMonth() + totalMonths);
-        
+
         transaction.plan_expires_at = expiresAt;
         await transaction.save();
-        
+
         await User.findByIdAndUpdate(
           transaction.user_id,
           {
@@ -277,17 +484,17 @@ const chargilyPlanCtrl = {
             role: 'userpro'
           }
         );
-        
+
         console.log(`✅ Usuario actualizado con plan ${metadata.plan_id}`);
         return res.json({ received: true, userUpdated: true });
       }
-      
+
     } catch (err) {
       console.error('❌ Error procesando transacción pagada:', err);
       return res.status(500).json({ error: "Error processing transaction" });
     }
   },
-  
+
   // ============================================
   // 4. SINCRONIZAR ÓRDENES PENDIENTES (ADMIN)
   // ============================================
@@ -296,28 +503,30 @@ const chargilyPlanCtrl = {
       if (req.user.role !== 'admin' && req.user.role !== 'moderator') {
         return res.status(403).json({ error: 'Accès réservé aux administrateurs' });
       }
-
+  
       console.log('🔄 ===== SINCRONIZANDO ÓRDENES PENDIENTES =====');
       
+      // Buscar todas las transacciones de carrito (pending o paid)
       const transactions = await Transaction.find({ 
-        status: 'paid',
-        plan_id: 'cart'
+        plan_id: 'cart',
+        status: { $in: ['pending', 'paid'] }
       }).sort({ created_at: -1 });
-
-      console.log(`📊 Encontradas ${transactions.length} transacciones pagadas de carrito`);
-
+  
+      console.log(`📊 Encontradas ${transactions.length} transacciones de carrito`);
+  
       let created = 0;
       let skipped = 0;
       let errors = 0;
-
+  
       for (const transaction of transactions) {
+        // Verificar si ya existe una orden con ese checkout_id
         const existingOrder = await Order.findOne({ orderId: transaction.checkout_id });
         if (existingOrder) {
           console.log(`⏭️ Orden ya existe para checkout_id: ${transaction.checkout_id}`);
           skipped++;
           continue;
         }
-
+  
         try {
           const cartItems = transaction.cart_items || [];
           if (cartItems.length === 0) {
@@ -325,12 +534,24 @@ const chargilyPlanCtrl = {
             skipped++;
             continue;
           }
-
+  
+          // Si la transacción está pending, la marcamos como paid
+          if (transaction.status === 'pending') {
+            transaction.status = 'paid';
+            transaction.payment_completed_at = new Date();
+            if (!transaction.chargily_payment_id) {
+              transaction.chargily_payment_id = transaction.checkout_id;
+            }
+            await transaction.save();
+            console.log(`✅ Transacción ${transaction.checkout_id} actualizada a PAID`);
+          }
+  
           console.log(`📦 Creando orden para checkout_id: ${transaction.checkout_id}`);
           console.log(`   Usuario: ${transaction.user_email}`);
           console.log(`   Items: ${cartItems.length}`);
           console.log(`   Total: ${transaction.amount} DA`);
-
+  
+          // Crear la orden
           const order = new Order({
             orderId: transaction.checkout_id,
             userId: transaction.user_id,
@@ -346,16 +567,17 @@ const chargilyPlanCtrl = {
             totalAmount: transaction.amount,
             currency: transaction.currency || 'dzd',
             paymentMethod: 'chargily',
-            paymentId: transaction.chargily_payment_id,
+            paymentId: transaction.chargily_payment_id || transaction.checkout_id,
             checkoutId: transaction.checkout_id,
             status: 'paid',
             paidAt: transaction.payment_completed_at || new Date()
           });
-
+  
           await order.save();
           created++;
           console.log(`✅ Orden creada: ${order.orderId}`);
-
+  
+          // Actualizar stock de videos
           for (const item of cartItems) {
             try {
               const video = await Video.findById(item.videoId);
@@ -371,30 +593,29 @@ const chargilyPlanCtrl = {
               console.error(`❌ Error actualizando video ${item.videoId}:`, err.message);
             }
           }
-
+  
         } catch (err) {
           errors++;
           console.error(`❌ Error creando orden para ${transaction.checkout_id}:`, err.message);
         }
       }
-
+  
       console.log(`\n✅ Sincronización completada:`);
       console.log(`   - ${created} órdenes creadas`);
       console.log(`   - ${skipped} omitidas`);
       console.log(`   - ${errors} errores`);
-
+  
       res.json({
         success: true,
         message: 'Sincronización completada',
         stats: { totalTransactions: transactions.length, created, skipped, errors }
       });
-
+  
     } catch (err) {
       console.error('❌ Error en syncPendingOrders:', err);
       res.status(500).json({ error: err.message });
     }
   },
-  
   // ============================================
   // 5. VERIFICAR ESTADO DEL PLAN
   // ============================================
@@ -403,14 +624,14 @@ const chargilyPlanCtrl = {
       const userId = req.user._id;
       const user = await User.findById(userId)
         .select('channelPlan channelPlanExpiresAt isPro role username email');
-      
+
       if (!user) {
         return res.status(404).json({ error: 'Utilisateur non trouvé' });
       }
-      
+
       const now = new Date();
       const isExpired = user.channelPlanExpiresAt && new Date(user.channelPlanExpiresAt) < now;
-      
+
       if (isExpired && user.channelPlan !== 'free') {
         await User.findByIdAndUpdate(userId, {
           channelPlan: 'free',
@@ -422,7 +643,7 @@ const chargilyPlanCtrl = {
         user.role = 'user';
         user.isPro = false;
       }
-      
+
       res.json({
         success: true,
         user: {
@@ -448,14 +669,14 @@ const chargilyPlanCtrl = {
       const userId = req.user._id;
       const { page = 1, limit = 10 } = req.query;
       const skip = (parseInt(page) - 1) * parseInt(limit);
-      
+
       const transactions = await Transaction.find({ user_id: userId })
         .sort({ created_at: -1 })
         .skip(skip)
         .limit(parseInt(limit));
-      
+
       const total = await Transaction.countDocuments({ user_id: userId });
-      
+
       res.json({
         success: true,
         transactions,
@@ -469,7 +690,182 @@ const chargilyPlanCtrl = {
       console.error('❌ Error getUserTransactions:', err);
       res.status(500).json({ error: err.message });
     }
+  },
+
+  // ============================================
+  // 7. CREAR CHECKOUT PARA ENCARGO
+  // ============================================
+  createCommissionCheckout: async (req, res) => {
+    try {
+      const userId = req.user._id;
+      const { commissionId } = req.body;
+
+      if (!commissionId) {
+        return res.status(400).json({ error: 'commissionId es requerido' });
+      }
+
+      const commission = await Commission.findById(commissionId);
+      if (!commission) {
+        return res.status(404).json({ error: 'Encargo no encontrado' });
+      }
+
+      if (commission.cliente.toString() !== userId.toString()) {
+        return res.status(403).json({ error: 'No eres el cliente de este encargo' });
+      }
+
+      if (commission.estado !== 'aceptado_cliente') {
+        return res.status(400).json({ error: 'El encargo no está en estado de aceptado para pagar' });
+      }
+
+      if (commission.pago && commission.pago.estadoPago === 'completado') {
+        return res.status(400).json({ error: 'Este encargo ya ha sido pagado' });
+      }
+
+      const monto = commission.respuesta.adelantoMonto;
+      if (!monto || monto <= 0) {
+        return res.status(400).json({ error: 'Monto de adelanto inválido' });
+      }
+
+      const user = await User.findById(userId).select('email username');
+
+      const isLive = process.env.CHARGILY_MODE === 'live';
+      const baseUrl = isLive
+        ? 'https://pay.chargily.net/api/v2/checkouts'
+        : 'https://pay.chargily.net/test/api/v2/checkouts';
+
+      const baseClientUrl = process.env.CLIENT_URL || (isLive
+        ? 'https://artdjamel.onrender.com'
+        : 'http://localhost:3000');
+
+      const webhookUrl = `${baseClientUrl}/api/webhook`;
+
+      console.log(`🎯 Modo: ${isLive ? '🔴 LIVE' : '🟡 TEST'}`);
+      console.log(`💰 Monto adelanto: ${monto} DZD`);
+      console.log(`📦 Comisión ID: ${commissionId}`);
+      console.log(`🌐 Webhook URL: ${webhookUrl}`);
+
+      const metadata = {
+        type: 'commission_payment',
+        commission_id: commissionId.toString(),
+        user_id: userId.toString(),
+        user_email: user.email || '',
+        user_username: user.username || '',
+        titulo_encargo: commission.titulo || '',
+      };
+
+      const response = await axios.post(
+        baseUrl,
+        {
+          amount: Number(monto),
+          currency: "dzd",
+          success_url: `${baseClientUrl}/mis-encargos?pago=exitoso`,
+          failure_url: `${baseClientUrl}/mis-encargos?pago=fallido`,
+          webhook_endpoint: webhookUrl,
+          metadata: metadata
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.CHARGILY_SECRET_KEY}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const transaction = new Transaction({
+        checkout_id: response.data.id,
+        user_id: userId,
+        user_email: user.email,
+        user_username: user.username,
+        plan_id: 'commission',
+        plan_name: `Adelanto encargo: ${commission.titulo}`,
+        amount: Number(monto),
+        currency: 'dzd',
+        duration_months: 0,
+        free_months: 0,
+        discount_percent: 0,
+        category: 'commission',
+        cart_items: [],
+        status: 'pending',
+        chargily_response: response.data,
+        metadata: metadata
+      });
+
+      await transaction.save();
+      console.log('✅ Transacción de comisión registrada:', transaction._id);
+
+      commission.pago = {
+        idChargily: response.data.id,
+        monto: monto,
+        estadoPago: 'pendiente',
+        fechaPago: new Date()
+      };
+      await commission.save();
+
+      return res.json({
+        success: true,
+        checkout_url: response.data.checkout_url,
+        transaction_id: transaction._id,
+        mode: isLive ? 'live' : 'test'
+      });
+
+    } catch (err) {
+      console.error('❌ Error en createCommissionCheckout:', err.message);
+      if (err.response) {
+        console.error('Status:', err.response.status);
+        console.error('Data:', err.response.data);
+        return res.status(err.response.status).json({
+          error: err.response.data.message || 'Erreur Chargily'
+        });
+      }
+      return res.status(500).json({ error: err.message });
+    }
+  },
+
+  // ============================================
+  // 8. PROCESAR PAGO DE ENCARGO (ya existe pero la dejamos)
+  // ============================================
+  processCommissionPayment: async (transaction, checkoutData, metadata, res) => {
+    try {
+      const commissionId = metadata.commission_id;
+      if (!commissionId) {
+        console.error('❌ commission_id no encontrado en metadata');
+        return res.status(400).json({ error: 'commission_id missing' });
+      }
+
+      const commission = await Commission.findById(commissionId);
+      if (!commission) {
+        console.error(`❌ Comisión ${commissionId} no encontrada`);
+        return res.status(404).json({ error: 'Commission not found' });
+      }
+
+      transaction.status = 'paid';
+      transaction.payment_completed_at = new Date();
+      transaction.chargily_payment_id = checkoutData.payment_intent || checkoutData.id;
+      transaction.webhook_received = checkoutData;
+      await transaction.save();
+      console.log('✅ Transacción de comisión actualizada a PAID');
+
+      commission.pago.estadoPago = 'completado';
+      commission.pago.idChargily = checkoutData.payment_intent || checkoutData.id;
+      commission.pago.fechaPago = new Date();
+      commission.estado = 'pagado';
+
+      commission.mensajes = commission.mensajes || [];
+      commission.mensajes.push({
+        emisor: null,
+        texto: 'Pago del adelanto confirmado. El artista puede comenzar la obra.'
+      });
+
+      await commission.save();
+      console.log(`✅ Comisión ${commissionId} actualizada a pagado`);
+
+      return res.json({ received: true, commissionUpdated: true });
+    } catch (err) {
+      console.error('❌ Error en processCommissionPayment:', err);
+      return res.status(500).json({ error: "Error processing commission payment" });
+    }
   }
+
 };
 
 module.exports = chargilyPlanCtrl;
