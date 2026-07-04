@@ -7,7 +7,7 @@ const orderCtrl = require('../controllers/orderCtrl');
 router.use(auth);
 
 // ✅ Obtener órdenes del usuario autenticado
-router.get('/user/orders', orderCtrl.getUserOrders);
+router.get('/my-orders', orderCtrl.getUserOrders);
 
 // ✅ Obtener todas las órdenes (solo admin)
 router.get('/admin/orders', orderCtrl.getAllOrders);
