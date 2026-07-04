@@ -8,143 +8,47 @@ const Commission = require('../models/commissionModel');
 
 const chargilyPlanCtrl = {
 
-  // ============================================
-  // 1. CREAR CHECKOUT (PLAN, CARRITO O ENCARGO)
-  // ============================================
- /* createPlanCheckout: async (req, res) => {
+// Reservar obras del carrito por 10 minutos
+reserveCartItems: async (cartItems, userId) => {
+  const reservedItems = [];
+  const errors = [];
+
+  for (const item of cartItems) {
     try {
-      const userId = req.user._id;
-      const {
-        plan_id, plan_name, amount, duration_months, discount_percent,
-        free_months, category, cart_items, commission_id,
-        type = 'plan_subscription' // valor por defecto, pero lo sobreescribiremos
-      } = req.body;
-
-      if (!plan_id || !amount) {
-        return res.status(400).json({ error: 'Plan et montant requis' });
+      const video = await Video.findById(item.videoId);
+      if (!video) {
+        errors.push({ videoId: item.videoId, error: 'Obra no encontrada' });
+        continue;
       }
 
-      const user = await User.findById(userId).select('email username');
-
-      const isLive = process.env.CHARGILY_MODE === 'live';
-      const baseUrl = isLive
-        ? 'https://pay.chargily.net/api/v2/checkouts'
-        : 'https://pay.chargily.net/test/api/v2/checkouts';
-
-      const baseClientUrl = process.env.CLIENT_URL || (isLive
-        ? 'https://artdjamel.onrender.com'
-        : 'http://localhost:3000');
-
-      const webhookUrl = `${baseClientUrl}/api/webhook`;
-
-      console.log(`🎯 Modo: ${isLive ? '🔴 LIVE' : '🟡 TEST'}`);
-      console.log(`💰 Monto: ${amount} DZD`);
-      console.log(`📦 Plan: ${plan_id}`);
-      console.log(`🌐 Webhook URL: ${webhookUrl}`);
-
-      // --- CORRECCIÓN: Asignar type según plan_id ---
-      let finalType = type; // por defecto el que venga
-      if (plan_id === 'cart') {
-        finalType = 'cart_payment';
-      } else if (plan_id === 'commission') {
-        finalType = 'commission_payment';
-      } else {
-        finalType = 'plan_subscription';
-      }
-      // Si el frontend envía type y es válido, podríamos respetarlo, pero mejor forzamos.
-      console.log(`📋 Tipo final asignado: ${finalType}`);
-      // --- fin corrección ---
-
-      let metadata = {
-        type: finalType,
-        user_id: userId.toString(),
-        user_email: user.email || '',
-        user_username: user.username || '',
-        plan_id: plan_id,
-        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan'))
-      };
-
-      // Guardar datos específicos según tipo
-      if (plan_id === 'cart') {
-        metadata.cart_items = cart_items || [];
-        metadata.total_items = cart_items ? cart_items.length : 0;
-      } else if (plan_id === 'commission') {
-        metadata.commission_id = commission_id;
-        metadata.advance_percent = 30;
-        if (req.body.commission_title) {
-          metadata.commission_title = req.body.commission_title;
+      // Verificar si la obra ya está reservada por otro usuario (y no expirada)
+      if (video.reservedBy && video.reservedBy.toString() !== userId.toString()) {
+        const reservedAt = new Date(video.reservedAt);
+        const now = new Date();
+        const diffMinutes = (now - reservedAt) / (1000 * 60);
+        if (diffMinutes < 10) {
+          errors.push({ 
+            videoId: item.videoId, 
+            title: video.title,
+            error: `Esta obra está siendo reservada por otro usuario. Intenta en ${Math.ceil(10 - diffMinutes)} minutos.`
+          });
+          continue;
         }
-      } else {
-        metadata.duration_months = duration_months || 1;
-        metadata.discount_percent = discount_percent || 0;
-        metadata.free_months = free_months || 0;
-        metadata.category = category || '';
       }
 
-      const response = await axios.post(
-        baseUrl,
-        {
-          amount: Number(amount),
-          currency: "dzd",
-          success_url: `${baseClientUrl}/payment-success`,
-          failure_url: `${baseClientUrl}/payment-failure`,
-          webhook_endpoint: webhookUrl,
-          metadata: metadata
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.CHARGILY_SECRET_KEY}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      // Crear transacción
-      const transaction = new Transaction({
-        checkout_id: response.data.id,
-        user_id: userId,
-        user_email: user.email,
-        user_username: user.username,
-        plan_id: plan_id,
-        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan')),
-        amount: Number(amount),
-        currency: 'dzd',
-        duration_months: plan_id === 'cart' ? 0 : (plan_id === 'commission' ? 0 : (duration_months || 1)),
-        free_months: free_months || 0,
-        discount_percent: discount_percent || 0,
-        category: category || '',
-        cart_items: cart_items || [],
-        metadata: metadata,
-        status: 'pending',
-        chargily_response: response.data
-      });
-
-      if (commission_id && transaction.schema.path('commission_id')) {
-        transaction.commission_id = commission_id;
-      }
-
-      await transaction.save();
-      console.log('✅ Transacción registrada:', transaction._id);
-
-      return res.json({
-        success: true,
-        checkout_url: response.data.checkout_url,
-        transaction_id: transaction._id,
-        mode: isLive ? 'live' : 'test'
-      });
-
+      // Reservar la obra para este usuario (o renovar reserva si ya era suya)
+      video.reservedBy = userId;
+      video.reservedAt = new Date();
+      await video.save();
+      reservedItems.push({ videoId: item.videoId, title: video.title });
     } catch (err) {
-      console.error('❌ Error en createPlanCheckout:', err.message);
-      if (err.response) {
-        console.error('Status:', err.response.status);
-        console.error('Data:', err.response.data);
-        return res.status(err.response.status).json({
-          error: err.response.data.message || 'Erreur Chargily'
-        });
-      }
-      return res.status(500).json({ error: err.message });
+      console.error('Error reservando obra:', err);
+      errors.push({ videoId: item.videoId, error: err.message });
     }
-  },*/
+  }
+
+  return { reservedItems, errors };
+},
   createPlanCheckout: async (req, res) => {
     try {
       const userId = req.user._id;

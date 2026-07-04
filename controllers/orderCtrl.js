@@ -71,11 +71,7 @@ const orderCtrl = {
       return null;
     }
   },
-
-  // ============================================
-  // 2️⃣ OBTENER ÓRDENES DEL USUARIO (para el cliente)
-  // ============================================
-// controllers/orderCtrl.js
+ 
 getUserOrders: async (req, res) => {
   try {
     // 1️⃣ Verificar usuario autenticado
@@ -238,10 +234,101 @@ getUserOrders: async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   },
+// ============================================
+// 8️⃣ CANCELAR UNA ORDEN (usuario o admin)
+// ============================================
+cancelOrder: async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const userId = req.user._id;
+    const userRole = req.user.role;
 
-  // ============================================
-  // 6️⃣ OBTENER ESTADÍSTICAS DE VENTAS (admin)
-  // ============================================
+    const order = await Order.findOne({ orderId });
+    if (!order) {
+      return res.status(404).json({ error: 'Commande non trouvée' });
+    }
+
+    const isOwner = order.userId.toString() === userId.toString();
+    const isAdmin = userRole === 'admin';
+
+    if (!isAdmin && !isOwner) {
+      return res.status(403).json({ error: 'Vous n\'êtes pas autorisé à annuler cette commande' });
+    }
+
+    // No se puede cancelar si ya está entregada o reembolsada
+    if (['delivered', 'refunded'].includes(order.status)) {
+      return res.status(400).json({ error: 'Cette commande ne peut pas être annulée' });
+    }
+
+    // Si ya está cancelada, no hacer nada
+    if (order.status === 'cancelled') {
+      return res.json({ message: 'Commande déjà annulée', order });
+    }
+
+    // Cambiar estado a cancelled
+    order.status = 'cancelled';
+    order.updatedAt = new Date();
+    await order.save();
+
+    // Restaurar stock de los videos
+    for (const item of order.items) {
+      try {
+        const video = await Video.findById(item.videoId);
+        if (video) {
+          video.stock += item.quantity;
+          if (video.status === 'vendue' && video.stock > 0) {
+            video.status = 'en vente';
+          }
+          await video.save();
+        }
+      } catch (err) {
+        console.error('❌ Error restaurando stock:', err.message);
+      }
+    }
+
+    res.json({ success: true, order });
+  } catch (err) {
+    console.error('❌ Error cancelOrder:', err);
+    res.status(500).json({ error: err.message });
+  }
+},
+  deleteOrder: async (req, res) => {
+    try {
+      const { orderId } = req.params;
+      const userId = req.user._id;
+      const userRole = req.user.role;
+  
+      // Buscar la orden
+      const order = await Order.findOne({ orderId });
+      if (!order) {
+        return res.status(404).json({ error: 'Commande non trouvée' });
+      }
+  
+      // Verificar permisos: admin o propietario
+      const isAdmin = userRole === 'admin' || userRole === 'moderator';
+      const isOwner = order.userId.toString() === userId.toString();
+  
+      if (!isAdmin && !isOwner) {
+        return res.status(403).json({ error: 'Accès non autorisé' });
+      }
+  
+      // Opcional: solo permitir eliminar si estado es 'pending' o 'cancelled' (para usuarios)
+      if (!isAdmin && order.status !== 'pending' && order.status !== 'cancelled') {
+        return res.status(400).json({ error: 'Vous ne pouvez supprimer que les commandes en attente ou annulées' });
+      }
+  
+      // Eliminar la orden
+      await Order.findOneAndDelete({ orderId });
+  
+      // Opcional: restaurar stock de los videos (si es necesario)
+      // Aquí podrías recorrer order.items y aumentar stock
+  
+      res.json({ success: true, message: 'Commande supprimée avec succès' });
+    } catch (err) {
+      console.error('❌ Error deleteOrder:', err);
+      res.status(500).json({ error: err.message });
+    }
+  },
   getSalesStats: async (req, res) => {
     try {
       if (req.user.role !== 'admin' && req.user.role !== 'moderator') {

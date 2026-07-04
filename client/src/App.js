@@ -43,6 +43,7 @@ import Roless from './components/Roless';
 import ClientCommissionPage from './pages/commission/ClientCommissionPage';
 import ArtistCommissionPage from './pages/commission/ArtistCommissionPage';
 import CommissionDetailPage from './pages/commission/CommissionDetailPage';
+import OrderHelpPage from './components/orders/OrderHelpPage';
  
  
 let audioElement = null;
@@ -245,7 +246,8 @@ function AppContent() {
       '/userproinfoplans',
       '/adminorders',
       '/userorders',
-      '/cart'
+      '/cart',
+      '/aide-commandes'
     ];
 
     const prefixes = [
@@ -260,7 +262,8 @@ function AppContent() {
       '/userproinfoplans',
       '/adminorders',
       '/userorders',
-      '/cart'
+      '/cart',
+      '/aide-commandes'
     ];
 
     if (explicitRoutes.includes(pathname)) return true;
@@ -317,7 +320,7 @@ function AppContent() {
         <Route exact path="/userpropayment" component={PaymentRequest} />
         <Route exact path="/userproinfoplans" component={UserProInfoPlans} />
         <Route path="/payment-success" component={PaymentSuccess} />
-        
+        <Route exact path="/aide-commandes" component={OrderHelpPage} />
          <Route exact path="/:slug/:page?" component={CategoryPage} />
         <Route exact path="/:slug/:subSlug/:page?" component={CategoryPage} />
         <Route exact path="/:slug/:subSlug/:articleSlug/:page?" component={CategoryPage} />

@@ -10,7 +10,8 @@ router.post('/webhook', chargilyPlanCtrl.handlePlanWebhook);
 router.get('/check-plan-status', auth, chargilyPlanCtrl.checkPlanStatus);
 router.get('/user-transactions', auth, chargilyPlanCtrl.getUserTransactions);
 router.post('/sync-pending-orders', auth, chargilyPlanCtrl.syncPendingOrders);
-
+// Liberar reservas expiradas (puede llamarse desde un cron job o manualmente)
+ 
 // 🆕 Ruta para pago de comisión
 router.post('/create-commission-payment', auth, chargilyPlanCtrl.createCommissionCheckout);
 

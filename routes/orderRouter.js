@@ -20,5 +20,7 @@ router.put('/order/:orderId/status', orderCtrl.updateOrderStatus);
 
 // ✅ Estadísticas de ventas (admin)
 router.get('/admin/sales-stats', orderCtrl.getSalesStats);
-
+// ✅ Cancelar una orden (usuario o admin)
+router.put('/order/:orderId/cancel', auth, orderCtrl.cancelOrder);
+router.delete('/order/:orderId', orderCtrl.deleteOrder);
 module.exports = router;

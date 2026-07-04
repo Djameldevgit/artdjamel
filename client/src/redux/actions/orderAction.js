@@ -1,4 +1,4 @@
-import { getDataAPI, putDataAPI,postDataAPI } from '../../utils/fetchData';
+import { getDataAPI, putDataAPI,postDataAPI,deleteDataAPI } from '../../utils/fetchData';
 import { GLOBALTYPES } from './globalTypes';
 
 export const ORDER_TYPES = {
@@ -7,6 +7,8 @@ export const ORDER_TYPES = {
   GET_ALL_ORDERS: 'GET_ALL_ORDERS',
   GET_ORDER_DETAIL: 'GET_ORDER_DETAIL',
   UPDATE_ORDER_STATUS: 'UPDATE_ORDER_STATUS',
+  CANCEL_ORDER: 'CANCEL_ORDER',           // 🆕
+  DELETE_ORDER: 'DELETE_ORDER',           // 🆕
   CLEAR_ORDERS: 'CLEAR_ORDERS',
   SYNC_ORDERS_LOADING: 'SYNC_ORDERS_LOADING',
   SYNC_ORDERS_SUCCESS: 'SYNC_ORDERS_SUCCESS',
@@ -129,11 +131,40 @@ export const updateOrderStatus = (orderId, status) => async (dispatch, getState)
     dispatch({ type: ORDER_TYPES.LOADING, payload: false });
   }
 };
-// redux/actions/orderAction.js
-// Agregar al final del archivo
-
- 
-
+// ============================================
+// 8️⃣ CANCELAR UNA ORDEN (usuario o admin)
+// ============================================
+export const cancelOrder = (orderId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_TYPES.LOADING, payload: true });
+    const { auth } = getState();
+    const res = await putDataAPI(`order/${orderId}/cancel`, {}, auth.token);
+    
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { success: 'Commande annulée avec succès' } });
+    return res.data.order;
+  } catch (err) {
+    console.error('❌ Error cancelOrder:', err);
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response?.data?.error || err.message } });
+    return null;
+  } finally {
+    dispatch({ type: ORDER_TYPES.LOADING, payload: false });
+  }
+};
+export const deleteOrder = (orderId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_TYPES.LOADING, payload: true });
+    const { auth } = getState();
+    const res = await deleteDataAPI(`order/${orderId}`, auth.token);
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.message } });
+    return res.data;
+  } catch (err) {
+    console.error('❌ Error deleteOrder:', err);
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response?.data?.error || err.message } });
+    return null;
+  } finally {
+    dispatch({ type: ORDER_TYPES.LOADING, payload: false });
+  }
+};
 
 export const syncPendingOrders = () => async (dispatch, getState) => {
   try {

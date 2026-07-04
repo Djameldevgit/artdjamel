@@ -54,6 +54,28 @@ const orderReducer = (state = initialState, action) => {
           ? action.payload
           : state.orderDetail
       };
+
+    // 🆕 CANCEL_ORDER: actualiza la orden en la lista y en el detalle
+    case ORDER_TYPES.CANCEL_ORDER:
+      return {
+        ...state,
+        orders: state.orders.map(order =>
+          order.orderId === action.payload.orderId ? action.payload : order
+        ),
+        orderDetail: state.orderDetail?.orderId === action.payload.orderId
+          ? action.payload
+          : state.orderDetail
+      };
+
+    // 🆕 DELETE_ORDER: elimina la orden de la lista y limpia el detalle si coincide
+    case ORDER_TYPES.DELETE_ORDER:
+      return {
+        ...state,
+        orders: state.orders.filter(order => order.orderId !== action.payload.orderId),
+        orderDetail: state.orderDetail?.orderId === action.payload.orderId
+          ? null
+          : state.orderDetail
+      };
       
     case ORDER_TYPES.SYNC_ORDERS_LOADING:
       return { ...state, syncLoading: action.payload };

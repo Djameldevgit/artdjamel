@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Badge, Spinner, Pagination, Button, Modal } from 'react-bootstrap';
-import { FaEye } from 'react-icons/fa';
+import { Spinner } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+import { FaEye, FaTrash } from 'react-icons/fa';
 import moment from 'moment';
 import 'moment/locale/fr';
-import { getUserOrders, getOrderDetail } from '../../redux/actions/orderAction';
+import { getUserOrders, getOrderDetail, deleteOrder } from '../../redux/actions/orderAction';
+import OrderModal from './OrderModal';
 import './Orders.css';
 
 moment.locale('fr');
@@ -24,34 +27,38 @@ const UserOrders = () => {
     }
   }, [dispatch, auth.token, currentPage]);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
+  const handlePageChange = (page) => setCurrentPage(page);
+  
   const handleViewDetail = async (orderId) => {
     const order = await dispatch(getOrderDetail(orderId));
     setSelectedOrder(order);
     setShowDetail(true);
   };
 
-  const formatDate = (date) => {
-    return moment(date).format('DD/MM/YYYY HH:mm');
+  // ✅ Eliminar orden (solo para pending o cancelled)
+  const handleDeleteOrder = async (orderId) => {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette commande ? Cette action est irréversible.')) {
+      await dispatch(deleteOrder(orderId));
+      dispatch(getUserOrders(currentPage, 10));
+    }
   };
 
-  // ✅ ESTADOS TRADUCIDOS AL FRANCÉS
+  const formatDate = (date) => moment(date).format('DD/MM/YYYY HH:mm');
+
   const getStatusBadge = (status) => {
-    const statusMap = {
-      pending: { label: 'En attente', variant: 'warning' },
-      paid: { label: 'Payée', variant: 'success' },
-      shipped: { label: 'Expédiée', variant: 'info' },
-      delivered: { label: 'Livrée', variant: 'primary' },
-      cancelled: { label: 'Annulée', variant: 'danger' },
-      refunded: { label: 'Remboursée', variant: 'secondary' }
+    const map = {
+      pending: 'En attente',
+      paid: 'Payée',
+      shipped: 'Expédiée',
+      delivered: 'Livrée',
+      cancelled: 'Annulée',
+      refunded: 'Remboursée'
     };
-    
-    const statusInfo = statusMap[status] || { label: status, variant: 'secondary' };
-    return <Badge bg={statusInfo.variant}>{statusInfo.label}</Badge>;
+    return <span className={`status-badge status-badge-${status}`}>{map[status] || status}</span>;
   };
+
+  // ✅ Determina si se puede eliminar (solo pending o cancelled)
+  const canDeleteOrder = (status) => status === 'pending' || status === 'cancelled';
 
   if (loading) {
     return (
@@ -64,7 +71,7 @@ const UserOrders = () => {
 
   if (!orders || orders.length === 0) {
     return (
-      <div className="text-center py-5">
+      <div className="text-center py-5 empty-orders">
         <h5>Vous n'avez pas encore de commandes</h5>
         <p>Vos achats apparaîtront ici.</p>
       </div>
@@ -74,115 +81,86 @@ const UserOrders = () => {
   return (
     <div className="user-orders-container">
       <h4 className="mb-3">📦 Mes commandes</h4>
+      <div className="d-flex justify-content-between align-items-center mb-3 ml-2">
       
-      <Table responsive striped hover className="orders-table">
-        <thead>
-          <tr>
-            <th># Commande</th>
-            <th>Date</th>
-            <th>Articles</th>
-            <th>Total</th>
-            <th>Statut</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map(order => (
-            <tr key={order.orderId}>
-              <td className="fw-bold">#{order.orderId.slice(-8)}</td>
-              <td>{formatDate(order.createdAt)}</td>
-              <td>{order.items.length} article{order.items.length > 1 ? 's' : ''}</td>
-              <td><strong>{order.totalAmount.toLocaleString()} DA</strong></td>
-              <td>{getStatusBadge(order.status)}</td> {/* ✅ Mostrará "En attente", "Payée", etc. */}
-              <td>
-                <Button
-                  variant="outline-primary"
-                  size="sm"
-                  onClick={() => handleViewDetail(order.orderId)}
-                >
-                  <FaEye /> Détails
-                </Button>
-              </td>
+      <Link to="/aide-commandes" className="btn btn-outline-info btn-sm">
+        ❓ Aide
+      </Link>
+    </div>
+      <div className="table-responsive">
+        <table className="table table-striped table-hover orders-table">
+          <thead>
+            <tr>
+              <th># Commande</th>
+              <th>Date</th>
+              <th>Articles</th>
+              <th>Total</th>
+              <th>Statut</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {orders.map(order => (
+              <tr key={order.orderId}>
+                <td className="fw-bold">#{order.orderId.slice(-8)}</td>
+                <td>{formatDate(order.createdAt)}</td>
+                <td>{order.items.length} article{order.items.length > 1 ? 's' : ''}</td>
+                <td><strong>{order.totalAmount.toLocaleString()} DA</strong></td>
+                <td>{getStatusBadge(order.status)}</td>
+                <td>
+                  {/* Botón de detalles siempre visible */}
+                  <button
+                    className="btn btn-outline-primary btn-sm me-1"
+                    onClick={() => handleViewDetail(order.orderId)}
+                    title="Voir les détails"
+                  >
+                    <FaEye />
+                  </button>
 
+                  {/* ✅ Botón de eliminar solo si la orden está en pending o cancelled */}
+                  {canDeleteOrder(order.status) && (
+                    <button
+                      className="btn btn-outline-danger btn-sm"
+                      onClick={() => handleDeleteOrder(order.orderId)}
+                      title="Supprimer la commande"
+                    >
+                      <FaTrash />
+                    </button>
+                  )}
+
+                  {/* Opcional: mensaje informativo para paid */}
+                  {order.status === 'paid' && (
+                    <span className="text-muted small ms-2" title="Cette commande est payée. Contactez le support pour toute demande.">
+                      🔒 Payée
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Paginación personalizada */}
       {pages > 1 && (
-        <Pagination className="justify-content-center">
-          <Pagination.First onClick={() => handlePageChange(1)} disabled={page === 1} />
-          <Pagination.Prev onClick={() => handlePageChange(page - 1)} disabled={page === 1} />
+        <div className="orders-pagination-custom">
+          <button onClick={() => handlePageChange(1)} disabled={page === 1} className="page-btn">«</button>
+          <button onClick={() => handlePageChange(page - 1)} disabled={page === 1} className="page-btn">‹</button>
           {[...Array(pages)].map((_, i) => (
-            <Pagination.Item
+            <button
               key={i + 1}
-              active={i + 1 === page}
               onClick={() => handlePageChange(i + 1)}
+              className={`page-btn ${i + 1 === page ? 'active' : ''}`}
             >
               {i + 1}
-            </Pagination.Item>
+            </button>
           ))}
-          <Pagination.Next onClick={() => handlePageChange(page + 1)} disabled={page === pages} />
-          <Pagination.Last onClick={() => handlePageChange(pages)} disabled={page === pages} />
-        </Pagination>
+          <button onClick={() => handlePageChange(page + 1)} disabled={page === pages} className="page-btn">›</button>
+          <button onClick={() => handlePageChange(pages)} disabled={page === pages} className="page-btn">»</button>
+        </div>
       )}
 
-      <Modal show={showDetail} onHide={() => setShowDetail(false)} size="lg" className="order-detail-modal">
-        <Modal.Header closeButton>
-          <Modal.Title>Commande #{selectedOrder?.orderId?.slice(-8)}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedOrder && (
-            <div>
-              <div className="order-meta">
-                <p><strong>Date :</strong> {formatDate(selectedOrder.createdAt)}</p>
-                <p><strong>Statut :</strong> {getStatusBadge(selectedOrder.status)}</p>
-                <p><strong>Total :</strong> {selectedOrder.totalAmount.toLocaleString()} DA</p>
-              </div>
-              <Table responsive size="sm" className="order-items-table">
-                <thead>
-                  <tr>
-                    <th>Produit</th>
-                    <th>Prix unit.</th>
-                    <th>Qté</th>
-                    <th>Sous-total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {selectedOrder.items.map((item, idx) => (
-                    <tr key={idx}>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          {item.thumbnail && (
-                            <img 
-                              src={item.thumbnail} 
-                              alt={item.title} 
-                              style={{ width: 50, height: 50, objectFit: 'cover', marginRight: 10, borderRadius: 4 }}
-                              onError={(e) => { e.target.style.display = 'none'; }}
-                            />
-                          )}
-                          <span>{item.title}</span>
-                        </div>
-                      </td>
-                      <td>{item.price.toLocaleString()} DA</td>
-                      <td>{item.quantity}</td>
-                      <td>{(item.price * item.quantity).toLocaleString()} DA</td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colSpan="3" className="text-end"><strong>Total</strong></td>
-                    <td><strong>{selectedOrder.totalAmount.toLocaleString()} DA</strong></td>
-                  </tr>
-                </tfoot>
-              </Table>
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowDetail(false)}>Fermer</Button>
-        </Modal.Footer>
-      </Modal>
+      <OrderModal show={showDetail} onHide={() => setShowDetail(false)} order={selectedOrder} />
     </div>
   );
 };

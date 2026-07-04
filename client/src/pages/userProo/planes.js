@@ -6,8 +6,7 @@ import { FaCheck, FaStar, FaArrowRight, FaArrowLeft, FaVideo, FaHdd, FaClock, Fa
 import { postDataAPI } from '../../utils/fetchData';
 import './planes.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://videocommerce.onrender.com/api';
-
+ 
 const Planes = () => {
   const history = useHistory();
   const { auth } = useSelector(state => state);

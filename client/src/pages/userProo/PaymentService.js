@@ -1,7 +1,7 @@
 // src/services/paymentService.js - VERSIÓN CORREGIDA PARA PRODUCCIÓN
 
 // ✅ Usar variable de entorno para la URL base
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://videocommerce.onrender.com/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://artdjamel.onrender.com/api';
 
 export const PaymentService = {
   

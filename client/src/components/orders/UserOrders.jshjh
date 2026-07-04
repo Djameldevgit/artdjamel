@@ -1,12 +1,10 @@
-// components/UserOrders.jsx
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Badge, Spinner, Pagination, Button } from 'react-bootstrap'; // Solo mantenemos lo que usamos
+import { Table, Badge, Spinner, Pagination, Button, Modal } from 'react-bootstrap';
 import { FaEye } from 'react-icons/fa';
 import moment from 'moment';
 import 'moment/locale/fr';
 import { getUserOrders, getOrderDetail } from '../../redux/actions/orderAction';
-import OrderModal from './OrderModal'; // Importamos el modal personalizado
 import './Orders.css';
 
 moment.locale('fr');
@@ -36,8 +34,11 @@ const UserOrders = () => {
     setShowDetail(true);
   };
 
-  const formatDate = (date) => moment(date).format('DD/MM/YYYY HH:mm');
+  const formatDate = (date) => {
+    return moment(date).format('DD/MM/YYYY HH:mm');
+  };
 
+  // ✅ ESTADOS TRADUCIDOS AL FRANCÉS
   const getStatusBadge = (status) => {
     const statusMap = {
       pending: { label: 'En attente', variant: 'warning' },
@@ -47,6 +48,7 @@ const UserOrders = () => {
       cancelled: { label: 'Annulée', variant: 'danger' },
       refunded: { label: 'Remboursée', variant: 'secondary' }
     };
+    
     const statusInfo = statusMap[status] || { label: status, variant: 'secondary' };
     return <Badge bg={statusInfo.variant}>{statusInfo.label}</Badge>;
   };
@@ -91,7 +93,7 @@ const UserOrders = () => {
               <td>{formatDate(order.createdAt)}</td>
               <td>{order.items.length} article{order.items.length > 1 ? 's' : ''}</td>
               <td><strong>{order.totalAmount.toLocaleString()} DA</strong></td>
-              <td>{getStatusBadge(order.status)}</td>
+              <td>{getStatusBadge(order.status)}</td> {/* ✅ Mostrará "En attente", "Payée", etc. */}
               <td>
                 <Button
                   variant="outline-primary"
@@ -124,12 +126,63 @@ const UserOrders = () => {
         </Pagination>
       )}
 
-      {/* Modal personalizado */}
-      <OrderModal
-        show={showDetail}
-        onHide={() => setShowDetail(false)}
-        order={selectedOrder}
-      />
+      <Modal show={showDetail} onHide={() => setShowDetail(false)} size="lg" className="order-detail-modal">
+        <Modal.Header closeButton>
+          <Modal.Title>Commande #{selectedOrder?.orderId?.slice(-8)}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedOrder && (
+            <div>
+              <div className="order-meta">
+                <p><strong>Date :</strong> {formatDate(selectedOrder.createdAt)}</p>
+                <p><strong>Statut :</strong> {getStatusBadge(selectedOrder.status)}</p>
+                <p><strong>Total :</strong> {selectedOrder.totalAmount.toLocaleString()} DA</p>
+              </div>
+              <Table responsive size="sm" className="order-items-table">
+                <thead>
+                  <tr>
+                    <th>Produit</th>
+                    <th>Prix unit.</th>
+                    <th>Qté</th>
+                    <th>Sous-total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedOrder.items.map((item, idx) => (
+                    <tr key={idx}>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          {item.thumbnail && (
+                            <img 
+                              src={item.thumbnail} 
+                              alt={item.title} 
+                              style={{ width: 50, height: 50, objectFit: 'cover', marginRight: 10, borderRadius: 4 }}
+                              onError={(e) => { e.target.style.display = 'none'; }}
+                            />
+                          )}
+                          <span>{item.title}</span>
+                        </div>
+                      </td>
+                      <td>{item.price.toLocaleString()} DA</td>
+                      <td>{item.quantity}</td>
+                      <td>{(item.price * item.quantity).toLocaleString()} DA</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colSpan="3" className="text-end"><strong>Total</strong></td>
+                    <td><strong>{selectedOrder.totalAmount.toLocaleString()} DA</strong></td>
+                  </tr>
+                </tfoot>
+              </Table>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDetail(false)}>Fermer</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
