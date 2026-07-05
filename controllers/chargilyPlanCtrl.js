@@ -402,21 +402,24 @@ const chargilyPlanCtrl = {
         return res.status(403).json({ error: 'Accès réservé aux administrateurs' });
       }
   
-      console.log('🔄 ===== SINCRONIZANDO ÓRDENES PENDIENTES =====');
+      console.log('🔄 ===== SINCRONIZANDO ÓRDENES PENDIENTES (SOLO PAID) =====');
       
-      // 🔥 SOLO transacciones con status 'paid'
+      // 🔥 SOLO transacciones PAID y limitar a 50 para evitar sobrecarga
       const transactions = await Transaction.find({ 
         plan_id: 'cart',
-        status: 'paid'  // ⚠️ CAMBIADO: solo 'paid'
-      }).sort({ created_at: -1 });
+        status: 'paid'
+      })
+      .sort({ created_at: -1 })
+      .limit(50); // ⚠️ Límite de 50 transacciones por ejecución
   
-      console.log(`📊 Encontradas ${transactions.length} transacciones pagadas de carrito`);
+      console.log(`📊 Encontradas ${transactions.length} transacciones pagadas de carrito (últimas 50)`);
   
       let created = 0;
       let skipped = 0;
       let errors = 0;
   
       for (const transaction of transactions) {
+        // Verificar si ya existe una orden
         const existingOrder = await Order.findOne({ orderId: transaction.checkout_id });
         if (existingOrder) {
           console.log(`⏭️ Orden ya existe para checkout_id: ${transaction.checkout_id}`);
@@ -462,6 +465,7 @@ const chargilyPlanCtrl = {
           created++;
           console.log(`✅ Orden creada: ${order.orderId}`);
   
+          // Actualizar stock de videos (solo si no se hizo ya)
           for (const item of cartItems) {
             try {
               const video = await Video.findById(item.videoId);
