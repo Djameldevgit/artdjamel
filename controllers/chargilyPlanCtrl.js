@@ -7,98 +7,39 @@ const Video = require('../models/videoModel');
 const Commission = require('../models/commissionModel');
 
 const chargilyPlanCtrl = {
-
-  // ============================================
-  // RESERVAR OBRAS DEL CARRITO POR 10 MINUTOS
-  // ============================================
-  reserveCartItems: async function(cartItems, userId) {
-    const reservedItems = [];
-    const errors = [];
-
-    for (const item of cartItems) {
-      try {
-        const video = await Video.findById(item.videoId);
-        if (!video) {
-          errors.push({ videoId: item.videoId, error: 'Obra no encontrada' });
-          continue;
-        }
-
-        // Verificar si la obra ya está reservada por otro usuario (y no expirada)
-        if (video.reservedBy && video.reservedBy.toString() !== userId.toString()) {
-          const reservedAt = new Date(video.reservedAt);
-          const now = new Date();
-          const diffMinutes = (now - reservedAt) / (1000 * 60);
-          if (diffMinutes < 10) {
-            errors.push({
-              videoId: item.videoId,
-              title: video.title,
-              error: `Esta obra está siendo reservada por otro usuario. Intenta en ${Math.ceil(10 - diffMinutes)} minutos.`
-            });
-            continue;
-          }
-        }
-
-        // Reservar la obra para este usuario (o renovar reserva si ya era suya)
-        video.reservedBy = userId;
-        video.reservedAt = new Date();
-        // Si usas reservationExpiresAt, descomenta la siguiente línea:
-        // video.reservationExpiresAt = new Date(Date.now() + 10 * 60 * 1000);
-        await video.save();
-        reservedItems.push({ videoId: item.videoId, title: video.title });
-      } catch (err) {
-        console.error('Error reservando obra:', err);
-        errors.push({ videoId: item.videoId, error: err.message });
-      }
-    }
-
-    return { reservedItems, errors };
-  },
-
   // ============================================
   // 1. CREAR CHECKOUT (PLAN, CARRITO O ENCARGO)
   // ============================================
-  createPlanCheckout: async function(req, res) {
+  createPlanCheckout: async (req, res) => {
     try {
       const userId = req.user._id;
-      const {
-        plan_id, plan_name, amount, duration_months, discount_percent,
+      const { 
+        plan_id, plan_name, amount, duration_months, discount_percent, 
         free_months, category, cart_items, commission_id
       } = req.body;
-
+      
       if (!plan_id || !amount) {
         return res.status(400).json({ error: 'Plan et montant requis' });
       }
-
-      // 🔥 RESERVAR OBRAS ANTES DE CREAR EL CHECKOUT
-      if (plan_id === 'cart' && cart_items && cart_items.length > 0) {
-        const { reservedItems, errors } = await this.reserveCartItems(cart_items, userId);
-        if (errors.length > 0) {
-          return res.status(409).json({
-            error: 'Alguna obra ya no está disponible para reserva',
-            details: errors
-          });
-        }
-        console.log(`✅ ${reservedItems.length} obras reservadas para el usuario ${userId}`);
-      }
-
+      
       const user = await User.findById(userId).select('email username');
-
+      
       const isLive = process.env.CHARGILY_MODE === 'live';
-      const baseUrl = isLive
+      const baseUrl = isLive 
         ? 'https://pay.chargily.net/api/v2/checkouts'
         : 'https://pay.chargily.net/test/api/v2/checkouts';
-
-      const baseClientUrl = process.env.CLIENT_URL || (isLive
-        ? 'https://artdjamel.onrender.com'
+      
+      const baseClientUrl = process.env.CLIENT_URL || (isLive 
+        ? 'https://artdjamel.onrender.com' 
         : 'http://localhost:3000');
-
+      
       const webhookUrl = `${baseClientUrl}/api/webhook`;
-
+      
       console.log(`🎯 Modo: ${isLive ? '🔴 LIVE' : '🟡 TEST'}`);
       console.log(`💰 Monto: ${amount} DZD`);
       console.log(`📦 Plan: ${plan_id}`);
       console.log(`🌐 Webhook URL: ${webhookUrl}`);
-
+      
       // ============================================
       // 🔥 CORRECCIÓN: Asignar type según plan_id
       // ============================================
@@ -110,7 +51,7 @@ const chargilyPlanCtrl = {
       } else {
         actualType = 'plan_subscription';
       }
-
+      
       let metadata = {
         type: actualType,
         user_id: userId.toString(),
@@ -119,7 +60,7 @@ const chargilyPlanCtrl = {
         plan_id: plan_id,
         plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan'))
       };
-
+      
       // Guardar datos específicos según tipo
       if (plan_id === 'cart') {
         metadata.cart_items = cart_items || [];
@@ -136,7 +77,7 @@ const chargilyPlanCtrl = {
         metadata.free_months = free_months || 0;
         metadata.category = category || '';
       }
-
+      
       const response = await axios.post(
         baseUrl,
         {
@@ -154,7 +95,7 @@ const chargilyPlanCtrl = {
           },
         }
       );
-
+      
       // Crear transacción
       const transaction = new Transaction({
         checkout_id: response.data.id,
@@ -174,21 +115,21 @@ const chargilyPlanCtrl = {
         status: 'pending',
         chargily_response: response.data
       });
-
+      
       if (commission_id && transaction.schema.path('commission_id')) {
         transaction.commission_id = commission_id;
       }
-
+      
       await transaction.save();
       console.log('✅ Transacción registrada:', transaction._id);
-
+      
       return res.json({
         success: true,
         checkout_url: response.data.checkout_url,
         transaction_id: transaction._id,
         mode: isLive ? 'live' : 'test'
       });
-
+      
     } catch (err) {
       console.error('❌ Error en createPlanCheckout:', err.message);
       if (err.response) {
@@ -201,11 +142,11 @@ const chargilyPlanCtrl = {
       return res.status(500).json({ error: err.message });
     }
   },
-
+  
   // ============================================
   // 2. WEBHOOK - PROCESAR PAGO EXITOSO
   // ============================================
-  handlePlanWebhook: async function(req, res) {
+  handlePlanWebhook: async (req, res) => {
     try {
       console.log('\n🔔 ========================================');
       console.log('🔔 WEBHOOK RECIBIDO');
@@ -249,11 +190,12 @@ const chargilyPlanCtrl = {
         console.log(`📦 Plan: ${metadata.plan_id}`);
         console.log(`📋 Tipo original en metadata: ${metadata.type}`);
 
-        // Normalizar tipo si es carrito
+        // --- CORRECCIÓN: Normalizar tipo si es carrito ---
         if (metadata.plan_id === 'cart' && metadata.type !== 'cart_payment') {
           console.log(`🔄 Normalizando type: de "${metadata.type}" a "cart_payment"`);
           metadata.type = 'cart_payment';
         }
+        // --- fin corrección ---
 
         console.log(`📋 Tipo final procesado: ${metadata.type}`);
 
@@ -282,33 +224,33 @@ const chargilyPlanCtrl = {
   },
 
   // ============================================
-  // 3. PROCESAR TRANSACCIÓN PAGADA
+  // 3. PROCESAR TRANSACCIÓN PAGADA (Método interno)
   // ============================================
-  processPaidTransaction: async function(transaction, checkoutData, metadata, res) {
+  processPaidTransaction: async (transaction, checkoutData, metadata, res) => {
     try {
       // 🔥 VERIFICACIÓN OBLIGATORIA: Consultar el estado real del checkout
       const isLive = process.env.CHARGILY_MODE === 'live';
-      const baseUrl = isLive
+      const baseUrl = isLive 
         ? 'https://pay.chargily.net/api/v2/checkouts'
         : 'https://pay.chargily.net/test/api/v2/checkouts';
-
+      
       const checkoutId = checkoutData.id;
       const response = await axios.get(`${baseUrl}/${checkoutId}`, {
         headers: {
           Authorization: `Bearer ${process.env.CHARGILY_SECRET_KEY}`
         }
       });
-
+      
       const realStatus = response.data.status;
       console.log(`🔍 Estado real del checkout (${checkoutId}): ${realStatus}`);
-
+      
       // ✅ Si el checkout no está realmente pagado, NO crear la orden
       if (realStatus !== 'paid') {
         console.warn(`⚠️ El checkout no está pagado (estado: ${realStatus}). Ignorando webhook.`);
         return res.json({ received: true, warning: 'Checkout not paid' });
       }
-
-      // Actualizar transacción a PAID
+      
+      // ✅ Actualizar transacción
       transaction.status = 'paid';
       transaction.payment_completed_at = new Date();
       transaction.chargily_payment_id = checkoutData.payment_intent || checkoutData.id;
@@ -337,14 +279,14 @@ const chargilyPlanCtrl = {
 
         console.log(`📦 Items del carrito: ${cartItems.length}`);
 
-        // Verificar si ya existe la orden (evitar duplicados)
+        // ✅ Verificar duplicado
         const existingOrder = await Order.findOne({ orderId: checkoutData.id });
         if (existingOrder) {
           console.log(`⏭️ Orden ya existe para checkout_id: ${checkoutData.id}`);
           return res.json({ received: true, warning: 'Order already exists' });
         }
 
-        // Crear la orden
+        // ✅ Crear la orden
         const order = new Order({
           orderId: checkoutData.id,
           userId: transaction.user_id,
@@ -369,17 +311,11 @@ const chargilyPlanCtrl = {
         await order.save();
         console.log(`✅ ORDEN CREADA: ${order.orderId}`);
 
-        // Actualizar stock y liberar reserva
+        // ✅ Actualizar stock de videos
         for (const item of cartItems) {
           try {
             const video = await Video.findById(item.videoId);
             if (video) {
-              // Liberar reserva si existe y es de este usuario
-              if (video.reservedBy && video.reservedBy.toString() === order.userId.toString()) {
-                video.reservedBy = null;
-                video.reservedAt = null;
-                // video.reservationExpiresAt = null;
-              }
               video.stock = Math.max(0, video.stock - (item.quantity || 1));
               if (video.stock <= 0) video.status = 'vendue';
               await video.save();
@@ -431,7 +367,6 @@ const chargilyPlanCtrl = {
         return res.json({ received: true, commissionUpdated: true });
 
       } else {
-        // Plan de suscripción (aunque ya no se usa en esta app)
         console.log('📦 Procesando pago de plan...');
         const totalMonths = (metadata.duration_months || 1) + (metadata.free_months || 0);
         const expiresAt = new Date();
@@ -457,23 +392,23 @@ const chargilyPlanCtrl = {
 
     } catch (err) {
       console.error('❌ Error en processPaidTransaction:', err);
-      return res.status(500).json({ error: 'Error procesando pago', details: err.message });
+      return res.status(500).json({ error: 'Error verificando el pago', details: err.message });
     }
   },
 
   // ============================================
-  // 4. SINCRONIZAR ÓRDENES PAGADAS (ADMIN)
+  // 4. SINCRONIZAR ÓRDENES PENDIENTES (ADMIN)
   // ============================================
-  syncPendingOrders: async function(req, res) {
+  syncPendingOrders: async (req, res) => {
     try {
       if (req.user.role !== 'admin' && req.user.role !== 'moderator') {
         return res.status(403).json({ error: 'Accès réservé aux administrateurs' });
       }
 
-      console.log('🔄 ===== SINCRONIZANDO ÓRDENES PAGADAS =====');
-
+      console.log('🔄 ===== SINCRONIZANDO ÓRDENES PENDIENTES =====');
+      
       // Solo transacciones ya pagadas
-      const transactions = await Transaction.find({
+      const transactions = await Transaction.find({ 
         plan_id: 'cart',
         status: 'paid'
       }).sort({ created_at: -1 });
@@ -530,7 +465,6 @@ const chargilyPlanCtrl = {
           created++;
           console.log(`✅ Orden creada: ${order.orderId}`);
 
-          // Actualizar stock (solo si no se hizo ya)
           for (const item of cartItems) {
             try {
               const video = await Video.findById(item.videoId);
@@ -569,11 +503,11 @@ const chargilyPlanCtrl = {
       res.status(500).json({ error: err.message });
     }
   },
-
+  
   // ============================================
   // 5. VERIFICAR ESTADO DEL PLAN
   // ============================================
-  checkPlanStatus: async function(req, res) {
+  checkPlanStatus: async (req, res) => {
     try {
       const userId = req.user._id;
       const user = await User.findById(userId)
@@ -618,7 +552,7 @@ const chargilyPlanCtrl = {
   // ============================================
   // 6. HISTORIAL DE TRANSACCIONES DEL USUARIO
   // ============================================
-  getUserTransactions: async function(req, res) {
+  getUserTransactions: async (req, res) => {
     try {
       const userId = req.user._id;
       const { page = 1, limit = 10 } = req.query;
@@ -649,7 +583,7 @@ const chargilyPlanCtrl = {
   // ============================================
   // 7. CREAR CHECKOUT PARA ENCARGO
   // ============================================
-  createCommissionCheckout: async function(req, res) {
+  createCommissionCheckout: async (req, res) => {
     try {
       const userId = req.user._id;
       const { commissionId } = req.body;
@@ -778,7 +712,7 @@ const chargilyPlanCtrl = {
   // ============================================
   // 8. PROCESAR PAGO DE ENCARGO
   // ============================================
-  processCommissionPayment: async function(transaction, checkoutData, metadata, res) {
+  processCommissionPayment: async (transaction, checkoutData, metadata, res) => {
     try {
       const commissionId = metadata.commission_id;
       if (!commissionId) {
@@ -819,7 +753,6 @@ const chargilyPlanCtrl = {
       return res.status(500).json({ error: "Error processing commission payment" });
     }
   }
-
 };
 
 module.exports = chargilyPlanCtrl;
