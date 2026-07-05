@@ -401,30 +401,29 @@ const chargilyPlanCtrl = {
       if (req.user.role !== 'admin' && req.user.role !== 'moderator') {
         return res.status(403).json({ error: 'Accès réservé aux administrateurs' });
       }
-
+  
       console.log('🔄 ===== SINCRONIZANDO ÓRDENES PENDIENTES =====');
       
-      // 🔥 CORRECCIÓN: SOLO transacciones con status 'paid'
+      // 🔥 SOLO transacciones con status 'paid'
       const transactions = await Transaction.find({ 
         plan_id: 'cart',
-        status: 'paid'  // ⚠️ SOLO PAID
+        status: 'paid'  // ⚠️ CAMBIADO: solo 'paid'
       }).sort({ created_at: -1 });
-
+  
       console.log(`📊 Encontradas ${transactions.length} transacciones pagadas de carrito`);
-
+  
       let created = 0;
       let skipped = 0;
       let errors = 0;
-
+  
       for (const transaction of transactions) {
-        // Verificar si ya existe una orden
         const existingOrder = await Order.findOne({ orderId: transaction.checkout_id });
         if (existingOrder) {
           console.log(`⏭️ Orden ya existe para checkout_id: ${transaction.checkout_id}`);
           skipped++;
           continue;
         }
-
+  
         try {
           const cartItems = transaction.cart_items || [];
           if (cartItems.length === 0) {
@@ -432,12 +431,12 @@ const chargilyPlanCtrl = {
             skipped++;
             continue;
           }
-
+  
           console.log(`📦 Creando orden para checkout_id: ${transaction.checkout_id}`);
           console.log(`   Usuario: ${transaction.user_email}`);
           console.log(`   Items: ${cartItems.length}`);
           console.log(`   Total: ${transaction.amount} DA`);
-
+  
           const order = new Order({
             orderId: transaction.checkout_id,
             userId: transaction.user_id,
@@ -458,12 +457,11 @@ const chargilyPlanCtrl = {
             status: 'paid',
             paidAt: transaction.payment_completed_at || new Date()
           });
-
+  
           await order.save();
           created++;
           console.log(`✅ Orden creada: ${order.orderId}`);
-
-          // Actualizar stock de videos (solo si no se hizo ya)
+  
           for (const item of cartItems) {
             try {
               const video = await Video.findById(item.videoId);
@@ -479,30 +477,29 @@ const chargilyPlanCtrl = {
               console.error(`❌ Error actualizando video ${item.videoId}:`, err.message);
             }
           }
-
+  
         } catch (err) {
           errors++;
           console.error(`❌ Error creando orden para ${transaction.checkout_id}:`, err.message);
         }
       }
-
+  
       console.log(`\n✅ Sincronización completada:`);
       console.log(`   - ${created} órdenes creadas`);
       console.log(`   - ${skipped} omitidas`);
       console.log(`   - ${errors} errores`);
-
+  
       res.json({
         success: true,
         message: 'Sincronización completada',
         stats: { totalTransactions: transactions.length, created, skipped, errors }
       });
-
+  
     } catch (err) {
       console.error('❌ Error en syncPendingOrders:', err);
       res.status(500).json({ error: err.message });
     }
   },
-
   // ============================================
   // 5. VERIFICAR ESTADO DEL PLAN (obsoleto pero se mantiene)
   // ============================================
