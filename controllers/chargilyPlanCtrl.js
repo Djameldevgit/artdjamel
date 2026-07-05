@@ -8,115 +8,128 @@ const Commission = require('../models/commissionModel');
 
 const chargilyPlanCtrl = {
 
-// Reservar obras del carrito por 10 minutos
-reserveCartItems: async (cartItems, userId) => {
-  const reservedItems = [];
-  const errors = [];
+  // ============================================
+  // 🛒 RESERVAR OBRAS DEL CARRITO (10 minutos)
+  // ============================================
+  reserveCartItems: async (cartItems, userId) => {
+    const reservedItems = [];
+    const errors = [];
 
-  for (const item of cartItems) {
-    try {
-      const video = await Video.findById(item.videoId);
-      if (!video) {
-        errors.push({ videoId: item.videoId, error: 'Obra no encontrada' });
-        continue;
-      }
-
-      // Verificar si la obra ya está reservada por otro usuario (y no expirada)
-      if (video.reservedBy && video.reservedBy.toString() !== userId.toString()) {
-        const reservedAt = new Date(video.reservedAt);
-        const now = new Date();
-        const diffMinutes = (now - reservedAt) / (1000 * 60);
-        if (diffMinutes < 10) {
-          errors.push({ 
-            videoId: item.videoId, 
-            title: video.title,
-            error: `Esta obra está siendo reservada por otro usuario. Intenta en ${Math.ceil(10 - diffMinutes)} minutos.`
-          });
+    for (const item of cartItems) {
+      try {
+        const video = await Video.findById(item.videoId);
+        if (!video) {
+          errors.push({ videoId: item.videoId, error: 'Obra no encontrada' });
           continue;
         }
+
+        // Verificar si la obra ya está reservada por otro usuario (y no expirada)
+        if (video.reservedBy && video.reservedBy.toString() !== userId.toString()) {
+          const reservedAt = new Date(video.reservedAt);
+          const now = new Date();
+          const diffMinutes = (now - reservedAt) / (1000 * 60);
+          if (diffMinutes < 10) {
+            errors.push({
+              videoId: item.videoId,
+              title: video.title,
+              error: `Esta obra está siendo reservada por otro usuario. Intenta en ${Math.ceil(10 - diffMinutes)} minutos.`
+            });
+            continue;
+          }
+        }
+
+        // Reservar la obra para este usuario (o renovar reserva si ya era suya)
+        video.reservedBy = userId;
+        video.reservedAt = new Date();
+        await video.save();
+        reservedItems.push({ videoId: item.videoId, title: video.title });
+      } catch (err) {
+        console.error('Error reservando obra:', err);
+        errors.push({ videoId: item.videoId, error: err.message });
       }
-
-      // Reservar la obra para este usuario (o renovar reserva si ya era suya)
-      video.reservedBy = userId;
-      video.reservedAt = new Date();
-      await video.save();
-      reservedItems.push({ videoId: item.videoId, title: video.title });
-    } catch (err) {
-      console.error('Error reservando obra:', err);
-      errors.push({ videoId: item.videoId, error: err.message });
     }
-  }
 
-  return { reservedItems, errors };
-},
+    return { reservedItems, errors };
+  },
+
+  // ============================================
+  // 1. CREAR CHECKOUT (CARRITO O ENCARGO)
+  // ============================================
   createPlanCheckout: async (req, res) => {
     try {
       const userId = req.user._id;
-      const { 
-        plan_id, plan_name, amount, duration_months, discount_percent, 
-        free_months, category, cart_items, commission_id
+      const {
+        plan_id, // 'cart' o 'commission'
+        plan_name,
+        amount,
+        cart_items,
+        commission_id
       } = req.body;
-      
+
       if (!plan_id || !amount) {
         return res.status(400).json({ error: 'Plan et montant requis' });
       }
-      
+
       const user = await User.findById(userId).select('email username');
-      
+
       const isLive = process.env.CHARGILY_MODE === 'live';
-      const baseUrl = isLive 
+      const baseUrl = isLive
         ? 'https://pay.chargily.net/api/v2/checkouts'
         : 'https://pay.chargily.net/test/api/v2/checkouts';
-      
-      const baseClientUrl = process.env.CLIENT_URL || (isLive 
-        ? 'https://artdjamel.onrender.com' 
+
+      const baseClientUrl = process.env.CLIENT_URL || (isLive
+        ? 'https://artdjamel.onrender.com'
         : 'http://localhost:3000');
-      
+
       const webhookUrl = `${baseClientUrl}/api/webhook`;
-      
+
       console.log(`🎯 Modo: ${isLive ? '🔴 LIVE' : '🟡 TEST'}`);
       console.log(`💰 Monto: ${amount} DZD`);
       console.log(`📦 Plan: ${plan_id}`);
       console.log(`🌐 Webhook URL: ${webhookUrl}`);
-      
-      // ============================================
-      // 🔥 CORRECCIÓN: Asignar type según plan_id
-      // ============================================
+
+      // 🔥 Asignar tipo según plan_id
       let actualType;
       if (plan_id === 'cart') {
         actualType = 'cart_payment';
       } else if (plan_id === 'commission') {
         actualType = 'commission_payment';
       } else {
-        actualType = 'plan_subscription';
+        return res.status(400).json({ error: 'Tipo de pago no válido' });
       }
-      
+
+      // 🔥 Si es carrito, reservar las obras antes de crear el checkout
+      if (plan_id === 'cart' && cart_items && cart_items.length > 0) {
+        const { reservedItems, errors } = await this.reserveCartItems(cart_items, userId);
+        if (errors.length > 0) {
+          return res.status(409).json({
+            error: 'Alguna obra ya no está disponible para reserva',
+            details: errors
+          });
+        }
+        console.log(`✅ ${reservedItems.length} obras reservadas para el usuario ${userId}`);
+      }
+
+      // Construir metadata
       let metadata = {
-        type: actualType, // <--- AQUÍ VA EL TIPO CORRECTO
+        type: actualType,
         user_id: userId.toString(),
         user_email: user.email || '',
         user_username: user.username || '',
         plan_id: plan_id,
-        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan'))
+        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : 'Encargo')
       };
-      
-      // Guardar datos específicos según tipo
+
       if (plan_id === 'cart') {
         metadata.cart_items = cart_items || [];
         metadata.total_items = cart_items ? cart_items.length : 0;
       } else if (plan_id === 'commission') {
         metadata.commission_id = commission_id;
-        metadata.advance_percent = 30;
         if (req.body.commission_title) {
           metadata.commission_title = req.body.commission_title;
         }
-      } else {
-        metadata.duration_months = duration_months || 1;
-        metadata.discount_percent = discount_percent || 0;
-        metadata.free_months = free_months || 0;
-        metadata.category = category || '';
       }
-      
+
       const response = await axios.post(
         baseUrl,
         {
@@ -134,7 +147,7 @@ reserveCartItems: async (cartItems, userId) => {
           },
         }
       );
-      
+
       // Crear transacción
       const transaction = new Transaction({
         checkout_id: response.data.id,
@@ -142,33 +155,25 @@ reserveCartItems: async (cartItems, userId) => {
         user_email: user.email,
         user_username: user.username,
         plan_id: plan_id,
-        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : (plan_id === 'commission' ? 'Encargo' : 'Plan')),
+        plan_name: plan_name || (plan_id === 'cart' ? 'Panier' : 'Encargo'),
         amount: Number(amount),
         currency: 'dzd',
-        duration_months: plan_id === 'cart' ? 0 : (plan_id === 'commission' ? 0 : (duration_months || 1)),
-        free_months: free_months || 0,
-        discount_percent: discount_percent || 0,
-        category: category || '',
         cart_items: cart_items || [],
-        metadata: metadata, // Guardamos el metadata completo
+        metadata: metadata,
         status: 'pending',
         chargily_response: response.data
       });
-      
-      if (commission_id && transaction.schema.path('commission_id')) {
-        transaction.commission_id = commission_id;
-      }
-      
+
       await transaction.save();
       console.log('✅ Transacción registrada:', transaction._id);
-      
+
       return res.json({
         success: true,
         checkout_url: response.data.checkout_url,
         transaction_id: transaction._id,
         mode: isLive ? 'live' : 'test'
       });
-      
+
     } catch (err) {
       console.error('❌ Error en createPlanCheckout:', err.message);
       if (err.response) {
@@ -181,6 +186,7 @@ reserveCartItems: async (cartItems, userId) => {
       return res.status(500).json({ error: err.message });
     }
   },
+
   // ============================================
   // 2. WEBHOOK - PROCESAR PAGO EXITOSO
   // ============================================
@@ -228,12 +234,11 @@ reserveCartItems: async (cartItems, userId) => {
         console.log(`📦 Plan: ${metadata.plan_id}`);
         console.log(`📋 Tipo original en metadata: ${metadata.type}`);
 
-        // --- CORRECCIÓN: Normalizar tipo si es carrito ---
+        // Normalizar tipo si es carrito
         if (metadata.plan_id === 'cart' && metadata.type !== 'cart_payment') {
           console.log(`🔄 Normalizando type: de "${metadata.type}" a "cart_payment"`);
           metadata.type = 'cart_payment';
         }
-        // --- fin corrección ---
 
         console.log(`📋 Tipo final procesado: ${metadata.type}`);
 
@@ -248,6 +253,7 @@ reserveCartItems: async (cartItems, userId) => {
           return res.json({ received: true });
         }
 
+        // Llamar al procesador de pago
         return await this.processPaidTransaction(transaction, checkoutData, metadata, res);
 
       } else {
@@ -262,10 +268,32 @@ reserveCartItems: async (cartItems, userId) => {
   },
 
   // ============================================
-  // 3. PROCESAR TRANSACCIÓN PAGADA (Método interno)
+  // 3. PROCESAR TRANSACCIÓN PAGADA
   // ============================================
   processPaidTransaction: async (transaction, checkoutData, metadata, res) => {
     try {
+      // 🔥 VERIFICACIÓN OBLIGATORIA: Consultar estado real en Chargily
+      const isLive = process.env.CHARGILY_MODE === 'live';
+      const baseUrl = isLive
+        ? 'https://pay.chargily.net/api/v2/checkouts'
+        : 'https://pay.chargily.net/test/api/v2/checkouts';
+
+      const checkoutId = checkoutData.id;
+      const response = await axios.get(`${baseUrl}/${checkoutId}`, {
+        headers: {
+          Authorization: `Bearer ${process.env.CHARGILY_SECRET_KEY}`
+        }
+      });
+
+      const realStatus = response.data.status;
+      console.log(`🔍 Estado real del checkout (${checkoutId}): ${realStatus}`);
+
+      if (realStatus !== 'paid') {
+        console.warn(`⚠️ El checkout no está pagado (estado: ${realStatus}). Ignorando webhook.`);
+        return res.json({ received: true, warning: 'Checkout not paid' });
+      }
+
+      // ✅ Actualizar transacción a PAID
       transaction.status = 'paid';
       transaction.payment_completed_at = new Date();
       transaction.chargily_payment_id = checkoutData.payment_intent || checkoutData.id;
@@ -273,7 +301,10 @@ reserveCartItems: async (cartItems, userId) => {
       await transaction.save();
       console.log('✅ Transacción actualizada a PAID');
 
-      const type = metadata.type || 'plan_subscription';
+      // ============================================
+      // PROCESAR SEGÚN TIPO
+      // ============================================
+      const type = metadata.type || 'cart_payment';
       console.log(`📋 Procesando tipo: ${type}`);
 
       if (type === 'cart_payment') {
@@ -291,6 +322,14 @@ reserveCartItems: async (cartItems, userId) => {
 
         console.log(`📦 Items del carrito: ${cartItems.length}`);
 
+        // Verificar si ya existe la orden
+        const existingOrder = await Order.findOne({ orderId: checkoutData.id });
+        if (existingOrder) {
+          console.log(`⏭️ Orden ya existe para checkout_id: ${checkoutData.id}`);
+          return res.json({ received: true, warning: 'Order already exists' });
+        }
+
+        // Crear la orden
         const order = new Order({
           orderId: checkoutData.id,
           userId: transaction.user_id,
@@ -315,10 +354,19 @@ reserveCartItems: async (cartItems, userId) => {
         await order.save();
         console.log(`✅ ORDEN CREADA: ${order.orderId}`);
 
+        // Actualizar stock y liberar reserva
         for (const item of cartItems) {
           try {
             const video = await Video.findById(item.videoId);
             if (video) {
+              // Liberar reserva si existe (para este usuario)
+              if (video.reservedBy && video.reservedBy.toString() === order.userId.toString()) {
+                video.reservedBy = null;
+                video.reservedAt = null;
+                await video.save();
+                console.log(`✅ Reserva liberada para "${video.title}"`);
+              }
+              // Reducir stock
               video.stock = Math.max(0, video.stock - (item.quantity || 1));
               if (video.stock <= 0) video.status = 'vendue';
               await video.save();
@@ -347,11 +395,6 @@ reserveCartItems: async (cartItems, userId) => {
           return res.status(404).json({ error: 'Commission not found' });
         }
 
-        const expectedAmount = commission.respuesta.adelantoMonto;
-        if (expectedAmount && Math.abs(expectedAmount - transaction.amount) > 0.01) {
-          console.warn(`⚠️ Monto pagado (${transaction.amount}) no coincide con el esperado (${expectedAmount})`);
-        }
-
         commission.estado = 'pagado';
         commission.pago = {
           idChargily: checkoutData.id || transaction.chargily_payment_id,
@@ -370,67 +413,48 @@ reserveCartItems: async (cartItems, userId) => {
         return res.json({ received: true, commissionUpdated: true });
 
       } else {
-        console.log('📦 Procesando pago de plan...');
-        const totalMonths = (metadata.duration_months || 1) + (metadata.free_months || 0);
-        const expiresAt = new Date();
-        expiresAt.setMonth(expiresAt.getMonth() + totalMonths);
-
-        transaction.plan_expires_at = expiresAt;
-        await transaction.save();
-
-        await User.findByIdAndUpdate(
-          transaction.user_id,
-          {
-            channelPlan: metadata.plan_id,
-            channelPlanExpiresAt: expiresAt,
-            channelPlanAutoRenew: false,
-            isPro: metadata.plan_id !== 'basic',
-            role: 'userpro'
-          }
-        );
-
-        console.log(`✅ Usuario actualizado con plan ${metadata.plan_id}`);
-        return res.json({ received: true, userUpdated: true });
+        // Si llega otro tipo, ignorar
+        console.warn(`⚠️ Tipo desconocido: ${type}. Ignorando.`);
+        return res.json({ received: true, warning: 'Unknown type' });
       }
 
     } catch (err) {
-      console.error('❌ Error procesando transacción pagada:', err);
-      return res.status(500).json({ error: "Error processing transaction" });
+      console.error('❌ Error en processPaidTransaction:', err);
+      return res.status(500).json({ error: 'Error procesando pago', details: err.message });
     }
   },
 
   // ============================================
-  // 4. SINCRONIZAR ÓRDENES PENDIENTES (ADMIN)
+  // 4. SINCRONIZAR ÓRDENES (ADMIN)
   // ============================================
   syncPendingOrders: async (req, res) => {
     try {
       if (req.user.role !== 'admin' && req.user.role !== 'moderator') {
         return res.status(403).json({ error: 'Accès réservé aux administrateurs' });
       }
-  
-      console.log('🔄 ===== SINCRONIZANDO ÓRDENES PENDIENTES =====');
-      
-      // Buscar todas las transacciones de carrito (pending o paid)
-      const transactions = await Transaction.find({ 
+
+      console.log('🔄 ===== SINCRONIZANDO ÓRDENES =====');
+
+      // Solo transacciones ya pagadas
+      const transactions = await Transaction.find({
         plan_id: 'cart',
-        status: { $in: ['pending', 'paid'] }
+        status: 'paid'
       }).sort({ created_at: -1 });
-  
-      console.log(`📊 Encontradas ${transactions.length} transacciones de carrito`);
-  
+
+      console.log(`📊 Encontradas ${transactions.length} transacciones pagadas de carrito`);
+
       let created = 0;
       let skipped = 0;
       let errors = 0;
-  
+
       for (const transaction of transactions) {
-        // Verificar si ya existe una orden con ese checkout_id
         const existingOrder = await Order.findOne({ orderId: transaction.checkout_id });
         if (existingOrder) {
           console.log(`⏭️ Orden ya existe para checkout_id: ${transaction.checkout_id}`);
           skipped++;
           continue;
         }
-  
+
         try {
           const cartItems = transaction.cart_items || [];
           if (cartItems.length === 0) {
@@ -438,24 +462,12 @@ reserveCartItems: async (cartItems, userId) => {
             skipped++;
             continue;
           }
-  
-          // Si la transacción está pending, la marcamos como paid
-          if (transaction.status === 'pending') {
-            transaction.status = 'paid';
-            transaction.payment_completed_at = new Date();
-            if (!transaction.chargily_payment_id) {
-              transaction.chargily_payment_id = transaction.checkout_id;
-            }
-            await transaction.save();
-            console.log(`✅ Transacción ${transaction.checkout_id} actualizada a PAID`);
-          }
-  
+
           console.log(`📦 Creando orden para checkout_id: ${transaction.checkout_id}`);
           console.log(`   Usuario: ${transaction.user_email}`);
           console.log(`   Items: ${cartItems.length}`);
           console.log(`   Total: ${transaction.amount} DA`);
-  
-          // Crear la orden
+
           const order = new Order({
             orderId: transaction.checkout_id,
             userId: transaction.user_id,
@@ -476,12 +488,12 @@ reserveCartItems: async (cartItems, userId) => {
             status: 'paid',
             paidAt: transaction.payment_completed_at || new Date()
           });
-  
+
           await order.save();
           created++;
           console.log(`✅ Orden creada: ${order.orderId}`);
-  
-          // Actualizar stock de videos
+
+          // Actualizar stock (por si no se hizo en el webhook)
           for (const item of cartItems) {
             try {
               const video = await Video.findById(item.videoId);
@@ -497,107 +509,32 @@ reserveCartItems: async (cartItems, userId) => {
               console.error(`❌ Error actualizando video ${item.videoId}:`, err.message);
             }
           }
-  
+
         } catch (err) {
           errors++;
           console.error(`❌ Error creando orden para ${transaction.checkout_id}:`, err.message);
         }
       }
-  
+
       console.log(`\n✅ Sincronización completada:`);
       console.log(`   - ${created} órdenes creadas`);
       console.log(`   - ${skipped} omitidas`);
       console.log(`   - ${errors} errores`);
-  
+
       res.json({
         success: true,
         message: 'Sincronización completada',
         stats: { totalTransactions: transactions.length, created, skipped, errors }
       });
-  
+
     } catch (err) {
       console.error('❌ Error en syncPendingOrders:', err);
       res.status(500).json({ error: err.message });
     }
   },
-  // ============================================
-  // 5. VERIFICAR ESTADO DEL PLAN
-  // ============================================
-  checkPlanStatus: async (req, res) => {
-    try {
-      const userId = req.user._id;
-      const user = await User.findById(userId)
-        .select('channelPlan channelPlanExpiresAt isPro role username email');
-
-      if (!user) {
-        return res.status(404).json({ error: 'Utilisateur non trouvé' });
-      }
-
-      const now = new Date();
-      const isExpired = user.channelPlanExpiresAt && new Date(user.channelPlanExpiresAt) < now;
-
-      if (isExpired && user.channelPlan !== 'free') {
-        await User.findByIdAndUpdate(userId, {
-          channelPlan: 'free',
-          channelPlanExpiresAt: null,
-          isPro: false,
-          role: 'user'
-        });
-        user.channelPlan = 'free';
-        user.role = 'user';
-        user.isPro = false;
-      }
-
-      res.json({
-        success: true,
-        user: {
-          channelPlan: user.channelPlan,
-          role: user.role,
-          expiresAt: user.channelPlanExpiresAt,
-          isExpired: isExpired,
-          isPro: user.isPro,
-          email: user.email
-        }
-      });
-    } catch (err) {
-      console.error('❌ Error checkPlanStatus:', err);
-      res.status(500).json({ error: err.message });
-    }
-  },
 
   // ============================================
-  // 6. HISTORIAL DE TRANSACCIONES DEL USUARIO
-  // ============================================
-  getUserTransactions: async (req, res) => {
-    try {
-      const userId = req.user._id;
-      const { page = 1, limit = 10 } = req.query;
-      const skip = (parseInt(page) - 1) * parseInt(limit);
-
-      const transactions = await Transaction.find({ user_id: userId })
-        .sort({ created_at: -1 })
-        .skip(skip)
-        .limit(parseInt(limit));
-
-      const total = await Transaction.countDocuments({ user_id: userId });
-
-      res.json({
-        success: true,
-        transactions,
-        pagination: {
-          total,
-          page: parseInt(page),
-          pages: Math.ceil(total / parseInt(limit))
-        }
-      });
-    } catch (err) {
-      console.error('❌ Error getUserTransactions:', err);
-      res.status(500).json({ error: err.message });
-    }
-  },
-
-  // ============================================
-  // 7. CREAR CHECKOUT PARA ENCARGO
+  // 5. CREAR CHECKOUT PARA ENCARGO (específico)
   // ============================================
   createCommissionCheckout: async (req, res) => {
     try {
@@ -723,53 +660,7 @@ reserveCartItems: async (cartItems, userId) => {
       }
       return res.status(500).json({ error: err.message });
     }
-  },
-
-  // ============================================
-  // 8. PROCESAR PAGO DE ENCARGO (ya existe pero la dejamos)
-  // ============================================
-  processCommissionPayment: async (transaction, checkoutData, metadata, res) => {
-    try {
-      const commissionId = metadata.commission_id;
-      if (!commissionId) {
-        console.error('❌ commission_id no encontrado en metadata');
-        return res.status(400).json({ error: 'commission_id missing' });
-      }
-
-      const commission = await Commission.findById(commissionId);
-      if (!commission) {
-        console.error(`❌ Comisión ${commissionId} no encontrada`);
-        return res.status(404).json({ error: 'Commission not found' });
-      }
-
-      transaction.status = 'paid';
-      transaction.payment_completed_at = new Date();
-      transaction.chargily_payment_id = checkoutData.payment_intent || checkoutData.id;
-      transaction.webhook_received = checkoutData;
-      await transaction.save();
-      console.log('✅ Transacción de comisión actualizada a PAID');
-
-      commission.pago.estadoPago = 'completado';
-      commission.pago.idChargily = checkoutData.payment_intent || checkoutData.id;
-      commission.pago.fechaPago = new Date();
-      commission.estado = 'pagado';
-
-      commission.mensajes = commission.mensajes || [];
-      commission.mensajes.push({
-        emisor: null,
-        texto: 'Pago del adelanto confirmado. El artista puede comenzar la obra.'
-      });
-
-      await commission.save();
-      console.log(`✅ Comisión ${commissionId} actualizada a pagado`);
-
-      return res.json({ received: true, commissionUpdated: true });
-    } catch (err) {
-      console.error('❌ Error en processCommissionPayment:', err);
-      return res.status(500).json({ error: "Error processing commission payment" });
-    }
   }
-
 };
 
 module.exports = chargilyPlanCtrl;

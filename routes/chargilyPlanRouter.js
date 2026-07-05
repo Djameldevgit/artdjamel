@@ -7,8 +7,7 @@ const chargilyPlanCtrl = require('../controllers/chargilyPlanCtrl');
 // Rutas existentes
 router.post('/create-checkout', auth, chargilyPlanCtrl.createPlanCheckout);
 router.post('/webhook', chargilyPlanCtrl.handlePlanWebhook);
-router.get('/check-plan-status', auth, chargilyPlanCtrl.checkPlanStatus);
-router.get('/user-transactions', auth, chargilyPlanCtrl.getUserTransactions);
+ 
 router.post('/sync-pending-orders', auth, chargilyPlanCtrl.syncPendingOrders);
 // Liberar reservas expiradas (puede llamarse desde un cron job o manualmente)
  

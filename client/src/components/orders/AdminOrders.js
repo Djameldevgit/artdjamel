@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Spinner, Button, Form, Pagination } from 'react-bootstrap';
-import { FaEye, FaEdit, FaSync, FaFilter, FaTrash } from 'react-icons/fa';
+import { FaEye, FaEdit, FaSync, FaFilter, FaTrash, FaCheckDouble } from 'react-icons/fa';
 import moment from 'moment';
 import 'moment/locale/fr';
 import { getAllOrders, updateOrderStatus, getOrderDetail, syncPendingOrders, deleteOrder } from '../../redux/actions/orderAction';
@@ -24,12 +24,82 @@ const AdminOrders = () => {
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [newStatus, setNewStatus] = useState('');
 
+  // ✅ Estado para selección múltiple
+  const [selectedOrders, setSelectedOrders] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const [deletingSelected, setDeletingSelected] = useState(false);
+
+  // ✅ Efecto para cargar órdenes
   useEffect(() => {
     if (auth.token && auth.user?.role === 'admin') {
       dispatch(getAllOrders(currentPage, 20, statusFilter, startDate, endDate));
     }
   }, [dispatch, auth.token, currentPage, statusFilter, startDate, endDate]);
 
+  // ✅ Limpiar selección al cambiar de página o filtros
+  useEffect(() => {
+    setSelectedOrders([]);
+    setSelectAll(false);
+  }, [currentPage, statusFilter, startDate, endDate]);
+
+  // ✅ Handlers de selección
+  const handleSelectOrder = (orderId) => {
+    setSelectedOrders(prev =>
+      prev.includes(orderId)
+        ? prev.filter(id => id !== orderId)
+        : [...prev, orderId]
+    );
+  };
+
+  const handleSelectAll = () => {
+    if (selectAll) {
+      setSelectedOrders([]);
+    } else {
+      const allIds = orders.map(order => order.orderId);
+      setSelectedOrders(allIds);
+    }
+    setSelectAll(!selectAll);
+  };
+
+  // ✅ Eliminar seleccionados en lote
+  const handleDeleteSelected = async () => {
+    if (selectedOrders.length === 0) return;
+
+    const confirmMessage = `Êtes-vous sûr de vouloir supprimer ${selectedOrders.length} commande(s) ? Cette action est irréversible.`;
+    if (!window.confirm(confirmMessage)) return;
+
+    setDeletingSelected(true);
+    let successCount = 0;
+    let errorCount = 0;
+
+    for (const orderId of selectedOrders) {
+      try {
+        await dispatch(deleteOrder(orderId));
+        successCount++;
+      } catch (err) {
+        console.error(`❌ Error eliminando orden ${orderId}:`, err);
+        errorCount++;
+      }
+    }
+
+    setDeletingSelected(false);
+    setSelectedOrders([]);
+    setSelectAll(false);
+
+    // Recargar la lista
+    dispatch(getAllOrders(currentPage, 20, statusFilter, startDate, endDate));
+
+    // Mostrar resumen
+    if (errorCount === 0) {
+      alert(`✅ ${successCount} commande(s) supprimée(s) avec succès.`);
+    } else {
+      alert(`⚠️ ${successCount} supprimée(s), ${errorCount} erreur(s).`);
+    }
+  };
+
+  // ============================================
+  // Handlers existentes
+  // ============================================
   const handlePageChange = (page) => setCurrentPage(page);
   const handleViewDetail = async (orderId) => {
     const order = await dispatch(getOrderDetail(orderId));
@@ -92,8 +162,11 @@ const AdminOrders = () => {
     );
   }
 
+  const isAnySelected = selectedOrders.length > 0;
+
   return (
     <div className="admin-orders-container">
+      {/* Header con estadísticas y botones */}
       <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
         <h4>📊 Toutes les commandes</h4>
         <div className="d-flex align-items-center gap-2 flex-wrap">
@@ -106,6 +179,28 @@ const AdminOrders = () => {
           </Button>
         </div>
       </div>
+
+      {/* ✅ Barra de acciones de selección */}
+      {isAnySelected && (
+        <div className="selection-bar mb-3 p-2 bg-light rounded d-flex align-items-center justify-content-between flex-wrap gap-2">
+          <span className="fw-bold text-primary">
+            <FaCheckDouble className="me-1" />
+            {selectedOrders.length} commande(s) sélectionnée(s)
+          </span>
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={handleDeleteSelected}
+            disabled={deletingSelected}
+          >
+            {deletingSelected ? (
+              <><Spinner as="span" animation="border" size="sm" className="me-1" /> Suppression...</>
+            ) : (
+              <><FaTrash className="me-1" /> Supprimer sélectionnées</>
+            )}
+          </Button>
+        </div>
+      )}
 
       {syncStats && (
         <div className="alert alert-info alert-dismissible fade show" role="alert">
@@ -152,10 +247,21 @@ const AdminOrders = () => {
         </div>
       </div>
 
+      {/* Tabla con checkboxes */}
       <div className="table-responsive">
         <table className="table table-striped table-hover orders-table">
           <thead>
             <tr>
+              {/* ✅ Checkbox de selección global */}
+              <th style={{ width: '40px' }}>
+                <input
+                  type="checkbox"
+                  checked={selectAll}
+                  onChange={handleSelectAll}
+                  disabled={orders.length === 0}
+                  className="form-check-input"
+                />
+              </th>
               <th># Commande</th>
               <th>Client</th>
               <th>Date</th>
@@ -167,10 +273,19 @@ const AdminOrders = () => {
           </thead>
           <tbody>
             {orders.length === 0 ? (
-              <tr><td colSpan="7" className="text-center py-4 text-muted">Aucune commande trouvée</td></tr>
+              <tr><td colSpan="8" className="text-center py-4 text-muted">Aucune commande trouvée</td></tr>
             ) : (
               orders.map(order => (
                 <tr key={order.orderId}>
+                  {/* ✅ Checkbox individual */}
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedOrders.includes(order.orderId)}
+                      onChange={() => handleSelectOrder(order.orderId)}
+                      className="form-check-input"
+                    />
+                  </td>
                   <td className="fw-bold">#{order.orderId?.slice(-8)}</td>
                   <td>{order.userEmail || order.userId?.username || 'N/A'}</td>
                   <td>{formatDate(order.createdAt)}</td>
@@ -207,6 +322,7 @@ const AdminOrders = () => {
         </table>
       </div>
 
+      {/* Paginación */}
       {pages > 1 && (
         <Pagination className="justify-content-center">
           <Pagination.First onClick={() => handlePageChange(1)} disabled={page === 1} />
@@ -221,6 +337,7 @@ const AdminOrders = () => {
         </Pagination>
       )}
 
+      {/* Modales existentes */}
       <Modal show={showStatusModal} onHide={() => setShowStatusModal(false)} className="status-modal">
         <Modal.Header closeButton>
           <Modal.Title>Changer le statut</Modal.Title>
