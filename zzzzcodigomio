@@ -1,0 +1,265 @@
+  
+const Order = require('../models/Order');
+const Art = require('../models/Art'); // Tu modelo de Obras de Arte
+const paymentService = require('../services/paymentService');
+
+const orderCtrl = {
+  
+  // Iniciar el proceso de compra (Punto de entrada desde React)
+  createOrderAndCheckout: async (req, res) => {
+    try {
+      const { items, totalAmount } = req.body; // items = [{ artId, price }]
+      const userId = req.user.id; // Obtenido de tu middleware de auth (JWT)
+      const userEmail = req.user.email;
+
+      // 1. VALIDACIÓN Y BLOQUEO DE STOCK (Crucial para obras únicas)
+      for (const item of items) {
+        const artPiece = await Art.findById(item.artId);
+        if (!artPiece || artPiece.isAvailable === false) {
+          return res.status(400).json({ msg: `La obra "${artPiece?.title || 'Desconocida'}" ya no está disponible.` });
+        }
+      }
+
+      // 2. Bloquear temporalmente las obras en la BD
+      const artIds = items.map(item => item.artId);
+      await Art.updateMany({ _id: { $in: artIds } }, { isAvailable: false });
+
+      // 3. Crear la Orden en estado PENDING
+      const newOrder = new Order({
+        user: userId,
+        items,
+        totalAmount,
+        status: 'pending'
+      });
+      await newOrder.save();
+
+      // 4. Llamar al servicio para obtener la pasarela de Chargily
+      const checkoutUrl = await paymentService.createCheckoutUrl(newOrder, userEmail);
+
+      // 5. Responder a React con la URL para redirigir
+      res.status(201).json({ 
+        success: true, 
+        checkoutUrl, 
+        orderId: newOrder._id 
+      });
+
+    } catch (error) {
+      console.error("Error en createOrderAndCheckout:", error);
+      res.status(500).json({ msg: "Error interno del servidor al procesar la orden" });
+    }
+  }
+};
+
+module.exports = orderCtrl;
+
+const axios = require('axios');
+const crypto = require('crypto');
+
+// Asegúrate de tener estas variables en tu .env de Render
+const CHARGILY_SECRET_KEY = process.env.CHARGILY_SECRET_KEY;
+const CHARGILY_URL = 'https://pay.chargily.net/test/api/v2/checkouts'; // Cambiar a 'api.chargily.net' en prod absoluto
+
+class PaymentService {
+  
+  // 1. Crear la URL de Checkout
+  async createCheckoutUrl(order, userEmail) {
+    try {
+      const payload = {
+        amount: order.totalAmount,
+        currency: 'dzd',
+        success_url: `${process.env.FRONTEND_URL}/payment-success?orderId=${order._id}`,
+        failure_url: `${process.env.FRONTEND_URL}/payment-failed?orderId=${order._id}`,
+        webhook_url: `${process.env.BACKEND_URL}/api/payments/webhook`,
+        // CRÍTICO: Pasamos el orderId en la metadata para recuperarlo en el webhook
+        metadata: {
+          orderId: order._id.toString(),
+          userId: order.user.toString()
+        },
+        // Opcional: Datos del cliente para rellenar el formulario automáticamente
+        customer: {
+          email: userEmail
+        }
+      };
+
+      const response = await axios.post(CHARGILY_URL, payload, {
+        headers: {
+          'Authorization': `Bearer ${CHARGILY_SECRET_KEY}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      // Retorna la URL de Chargily a la que redirigiremos al usuario
+      return response.data.checkout_url;
+    } catch (error) {
+      console.error("Error en PaymentService.createCheckoutUrl:", error.response?.data || error.message);
+      throw new Error("No se pudo generar el enlace de pago con Chargily");
+    }
+  }
+
+  // 2. Verificar la Firma del Webhook (Seguridad ante todo)
+  verifyWebhookSignature(signatureHeader, rawBody) {
+    if (!signatureHeader) return false;
+    
+    // Chargily firma el body crudo usando HMAC SHA256 con tu Secret Key
+    const computedSignature = crypto
+      .createHmac('sha256', CHARGILY_SECRET_KEY)
+      .update(JSON.stringify(rawBody))
+      .digest('hex');
+
+    return computedSignature === signatureHeader;
+  }
+}
+
+module.exports = new PaymentService();
+
+const Order = require('../models/Order');
+const Transaction = require('../models/Transaction');
+const Art = require('../models/Art');
+const paymentService = require('../services/paymentService');
+
+const transactionCtrl = {
+
+  // Endpoint del Webhook: POST /api/payments/webhook
+  handleWebhook: async (req, res) => {
+    try {
+      const signature = req.headers['x-signature']; // O como Chargily nombre el header de firma
+      const payload = req.body; 
+
+      // 1. Validar seguridad
+      const isValid = paymentService.verifyWebhookSignature(signature, payload);
+      if (!isValid) {
+        console.warn("¡Intento de Webhook fraudulento detectado!");
+        return res.status(400).json({ msg: "Firma inválida" });
+      }
+
+      // 2. Extraer datos del evento de Chargily
+      const eventType = payload.type; // ej. 'checkout.paid', 'checkout.failed'
+      const checkoutData = payload.data; 
+      const orderId = checkoutData.metadata.orderId;
+
+      // Buscar la orden involucrada
+      const order = await Order.findById(orderId);
+      if (!order) {
+        return res.status(404).json({ msg: "Orden no encontrada en el sistema" });
+      }
+
+      // Si la orden ya fue pagada (por un webhook duplicado), respondemos 200 y salimos
+      if (order.status === 'paid') {
+        return res.status(200).json({ success: true });
+      }
+
+      // 3. Procesar según el resultado del pago
+      if (eventType === 'checkout.paid') {
+        
+        // A) Crear registro en la colección Transactions
+        const newTransaction = new Transaction({
+          order: orderId,
+          user: checkoutData.metadata.userId,
+          chargilyPaymentId: checkoutData.id,
+          amount: checkoutData.amount,
+          paymentMethod: checkoutData.payment_method, // 'cib' o 'dahabia'
+          status: 'successful',
+          rawGatewayResponse: checkoutData // Guardamos todo por si acaso
+        });
+        await newTransaction.save();
+
+        // B) Actualizar la Orden a PAID y enlazar la transacción
+        order.status = 'paid';
+        order.transactions.push(newTransaction._id);
+        await order.save();
+
+        // C) Confirmar permanentemente que la obra está vendida
+        // Como ya la pusimos en `isAvailable: false` en el orderCtrl, aquí podemos
+        // cambiar otra propiedad si la tienes, ej: artPiece.status = 'sold'
+        const artIds = order.items.map(item => item.artId);
+        await Art.updateMany({ _id: { $in: artIds } }, { status: 'sold' });
+
+        // D) AQUÍ EJECUTAS WEB-SOCKETS: 
+        // req.io.emit(`order_paid_${orderId}`, { success: true });
+
+      } else if (eventType === 'checkout.failed' || eventType === 'checkout.expired') {
+        
+        // El pago falló o expiró en la pantalla de Chargily/SATIM
+        order.status = eventType === 'checkout.expired' ? 'expired' : 'failed';
+        await order.save();
+
+        // ¡LIBERAR EL STOCK! El usuario no pagó, la obra vuelve a estar disponible
+        const artIds = order.items.map(item => item.artId);
+        await Art.updateMany({ _id: { $in: artIds } }, { isAvailable: true });
+      }
+
+      // 4. RESPONDER A CHARGILY CON 200 OK (OBLIGATORIO)
+      res.status(200).json({ success: true });
+
+    } catch (error) {
+      console.error("Error procesando el Webhook:", error);
+      // Mandamos un 500 para que Chargily sepa que nuestro servidor falló 
+      // y reintente el envío del webhook más tarde
+      res.status(500).json({ msg: "Error interno al procesar el webhook" });
+    }
+  }
+};
+
+module.exports = transactionCtrl;
+
+
+React
+   │
+   │ click "Proceder al pago"
+   ▼
+orderCtrl.createOrderAndCheckout()
+   │
+   │ crea la orden
+   │
+   ▼
+paymentService.createCheckoutUrl()
+   │
+   │ llama a Chargily
+   ▼
+Chargily
+   │
+   │ devuelve checkout_url
+   ▼
+orderCtrl
+   │
+   ▼
+React recibe checkout_url
+   │
+window.location = checkout_url
+   │
+   ▼
+Usuario entra al Checkout
+
+============================
+
+Usuario paga
+
+============================
+
+Chargily
+   │
+   │ envía Webhook
+   ▼
+transactionCtrl.handleWebhook()
+   │
+   │ actualiza BD
+   ▼
+Order
+Transaction
+Art
+
+
+
+hola maestro, soy desarollador MERN y estoy investigando estudiando chargily pasarela de pago para argelia pais con mi app,
+segun tengo ententido hay cuantro archivos princepales relacionados con la compra,
+cartCtrl relacionado con el cart crear editar eliminar producto en el carrito,entre otros
+orderCtrl sirve para crear la order estado pendiente o orden y redirigir el usuario al checkout de chargily, ver la orden ,eliminar la order y ver todas las orders y sus estados provinientes desde chargily via webhook,
+
+peyement service es un servicio se usa para la creacion del checkout lo cual trabaja junto con creacion de la order al pasar la url de hcargily junto al id de la compra y poder redirijir el usuario a una url de pago especifica para el usuario, 
+tranzactionCtrl se usa para recibir notificaciones de chargily via webhook lo cual sirve para informar sobre la compra en utlimo paso con el banco ,tambien para validar la firma  
+
+la explicacion que pode entender esque cuando el usuario hace click en proceder con el pago o comprar eso hace enviar informacion del cliente al servidor como el monto ,el precio y el id del usuario que se obtiene desde req user,la funion createOrder guarda la order en mongodb para y obtener id de la compra o orden o order, despues de obtener este id se envia junto con la url obtenida desde chargily y asi relacionar el id de la compra con el id del usuario  y la url creada por chargily  y poder redirir este mismo usuario a la pasarela de pago o el checkout de chargily,
+
+el webhook es una url que se registra obligatoriamente en la interface de charigily para poder notificar por ella que lo que pasa con la compra,
+segun tengo entendido que chargily no envia notificaciones si no se trata con temas de exito o fallo de la tranzaccion con el banco, 
+las notifies que se envian atravez del webhook no se envia si el usuario visita el chekout y abandona porque eso queda como una compra pendiente y nada mas, que me dices sobre este resumen maestro 

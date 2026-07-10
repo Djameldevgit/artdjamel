@@ -115,19 +115,35 @@ const updateArtwork = async (req, res) => {
 const getArtworkById = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(`🔍 Buscando obra con ID: ${id}`);
+
     if (!mongoose.Types.ObjectId.isValid(id)) {
+      console.warn(`⚠️ ID inválido: ${id}`);
       return res.status(400).json({ success: false, message: 'ID inválido' });
     }
-    const video = await Video.findById(id) // ✅ Video
+
+    const video = await Video.findById(id)
       .populate('category', 'name slug icon')
       .populate('user', 'username avatar bio');
-    if (!video) return res.status(404).json({ success: false, message: 'Vidéo non trouvée' });
-    res.json({ success: true, artwork: video }); // o video según el frontend
+
+    if (!video) {
+      console.warn(`⚠️ Obra no encontrada: ${id}`);
+      return res.status(404).json({ success: false, message: 'Vidéo non trouvée' });
+    }
+
+    console.log(`✅ Obra encontrada: ${video.title}`);
+    res.json({ success: true, artwork: video });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    console.error(`❌ Error en getArtworkById:`, error);
+    // Enviar detalles del error en desarrollo
+    const isDev = process.env.NODE_ENV === 'development';
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      ...(isDev && { stack: error.stack })
+    });
   }
 };
-
 // ========== OBRAS POR CATEGORÍA ==========
 const getArtworksByCategory = async (req, res) => {
   try {

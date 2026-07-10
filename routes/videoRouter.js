@@ -3,7 +3,7 @@ const videoCtrl = require('../controllers/videoCtrl');
 const auth = require('../middleware/auth');
 
 // Públicas
-router.get('/videos/:id', videoCtrl.getArtworkById);
+router.get('/videos/:id',  videoCtrl.getArtworkById);
 router.get('/videos/category/:categorySlug', videoCtrl.getArtworksByCategory);
 
 // Protegidas

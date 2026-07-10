@@ -33,11 +33,15 @@ const DetailVideoPage = () => {
 
   const videoRef = useRef(null);
   const progressBarRef = useRef(null);
-
+ 
   // ===== Cargar vídeo =====
   useEffect(() => {
-    if (id) dispatch(getVideoById(id));
+    if (id) {
+      // ✅ No pasar token (la ruta es pública)
+      dispatch(getVideoById(id, null)); // o simplemente no pasar segundo argumento
+    }
   }, [dispatch, id]);
+  
 
   // ===== Scroll del header =====
   useEffect(() => {

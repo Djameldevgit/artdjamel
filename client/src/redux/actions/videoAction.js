@@ -1,6 +1,6 @@
 // redux/actions/videoAction.js - VERSIÓN LIMPIA SIN ADMINISTRACIÓN NI CANALES
 import { GLOBALTYPES } from './globalTypes';
-import { postDataAPI, getDataAPI, patchDataAPI, deleteDataAPI } from '../../utils/fetchData';
+import { postDataAPI, getDataAPI, patchDataAPI, deleteDataAPI ,getPublicDataAPI} from '../../utils/fetchData';
 import { imageUpload2 } from '../../utils/imageUpload2';
 
 export const VIDEO_TYPES = {
@@ -162,7 +162,7 @@ export const updateVideo = (id, videoData, token) => async (dispatch) => {
 export const getVideoById = (id) => async (dispatch) => {
   try {
     dispatch({ type: VIDEO_TYPES.LOADING, payload: true });
-    const res = await getDataAPI(`videos/${id}`);
+    const res = await getPublicDataAPI(`videos/${id}`);
     if (res.data.success) {
       dispatch({ type: VIDEO_TYPES.GET_VIDEO, payload: res.data.artwork });
       return { success: true, video: res.data.artwork };
