@@ -97,22 +97,24 @@ const Cart = () => {
 
     try {
       // Construir payload para el backend (similar a planes.js)
-      const paymentData = {
-        plan_id: 'cart',                  // Identificador para el backend
-        plan_name: 'Panier d\'achat',
-        amount: totalPrice,
-        currency: 'dzd',
-        cart_items: cart.items.map(item => ({
-          videoId: item.videoId,
-          title: item.title || item.video?.title || 'Sans titre',
-          quantity: item.quantity,
-          price: item.priceAtAdd || item.video?.price || 0,
-          thumbnail: item.thumbnail || item.video?.thumbnail || null
-        }))
-      };
+      // En Cart.js - handleCheckout
+
+const paymentData = {
+  plan_id: 'cart',
+  plan_name: 'Panier d\'achat',
+  totalAmount: totalPrice,      // ✅ Cambiado de 'amount' a 'totalAmount'
+  currency: 'dzd',
+  cart_items: cart.items.map(item => ({
+    videoId: item.videoId,
+    title: item.title || item.video?.title || 'Sans titre',
+    quantity: item.quantity,
+    price: item.priceAtAdd || item.video?.price || 0,
+    thumbnail: item.thumbnail || item.video?.thumbnail || null
+  }))
+};
 
       // Llamar al mismo endpoint que usa Planes
-      const response = await postDataAPI('create-checkout', paymentData, auth.token);
+      const response = await postDataAPI('create-order-and-checkout', paymentData, auth.token);
       
       // Extraer la URL de checkout (puede estar en response.data.checkout_url o response.data.data.checkout_url)
       const checkoutUrl = response.data?.checkout_url || response.data?.data?.checkout_url;

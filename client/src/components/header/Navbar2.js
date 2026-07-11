@@ -335,7 +335,7 @@ const Navbar2 = () => {
           
                   {/* ✅ USUARIO NORMAL: VER SUS ACHATS (sus propias compras) */}
                   {auth.user.role !== 'admin' && (
-                    <MenuItem icon={FaShoppingCart} iconColor="#ffc107" to="/userorders">
+                    <MenuItem icon={FaShoppingCart} iconColor="#ffc107" to="/user/orders">
                        Voir mes achats
                     </MenuItem>
                   )}

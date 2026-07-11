@@ -1,4 +1,3 @@
-// services/paymentService.js
 const axios = require('axios');
 const crypto = require('crypto');
 
@@ -9,25 +8,28 @@ const CHARGILY_URL = process.env.CHARGILY_MODE === 'live'
 
 class PaymentService {
   
-  // 1. Crear checkout en Chargily
   async createCheckout(order, userEmail, cartItems, metadata = {}) {
     try {
+      const webhookUrl = process.env.WEBHOOK_URL || `${process.env.BACKEND_URL}/api/webhook`;
+
       const payload = {
         amount: order.totalAmount,
         currency: 'dzd',
         success_url: `${process.env.CLIENT_URL}/payment-success?orderId=${order._id}`,
         failure_url: `${process.env.CLIENT_URL}/payment-failure?orderId=${order._id}`,
-        webhook_endpoint: `${process.env.BACKEND_URL}/api/webhook`,
+        webhook_endpoint: webhookUrl,
         metadata: {
           orderId: order._id.toString(),
           userId: order.userId.toString(),
           cart_items: cartItems,
+          userEmail: userEmail,  // ✅ Email en metadata
           ...metadata
-        },
-        customer: {
-          email: userEmail
         }
+        // ❌ Eliminado el campo customer
       };
+
+      console.log('📨 Enviando webhook URL a Chargily:', webhookUrl);
+      console.log('📦 Payload:', JSON.stringify(payload, null, 2));
 
       const response = await axios.post(CHARGILY_URL, payload, {
         headers: {
@@ -36,14 +38,17 @@ class PaymentService {
         }
       });
 
-      return response.data.checkout_url;
+      return {
+        checkout_url: response.data.checkout_url,
+        checkout_id: response.data.id
+      };
     } catch (error) {
-      console.error("Error en PaymentService.createCheckout:", error.response.data || error.message);
+      const errorMsg = error.response.data || error.message;
+      console.error("❌ Error en PaymentService.createCheckout:", errorMsg);
       throw new Error("No se pudo generar el enlace de pago con Chargily");
     }
   }
 
-  // 2. Verificar firma del webhook
   verifyWebhookSignature(signatureHeader, rawBody) {
     if (!signatureHeader) return false;
     

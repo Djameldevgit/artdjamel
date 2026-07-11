@@ -245,7 +245,7 @@ function AppContent() {
       '/planes',
       '/userproinfoplans',
       '/adminorders',
-      '/userorders',
+      '/user/orders',
       '/cart',
       '/aide-commandes'
     ];
@@ -261,7 +261,7 @@ function AppContent() {
       '/donation/',
       '/userproinfoplans',
       '/adminorders',
-      '/userorders',
+      '/user/orders',
       '/cart',
       '/aide-commandes'
     ];
@@ -300,7 +300,7 @@ function AppContent() {
         <Route exact path="/video/userVideo/:userId/info" component={InfoUserVideo} />
         <Route exact path="/videos/trending" component={TrendingVideos} />
         <Route exact path="/adminorders" component={AdminOrders} />
-        <Route exact path="/userorders" component={UserOrders} />
+        <Route exact path="/user/orders" component={UserOrders} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/mes-commandes" component={ClientCommissionPage} />
   {/* Artista: ver y responder encargos */}

@@ -5,104 +5,139 @@ const Transaction = require('../models/transactionModel');
 const paymentService = require('../services/payementService');
 
 const orderCtrl = {
+// controllers/orderCtrl.js (fragmento de createOrderAndCheckout)
 
-  // 🔥 NUEVO: Crear orden y checkout desde el frontend
-  createOrderAndCheckout: async (req, res) => {
-    try {
-      const userId = req.user._id;
-      const { cart_items, totalAmount } = req.body; // cart_items = [{ videoId, price, quantity, title, thumbnail }]
+// controllers/orderCtrl.js - createOrderAndCheckout (VERSIÓN CORREGIDA)
 
-      if (!cart_items || cart_items.length === 0) {
-        return res.status(400).json({ error: 'Le panier est vide' });
+createOrderAndCheckout: async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { cart_items, totalAmount, amount } = req.body;
+
+    // ✅ Aceptar 'amount' o 'totalAmount'
+    let finalTotal = totalAmount || amount;
+
+    // 1️⃣ VALIDACIONES INICIALES
+    if (!cart_items || cart_items.length === 0) {
+      return res.status(400).json({ error: 'Le panier est vide' });
+    }
+
+    if (finalTotal === undefined || finalTotal === null || isNaN(finalTotal) || finalTotal <= 0) {
+      console.error('❌ totalAmount inválido:', finalTotal);
+      console.error('📦 req.body:', req.body);
+      return res.status(400).json({ error: 'Le montant total est invalide' });
+    }
+
+    finalTotal = Number(finalTotal);
+    console.log(`💰 totalAmount recibido: ${finalTotal} DZD`);
+    console.log(`📦 Items: ${cart_items.length}`);
+
+    // 2️⃣ VALIDAR DISPONIBILIDAD Y RESERVAR
+    for (const item of cart_items) {
+      const video = await Video.findById(item.videoId);
+      if (!video) {
+        return res.status(400).json({ error: `Obra no encontrada: ${item.title}` });
       }
-
-      // 1. VALIDAR DISPONIBILIDAD (usando reservedBy y stock)
-      for (const item of cart_items) {
-        const video = await Video.findById(item.videoId);
-        if (!video) {
-          return res.status(400).json({ error: `Obra no encontrada: ${item.title}` });
-        }
-        if (video.stock <= 0) {
-          return res.status(400).json({ error: `"${video.title}" ya no está disponible` });
-        }
-        if (video.reservedBy && video.reservedBy.toString() !== userId.toString()) {
-          return res.status(409).json({ error: `"${video.title}" está siendo reservada por otro usuario` });
-        }
+      if (video.stock <= 0) {
+        return res.status(400).json({ error: `"${video.title}" ya no está disponible` });
       }
-
-      // 2. RESERVAR OBRAS (usando reservedBy)
-      for (const item of cart_items) {
-        await Video.findByIdAndUpdate(item.videoId, {
-          reservedBy: userId,
-          reservedAt: new Date()
-        });
+      if (video.reservedBy && video.reservedBy.toString() !== userId.toString()) {
+        return res.status(409).json({ error: `"${video.title}" está siendo reservada por otro usuario` });
       }
+    }
 
-      // 3. CREAR ORDEN EN ESTADO PENDING
-      const newOrder = new Order({
-        orderId: `ORD-${Date.now()}`,
-        userId: userId,
-        userEmail: req.user.email,
-        userName: req.user.username,
-        items: cart_items.map(item => ({
-          videoId: item.videoId,
-          title: item.title,
-          price: item.price,
-          quantity: item.quantity || 1,
-          thumbnail: item.thumbnail || ''
-        })),
-        totalAmount: totalAmount,
-        currency: 'dzd',
-        paymentMethod: 'chargily',
-        status: 'pending',
-        createdAt: new Date()
+    // 3️⃣ RESERVAR OBRAS
+    for (const item of cart_items) {
+      await Video.findByIdAndUpdate(item.videoId, {
+        reservedBy: userId,
+        reservedAt: new Date()
       });
-      await newOrder.save();
+    }
 
-      // 4. CREAR CHECKOUT EN CHARGILY
-      const checkoutUrl = await paymentService.createCheckout(
+    // 4️⃣ CREAR ORDEN
+    const orderId = `ORD-${Date.now()}`;
+    const newOrder = new Order({
+      orderId: orderId,
+      userId: userId,
+      userEmail: req.user.email,
+      userName: req.user.username,
+      items: cart_items.map(item => ({
+        videoId: item.videoId,
+        title: item.title,
+        price: item.price,
+        quantity: item.quantity || 1,
+        thumbnail: item.thumbnail || ''
+      })),
+      totalAmount: finalTotal,
+      currency: 'dzd',
+      paymentMethod: 'chargily',
+      status: 'pending',
+      createdAt: new Date()
+    });
+    await newOrder.save();
+    console.log(`✅ Orden creada: ${newOrder._id}`);
+
+    // 5️⃣ CREAR CHECKOUT EN CHARGILY (obtiene URL + ID real)
+    let checkoutResult;
+    try {
+      checkoutResult = await paymentService.createCheckout(
         newOrder,
         req.user.email,
         cart_items,
         { plan_id: 'cart', user_id: userId }
       );
-
-      // 5. CREAR TRANSACCIÓN (para tracking)
-      const transaction = new Transaction({
-        checkout_id: checkoutUrl.split('/').pop(), // extraer ID del checkout
-        user_id: userId,
-        user_email: req.user.email,
-        user_username: req.user.username,
-        plan_id: 'cart',
-        plan_name: 'Panier d\'achat',
-        cart_items: cart_items,
-        amount: totalAmount,
-        currency: 'dzd',
-        status: 'pending'
-      });
-      await transaction.save();
-
-      res.status(201).json({
-        success: true,
-        checkout_url: checkoutUrl,
-        orderId: newOrder._id,
-        transactionId: transaction._id
-      });
-
-    } catch (error) {
-      console.error("❌ Error en createOrderAndCheckout:", error);
-      // Si falla, liberar reservas
-      if (req.body.cart_items) {
-        for (const item of req.body.cart_items) {
-          await Video.findByIdAndUpdate(item.videoId, {
-            reservedBy: null,
-            reservedAt: null
-          });
-        }
+    } catch (chargilyError) {
+      console.error('❌ Error al crear checkout en Chargily:', chargilyError.message);
+      // Liberar reservas y eliminar orden huérfana
+      for (const item of cart_items) {
+        await Video.findByIdAndUpdate(item.videoId, { reservedBy: null, reservedAt: null });
       }
-      res.status(500).json({ error: error.message || 'Error al procesar la orden' });
+      await Order.findByIdAndDelete(newOrder._id);
+      return res.status(502).json({
+        error: 'No se pudo generar el enlace de pago. Intenta de nuevo más tarde.',
+        details: chargilyError.message
+      });
     }
-  },
+
+    const checkoutUrl = checkoutResult.checkout_url;
+    const checkoutId = checkoutResult.checkout_id; // ✅ ID real (ej: 01kv...)
+
+    // 6️⃣ CREAR TRANSACCIÓN
+    const transaction = new Transaction({
+      checkout_id: checkoutId,   // ✅ Ya no será "pay"
+      user_id: userId,
+      user_email: req.user.email,
+      user_username: req.user.username,
+      plan_id: 'cart',
+      plan_name: 'Panier d\'achat',
+      cart_items: cart_items,
+      amount: finalTotal,
+      currency: 'dzd',
+      status: 'pending'
+    });
+    await transaction.save();
+    console.log(`✅ Transacción creada: ${transaction._id}`);
+
+    // 7️⃣ RESPONDER AL FRONTEND
+    res.status(201).json({
+      success: true,
+      checkout_url: checkoutUrl,
+      orderId: newOrder._id,
+      transactionId: transaction._id
+    });
+
+  } catch (error) {
+    console.error('❌ Error en createOrderAndCheckout:', error);
+    // Liberar reservas en caso de error general
+    if (req.body.cart_items) {
+      for (const item of req.body.cart_items) {
+        await Video.findByIdAndUpdate(item.videoId, { reservedBy: null, reservedAt: null });
+      }
+    }
+    res.status(500).json({ error: error.message || 'Error al procesar la orden' });
+  }
+},
+
 
   getUserOrders: async (req, res) => {
     try {

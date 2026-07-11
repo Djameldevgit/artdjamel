@@ -1,12 +1,18 @@
-const express = require('express');
-const router = express.Router();
+// routes/orderRoutes.js
+const router = require('express').Router();
 const auth = require('../middleware/auth');
 const orderCtrl = require('../controllers/orderCtrl');
+const transactionCtrl = require('../controllers/transactionCtrl');
 
-// Todas las rutas requieren autenticación
-router.use(auth);
+// 🔥 NUEVA RUTA: Crear orden y checkout
+router.post('/create-order-and-checkout', auth, orderCtrl.createOrderAndCheckout);
 
-// ✅ Obtener órdenes del usuario autenticado
+// Webhook (público)
+router.post('/webhook', transactionCtrl.handleWebhook);
+
+// Rutas existentes
+router.get('/orders/me', auth, orderCtrl.getUserOrders);
+router.get('/admin/orders', auth, orderCtrl.getAllOrders);
 router.get('/my-orders', orderCtrl.getUserOrders);
 
 // ✅ Obtener todas las órdenes (solo admin)
@@ -23,4 +29,5 @@ router.get('/admin/sales-stats', orderCtrl.getSalesStats);
 // ✅ Cancelar una orden (usuario o admin)
 router.put('/order/:orderId/cancel', auth, orderCtrl.cancelOrder);
 router.delete('/order/:orderId', orderCtrl.deleteOrder);
+
 module.exports = router;

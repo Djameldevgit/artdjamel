@@ -23,7 +23,7 @@ export const getUserOrders = (page = 1, limit = 10) => async (dispatch, getState
     dispatch({ type: ORDER_TYPES.LOADING, payload: true });
     
     const { auth } = getState();
-    const res = await getDataAPI(`my-orders?page=${page}&limit=${limit}`, auth.token);
+    const res = await getDataAPI(`orders/me?page=${page}&limit=${limit}`, auth.token);
     
     dispatch({
       type: ORDER_TYPES.GET_USER_ORDERS,

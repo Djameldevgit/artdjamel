@@ -61,7 +61,7 @@ const OrderHelpPage = () => {
         <p className="help-subtitle">
           Bienvenue dans votre espace d'achat d'art. Voici comment suivre vos œuvres et gérer vos commandes en toute confiance.
         </p>
-        <Link to="/userorders" className="btn btn-outline-light btn-sm">
+        <Link to="/user/orders" className="btn btn-outline-light btn-sm">
           ← Retour à mes commandes
         </Link>
       </div>
