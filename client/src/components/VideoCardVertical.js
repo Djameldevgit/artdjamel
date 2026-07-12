@@ -1,5 +1,5 @@
 // components/VideoCardVertical.jsx
-// 🔥 VERSIÓN COMPLETA Y FINAL
+// 🔥 VERSIÓN CON RESERVA VISUAL, VALIDACIÓN DE STOCK Y ETIQUETA "Vente en ligne"
 
 import React, { useState, useEffect, useRef, memo, useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -95,9 +95,24 @@ const VideoCardVertical = ({ video }) => {
   const stock = video?.stock || 0;
   const isOutOfStock = stock <= 0;
   const isMaxReached = stock > 0 && cartQty >= stock;
-  const isAddDisabled = isOutOfStock || isMaxReached || addingToCart;
+
+  // ===============================
+  // 🔥 Verificar estado de reserva
+  // ===============================
+  const isReservedByOther = useMemo(() => {
+    if (!video?.reservedBy || !auth?.user?._id) return false;
+    return video.reservedBy.toString() !== auth.user._id.toString();
+  }, [video, auth?.user?._id]);
+
+  const isReservedByMe = useMemo(() => {
+    if (!video?.reservedBy || !auth?.user?._id) return false;
+    return video.reservedBy.toString() === auth.user._id.toString();
+  }, [video, auth?.user?._id]);
+
+  const isAddDisabled = isOutOfStock || isReservedByOther || isMaxReached || addingToCart;
 
   const getCartButtonTitle = () => {
+    if (isReservedByOther) return 'Œuvre en cours de réservation';
     if (isOutOfStock) return 'Œuvre épuisée';
     if (isMaxReached) return 'Stock maximum atteint';
     if (isInCart) return 'Déjà dans le panier';
@@ -222,25 +237,50 @@ const VideoCardVertical = ({ video }) => {
     }
   }, [auth?.token, auth, video, dispatch, history, liked, liking]);
 
+  // ===============================
+  // 🔥 handleAddToCart CON VALIDACIÓN DE STOCK Y MENSAJES
+  // ===============================
   const handleAddToCart = useCallback(async (e) => {
     e.stopPropagation();
-    if (isAddDisabled) return;
 
+    // Verificar si está deshabilitado
+    if (isAddDisabled) {
+      if (isMaxReached) {
+        dispatch({ type: GLOBALTYPES.ALERT, payload: { error: `Stock maximum atteint (${stock} disponible${stock > 1 ? 's' : ''}).` } });
+      } else if (isOutOfStock) {
+        dispatch({ type: GLOBALTYPES.ALERT, payload: { error: 'Œuvre épuisée.' } });
+      } else if (isReservedByOther) {
+        dispatch({ type: GLOBALTYPES.ALERT, payload: { error: 'Œuvre en cours de réservation par un autre utilisateur.' } });
+      }
+      return;
+    }
+
+    // Validación de autenticación
     if (!auth?.token) {
       dispatch({ type: GLOBALTYPES.ALERT, payload: { error: "Connectez-vous pour ajouter au panier" } });
       history.push('/login');
       return;
     }
+
+    // Validación de stock (seguridad extra)
+    if (cartQty + 1 > stock) {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: { error: `Stock insuffisant. Disponible: ${stock}, demandé: ${cartQty + 1}` } });
+      return;
+    }
+
     if (!video || addingToCart) return;
     setAddingToCart(true);
     try {
       await dispatch(addToCart(video._id, 1));
     } catch (error) {
       console.error('❌ Error addToCart:', error);
+      // Mostrar mensaje de error del backend si existe
+      const errorMsg = error.response?.data?.message || error.message || 'Erreur lors de l\'ajout au panier';
+      dispatch({ type: GLOBALTYPES.ALERT, payload: { error: errorMsg } });
     } finally {
       setAddingToCart(false);
     }
-  }, [auth?.token, dispatch, history, video, addingToCart, isAddDisabled]);
+  }, [auth?.token, dispatch, history, video, addingToCart, isAddDisabled, isMaxReached, isOutOfStock, isReservedByOther, stock, cartQty]);
 
   const createHeartEffect = () => {
     const h = document.createElement('div');
@@ -282,9 +322,9 @@ const VideoCardVertical = ({ video }) => {
 
   if (!video) return null;
 
-  const channelName = video.channel?.name || video.nom_entreprise || 'Tienda';
+ 
   const isUnique = stock === 1;
-  const showOutOfStock = isOutOfStock;
+  const showOutOfStock = isOutOfStock; 
 
   // ===============================
   // RENDER ESTÁTICO
@@ -294,15 +334,17 @@ const VideoCardVertical = ({ video }) => {
       <div className="video-card-vertical static-mode" onClick={handleClick}>
         <div className="video-thumbnail-wrapper">
           <img src={video.thumbnail} alt={video.title} className="thumbnail-img" />
+          {/* 🔥 ETIQUETA "Vente en ligne œuvre d'art" */}
+          <span className="art-badge">🎨 Vente en ligne œuvre d'art</span>
           <div className="info-overlay">
             <div className="channel-info" onClick={goToChannel}>
-              <div className="business-name">{channelName}</div>
-            </div>
+               </div>
             <div className="video-title">{video.title}</div>
             <div className="price">
               {formatPrice(video.price)}
               {isUnique && <span className="unique-badge">Œuvre unique</span>}
               {showOutOfStock && <span className="out-of-stock-badge">Épuisé</span>}
+              {isReservedByOther && <span className="reserved-badge">⏳ Réservée</span>}
             </div>
             <div className="card-actions">
               <button
@@ -319,8 +361,8 @@ const VideoCardVertical = ({ video }) => {
                 disabled={isAddDisabled}
                 title={getCartButtonTitle()}
               >
-                {showOutOfStock ? (
-                  <span style={{ fontSize: '0.7rem' }}>Épuisé</span>
+                {showOutOfStock || isReservedByOther ? (
+                  <span style={{ fontSize: '0.7rem' }}>{isReservedByOther ? '⏳' : 'Épuisé'}</span>
                 ) : isInCart ? (
                   <CartCheck size={18} />
                 ) : (
@@ -358,6 +400,9 @@ const VideoCardVertical = ({ video }) => {
           style={{ opacity: isWinner ? 0 : 1 }}
         />
 
+        {/* 🔥 ETIQUETA "Vente en ligne œuvre d'art" */}
+        <span className="art-badge">🎨 Vente en ligne œuvre d'art</span>
+
         {isWinner && (
           <button className="volume-btn" onClick={toggleMute}>
             {isMuted ? <VolumeMute size={18} /> : <VolumeUp size={18} />}
@@ -365,9 +410,7 @@ const VideoCardVertical = ({ video }) => {
         )}
 
         <div className="info-overlay">
-          <div className="channel-info" onClick={goToChannel}>
-            <div className="business-name">{channelName}</div>
-          </div>
+        
 
           <div className="video-title">{video.title}</div>
 
@@ -375,6 +418,7 @@ const VideoCardVertical = ({ video }) => {
             {formatPrice(video.price)}
             {isUnique && <span className="unique-badge">Œuvre unique</span>}
             {showOutOfStock && <span className="out-of-stock-badge">Épuisé</span>}
+            {isReservedByOther && <span className="reserved-badge">⏳ Réservée</span>}
           </div>
 
           <div className="card-actions">
@@ -392,8 +436,8 @@ const VideoCardVertical = ({ video }) => {
               disabled={isAddDisabled}
               title={getCartButtonTitle()}
             >
-              {showOutOfStock ? (
-                <span style={{ fontSize: '0.7rem' }}>Épuisé</span>
+              {showOutOfStock || isReservedByOther ? (
+                <span style={{ fontSize: '0.7rem' }}>{isReservedByOther ? '⏳' : 'Épuisé'}</span>
               ) : isInCart ? (
                 <CartCheck size={18} />
               ) : (

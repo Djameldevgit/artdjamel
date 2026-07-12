@@ -1,5 +1,5 @@
 // src/pages/cart/Cart.jsx
-// 🔥 VERSIÓN CON PAGO INTEGRADO (Chargily)
+// 🔥 VERSIÓN CON PAGO INTEGRADO (Chargily) Y MANEJO DE ERRORES MEJORADO
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,7 +26,7 @@ const Cart = () => {
   const { auth, cart } = useSelector(state => state);
   const [error, setError] = useState(null);
   const [updating, setUpdating] = useState(false);
-  const [processing, setProcessing] = useState(false); // Estado para el pago
+  const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
     if (auth?.token) {
@@ -75,7 +75,7 @@ const Cart = () => {
   // 🛒 PAGO CON CHARGILY
   // ============================================
   const handleCheckout = async () => {
-    // Validar que hay items y usuario autenticado
+    // Validar autenticación
     if (!auth?.token) {
       setError('Veuillez vous connecter pour passer commande.');
       return;
@@ -85,10 +85,16 @@ const Cart = () => {
       return;
     }
 
-    // Calcular total (ya está en cart.totalPrice, pero lo recalculamos por si acaso)
+    // Calcular total
     const totalPrice = cart.items.reduce((sum, item) => sum + (item.priceAtAdd || 0) * item.quantity, 0);
     if (totalPrice <= 0) {
       setError('Le montant total doit être supérieur à 0.');
+      return;
+    }
+
+    // ✅ VALIDACIÓN DE MONTO MÍNIMO (50 DZD) - Frontend
+    if (totalPrice < 50) {
+      setError('Le montant minimum pour un paiement est de 50 DZD. Veuillez ajouter d\'autres œuvres.');
       return;
     }
 
@@ -96,38 +102,38 @@ const Cart = () => {
     setError(null);
 
     try {
-      // Construir payload para el backend (similar a planes.js)
-      // En Cart.js - handleCheckout
+      const paymentData = {
+        plan_id: 'cart',
+        plan_name: 'Panier d\'achat',
+        totalAmount: totalPrice,      // ✅ Enviamos totalAmount correctamente
+        currency: 'dzd',
+        cart_items: cart.items.map(item => ({
+          videoId: item.videoId,
+          title: item.title || item.video?.title || 'Sans titre',
+          quantity: item.quantity,
+          price: item.priceAtAdd || item.video?.price || 0,
+          thumbnail: item.thumbnail || item.video?.thumbnail || null
+        }))
+      };
 
-const paymentData = {
-  plan_id: 'cart',
-  plan_name: 'Panier d\'achat',
-  totalAmount: totalPrice,      // ✅ Cambiado de 'amount' a 'totalAmount'
-  currency: 'dzd',
-  cart_items: cart.items.map(item => ({
-    videoId: item.videoId,
-    title: item.title || item.video?.title || 'Sans titre',
-    quantity: item.quantity,
-    price: item.priceAtAdd || item.video?.price || 0,
-    thumbnail: item.thumbnail || item.video?.thumbnail || null
-  }))
-};
-
-      // Llamar al mismo endpoint que usa Planes
       const response = await postDataAPI('create-order-and-checkout', paymentData, auth.token);
       
-      // Extraer la URL de checkout (puede estar en response.data.checkout_url o response.data.data.checkout_url)
+      // ✅ Extraer la URL de checkout (puede venir en diferentes formas)
       const checkoutUrl = response.data?.checkout_url || response.data?.data?.checkout_url;
       
       if (checkoutUrl) {
-        // Redirigir al usuario a la pasarela de pago
+        // Redirigir al usuario a Chargily
         window.location.href = checkoutUrl;
       } else {
-        throw new Error('URL de paiement manquante. Veuillez réessayer.');
+        // Si no hay URL, mostrar error detallado
+        const errorMsg = response.data?.error || response.data?.message || 'URL de paiement manquante. Veuillez réessayer.';
+        throw new Error(errorMsg);
       }
     } catch (err) {
       console.error('❌ Error en checkout:', err);
-      setError(err.response?.data?.message || err.message || 'Erreur lors de la création du paiement.');
+      // ✅ Mostrar mensaje de error del backend si existe, sino el genérico
+      const errorMsg = err.response?.data?.error || err.response?.data?.message || err.message || 'Erreur lors de la création du paiement.';
+      setError(errorMsg);
     } finally {
       setProcessing(false);
     }
@@ -320,7 +326,7 @@ const paymentData = {
               <Button
                 variant="success"
                 className="w-100 checkout-btn"
-                disabled={hasUnavailable || processing || updating || totalItems === 0}
+                disabled={hasUnavailable || processing || updating || totalItems === 0 || totalPrice < 50}
                 onClick={handleCheckout}
               >
                 {processing ? (
@@ -332,6 +338,11 @@ const paymentData = {
                   'Procéder au paiement'
                 )}
               </Button>
+              {totalPrice < 50 && (
+                <div className="mt-2 text-warning small">
+                  ⚠️ Le montant minimum est de 50 DZD.
+                </div>
+              )}
               {hasUnavailable && (
                 <div className="mt-2 text-danger small">
                   Certains articles ne sont plus disponibles. Veuillez les retirer pour continuer.

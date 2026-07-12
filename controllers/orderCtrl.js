@@ -359,43 +359,40 @@ createOrderAndCheckout: async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   },
-    deleteOrder: async (req, res) => {
-      try {
-        const { orderId } = req.params;
-        const userId = req.user._id;
-        const userRole = req.user.role;
-    
-        // Buscar la orden
-        const order = await Order.findOne({ orderId });
-        if (!order) {
-          return res.status(404).json({ error: 'Commande non trouvée' });
-        }
-    
-        // Verificar permisos: admin o propietario
-        const isAdmin = userRole === 'admin' || userRole === 'moderator';
-        const isOwner = order.userId.toString() === userId.toString();
-    
-        if (!isAdmin && !isOwner) {
-          return res.status(403).json({ error: 'Accès non autorisé' });
-        }
-    
-        // Opcional: solo permitir eliminar si estado es 'pending' o 'cancelled' (para usuarios)
-        if (!isAdmin && order.status !== 'pending' && order.status !== 'cancelled') {
-          return res.status(400).json({ error: 'Vous ne pouvez supprimer que les commandes en attente ou annulées' });
-        }
-    
-        // Eliminar la orden
-        await Order.findOneAndDelete({ orderId });
-    
-        // Opcional: restaurar stock de los videos (si es necesario)
-        // Aquí podrías recorrer order.items y aumentar stock
-    
-        res.json({ success: true, message: 'Commande supprimée avec succès' });
-      } catch (err) {
-        console.error('❌ Error deleteOrder:', err);
-        res.status(500).json({ error: err.message });
+  deleteOrder: async (req, res) => {
+    try {
+      // ✅ Verificar autenticación
+      if (!req.user || !req.user._id) {
+        return res.status(401).json({ error: 'Utilisateur non authentifié' });
       }
-    },
+  
+      const { orderId } = req.params;
+      const userId = req.user._id;
+      const userRole = req.user.role;
+  
+      const order = await Order.findOne({ orderId });
+      if (!order) {
+        return res.status(404).json({ error: 'Commande non trouvée' });
+      }
+  
+      const isAdmin = userRole === 'admin' || userRole === 'moderator';
+      const isOwner = order.userId.toString() === userId.toString();
+  
+      if (!isAdmin && !isOwner) {
+        return res.status(403).json({ error: 'Accès non autorisé' });
+      }
+  
+      if (!isAdmin && order.status !== 'pending' && order.status !== 'cancelled') {
+        return res.status(400).json({ error: 'Vous ne pouvez supprimer que les commandes en attente ou annulées' });
+      }
+  
+      await Order.findOneAndDelete({ orderId });
+      res.json({ success: true, message: 'Commande supprimée avec succès' });
+    } catch (err) {
+      console.error('❌ Error deleteOrder:', err);
+      res.status(500).json({ error: err.message });
+    }
+  },
     getSalesStats: async (req, res) => {
       try {
         if (req.user.role !== 'admin' && req.user.role !== 'moderator') {
@@ -441,7 +438,11 @@ createOrderAndCheckout: async (req, res) => {
         console.error('❌ Error getSalesStats:', err);
         res.status(500).json({ error: err.message });
       }
-    }
+    },
+
+// controllers/videoCtrl.js
+   
+
   };
 
 module.exports = orderCtrl;

@@ -1,5 +1,7 @@
 // src/pages/video/DetailVideoPage.jsx
-import React, { useState, useEffect, useRef } from 'react';
+// 🔥 VERSIÓN CON RESERVA VISUAL
+
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { Button, Badge } from 'react-bootstrap';
@@ -33,15 +35,27 @@ const DetailVideoPage = () => {
 
   const videoRef = useRef(null);
   const progressBarRef = useRef(null);
- 
+
+  // ===============================
+  // 🔥 NUEVO: Verificar estado de reserva
+  // ===============================
+  const isReservedByOther = useMemo(() => {
+    if (!video?.reservedBy || !auth?.user?._id) return false;
+    return video.reservedBy.toString() !== auth.user._id.toString();
+  }, [video, auth?.user?._id]);
+
+  const isReservedByMe = useMemo(() => {
+    if (!video?.reservedBy || !auth?.user?._id) return false;
+    return video.reservedBy.toString() === auth.user._id.toString();
+  }, [video, auth?.user?._id]);
+
+  // ===============================
   // ===== Cargar vídeo =====
   useEffect(() => {
     if (id) {
-      // ✅ No pasar token (la ruta es pública)
-      dispatch(getVideoById(id, null)); // o simplemente no pasar segundo argumento
+      dispatch(getVideoById(id, null));
     }
   }, [dispatch, id]);
-  
 
   // ===== Scroll del header =====
   useEffect(() => {
@@ -103,15 +117,12 @@ const DetailVideoPage = () => {
 
   // ===== MANEJAR SRC DE IMÁGENES (seguro) =====
   const getValidImageSrc = (src) => {
-    // Si src es null, undefined o no es string → placeholder
     if (!src || typeof src !== 'string') {
       return 'https://via.placeholder.com/400x300?text=Image+non+disponible';
     }
-    // Si es blob: o data: que no son válidos después de recargar → placeholder
     if (src.startsWith('blob:') || src.startsWith('data:')) {
       return 'https://via.placeholder.com/400x300?text=Image+non+disponible';
     }
-    // Si es una URL de Cloudinary o externa válida → devolverla
     return src;
   };
 
@@ -201,7 +212,6 @@ const DetailVideoPage = () => {
             className="video-images-swiper"
           >
             {video.images.map((img, idx) => {
-              // 👇 Asegurar que img sea un string; si es objeto, extraer url
               let imgSrc = img;
               if (typeof img === 'object' && img !== null) {
                 imgSrc = img.url || img.public_id || JSON.stringify(img);
@@ -247,29 +257,51 @@ const DetailVideoPage = () => {
             <div className="detail-value price">{video.price.toLocaleString()} DA</div>
           </div>
         </div>
+
         <div className="detail-row">
-  <div className="detail-label"><Badge bg="info" className="me-2">📦</Badge> Stock</div>
-  <div className="detail-value">{video.stock > 0 ? video.stock : 'Épuisé'}</div>
-</div>
-<div className="detail-row">
-  <div className="detail-label"><Badge bg="secondary" className="me-2">🏷️</Badge> Statut</div>
-  <div className="detail-value">
-    <Badge bg={video.status === 'en vente' ? 'success' : video.status === 'en exposition' ? 'warning' : 'danger'}>
-      {video.status === 'en vente' ? 'En vente' : video.status === 'en exposition' ? 'En exposition' : 'Vendue'}
-    </Badge>
-  </div>
-</div>
-<Button 
-  variant="success" 
-  className="video-buy-btn" 
-  onClick={handleAddToCart}
-  disabled={video.stock === 0 || video.status === 'vendue' || !auth.token}
->
-  {video.stock === 0 || video.status === 'vendue' ? 'Indisponible' : 'Ajouter au panier'}
-</Button> 
+          <div className="detail-label"><Badge bg="info" className="me-2">📦</Badge> Stock</div>
+          <div className="detail-value">{video.stock > 0 ? video.stock : 'Épuisé'}</div>
+        </div>
 
+        <div className="detail-row">
+          <div className="detail-label"><Badge bg="secondary" className="me-2">🏷️</Badge> Statut</div>
+          <div className="detail-value">
+            <Badge bg={video.status === 'en vente' ? 'success' : video.status === 'en exposition' ? 'warning' : 'danger'}>
+              {video.status === 'en vente' ? 'En vente' : video.status === 'en exposition' ? 'En exposition' : 'Vendue'}
+            </Badge>
+          </div>
+        </div>
 
-       
+        {/* 🔥 NUEVO: Fila de reserva */}
+        <div className="detail-row">
+          <div className="detail-label"><Badge bg="secondary" className="me-2">🔒</Badge> Réservation</div>
+          <div className="detail-value">
+            {isReservedByOther ? (
+              <Badge bg="warning" text="dark">⏳ En cours de réservation par un autre utilisateur</Badge>
+            ) : isReservedByMe ? (
+              <Badge bg="info">📌 Réservée par vous</Badge>
+            ) : (
+              <Badge bg="success">Disponible</Badge>
+            )}
+          </div>
+        </div>
+
+        {/* 🔥 Botón de compra con estado de reserva */}
+        <Button 
+          variant="success" 
+          className="video-buy-btn" 
+          onClick={handleAddToCart}
+          disabled={video.stock === 0 || video.status === 'vendue' || !auth.token || isReservedByOther}
+        >
+          {isReservedByOther ? (
+            '⏳ Réservée'
+          ) : video.stock === 0 || video.status === 'vendue' ? (
+            'Indisponible'
+          ) : (
+            'Ajouter au panier'
+          )}
+        </Button>
+
         <div className="artist-info">
           <img 
             src={video.user?.avatar || 'https://via.placeholder.com/48?text=Artiste'} 

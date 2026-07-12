@@ -9,11 +9,11 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
 const axios = require('axios');
 const path = require('path')
- 
- 
+const cron = require('node-cron'); // ✅ Importar node-cron
+
 // --- Cloudinary ---
 const cloudinary = require('cloudinary').v2;
- 
+
 // ============================================
 // 1️⃣ INICIALIZAR APP
 // ============================================
@@ -51,9 +51,8 @@ console.log('☁️ Cloudinary configurado correctamente');
 // ============================================
 // 5️⃣ RUTAS API (organizadas por categoría)
 // ============================================
-// server.js (o app.js)
 
-// Proxy para audio de Jamendo (para que Cloudinary pueda acceder)
+// Proxy para audio de Jamendo
 app.get('/api/music/proxy', async (req, res) => {
   const { url } = req.query;
   if (!url) return res.status(400).json({ error: 'Missing audio url' });
@@ -65,18 +64,17 @@ app.get('/api/music/proxy', async (req, res) => {
           method: 'GET',
           url: url,
           responseType: 'stream',
-          timeout: 60000, // ✅ 60 segundos timeout
+          timeout: 60000,
           headers: {
               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
               'Accept': 'audio/mpeg,audio/*;q=0.9,*/*;q=0.8',
-              'Accept-Encoding': 'identity', // ✅ Evitar compresión
+              'Accept-Encoding': 'identity',
               'Connection': 'keep-alive'
           },
           maxRedirects: 5,
           validateStatus: (status) => status === 200
       });
       
-      // ✅ Verificar headers
       const contentType = response.headers['content-type'];
       console.log(`🎵 Content-Type: ${contentType}`);
       
@@ -88,7 +86,6 @@ app.get('/api/music/proxy', async (req, res) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Cache-Control', 'public, max-age=3600');
       
-      // ✅ Manejar errores del stream
       response.data.on('error', (streamError) => {
           console.error('❌ Error en stream:', streamError.message);
           if (!res.headersSent) {
@@ -101,7 +98,6 @@ app.get('/api/music/proxy', async (req, res) => {
   } catch (err) {
       console.error('❌ Error proxy audio:', err.message);
       
-      // ✅ Manejo específico de errores
       if (err.code === 'ETIMEDOUT') {
           res.status(504).json({ error: 'Timeout al obtener audio (30s)' });
       } else if (err.code === 'ECONNRESET') {
@@ -113,19 +109,21 @@ app.get('/api/music/proxy', async (req, res) => {
       }
   }
 });
- 
+
 // --- Autenticación y Usuarios ---
 app.use('/api', require('./routes/authRouter'));
 app.use('/api', require('./routes/userRouter'));
 app.use('/api', require('./routes/userActionRouter'));
 app.use('/api', require('./routes/rolesRouter'));
 //app.use('/api', require('./routes/chargilyPlanRouter'));
-// --- Categorías (SOLO UNA VEZ) ---
-app.use('/api/categories', require('./routes/categoryRouter'));  // ✅ Esta se queda
+
+// --- Categorías ---
+app.use('/api/categories', require('./routes/categoryRouter'));
 app.use('/api', require('./routes/cartRouter'));
- app.use('/api', require('./routes/orderRouter'));
+app.use('/api', require('./routes/orderRouter'));        // ✅ Rutas de órdenes (incluye el webhook)
 app.use('/api', require('./routes/commentRouter'));
 app.use('/api', require('./routes/donationRouter'));
+
 // --- Mensajes y Notificaciones ---
 app.use('/api', require('./routes/messageRouter'));
 app.use('/api', require('./routes/notifyRouter'));
@@ -133,10 +131,8 @@ app.use('/api', require('./routes/notifyRouter'));
 // --- Reportes y Bloqueos ---
 app.use('/api', require('./routes/reportRouter'));
 
-
 // --- Videos, Canales, Imágenes ---
 app.use('/api', require('./routes/videoRouter'));
- 
 app.use('/api', require('./routes/imageRouter'));
 
 // --- Configuración y Settings ---
@@ -147,6 +143,26 @@ app.use('/api', require('./routes/carouselHomeRouter'));
 
 // --- Formularios y Blogs ---
 app.use('/api/blog/comments', require('./routes/blogCommentRoutes'));
+
+// ============================================
+// 6️⃣ CRON JOB - LIMPIEZA DE RESERVAS EXPIRADAS
+// ============================================
+const transactionCtrl = require('./controllers/transactionCtrl');
+
+// ✅ Ejecutar cada 10 minutos
+cron.schedule('*/10 * * * *', async () => {
+  try {
+    await transactionCtrl.cleanExpiredReservations();
+  } catch (error) {
+    console.error('❌ Error en cron job de limpieza:', error);
+  }
+});
+
+console.log('⏰ Cron job programado: limpieza de reservas cada 10 minutos');
+
+// ============================================
+// 7️⃣ CONEXIÓN A MONGODB
+// ============================================
 const URI = process.env.MONGODB_URI;
 mongoose.connect(URI, {
     useCreateIndex: true,
@@ -156,10 +172,10 @@ mongoose.connect(URI, {
 }, err => {
     if(err) throw err;
     console.log('✅ Connected to mongodb')
-})
+});
 
 // ============================================
- 
+// 8️⃣ PRODUCCIÓN - SIRVE EL FRONTEND
 // ============================================
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
@@ -174,4 +190,4 @@ if(process.env.NODE_ENV === 'production'){
 const port = process.env.PORT || 5000
 http.listen(port, () => {
     console.log(`🚀 Server is running on port ${port}`)
-})
+});

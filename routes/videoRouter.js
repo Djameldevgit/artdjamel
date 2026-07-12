@@ -15,5 +15,5 @@ router.patch('/videos/:id/share', auth, videoCtrl.shareArtwork);
 router.post('/videos/:id/save', auth, videoCtrl.toggleSaveArtwork);
 router.patch('/videos/:id/view', auth, videoCtrl.incrementArtworkView);
 router.get('/videos/me', auth, videoCtrl.getUserArtworks);
-
+router.get('/videos/:id/availability', auth, videoCtrl.getVideoAvailability);
 module.exports = router;

@@ -280,7 +280,33 @@ const getUserArtworks = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+ // controllers/videoCtrl.js
+const getVideoAvailability = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const video = await Video.findById(id);
+    if (!video) {
+      return res.status(404).json({ available: false, error: 'Obra no encontrada' });
+    }
 
+    const userId = req.user?._id; // Puede ser undefined si no está autenticado
+    const isReserved = video.reservedBy && video.reservedBy.toString() !== userId?.toString();
+    const isSold = video.stock <= 0 || video.status === 'vendue';
+
+    res.json({
+      available: !isSold && !isReserved,
+      reserved: !!video.reservedBy,
+      reservedByMe: video.reservedBy && video.reservedBy.toString() === userId?.toString(),
+      stock: video.stock,
+      status: video.status
+    });
+  } catch (error) {
+    res.status(500).json({ available: false, error: error.message });
+  }
+};
+
+ 
+ 
 module.exports = {
   createArtwork,
   getArtworkById,
@@ -291,5 +317,6 @@ module.exports = {
   incrementArtworkView,
   deleteArtwork,
   updateArtwork,
-  getUserArtworks
+  getUserArtworks,
+  getVideoAvailability
 };
