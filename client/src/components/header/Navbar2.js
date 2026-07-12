@@ -234,9 +234,7 @@ const Navbar2 = () => {
 
           {/* Iconos de acción */}
           <div className="d-flex align-items-center" style={{ gap: isMobile ? '6px' : '10px', flexShrink: 0 }}>
-            <Link to="/search" className="icon-button" style={{ width: isMobile ? '38px' : '42px', height: isMobile ? '38px' : '42px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: settings.style ? 'rgba(255,255,255,0.1)' : 'rgba(102, 126, 234, 0.1)' }}>
-              <FaSearch size={isMobile ? 16 : 18} style={{ color: '#667eea' }} />
-            </Link>
+            
 
             {showInstallButton && !isPWAInstalled && (
               <button onClick={handleInstallPWA} className="icon-button" style={{ width: isMobile ? '38px' : '42px', height: isMobile ? '38px' : '42px', borderRadius: '10px', backgroundColor: settings.style ? 'rgba(255,255,255,0.1)' : 'rgba(40, 167, 69, 0.1)', border: '2px solid #28a745', animation: 'pulse 2s infinite' }}>
@@ -340,17 +338,24 @@ const Navbar2 = () => {
                     </MenuItem>
                   )}
           
-                  {/* 🆕 Créer une commande (encargo) - para todos */}
-                  <MenuItem  icon={FaPlus}  iconColor="#28a745" to="/creer-une-commande">
+                  {/*    <MenuItem  icon={FaPlus}  iconColor="#28a745" to="/creer-une-commande">
                   Créer une commande
                   </MenuItem>
-          
-                  {/* ✅ Mes commandes (encargos del usuario) - para todos */}
+           
                   <MenuItem icon={FaClipboardList} iconColor="#17a2b8" to="/mes-commandes">
                      Mes commandes 
-                  </MenuItem>
+                  </MenuItem>(encargo) - para todos 
+                  
+                   <Link to="/search" className="icon-button" style={{ width: isMobile ? '38px' : '42px', height: isMobile ? '38px' : '42px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: settings.style ? 'rgba(255,255,255,0.1)' : 'rgba(102, 126, 234, 0.1)' }}>
+              <FaSearch size={isMobile ? 16 : 18} style={{ color: '#667eea' }} />
+            </Link>
+                  
+                  
+                  
+                  */}
+                
           
-                  {/* ✅ Commandes reçues (solo admin) */}
+                
                   {auth.user.role === 'admin' && (
                     <MenuItem icon={FaInbox} iconColor="#fd7e14" to="/encargos-recibidos">
                       Commandes reçues

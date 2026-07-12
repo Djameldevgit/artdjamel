@@ -111,21 +111,9 @@ const Login = () => {
                                 )}
 
                                 {/* Botones sociales */}
-                                <div onClick={stopPropagation} onMouseDown={stopPropagation}>
-                                    <Loginfacegoogle />
-                                </div>
+                                
 
-                                {/* Divisor */}
-                                <div className="position-relative my-4">
-                                    <hr className="text-muted" />
-                                    <span 
-                                        className="position-absolute top-50 start-50 translate-middle bg-white px-3"
-                                        style={{ color: '#6c757d', fontSize: '0.85rem' }}
-                                    >
-                                        ou continuer avec
-                                    </span>
-                                </div>
-
+                             
                                 {/* Formulario */}
                                 <Form onSubmit={handleSubmit} onClick={stopPropagation}>
                                     {/* Email */}

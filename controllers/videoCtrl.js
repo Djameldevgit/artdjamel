@@ -289,14 +289,14 @@ const getVideoAvailability = async (req, res) => {
       return res.status(404).json({ available: false, error: 'Obra no encontrada' });
     }
 
-    const userId = req.user?._id; // Puede ser undefined si no está autenticado
-    const isReserved = video.reservedBy && video.reservedBy.toString() !== userId?.toString();
+    const userId = req.user._id; // Puede ser undefined si no está autenticado
+    const isReserved = video.reservedBy && video.reservedBy.toString() !== userId.toString();
     const isSold = video.stock <= 0 || video.status === 'vendue';
 
     res.json({
       available: !isSold && !isReserved,
       reserved: !!video.reservedBy,
-      reservedByMe: video.reservedBy && video.reservedBy.toString() === userId?.toString(),
+      reservedByMe: video.reservedBy && video.reservedBy.toString() === userId.toString(),
       stock: video.stock,
       status: video.status
     });
