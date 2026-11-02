@@ -1,0 +1,215 @@
+createOrder()
+
+Esta sería la función más importante.
+
+Se ejecuta cuando el usuario pulsa:
+
+Comprar
+
+Su trabajo sería:
+
+Leer el carrito.
+Verificar que las obras siguen disponibles.
+Congelar el precio de las obras.
+Crear la Order.
+Estado inicial:
+PENDING
+Guardar los productos.
+Guardar el total.
+Asociar el usuario.
+
+Después de crear la Order, normalmente llamaría al servicio que crea el Checkout de Chargily.
+
+2. getMyOrders()
+
+Cuando el usuario entra en:
+
+Mis pedidos
+
+Esta función devuelve únicamente los pedidos del usuario autenticado.
+
+Por ejemplo:
+
+PENDING
+
+PAID
+
+FAILED
+
+COMPLETED
+3. getOrderById()
+
+Cuando el usuario hace clic sobre un pedido concreto.
+
+Ejemplo:
+
+Pedido #4582
+
+Devuelve toda la información.
+
+Productos.
+
+Precio.
+
+Estado.
+
+Fecha.
+
+Número de pedido.
+
+Referencia.
+
+4. updateOrderStatus()
+
+Ésta normalmente no la llamaría React.
+
+La llamaría el webhook.
+
+Por ejemplo:
+
+PENDING
+
+↓
+
+PAID
+
+o
+
+FAILED
+
+o
+
+EXPIRED
+
+Su única misión es cambiar el estado.
+
+5. cancelOrder()
+
+Imagina que el pedido sigue en:
+
+PENDING
+
+Y el usuario decide cancelar antes de pagar.
+
+Entonces:
+
+PENDING
+
+↓
+
+CANCELLED
+6. completeOrder()
+
+Ésta normalmente la usaría un administrador.
+
+Supongamos que ya enviaste el cuadro.
+
+Entonces:
+
+PROCESSING
+
+↓
+
+COMPLETED
+7. getAllOrders()
+
+Sólo para administradores.
+
+Devuelve todas las Orders.
+
+Muy útil para un panel administrativo.
+
+8. getOrdersByStatus()
+
+Ejemplo.
+
+Quiero ver únicamente
+
+PENDING
+
+o
+
+FAILED
+
+o
+
+PAID
+
+Es muy útil para gestionar el negocio.
+
+9. deleteOrder()
+
+Personalmente...
+
+Casi nunca eliminaría pedidos.
+
+En un e-commerce serio normalmente no se borran.
+
+Se conservan para auditorías.
+
+Si algún día decides permitirlo, solo lo haría para pruebas o para administradores y con muchas restricciones.
+
+Entonces el controlador quedaría aproximadamente así
+orderCtrl
+
+│
+
+├── createOrder()
+
+├── getMyOrders()
+
+├── getOrderById()
+
+├── getAllOrders()
+
+├── getOrdersByStatus()
+
+├── updateOrderStatus()
+
+├── cancelOrder()
+
+├── completeOrder()
+
+
+Cart → "Estoy pensando en comprar."
+Order → "He iniciado una compra y el negocio registra ese pedido."
+Transaction → "Esto es lo que ocurrió con el dinero."
+Payment Service → "Es el puente que comunica mi aplicación con Chargily y SATIM."
+
+Post de la obra
+        │
+        ▼
+Agregar al carrito
+        │
+        ▼
+Cart
+        │
+        ▼
+Comprar
+        │
+        ▼
+Order (PENDING)
+        │
+        ▼
+Payment Service
+        │
+        ▼
+Chargily
+        │
+        ▼
+SATIM
+        │
+        ▼
+Banco
+        │
+        ▼
+OTP
+        │
+        ▼
+Webhook
+        │
+        ▼
+Transaction
+        │
+        ▼
+Order → PAID

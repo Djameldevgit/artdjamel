@@ -1,0 +1,138 @@
+/* ============================================
+   CONTRASTE FUERZA - SOLUCIÓN BLANCO SOBRE BLANCO
+   ============================================ */
+
+/* 🔥 Fondo y texto para la tabla en modo oscuro (por defecto) */
+.orders-table {
+  background-color: #1a1a2e !important;
+  color: #e8e8e8 !important;
+}
+
+.orders-table tbody td {
+  color: #e8e8e8 !important;
+  background-color: transparent !important;
+}
+
+/* 🔥 Fondo y texto para la tabla en modo claro */
+.light-theme .orders-table {
+  background-color: #ffffff !important;
+  color: #212529 !important;
+}
+
+.light-theme .orders-table tbody td {
+  color: #212529 !important;
+  background-color: transparent !important;
+}
+
+/* 🔥 Filas alternadas en modo claro */
+.light-theme .orders-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.light-theme .orders-table tbody tr:hover {
+  background-color: #e9ecef !important;
+}
+
+/* 🔥 Filas alternadas en modo oscuro */
+.orders-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.orders-table tbody tr:hover {
+  background-color: rgba(102, 126, 234, 0.15) !important;
+}
+
+/* 🔥 Asegurar que los encabezados tengan buen contraste */
+.orders-table thead th {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+}
+
+.light-theme .orders-table thead th {
+  color: #ffffff !important; /* Mantener blanco para buen contraste */
+}
+/* ============================================
+   CONTRASTE FUERZA - SOLUCIÓN BLANCO SOBRE BLANCO
+   ============================================ */
+
+/* 🔥 Fondo y texto para la tabla en modo oscuro (por defecto) */
+.orders-table {
+  background-color: #1a1a2e !important;
+  color: #e8e8e8 !important;
+}
+
+.orders-table tbody td {
+  color: #e8e8e8 !important;
+  background-color: transparent !important;
+}
+
+.orders-table thead th {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+}
+
+/* 🔥 Fondo y texto para la tabla en modo claro */
+.light-theme .orders-table {
+  background-color: #ffffff !important;
+  color: #212529 !important;
+}
+
+.light-theme .orders-table tbody td {
+  color: #212529 !important;
+  background-color: transparent !important;
+}
+
+.light-theme .orders-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.light-theme .orders-table tbody tr:hover {
+  background-color: #e9ecef !important;
+}
+
+/* 🔥 Badges en modo claro */
+.light-theme .status-badge-pending {
+  background: #fff3cd !important;
+  color: #856404 !important;
+  border: 1px solid #ffc107 !important;
+}
+.light-theme .status-badge-paid {
+  background: #d4edda !important;
+  color: #155724 !important;
+  border: 1px solid #28a745 !important;
+}
+.light-theme .status-badge-shipped {
+  background: #d1ecf1 !important;
+  color: #0c5460 !important;
+  border: 1px solid #17a2b8 !important;
+}
+.light-theme .status-badge-delivered {
+  background: #cce5ff !important;
+  color: #004085 !important;
+  border: 1px solid #007bff !important;
+}
+.light-theme .status-badge-cancelled {
+  background: #f8d7da !important;
+  color: #721c24 !important;
+  border: 1px solid #dc3545 !important;
+}
+.light-theme .status-badge-refunded {
+  background: #e2e3e5 !important;
+  color: #383d41 !important;
+  border: 1px solid #6c757d !important;
+}
+
+/* 🔥 Paginación en modo claro */
+.light-theme .page-btn {
+  background: #f8f9fa !important;
+  border: 1px solid #dee2e6 !important;
+  color: #212529 !important;
+}
+.light-theme .page-btn:hover {
+  background: #e9ecef !important;
+}
+.light-theme .page-btn.active {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: #fff !important;
+  border-color: #667eea !important;
+}

@@ -1,0 +1,396 @@
+/* ============================================
+   ORDER MODAL - Totalmente personalizado
+   ============================================ */
+
+/* ---------- Overlay (fondo oscuro) ---------- */
+.order-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+    animation: fadeIn 0.2s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* ---------- Contenedor del modal ---------- */
+  .order-modal-container {
+    background: #1a1a2e;
+    border-radius: 16px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+    overflow: hidden;
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* ---------- Header ---------- */
+  .order-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+  }
+  
+  .order-modal-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .order-modal-close {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: color 0.2s;
+  }
+  
+  .order-modal-close:hover {
+    color: #fff;
+  }
+  
+  /* ---------- Body (scrollable) ---------- */
+  .order-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 200px;
+    max-height: calc(90vh - 130px); /* Restando header + footer */
+  }
+  
+  /* ---------- Metadatos ---------- */
+  .order-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+  }
+  
+  .order-meta-grid > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
+  
+  .order-meta-grid strong {
+    color: #667eea;
+    margin-right: 4px;
+  }
+  
+  /* ---------- Badge de estado ---------- */
+  .status-badge {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .status-badge-pending {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+  }
+  .status-badge-paid {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+  }
+  .status-badge-shipped {
+    background: rgba(23, 162, 184, 0.2);
+    color: #17a2b8;
+  }
+  .status-badge-delivered {
+    background: rgba(0, 123, 255, 0.2);
+    color: #007bff;
+  }
+  .status-badge-cancelled {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+  }
+  .status-badge-refunded {
+    background: rgba(108, 117, 125, 0.2);
+    color: #adb5bd;
+  }
+  
+  /* ---------- Tabla de items ---------- */
+  .order-items-wrapper {
+    overflow-x: auto;
+    margin-top: 4px;
+  }
+  
+  .order-items-table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    color: #e0e0e0;
+  }
+  
+  .order-items-table-custom thead th {
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
+    font-weight: 600;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  
+  .order-items-table-custom tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: middle;
+  }
+  
+  .order-items-table-custom tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .order-items-table-custom tfoot td {
+    padding: 12px 12px;
+    font-weight: 600;
+    border-top: 2px solid rgba(102, 126, 234, 0.2);
+  }
+  
+  .item-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .item-thumbnail {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  
+  .text-end {
+    text-align: right;
+  }
+  
+  /* ---------- Footer ---------- */
+  .order-modal-footer {
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+  }
+  
+  .btn-close-modal {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e0e0e0;
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-close-modal:hover {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
+  }
+  
+  /* ============================================
+     RESPONSIVE (Android y móviles)
+     ============================================ */
+  
+  @media (max-width: 576px) {
+    .order-modal-container {
+      max-height: 95vh;
+      border-radius: 12px;
+      margin: 8px;
+    }
+  
+    .order-modal-overlay {
+      padding: 8px;
+    }
+  
+    .order-modal-header {
+      padding: 12px 16px;
+    }
+  
+    .order-modal-title {
+      font-size: 0.95rem;
+    }
+  
+    .order-modal-body {
+      padding: 14px 16px;
+      max-height: calc(95vh - 120px);
+      min-height: 150px;
+    }
+  
+    .order-meta-grid {
+      grid-template-columns: 1fr;
+      gap: 6px 0;
+      padding: 12px 14px;
+      font-size: 0.8rem;
+    }
+  
+    .order-items-table-custom {
+      font-size: 0.75rem;
+    }
+  
+    .order-items-table-custom thead th,
+    .order-items-table-custom tbody td,
+    .order-items-table-custom tfoot td {
+      padding: 6px 8px;
+    }
+  
+    .item-thumbnail {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .order-modal-footer {
+      padding: 10px 16px;
+    }
+  
+    .btn-close-modal {
+      padding: 6px 18px;
+      font-size: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .order-modal-container {
+      margin: 4px;
+      border-radius: 10px;
+    }
+  
+    .order-modal-body {
+      padding: 10px 12px;
+    }
+  
+    .order-meta-grid {
+      padding: 10px 12px;
+      font-size: 0.75rem;
+    }
+  
+    .order-items-table-custom {
+      font-size: 0.7rem;
+    }
+  
+    .order-items-table-custom thead th,
+    .order-items-table-custom tbody td,
+    .order-items-table-custom tfoot td {
+      padding: 4px 6px;
+    }
+  
+    .item-thumbnail {
+      width: 24px;
+      height: 24px;
+    }
+  
+    .order-modal-header {
+      padding: 10px 12px;
+    }
+    .order-modal-title {
+      font-size: 0.85rem;
+    }
+  }
+  
+  /* ---------- Tema claro (opcional) ---------- */
+  .light-theme .order-modal-container {
+    background: #ffffff;
+    color: #2d3748;
+  }
+  
+  .light-theme .order-modal-header {
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .light-theme .order-modal-title {
+    -webkit-text-fill-color: #4a5568;
+    background: none;
+    color: #4a5568;
+  }
+  
+  .light-theme .order-modal-close {
+    color: #555;
+  }
+  
+  .light-theme .order-modal-close:hover {
+    color: #000;
+  }
+  
+  .light-theme .order-meta-grid {
+    background: #f8f9fa;
+    color: #2d3748;
+  }
+  
+  .light-theme .order-meta-grid strong {
+    color: #4a6cf7;
+  }
+  
+  .light-theme .order-items-table-custom {
+    color: #2d3748;
+  }
+  
+  .light-theme .order-items-table-custom thead th {
+    background: rgba(74, 108, 247, 0.08);
+    color: #4a6cf7;
+  }
+  
+  .light-theme .order-items-table-custom tbody td {
+    border-bottom: 1px solid #edf2f7;
+  }
+  
+  .light-theme .order-items-table-custom tfoot td {
+    border-top: 2px solid #e2e8f0;
+  }
+  
+  .light-theme .order-modal-footer {
+    border-top: 1px solid #e9ecef;
+  }
+  
+  .light-theme .btn-close-modal {
+    background: #f1f3f5;
+    border-color: #dee2e6;
+    color: #2d3748;
+  }
+  
+  .light-theme .btn-close-modal:hover {
+    background: #e2e8f0;
+  }

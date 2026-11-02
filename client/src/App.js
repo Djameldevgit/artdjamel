@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 import { GLOBALTYPES } from './redux/actions/globalTypes';
 import SocketClient from './SocketClient';
 import Home from './pages/home';
-import Bloqueos404 from './components/adminitration/Bloqueos404';
+ 
 import NotFound from './pages/NotFound';
 import CategoryPage from './pages/category/CategoryPage';
 import Navbar2 from './components/header/Navbar2';
@@ -16,7 +16,7 @@ import DashboardPage from './pages/users/dashboardpage';
 import profile from './pages/users/profile';
  
 import ProfileSettings from './pages/users/ProfileSettings';
- 
+import Bloqueos404 from './components/adminitration/Bloqueos404';
  
 import NotifyPage from './pages/notiy/NotifyPage';
 import EditVideoWizard from './pages/video/EditVideoWizard';
@@ -30,13 +30,21 @@ import Message from './pages/message/index';
 import Map from './pages/Map';
 import UserProInfoPlans from './pages/userProInfoPlans';
 import PaymentRequest from './pages/PaymentRequest';
-import planes from './pages/userProo/planes';
+ 
 import PaymentSuccess from './pages/userProo/PaymentSuccess';
  
  
 import CreateArtworkWizard from './pages/video/CreateArtWorkWizard';
 import DetailArtworkPage from './pages/video/DetailArtworkPage';
 import Cart from './pages/Cart';
+import AdminOrders from './components/orders/AdminOrders';
+import UserOrders from './components/orders/UserOrders';
+import Roless from './components/Roless';
+import ClientCommissionPage from './pages/commission/ClientCommissionPage';
+import ArtistCommissionPage from './pages/commission/ArtistCommissionPage';
+import CommissionDetailPage from './pages/commission/CommissionDetailPage';
+import OrderHelpPage from './components/orders/OrderHelpPage';
+ 
  
 let audioElement = null;
 let audioUnlocked = false;
@@ -235,10 +243,11 @@ function AppContent() {
       '/users/roles',
       '/donation',
       '/planes',
-      '/userproinfoplans'
-     
-      
-   
+      '/userproinfoplans',
+      '/adminorders',
+      '/user/orders',
+      '/cart',
+      '/aide-commandes'
     ];
 
     const prefixes = [
@@ -250,9 +259,11 @@ function AppContent() {
       '/message/',
       '/profile/',
       '/donation/',
-      '/userproinfoplans'
-       
-    
+      '/userproinfoplans',
+      '/adminorders',
+      '/user/orders',
+      '/cart',
+      '/aide-commandes'
     ];
 
     if (explicitRoutes.includes(pathname)) return true;
@@ -288,10 +299,15 @@ function AppContent() {
         <Route exact path="/video/:id" component={DetailArtworkPage} />
         <Route exact path="/video/userVideo/:userId/info" component={InfoUserVideo} />
         <Route exact path="/videos/trending" component={TrendingVideos} />
-
-     
+        <Route exact path="/adminorders" component={AdminOrders} />
+        <Route exact path="/user/orders" component={UserOrders} />
         <Route exact path="/cart" component={Cart} />
- 
+        <Route exact path="/mes-commandes" component={ClientCommissionPage} />
+  {/* Artista: ver y responder encargos */}
+  <Route exact path="/encargos-recibidos" component={ArtistCommissionPage} />
+  
+  {/* Ruta para ver detalle de un encargo (opcional) */}
+  <Route exact path="/encargo/:id" component={CommissionDetailPage} />
         <Route exact path="/map" component={Map} />
        
         <Route exact path="/message" component={Message} />
@@ -299,12 +315,12 @@ function AppContent() {
         <Route exact path="/profile/settings" component={ProfileSettings} />
         <Route exact path="/users/dashboard" component={DashboardPage} />
         <Route exact path="/profile/:id" component={profile} />
-    
-        <Route exact path="/planes" component={planes} />
+        <Route exact path="/users/roles" component={Roless} />
+   
         <Route exact path="/userpropayment" component={PaymentRequest} />
         <Route exact path="/userproinfoplans" component={UserProInfoPlans} />
         <Route path="/payment-success" component={PaymentSuccess} />
-        
+        <Route exact path="/aide-commandes" component={OrderHelpPage} />
          <Route exact path="/:slug/:page?" component={CategoryPage} />
         <Route exact path="/:slug/:subSlug/:page?" component={CategoryPage} />
         <Route exact path="/:slug/:subSlug/:articleSlug/:page?" component={CategoryPage} />

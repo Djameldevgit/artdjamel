@@ -1,0 +1,375 @@
+/* ============================================
+   ORDER HELP PAGE - ALTO CONTRASTE DEFINITIVO
+   ============================================ */
+
+   .help-page-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem 1rem 2rem;
+    background: transparent;
+    min-height: 80vh;
+  }
+  
+  /* ========== HEADER ========== */
+  .help-header {
+    background: linear-gradient(135deg, #a5b5ff 0%, #9f3eff 100%);
+ 
+    padding: 1.8rem 1.2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+  .help-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    
+  }
+  .help-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 0.8rem;
+   
+  }
+  .help-header .btn-outline-light {
+    
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .help-header .btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.2);
+    ;
+  }
+  
+  /* ========== CONTENIDO ========== */
+  .help-content {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1.2rem 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  .help-section {
+    margin-bottom: 2rem;
+  }
+  .help-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+    color: #667eea !important;
+    font-weight: 700;
+  }
+  .help-description {
+    color: #cbd5e042 !important; /* gris claro pero oscuro en modo oscuro */
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* ========== SEGURIDAD ========== */
+  .security-section {
+    background: rgba(40, 167, 69, 0.05);
+    border-radius: 16px;
+    padding: 1.2rem 1rem;
+    border: 1px solid rgba(40, 167, 69, 0.15);
+    margin-bottom: 2rem;
+  }
+  .security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(40, 167, 69, 0.15);
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    margin-bottom: 0.6rem;
+  }
+  .security-icon { font-size: 1.2rem; color: #28a745; }
+  .security-label { font-weight: 700; color: #28a745; font-size: 0.85rem; }
+  .security-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+   
+    margin-bottom: 1rem;
+  }
+  .security-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .security-feature {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+ 
+  }
+  .feature-icon { font-size: 1rem; color: #28a745; }
+  .security-cta { margin-top: 0.5rem; }
+  .security-cta .btn-outline-info {
+    border-color: #17a2b8;
+    color: #17a2b8;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  .security-cta .btn-outline-info:hover {
+    background: #17a2b8;
+   
+  }
+  
+  /* ========== ESTADOS ========== */
+  .status-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  .status-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    border-left: 4px solid #667eea;
+    transition: all 0.2s ease;
+  }
+  .status-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+  }
+  .status-card-icon {
+    flex-shrink: 0;
+    font-size: 1.8rem;
+    margin-top: 2px;
+  }
+  .help-icon { font-size: 1.8rem; }
+  .pending-icon { color: #ffc107; }
+  .paid-icon    { color: #28a745; }
+  .shipped-icon { color: #17a2b8; }
+  .delivered-icon { color: #007bff; }
+  .cancelled-icon { color: #dc3545; }
+  .refunded-icon  { color: #6c757d; }
+  
+  .status-card-content h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem 0;
+    
+  }
+  .status-description {
+    margin: 0 0 0.2rem 0;
+ 
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .status-action {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #667eea !important;
+  }
+  
+  /* ========== ACCIONES ========== */
+  .action-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-top: 0.3rem;
+  }
+  .action-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .action-icon {
+    font-size: 1.5rem;
+    color: #667eea;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .action-info h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem 0;
+   
+  }
+  .action-info p {
+    margin: 0;
+  
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  
+  /* ========== SOPORTE ========== */
+  .support-section {
+    background: rgba(102, 126, 234, 0.06);
+    border-radius: 12px;
+    padding: 1.2rem 1rem;
+    border: 1px solid rgba(102, 126, 234, 0.15);
+  }
+  .support-section p {
+   
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .support-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .support-buttons .btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    flex: 1 1 auto;
+  }
+  .support-buttons .btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+   
+  }
+  .support-buttons .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+  .support-buttons .btn-outline-secondary {
+    border-color: #6c757d;
+    
+  }
+  .support-buttons .btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    
+  }
+  
+  /* ============================================
+     TEMA CLARO - TODOS LOS TEXTOS OSCUROS
+     ============================================ */
+  
+  .light-theme .help-content {
+  
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Títulos */
+  .light-theme .help-section h2 {
+    color: #1a202c !important; /* casi negro */
+  }
+  
+  /* Descripciones */
+  .light-theme .help-description,
+  .light-theme .status-description,
+  .light-theme .action-info p,
+  .light-theme .support-section p,
+  .light-theme .security-description {
+    color: #1a202c !important; /* casi negro */
+  }
+  
+  /* Tarjetas de estado */
+ 
+  
+  .light-theme .status-card-content h3 {
+    color: #1a202c !important;
+  }
+  .light-theme .status-action {
+    color: #1a202c !important; /* oscuro */
+  }
+  
+  /* Tarjetas de acciones */
+ 
+  .light-theme .action-info h4 {
+    color: #1a202c !important;
+  }
+  .light-theme .action-icon {
+    color: #1a202c !important; /* oscuro */
+  }
+  
+  /* Seguridad */
+   
+  .light-theme .security-description {
+    color: #1a202c !important;
+  }
+  .light-theme .security-feature {
+    
+    color: #1a202c !important;
+  }
+  .light-theme .security-label {
+    color: #1a202c !important;
+  }
+  .light-theme .security-cta .btn-outline-info {
+    color: #0d6efd !important;
+    border-color: #0d6efd !important;
+  }
+  .light-theme .security-cta .btn-outline-info:hover {
+    background: #0d6efd !important;
+    
+  }
+  
+  .light-theme .support-buttons .btn-outline-secondary {
+    color: #1a202c !important;
+    }
+  .light-theme .support-buttons .btn-outline-secondary:hover {
+    
+    color: #1a202c !important;
+  }
+  
+  /* Iconos de estado en tema claro */
+  .light-theme .pending-icon { color: #b8860b !important; }
+  .light-theme .paid-icon    { color: #155724 !important; }
+  .light-theme .shipped-icon { color: #0c5460 !important; }
+  .light-theme .delivered-icon { color: #004085 !important; }
+  .light-theme .cancelled-icon { color: #721c24 !important; }
+  .light-theme .refunded-icon  { color: #383d41 !important; }
+  
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  
+  @media (max-width: 576px) {
+    .help-page-container { padding: 0.6rem 0.6rem 1.5rem; }
+    .help-header { padding: 1.2rem 1rem; border-radius: 12px; }
+    .help-header h1 { font-size: 1.4rem; }
+    .help-subtitle { font-size: 0.9rem; }
+    .help-content { padding: 0.8rem 0.6rem; border-radius: 12px; }
+    .help-section h2 { font-size: 1.2rem; }
+    .help-description, .security-description { font-size: 0.9rem; }
+    .status-card { flex-direction: column; align-items: flex-start; padding: 0.7rem 0.9rem; }
+    .status-card-icon { font-size: 1.6rem; }
+    .status-card-content h3 { font-size: 0.9rem; }
+    .action-card { flex-direction: column; align-items: flex-start; padding: 0.7rem 0.9rem; }
+    .action-icon { font-size: 1.3rem; }
+    .action-info h4 { font-size: 0.9rem; }
+    .security-features { flex-direction: column; gap: 0.4rem; }
+    .security-feature { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
+    .support-buttons { flex-direction: column; }
+    .support-buttons .btn { width: 100%; text-align: center; }
+    .security-badge { font-size: 0.8rem; padding: 0.3rem 0.8rem; }
+    .security-cta .btn-outline-info { font-size: 0.8rem; padding: 0.3rem 1rem; }
+  }
+  
+  @media (min-width: 576px) and (max-width: 768px) {
+    .help-header h1 { font-size: 1.6rem; }
+    .status-grid { grid-template-columns: 1fr 1fr; }
+    .action-grid { grid-template-columns: 1fr 1fr; }
+  }
+  
+  @media (min-width: 768px) {
+    .help-page-container { padding: 2rem 1.5rem 3rem; }
+    .help-header { padding: 2.5rem 2rem; }
+    .help-header h1 { font-size: 2.2rem; }
+    .help-content { padding: 2rem 1.8rem; }
+    .status-grid { grid-template-columns: 1fr 1fr; }
+    .action-grid { grid-template-columns: 1fr 1fr; }
+    .security-features { flex-direction: row; }
+  }
+  
+  @media (min-width: 992px) {
+    .help-header h1 { font-size: 2.8rem; }
+    .status-grid { grid-template-columns: 1fr 1fr; }
+  }

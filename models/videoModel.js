@@ -10,7 +10,8 @@ const artworkSchema = new mongoose.Schema({
   videoPublicId: { type: String, default: '' },
   thumbnail: { type: String, default: '' },
   duration: { type: Number, default: 0 },
-
+  
+  
  // models/videoModel.js
 images: [{
   url: { type: String, required: true },

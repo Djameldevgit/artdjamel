@@ -2,12 +2,18 @@ import axios from 'axios'
 
 const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
  
+
+
+
 export const getPublicDataAPI = async (url, config = {}) => {
  
     const fullUrl = url.startsWith('/api') ? url : `/api/${url}`;
     const res = await axios.get(`${BASE_URL}${fullUrl}`, config);
     return res;
 }
+
+
+
 
 export const getDataAPI = async (url, token) => {
     const res = await axios.get(`${BASE_URL}/api/${url}`, {

@@ -1,4 +1,4 @@
-/* VideoCardVertical.css - Estilos con dimensiones controladas */
+ /* VideoCardVertical.css - Estilos con etiqueta centrada y textos legibles */
 
 /* === CONTENEDOR PRINCIPAL === */
 .video-card-vertical {
@@ -9,12 +9,10 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
-
-  /* ✅ DIMENSIONES CONTROLADAS */
-  width: 100%;           /* Ocupa el ancho del contenedor padre */
-  max-width: 360px;      /* ✅ Ancho máximo para que no se estiren */
-  aspect-ratio: 9 / 16;  /* ✅ Relación de aspecto vertical (9:16 estilo TikTok) */
-  margin: 0 auto;        /* Centrar en el grid */
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
 }
 
 .video-card-vertical:hover {
@@ -27,7 +25,7 @@
 .video-thumbnail-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;          /* ✅ Ahora usa todo el espacio del contenedor */
+  height: 100%;
   background: #0d0d1a;
   overflow: hidden;
 }
@@ -46,6 +44,34 @@
 
 .video-element {
   background: #000;
+}
+
+/* ============================================ */
+/* 🔥 ETIQUETA "Vente en ligne" CENTRADA        */
+/* ============================================ */
+.art-badge {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(12, 9, 58, 0.404);
+  backdrop-filter: blur(6px);
+  color: #ffd700;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+ 
+ 
+  text-transform: uppercase;
+  
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: 90%;
+  overflow: hidden;
+  
+  text-align: center;
 }
 
 /* === OVERLAY DE INFORMACIÓN === */
@@ -72,7 +98,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.75rem;    /* ✅ Más compacto */
+  font-size: 0.7rem;
   font-weight: 500;
   color: #ccc;
   cursor: pointer;
@@ -89,43 +115,80 @@
   background: rgba(255, 255, 255, 0.15);
   padding: 2px 10px;
   border-radius: 20px;
-  font-size: 0.7rem;     /* ✅ Más compacto */
+  font-size: 0.65rem;
   backdrop-filter: blur(4px);
-  white-space: nowrap;   /* ✅ Evitar que el nombre se rompa */
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 120px;      /* ✅ Limitar ancho */
+  max-width: 120px;
 }
 
-/* === TÍTULO === */
+/* ============================================ */
+/* 🔥 TÍTULO - BLANCO Y LEGIBLE               */
+/* ============================================ */
 .video-title {
-  font-size: 0.85rem;    /* ✅ Más compacto */
+  font-size: 0.85rem;
   font-weight: 600;
   line-height: 1.3;
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  color: #ffffff !important;        /* ✅ Forzado a blanco */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8); /* ✅ Sombra para legibilidad */
   margin: 2px 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  display: block;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
-/* === PRECIO === */
+/* === PRECIO (estilo artístico) === */
 .price {
-  font-size: 0.95rem;    /* ✅ Más compacto */
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #ffd700;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* === BADGES (única, agotado, reservado) === */
+.unique-badge,
+.out-of-stock-badge,
+.reserved-badge {
+  font-size: 0.55rem;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+.out-of-stock-badge {
+  background: rgba(220, 53, 69, 0.3);
+  color: #dc3545;
+  border-color: rgba(220, 53, 69, 0.4);
+}
+
+.reserved-badge {
+  background: rgba(255, 193, 7, 0.25);
+  color: #ffc107;
+  border-color: rgba(255, 193, 7, 0.3);
 }
 
 /* === ACCIONES (like + carrito) === */
 .card-actions {
   display: flex;
   align-items: center;
-  gap: 10px;              /* ✅ Espacio reducido */
-  margin-top: 6px;        /* ✅ Más compacto */
+  gap: 10px;
+  margin-top: 6px;
   pointer-events: auto;
 }
 
@@ -137,9 +200,9 @@
   backdrop-filter: blur(8px);
   border: none;
   border-radius: 30px;
-  padding: 4px 10px;      /* ✅ Padding reducido */
+  padding: 4px 10px;
   color: white;
-  font-size: 0.7rem;      /* ✅ Más pequeño */
+  font-size: 0.65rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -175,10 +238,11 @@
 }
 
 .action-count {
-  min-width: 14px;        /* ✅ Más compacto */
+  min-width: 14px;
   text-align: center;
 }
 
+/* === BOTÓN CARRITO (rojo cuando en carrito) === */
 .cart-btn {
   background: rgba(76, 175, 80, 0.25);
   color: #4caf50;
@@ -186,6 +250,32 @@
 
 .cart-btn:hover {
   background: rgba(76, 175, 80, 0.4);
+}
+
+.cart-btn.in-cart {
+  background: rgba(220, 53, 69, 0.3) !important;
+  color: #dc3545 !important;
+  border: 1px solid rgba(220, 53, 69, 0.4);
+}
+
+.cart-btn.in-cart:hover {
+  background: rgba(220, 53, 69, 0.5) !important;
+  color: #fff !important;
+}
+
+.cart-btn.in-cart svg {
+  fill: #dc3545;
+}
+
+.cart-btn.in-cart:hover svg {
+  fill: #fff;
+}
+
+.cart-btn.disabled-btn {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(108, 117, 125, 0.3);
+  color: #adb5bd;
 }
 
 /* === BOTÓN DE VOLUMEN === */
@@ -198,7 +288,7 @@
   backdrop-filter: blur(4px);
   border: none;
   border-radius: 50%;
-  width: 30px;            /* ✅ Más pequeño */
+  width: 30px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -240,27 +330,33 @@
 }
 
 /* ============================================ */
-/* 🔥 RESPONSIVE: ajustes para móviles */
+/* 🔥 RESPONSIVE                                */
 /* ============================================ */
 
 @media (max-width: 768px) {
   .video-card-vertical {
-    max-width: 280px;      /* ✅ Más pequeño en móvil */
+    max-width: 280px;
     aspect-ratio: 9 / 16;
   }
 
+  .art-badge {
+    font-size: 0.55rem;
+    padding: 3px 10px;
+    top: 10px;
+    max-width: 90%;
+  }
+
   .business-name {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     max-width: 80px;
   }
 
   .video-title {
     font-size: 0.75rem;
-    -webkit-line-clamp: 2;
   }
 
   .price {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
   .action-btn {
@@ -276,12 +372,19 @@
 
 @media (max-width: 480px) {
   .video-card-vertical {
-    max-width: 180px;      /* ✅ Muy compacto en móvil pequeño */
+    max-width: 180px;
     aspect-ratio: 9 / 16;
   }
 
   .info-overlay {
     padding: 10px 8px 8px 8px;
+  }
+
+  .art-badge {
+    font-size: 0.45rem;
+    padding: 2px 8px;
+    top: 8px;
+    max-width: 90%;
   }
 
   .business-name {
@@ -291,12 +394,11 @@
   }
 
   .video-title {
-    font-size: 0.65rem;
-    -webkit-line-clamp: 2;
+    font-size: 0.6rem;
   }
 
   .price {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
   .card-actions {
@@ -325,52 +427,4 @@
     width: 14px;
     height: 14px;
   }
-}
-/* VideoCardVertical.css - Añadir estos estilos */
-
-.price {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #ffd700;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.unique-badge {
-  font-size: 0.65rem;
-  background: rgba(255, 215, 0, 0.25);
-  color: #ffd700;
-  padding: 2px 10px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  font-weight: 500;
-  text-shadow: none;
-}
-
-/* Botón carrito rojo cuando está en el carrito */
-.cart-btn.in-cart {
-  background: rgba(220, 53, 69, 0.3) !important;
-  color: #dc3545 !important;
-  border: 1px solid rgba(220, 53, 69, 0.4);
-}
-
-.cart-btn.in-cart:hover {
-  background: rgba(220, 53, 69, 0.5) !important;
-  color: #fff !important;
-}
-
-.cart-btn.in-cart svg {
-  fill: #dc3545;
-}
-
-.cart-btn.in-cart:hover svg {
-  fill: #fff;
-}
-
-/* Ajuste para el texto del badge en el carrito */
-.cart-item .badge-stock {
-  font-size: 0.7rem;
 }

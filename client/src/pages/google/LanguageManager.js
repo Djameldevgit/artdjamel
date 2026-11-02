@@ -1,4 +1,4 @@
-// components/LanguageManager.js - Añadir clase CSS para forzar LTR
+// components/LanguageManager.js
 import React, { useEffect, useState } from 'react';
 
 // ✅ IDIOMAS SOPORTADOS
@@ -8,68 +8,34 @@ export const SUPPORTED_LANGUAGES = [
   { code: 'en', name: 'English', label: 'EN', flag: '🇬🇧', dir: 'ltr' }
 ];
 
-// ✅ IDIOMA POR DEFECTO: ÁRABE
-const DEFAULT_LANG = 'ar';
+// ✅ IDIOMA POR DEFECTO: FRANCÉS (cambiado de 'ar' a 'fr')
+const DEFAULT_LANG = 'fr';
 
 // ✅ LISTA DE COMPONENTES QUE SIEMPRE DEBEN SER LTR (IGNORAN RTL)
-// Agrega aquí los nombres de las clases o IDs de los componentes
 const IGNORE_RTL_SELECTORS = [
-  '.navbar',           // Para cualquier navbar
-  '.navbar2',          // Para Navbar2 específicamente
-  '.video-reel-item',  // Para el reproductor de video
-  '.video-player',     // Para el reproductor
-  '.video-comments',   // Para comentarios
-  '.step-video-upload', // Para los steps del wizard
-  '.step-music-selection',
-  '.step-video-info',
-  '.create-video-wizard',
-  '.edit-video-wizard',
-  '.video-actions',
-  // También puedes usar IDs
-  '#navbar',           // Si tu navbar tiene un ID específico
-  '#main-navbar'       // Ajusta según tu ID real
+  '.navbar', '.navbar2', '.video-reel-item', '.video-player',
+  '.video-comments', '.step-video-upload', '.step-music-selection',
+  '.step-video-info', '.create-video-wizard', '.edit-video-wizard',
+  '.video-actions', '#navbar', '#main-navbar'
 ];
 
 // ✅ COMPONENTES QUE IGNORAN RTL (nombres para el hook)
 export const IGNORE_RTL_COMPONENTS = [
-  'Navbar2',
-  'VideoReelItem',
-  'VideoPlayer',
-  'VideoComments',
-  'StepVideoUpload',
-  'StepMusicSelection',
-  'StepVideoInfo',
-  'CreateVideoWizard',
-  'EditVideoWizard',
-  'VideoActions'
+  'Navbar2', 'VideoReelItem', 'VideoPlayer', 'VideoComments',
+  'StepVideoUpload', 'StepMusicSelection', 'StepVideoInfo',
+  'CreateVideoWizard', 'EditVideoWizard', 'VideoActions'
 ];
 
 // ✅ FUNCIÓN PARA APLICAR/QUITAR CLASES RTL A COMPONENTES ESPECÍFICOS
 const applyIgnoreRTLStyles = () => {
-  // Agregar estilos globales si no existen
   if (!document.getElementById('ignore-rtl-styles')) {
     const style = document.createElement('style');
     style.id = 'ignore-rtl-styles';
     style.textContent = `
-      /* Forzar LTR para componentes específicos */
       ${IGNORE_RTL_SELECTORS.map(selector => `
-        ${selector} {
-          direction: ltr !important;
-          text-align: left !important;
-        }
-        ${selector} * {
-          direction: ltr !important;
-          text-align: left !important;
-        }
+        ${selector} { direction: ltr !important; text-align: left !important; }
+        ${selector} * { direction: ltr !important; text-align: left !important; }
       `).join('\n')}
-      
-      /* Mantener RTL para el resto de la app cuando el idioma es árabe */
-      html[dir="rtl"]:not(.ignore-rtl) {
-        direction: rtl;
-      }
-      html[dir="rtl"]:not(.ignore-rtl) * {
-        direction: rtl;
-      }
     `;
     document.head.appendChild(style);
   }
@@ -77,26 +43,21 @@ const applyIgnoreRTLStyles = () => {
 
 // ✅ FUNCIÓN PARA OBTENER DIRECCIÓN SEGÚN COMPONENTE
 export const getComponentDirection = (componentName, currentLang) => {
-  if (IGNORE_RTL_COMPONENTS.includes(componentName)) {
-    return 'ltr';
-  }
+  if (IGNORE_RTL_COMPONENTS.includes(componentName)) return 'ltr';
   const langInfo = SUPPORTED_LANGUAGES.find(l => l.code === currentLang);
   return langInfo?.dir || 'ltr';
 };
 
-// ✅ HOOK PERSONALIZADO PARA USAR EN COMPONENTES
+// ✅ HOOK PERSONALIZADO
 export const useComponentDirection = (componentName) => {
   const [currentLang, setCurrentLang] = useState(DEFAULT_LANG);
   
   useEffect(() => {
     const savedLang = getStoredLanguage();
     setCurrentLang(savedLang);
-    
     const handleLanguageChange = () => {
-      const newLang = getStoredLanguage();
-      setCurrentLang(newLang);
+      setCurrentLang(getStoredLanguage());
     };
-    
     window.addEventListener('languageChanged', handleLanguageChange);
     return () => window.removeEventListener('languageChanged', handleLanguageChange);
   }, []);
@@ -114,6 +75,7 @@ export const useComponentDirection = (componentName) => {
 
 // ✅ OBTENER IDIOMA GUARDADO
 export const getStoredLanguage = () => {
+  // Primero revisar cookie de Google Translate
   const cookies = document.cookie.split(';');
   for (let cookie of cookies) {
     const [name, value] = cookie.trim().split('=');
@@ -124,12 +86,12 @@ export const getStoredLanguage = () => {
       }
     }
   }
-  
+  // Luego localStorage
   const savedLang = localStorage.getItem('appLanguage');
   if (savedLang && SUPPORTED_LANGUAGES.some(l => l.code === savedLang)) {
     return savedLang;
   }
-  
+  // Por defecto: francés
   return DEFAULT_LANG;
 };
 
@@ -146,7 +108,6 @@ export const setStoredLanguage = (langCode) => {
   
   const langInfo = SUPPORTED_LANGUAGES.find(l => l.code === langCode);
   if (langInfo) {
-    // Aplicar RTL solo al html, pero los componentes específicos lo ignorarán via CSS
     document.documentElement.dir = langInfo.dir;
     document.documentElement.lang = langCode;
   }
@@ -182,16 +143,13 @@ export const waitForGoogleTranslate = () => {
   return new Promise((resolve) => {
     let attempts = 0;
     const maxAttempts = 30;
-    
     const checkInterval = setInterval(() => {
       attempts++;
       if (window.google && window.google.translate) {
         clearInterval(checkInterval);
-        console.log('✅ Google Translate listo');
         resolve(true);
       } else if (attempts >= maxAttempts) {
         clearInterval(checkInterval);
-        console.warn('⚠️ Google Translate no cargó');
         resolve(false);
       }
     }, 100);
@@ -222,7 +180,6 @@ export const initGoogleTranslate = () => {
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false
         }, 'google_translate_element');
-        console.log('✅ Google Translate inicializado');
         resolve(true);
       } catch (error) {
         console.error('Error inicializando Google Translate:', error);
@@ -251,11 +208,9 @@ const LanguageManager = ({ children }) => {
       console.log('🌐 Inicializando LanguageManager...');
       
       try {
-        // Aplicar estilos CSS para forzar LTR en componentes específicos
         applyIgnoreRTLStyles();
         
-        const savedLang = getStoredLanguage();
-        
+        const savedLang = getStoredLanguage(); // ahora devuelve 'fr' por defecto
         const langInfo = SUPPORTED_LANGUAGES.find(l => l.code === savedLang);
         if (langInfo) {
           document.documentElement.dir = langInfo.dir;
@@ -266,7 +221,6 @@ const LanguageManager = ({ children }) => {
         try {
           await initGoogleTranslate();
           await waitForGoogleTranslate();
-          
           if (savedLang !== 'fr') {
             await translatePage(savedLang);
           }
@@ -284,6 +238,7 @@ const LanguageManager = ({ children }) => {
     initializeLanguage();
   }, []);
 
+  // Ocultar elementos de Google Translate
   useEffect(() => {
     const hideGoogleElements = () => {
       const elements = document.querySelectorAll(
@@ -307,19 +262,15 @@ const LanguageManager = ({ children }) => {
     return () => clearInterval(interval);
   }, []);
 
+  // Estilos para ocultar elementos de Google Translate
   useEffect(() => {
     if (!document.getElementById('google-translate-hide-styles')) {
       const style = document.createElement('style');
       style.id = 'google-translate-hide-styles';
       style.textContent = `
-        .goog-te-banner-frame,
-        .goog-te-menu-frame,
-        .goog-te-gadget,
-        .goog-te-balloon-frame,
-        .goog-te-banner,
-        .skiptranslate,
-        iframe[src*="translate"],
-        div[class*="goog-te"] {
+        .goog-te-banner-frame, .goog-te-menu-frame, .goog-te-gadget,
+        .goog-te-balloon-frame, .goog-te-banner, .skiptranslate,
+        iframe[src*="translate"], div[class*="goog-te"] {
           display: none !important;
           visibility: hidden !important;
           height: 0 !important;
@@ -330,15 +281,13 @@ const LanguageManager = ({ children }) => {
           opacity: 0 !important;
           pointer-events: none !important;
         }
-        body {
-          top: 0px !important;
-          position: relative !important;
-        }
+        body { top: 0px !important; position: relative !important; }
       `;
       document.head.appendChild(style);
     }
   }, []);
 
+  // Exponer funciones globales para cambiar idioma
   useEffect(() => {
     window.changeLanguage = async (langCode) => {
       setStoredLanguage(langCode);
